@@ -1,0 +1,78 @@
+#!groovy
+import uk.gov.hmcts.contino.AppPipelineDsl
+
+properties([
+    [
+        $class       : 'GithubProjectProperty',
+        displayName  : 'Family Private Law Document Generator Client',
+        projectUrlStr: 'https://github.com/hmcts/prl-dgs-api'
+    ],
+    pipelineTriggers([
+        [$class: 'GitHubPushTrigger']
+    ])
+])
+
+@Library("Infrastructure")
+
+def type = "java"
+def product = "prl"
+def component = "dgs"
+
+def secrets = [
+    'prl-${env}': [
+        secret("microservicekey-prl-dgs-api", "AUTH_PROVIDER_SERVICE_CLIENT_KEY"),
+        secret("docmosis-api-key", "DOCMOSIS_SERVICE_ACCESS_KEY")
+    ]
+]
+
+static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
+    [$class     : 'AzureKeyVaultSecret',
+     secretType : 'Secret',
+     name       : secretName,
+     version    : '',
+     envVariable: envVar
+    ]
+}
+
+// Vars for Kubernetes
+env.PACT_BROKER_FULL_URL = 'https://pact-broker.platform.hmcts.net'
+
+withPipeline(type, product, component) {
+    loadVaultSecrets(secrets)
+    enableAksStagingDeployment()
+    disableLegacyDeployment()
+
+    after('checkout') {
+        echo '${product}-${component} checked out'
+    }
+
+    before('smoketest:aat') {
+        env.test_environment = 'aat'
+    }
+
+    before('functionalTest:aat') {
+        env.test_environment = 'aat'
+    }
+
+    before('smoketest:preview') {
+        env.test_environment = 'aat'
+    }
+
+    // Kubernetes does not retrieve variables from the output terraform
+    before('functionalTest:preview') {
+        env.FEATURE_RESP_SOLICITOR_DETAILS = 'true'
+        env.test_environment = 'aat'
+    }
+
+    after('functionalTest:preview') {
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/site/serenity/**/*'
+    }
+
+    after('functionalTest:aat') {
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/site/serenity/**/*'
+    }
+
+    onMaster() {
+        enablePactAs([AppPipelineDsl.PactRoles.CONSUMER])
+    }
+}

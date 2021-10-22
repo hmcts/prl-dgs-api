@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ApplicationInsightsAgent>
-  <AgentLogger>INFO</AgentLogger>
-  <Instrumentation>
-    <BuiltIn enabled="true">
-      <HTTP enabled="true"/>
-      <JDBC enabled="true"/>
-    </BuiltIn>
-  </Instrumentation>
+    <AgentLogger>INFO</AgentLogger>
+    <Instrumentation>
+        <BuiltIn enabled="true">
+            <HTTP enabled="true"/>
+        </BuiltIn>
+        <Class name="DocumentManagementServiceImpl">
+            <Method name="generateAndStoreDocument" reportCaughtExceptions="true" reportExecutionTime="true"/>
+            <Method name="storeDocument" reportCaughtExceptions="true" reportExecutionTime="true"/>
+            <Method name="generateDocument" reportCaughtExceptions="true" reportExecutionTime="true"/>
+        </Class>
+        <Class name="EvidenceManagementServiceImpl">
+            <Method name="storeDocumentAndGetInfo" reportCaughtExceptions="true" reportExecutionTime="true"/>
+        </Class>
+        <Class name="PDFGenerationServiceImpl">
+            <Method name="generateFromHtml" reportCaughtExceptions="true" reportExecutionTime="true"/>
+        </Class>
+        <Class name="TemplateManagementServiceImpl">
+            <Method name="getTemplateByName" reportCaughtExceptions="true" reportExecutionTime="true"/>
+        </Class>
+    </Instrumentation>
 </ApplicationInsightsAgent>
+
