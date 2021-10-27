@@ -25,6 +25,6 @@ public class RootController {
      */
     @GetMapping
     public ResponseEntity<String> welcome() {
-        return ok("Welcome to Divorce Document Generator Client");
+        return ok("Welcome to Private Law Document Generator Client");
     }
 }
