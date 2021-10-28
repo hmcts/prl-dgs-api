@@ -1,193 +1,138 @@
-# Spring Boot application template
+# Document Generator
 
-[![Build Status](https://travis-ci.org/hmcts/spring-boot-template.svg?branch=master)](https://travis-ci.org/hmcts/spring-boot-template)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.org/hmcts/prl-dgs-api.svg?branch=master)](https://travis-ci.org/hmcts/prl-dgs-api)
+[![codecov](https://codecov.io/gh/hmcts/prl-dgs-api/branch/master/graph/badge.svg)](https://app.codecov.io/gh/hmcts/prl-dgs-api)
+[![Documentation](https://img.shields.io/static/v1?label=Documentation&message=DGS&color=informational&logo=confluence)](https://tools.hmcts.net/confluence/display/PL/PDF+document+generator)
 
-## Purpose
+This is a document generation and template management service. This allows to generate documents based on a
+given template name and placeholder data in JSON format and will also store the generated document in the
+Document Management Store (via Case Document AM).
 
-The purpose of this template is to speed up the creation of new Spring applications within HMCTS
-and help keep the same standards across multiple teams. If you need to create a new app, you can
-simply use this one as a starting point and build on top of it.
-
-## What's inside
-
-The template is a working application with a minimal setup. It contains:
- * application skeleton
- * setup script to prepare project
- * common plugins and libraries
- * docker setup
- * swagger configuration for api documentation ([see how to publish your api documentation to shared repository](https://github.com/hmcts/reform-api-docs#publish-swagger-docs))
- * code quality tools already set up
- * integration with Travis CI
- * Hystrix circuit breaker enabled
- * MIT license and contribution information
- * Helm chart using chart-java.
-
-The application exposes health endpoint (http://localhost:4550/health) and metrics endpoint
-(http://localhost:4550/metrics).
-
-## Plugins
-
-The template contains the following plugins:
-
-  * checkstyle
-
-    https://docs.gradle.org/current/userguide/checkstyle_plugin.html
-
-    Performs code style checks on Java source files using Checkstyle and generates reports from these checks.
-    The checks are included in gradle's *check* task (you can run them by executing `./gradlew check` command).
-
-  * pmd
-
-    https://docs.gradle.org/current/userguide/pmd_plugin.html
-
-    Performs static code analysis to finds common programming flaws. Included in gradle `check` task.
-
-
-  * jacoco
-
-    https://docs.gradle.org/current/userguide/jacoco_plugin.html
-
-    Provides code coverage metrics for Java code via integration with JaCoCo.
-    You can create the report by running the following command:
-
-    ```bash
-      ./gradlew jacocoTestReport
-    ```
-
-    The report will be created in build/reports subdirectory in your project directory.
-
-  * io.spring.dependency-management
-
-    https://github.com/spring-gradle-plugins/dependency-management-plugin
-
-    Provides Maven-like dependency management. Allows you to declare dependency management
-    using `dependency 'groupId:artifactId:version'`
-    or `dependency group:'group', name:'name', version:version'`.
-
-  * org.springframework.boot
-
-    http://projects.spring.io/spring-boot/
-
-    Reduces the amount of work needed to create a Spring application
-
-  * org.owasp.dependencycheck
-
-    https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/index.html
-
-    Provides monitoring of the project's dependent libraries and creating a report
-    of known vulnerable components that are included in the build. To run it
-    execute `gradle dependencyCheck` command.
-
-  * com.github.ben-manes.versions
-
-    https://github.com/ben-manes/gradle-versions-plugin
-
-    Provides a task to determine which dependencies have updates. Usage:
-
-    ```bash
-      ./gradlew dependencyUpdates -Drevision=release
-    ```
+The service provides a single RESTful endpoint that will generate the document, store it in Evidence Management
+Store and return the link to the stored data.
 
 ## Setup
 
-Located in `./bin/init.sh`. Simply run and follow the explanation how to execute it.
+**Prerequisites**
 
-## Notes
+- [JDK 11](https://openjdk.java.net/)
+- [Docker](https://www.docker.com)
 
-Since Spring Boot 2.1 bean overriding is disabled. If you want to enable it you will need to set `spring.main.allow-bean-definition-overriding` to `true`.
 
-JUnit 5 is now enabled by default in the project. Please refrain from using JUnit4 and use the next generation
+**Building**
 
-## Building and deploying the application
+The project uses [Gradle](https://gradle.org) as a build tool but you don't have to install it locally since there is a
+`./gradlew` wrapper script.
 
-### Building the application
-
-The project uses [Gradle](https://gradle.org) as a build tool. It already contains
-`./gradlew` wrapper script, so there's no need to install gradle.
-
-To build the project execute the following command:
+To build project please execute the following command:
 
 ```bash
-  ./gradlew build
+./gradlew build
 ```
 
-### Running the application
+**Running**
 
-Create the image of the application by executing the following command:
+First you need to create distribution by executing following command:
 
 ```bash
-  ./gradlew assemble
+./gradlew installDist
 ```
 
-Create docker image:
+To begin download the azure client cli:
 
 ```bash
-  docker-compose build
+brew update && brew install azure-cli
 ```
 
-Run the distribution (created in `build/install/spring-boot-template` directory)
-by executing the following command:
+After it has finished downloaded run:
 
 ```bash
-  docker-compose up
+az login
 ```
 
-This will start the API container exposing the application's port
-(set to `4550` in this template app).
+This should open a browser window for you to login, use your HMCTS account
 
-In order to test if the application is up, you can call its health endpoint:
+After logging in run the following command:
 
 ```bash
-  curl http://localhost:4550/health
+az acr login --name hmcts --subscription <ask the team for the secret>
 ```
 
-You should get a response similar to this:
+Make sure you are connected to the VPN to before you run docker-compose up otherwise it won't be able to use the image.
 
-```
-  {"status":"UP","diskSpace":{"status":"UP","total":249644974080,"free":137188298752,"threshold":10485760}}
-```
-
-### Alternative script to run application
-
-To skip all the setting up and building, just execute the following command:
+When the distribution has been created in `build/install/prl-dgs-api` directory,
+you can run the application by executing following command:
 
 ```bash
-./bin/run-in-docker.sh
+docker-compose up
 ```
 
-For more information:
+As a result the following container(s) will get created and started:
+ - long living container for API application exposing port `4007`
+
+## Testing
+
+**Integration tests**
+
+To run all integration tests locally:
+
+* Make a copy of `src/main/resources/example-application-aat.yml` as `src/main/resources/application-aat.yml`
+* Make a copy of `src/integrationTest/resources/example-application-local.properties` as `src/integrationTest/resources/application-local.properties`
+* Replace the `replace_me` secrets in the _newly created_ files. You can get the values from SCM and Azure secrets key vault (the new files are in .gitignore and should ***not*** be committed to git)
+* Assuming you use IntelliJ, run your application
+* And then run your gradle functional tests task
+* Or if using command line:
+    * Start the app with AAT config using `./gradlew clean bootRunAat`
+    * Start the test with AAT config using `./gradlew clean functional`
+
+If you update content in [templates](https://github.com/hmcts/rdo-docmosis-templates), you can re-generate the PDFs by running the ignored test `PDFGenerationTest.ignoreMe_updateGeneratedPdfs`. The test
+will output generated PDFs to the folder `src/integrationTest/resources/documentgenerator/documents/regenerated`
+
+**Unit tests**
+
+To run all unit tests please execute following command:
 
 ```bash
-./bin/run-in-docker.sh -h
+./gradlew test
 ```
 
-Script includes bare minimum environment variables necessary to start api instance. Whenever any variable is changed or any other script regarding docker image/container build, the suggested way to ensure all is cleaned up properly is by this command:
+**Coding style tests**
+
+To run all checks (including unit tests) please execute following command:
 
 ```bash
-docker-compose rm
+./gradlew check
 ```
 
-It clears stopped containers correctly. Might consider removing clutter of images too, especially the ones fiddled with:
+**Mutation tests**
+
+To run all mutation tests execute the following command:
 
 ```bash
-docker images
-
-docker image rm <image-id>
+./gradlew pitest
 ```
 
-There is no need to remove postgres and java or similar core images.
+## Developing
 
-### Other
+**Flow Diagram**
 
-Hystrix offers much more than Circuit Breaker pattern implementation or command monitoring.
-Here are some other functionalities it provides:
- * [Separate, per-dependency thread pools](https://github.com/Netflix/Hystrix/wiki/How-it-Works#isolation)
- * [Semaphores](https://github.com/Netflix/Hystrix/wiki/How-it-Works#semaphores), which you can use to limit
- the number of concurrent calls to any given dependency
- * [Request caching](https://github.com/Netflix/Hystrix/wiki/How-it-Works#request-caching), allowing
- different code paths to execute Hystrix Commands without worrying about duplicating work
+![diagram](docs/DataFlow.png)
+
+**API documentation**
+
+API documentation is provided with Swagger:
+ - `http://localhost:4007/swagger-ui.html` - UI to interact with the API resources
+
+**Versioning**
+
+We use [SemVer](http://semver.org/) for versioning.
+For the versions available, see the tags on this repository.
+
+**Standard API**
+
+We follow [RESTful API standards](https://hmcts.github.io/restful-api-standards/).
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
-
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.

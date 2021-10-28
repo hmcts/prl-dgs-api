@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.1.xsd">
+    <suppress>
+        <notes>
+        <![CDATA[
+            file: spring-security-crypto-5.4.5.jar
+            packages: pkg:maven/org.springframework.security/spring-security-crypto@5.4.5, cpe:2.3:a:pivotal_software:spring_security:5.4.5:*:*:*:*:*:*:*
+            This has been updated, but it still shown some vulnerabilities that shouldn't be there
+            Issue reported on the DependencyCheck GitHub repo https://github.com/jeremylong/DependencyCheck/issues/1665
+        ]]>
+        </notes>
+        <gav regex="true">.*</gav>
+        <cve>CVE-2018-1258</cve>
+    </suppress>
+    <suppress>
+        <notes> 9.0.50 </notes>
+        <gav regex="true">.*</gav>
+        <cve>CVE-2021-42340</cve>
+    </suppress>
+</suppressions>

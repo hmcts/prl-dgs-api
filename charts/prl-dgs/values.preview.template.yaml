@@ -1,0 +1,10 @@
+java:
+    environment:
+        MANAGEMENT_ENDPOINT_HEALTH_CACHE_TIMETOLIVE: "30000"
+        DOCMOSIS_SERVICE_DEV_MODE_FLAG: "true"
+        PDF_TEST_ENABLED: "true"
+        CCD_CASE_DOCS_AM_API: "http://ccd-case-document-am-api-aat.service.core-compute-aat.internal"
+
+    # Don't modify below here
+    image: ${IMAGE_NAME}
+    ingressHost: ${SERVICE_FQDN}
