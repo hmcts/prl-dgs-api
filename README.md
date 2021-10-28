@@ -20,7 +20,7 @@ Store and return the link to the stored data.
 - [Docker](https://www.docker.com)
 
 
-**Building**
+***Building***
 
 The project uses [Gradle](https://gradle.org) as a build tool but you don't have to install it locally since there is a
 `./gradlew` wrapper script.
