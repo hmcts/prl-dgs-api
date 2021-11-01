@@ -195,7 +195,7 @@ dependencies {
         exclude group: 'io.reactivex', module: 'rxnetty-servo'
     }
 
-    testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '3.0.0'
+    testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '3.0.4'
 
     compile (group: 'commons-beanutils', name: 'commons-beanutils', version: versions.commonsBeanUtils) {
         force = true
