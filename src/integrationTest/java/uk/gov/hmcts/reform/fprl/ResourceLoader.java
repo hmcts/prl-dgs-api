@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.prl;
+package uk.gov.hmcts.reform.fprl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
