@@ -16,5 +16,6 @@ java:
             resourceGroup: prl
             secrets:
                 - docmosis-api-key
+                - test-genericpassword
 
 

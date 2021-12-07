@@ -13,7 +13,7 @@ import java.util.Base64;
 @Slf4j
 public class IdamUtils {
 
-    @Value("${idam.user.genericpassword}")
+    @Value("${prl.integrationtest.password}")
     private String genericPassword;
 
     @Value("${auth.idam.client.baseUrl}")

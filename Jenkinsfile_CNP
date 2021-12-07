@@ -21,7 +21,8 @@ def component = "dgs"
 def secrets = [
     'prl-${env}': [
         secret("microservicekey-prl-dgs-api", "AUTH_PROVIDER_SERVICE_CLIENT_KEY"),
-        secret("docmosis-api-key", "DOCMOSIS_SERVICE_ACCESS_KEY")
+        secret("docmosis-api-key", "DOCMOSIS_SERVICE_ACCESS_KEY"),
+        secret("test-genericpassword", "TEST_GENERIC_PASSWORD")
     ]
 ]
 

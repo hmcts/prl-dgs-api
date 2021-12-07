@@ -8,6 +8,7 @@ import org.junit.Rule;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
@@ -20,6 +21,7 @@ import java.util.UUID;
 import javax.annotation.PostConstruct;
 
 @Slf4j
+@ActiveProfiles("integration-test")
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {ServiceContextConfiguration.class})
 public abstract class IntegrationTest {
@@ -36,7 +38,7 @@ public abstract class IntegrationTest {
     @Value("${http.proxy:#{null}}")
     protected String httpProxy;
 
-    @Value("${idam.user.genericpassword}")
+    @Value("${prl.integrationtest.password}")
     protected String aatPassword;
 
     @Autowired

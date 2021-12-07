@@ -123,3 +123,18 @@ logging:
 
 azure:
     app_insights_key: ${APPINSIGHTS_INSTRUMENTATIONKEY:false}
+
+
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: integration-test
+
+
+
+prl:
+  integrationtest:
+    password: ${TEST_GENERIC_PASSWORD:false}
