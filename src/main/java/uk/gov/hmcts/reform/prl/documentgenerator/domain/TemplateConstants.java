@@ -9,7 +9,7 @@ public class TemplateConstants {
     public static final String DOCMOSIS_TYPE = "docmosis";
 
     // Template Ids
-    public static final String TEST_TEMPLATE = "FL-DIV-GOR-ENG-00062.docx";
+    public static final String TEST_TEMPLATE = "FL-DIV-GOR-ENG-00355.docx";
 
     // Template Names
     public static final String TEST_TEMPLATE_NAME_FOR_PDF = "TestTemplate.pdf";

@@ -1,16 +1,14 @@
-package uk.gov.hmcts.reform.fprl;
+package uk.gov.hmcts.reform.prl;
 
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
 import net.serenitybdd.rest.SerenityRest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Service;
-import uk.gov.hmcts.reform.fprl.model.CreateUserRequest;
-import uk.gov.hmcts.reform.fprl.model.UserCode;
+import uk.gov.hmcts.reform.prl.model.CreateUserRequest;
+import uk.gov.hmcts.reform.prl.model.UserCode;
 
 import java.util.Base64;
-import java.util.UUID;
 
 @Slf4j
 public class IdamUtils {

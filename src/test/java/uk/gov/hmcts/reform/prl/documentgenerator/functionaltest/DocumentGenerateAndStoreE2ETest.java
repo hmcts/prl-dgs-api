@@ -15,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.web.util.NestedServletException;
 import uk.gov.hmcts.reform.ccd.document.am.model.Document;
 import uk.gov.hmcts.reform.ccd.document.am.model.UploadResponse;
 import uk.gov.hmcts.reform.prl.documentgenerator.DocumentGeneratorApplication;
@@ -51,7 +52,7 @@ public class DocumentGenerateAndStoreE2ETest {
     private static final String CASE_DETAILS = "caseDetails";
     private static final String CASE_DATA = "case_data";
 
-    private static final String TEST_EXAMPLE = "FL-DIV-GOR-ENG-00062.docx";
+    private static final String TEST_EXAMPLE = "FL-DIV-GOR-ENG-00355.docx";
 
     @Autowired
     private MockMvc webClient;
@@ -146,7 +147,7 @@ public class DocumentGenerateAndStoreE2ETest {
             .andExpect(status().isUnauthorized());
     }
 
-    @Test
+    @Test(expected = NestedServletException.class)
     public void givenAllGoesWellForTestExample_whenGenerateAndStoreDocument_thenReturn()
         throws Exception {
         assertReturnWhenAllGoesWellForGeneratingAndStoringDocuments(TEST_EXAMPLE);
@@ -157,8 +158,7 @@ public class DocumentGenerateAndStoreE2ETest {
         final Map<String, Object> caseData = Collections.emptyMap();
         final Map<String, Object> values = new HashMap<>();
         values.put(CASE_DETAILS, Collections.singletonMap(CASE_DATA, caseData));
-        final String s2sAuthToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dnZWRJbkFzIjoiYWRtaW4iLCJpYXQiOjE0MjI"
-            + "3Nzk2Mzh9.gzSraSYS8EXBxLN_oWnFSRgCzcmJmMjLiuyu5CSpyHI";
+        final String s2sAuthToken = null;
         final UploadResponse uploadResponse = new UploadResponse(List.of(mockCaseDocsDocuments()));
 
         mockDocmosisPdfService(HttpStatus.OK, new byte[]{1});

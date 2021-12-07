@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl;
+package uk.gov.hmcts.reform.prl;
 
 import feign.Feign;
 import feign.jackson.JacksonEncoder;

@@ -1,11 +1,10 @@
-package uk.gov.hmcts.reform.fprl;
+package uk.gov.hmcts.reform.prl;
 
 import io.restassured.response.Response;
 import net.serenitybdd.rest.SerenityRest;
 import org.apache.http.HttpStatus;
 import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
