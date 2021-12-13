@@ -309,7 +309,7 @@ dependencyManagement {
         }
 
         // CVE-2021-28170
-        dependency group: 'org.glassfish', name: 'jakarta.el', version: '3.0.4'
+        dependency group: 'org.glassfish', name: 'jakarta.el', version: '4.0.2'
 
         dependency group: 'com.google.guava', name:'guava', version: versions.guava
     }
