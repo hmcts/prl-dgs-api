@@ -196,7 +196,7 @@ dependencies {
     exclude group: 'io.reactivex', module: 'rxnetty-servo'
   }
 
-  testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '3.0.0'
+  testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '3.1.0'
 
   compile (group: 'commons-beanutils', name: 'commons-beanutils', version: versions.commonsBeanUtils) {
     force = true
@@ -310,7 +310,7 @@ dependencyManagement {
     }
 
     // CVE-2021-28170
-    dependency group: 'org.glassfish', name: 'jakarta.el', version: '3.0.4'
+    dependency group: 'org.glassfish', name: 'jakarta.el', version: '4.0.2'
 
     dependency group: 'com.google.guava', name:'guava', version: versions.guava
   }
