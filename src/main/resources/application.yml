@@ -58,7 +58,7 @@ pdf:
 document:
     templates:
         configurationList:
-            -   templateName: FL-DIV-GOR-ENG-00062.docx
+            -   templateName: FL-DIV-GOR-ENG-00355.docx
                 filename: TestTemplate.pdf
                 document-generator: docmosis
     pdf:
