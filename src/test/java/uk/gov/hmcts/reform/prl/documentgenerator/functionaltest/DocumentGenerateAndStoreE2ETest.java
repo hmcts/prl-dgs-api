@@ -51,7 +51,7 @@ public class DocumentGenerateAndStoreE2ETest {
     private static final String CASE_DETAILS = "caseDetails";
     private static final String CASE_DATA = "case_data";
 
-    private static final String TEST_EXAMPLE = "FL-DIV-GOR-ENG-00062.docx";
+    private static final String TEST_EXAMPLE = "FL-DIV-GOR-ENG-00355.docx";
 
     @Autowired
     private MockMvc webClient;
