@@ -24,7 +24,16 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static uk.gov.hmcts.reform.prl.documentgenerator.functionaltest.DocumentGenerateAndStoreE2ETest.mockCaseDocsDocuments;
-import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.*;
+import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.CASE_TYPE;
+import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.FILE_URL;
+import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.JURISDICTION;
+import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.MIME_TYPE;
+import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_AUTH_TOKEN;
+import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_GENERATED_DOCUMENT;
+import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_HASH_TOKEN;
+import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_S2S_TOKEN;
+import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_TEMPLATE;
+import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_TEMPLATE_FILE_NAME;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DocumentManagementServiceImplUTest {
