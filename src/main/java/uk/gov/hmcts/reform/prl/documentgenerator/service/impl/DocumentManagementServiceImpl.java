@@ -66,7 +66,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     private GeneratedDocumentInfo getGeneratedDocumentInfo(String templateName, Map<String, Object> placeholders,
                                                            String authorizationToken, String fileName) {
         log.debug("Generate and Store Document requested with templateName [{}], placeholders of size [{}]",
-            templateName, placeholders.size());
+                  templateName, placeholders.size());
         String caseId = getCaseId(placeholders);
         if (caseId == null) {
             log.warn("caseId is null for template \"" + templateName + "\"");
@@ -107,6 +107,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
             .url(uploadedDocument.links.self.href)
             .mimeType(uploadedDocument.mimeType)
             .hashToken(uploadedDocument.hashToken)
+            .binaryUrl(uploadedDocument.links.binary.href)
             .build();
     }
 

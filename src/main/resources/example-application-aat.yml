@@ -30,7 +30,7 @@ auth:
 idam:
     s2s-auth:
         microservice: ${AUTH_PROVIDER_SERVICE_CLIENT_MICROSERVICE:prl_dgs_api}
-        totp_secret: ${AUTH_PROVIDER_SERVICE_CLIENT_KEY:replace_me}
+        totp_secret: ${AUTH_PROVIDER_SERVICE_CLIENT_KEY:AABBCCDDEEFFGGHH}
         url: ${AUTH_PROVIDER_SERVICE_CLIENT_BASEURL:http://localhost:4502}
 
 http:
@@ -59,6 +59,9 @@ document:
     templates:
         configurationList:
             -   templateName: FL-DIV-GOR-ENG-00062.docx
+                filename: TestTemplate.pdf
+                document-generator: docmosis
+            -   templateName: FL-DIV-GOR-ENG-00355.docx
                 filename: TestTemplate.pdf
                 document-generator: docmosis
     pdf:

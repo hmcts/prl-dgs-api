@@ -141,7 +141,7 @@ def versions = [
     gradlePitest: '1.4.5',
     guava: '30.1-jre',
     jacksonDatabind: '2.11.2',
-    apacheLogging: '2.13.2',
+    apacheLogging: '2.15.0',
     jsonAssert: '1.2.3',
     junit: '4.13.1',
     lombok: '1.18.20',
