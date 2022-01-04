@@ -31,7 +31,7 @@ public class DocumentManagementServiceImplTest {
     private static final String IS_DRAFT = "isDraft";
     private static final String MINI_PETITION_NAME_FOR_WELSH_PDF_FILE = "DivorcePetitionWelsh.pdf";
     private static final String DRAFT_MINI_PETITION_NAME_FOR_PDF_FILE = "DraftDivorcePetition.pdf";
-    private static final String D8_PETITION_WELSH_TEMPLATE = "FL-DIV-GOR-ENG-00355.docx";
+    private static final String D8_PETITION_WELSH_TEMPLATE = "FL-DIV-GNO-WEL-00256.docx";
 
     private static final String DRAFT_MINI_PETITION_TEMPLATE_ID = "divorcedraftminipetition";
 

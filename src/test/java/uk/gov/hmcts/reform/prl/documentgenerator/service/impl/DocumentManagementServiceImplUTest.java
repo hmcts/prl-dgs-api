@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -24,6 +23,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static uk.gov.hmcts.reform.prl.documentgenerator.functionaltest.DocumentGenerateAndStoreE2ETest.mockCaseDocsDocuments;
+import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.BINARY_URL;
 import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.CASE_TYPE;
 import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.FILE_URL;
 import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.JURISDICTION;
@@ -61,7 +61,7 @@ public class DocumentManagementServiceImplUTest {
         when(authTokenGenerator.generate()).thenReturn(TEST_S2S_TOKEN);
     }
 
-    @Ignore
+
     @Test
     public void givenTemplateNameIsAosInvitation_whenGenerateAndStoreDocument_thenProceedAsExpected() {
         when(pdfGenerationService.generate(eq(TEST_TEMPLATE), any())).thenReturn(TEST_GENERATED_DOCUMENT);
@@ -94,5 +94,6 @@ public class DocumentManagementServiceImplUTest {
         assertThat(generatedDocumentInfo.getUrl(), equalTo(FILE_URL));
         assertThat(generatedDocumentInfo.getMimeType(), equalTo(MIME_TYPE));
         assertThat(generatedDocumentInfo.getHashToken(), equalTo(TEST_HASH_TOKEN));
+        assertThat(generatedDocumentInfo.getBinaryUrl(), equalTo(BINARY_URL));
     }
 }
