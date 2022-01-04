@@ -18,4 +18,6 @@ public class TestData {
     public static final String TEST_DEFAULT_NAME_FOR_PDF_FILE = "PRLDocument.pdf";
 
     public static final String TEST_HASH_TOKEN = "hashToken";
+
+    public static final String BINARY_URL = "testBinaryUrl";
 }
