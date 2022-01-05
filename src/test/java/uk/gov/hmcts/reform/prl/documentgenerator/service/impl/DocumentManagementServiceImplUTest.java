@@ -59,11 +59,10 @@ public class DocumentManagementServiceImplUTest {
     @Before
     public void setUp() {
         expectedUploadResponse = new UploadResponse(asList(mockCaseDocsDocuments()));
-        //when(authTokenGenerator.generate()).thenReturn(TEST_S2S_TOKEN);
+        when(authTokenGenerator.generate()).thenReturn(TEST_S2S_TOKEN);
     }
 
 
-    @Ignore
     @Test
     public void givenTemplateNameIsAosInvitation_whenGenerateAndStoreDocument_thenProceedAsExpected() {
         when(pdfGenerationService.generate(eq(TEST_TEMPLATE), any())).thenReturn(TEST_GENERATED_DOCUMENT);
