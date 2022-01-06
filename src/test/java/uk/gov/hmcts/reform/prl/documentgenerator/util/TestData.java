@@ -19,5 +19,5 @@ public class TestData {
 
     public static final String TEST_HASH_TOKEN = "hashToken";
 
-    public static final String BINARY_URL = "fileURL";
+    public static final String BINARY_URL = "testBinaryUrl";
 }
