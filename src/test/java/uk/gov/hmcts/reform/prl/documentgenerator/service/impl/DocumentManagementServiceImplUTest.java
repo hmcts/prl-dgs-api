@@ -59,7 +59,6 @@ public class DocumentManagementServiceImplUTest {
     @Before
     public void setUp() {
         expectedUploadResponse = new UploadResponse(asList(mockCaseDocsDocuments()));
-        //when(authTokenGenerator.generate()).thenReturn(TEST_S2S_TOKEN);
     }
 
 
