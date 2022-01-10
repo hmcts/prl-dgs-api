@@ -12,7 +12,7 @@ Document Management Store (via Case Document AM).
 The service provides a single RESTful endpoint that will generate the document, store it in Evidence Management
 Store and return the link to the stored data.
 
-## Setup
+### Setup
 
 **Prerequisites**
 
@@ -20,7 +20,7 @@ Store and return the link to the stored data.
 - [Docker](https://www.docker.com)
 
 
-**Building**
+***Building***
 
 The project uses [Gradle](https://gradle.org) as a build tool but you don't have to install it locally since there is a
 `./gradlew` wrapper script.
