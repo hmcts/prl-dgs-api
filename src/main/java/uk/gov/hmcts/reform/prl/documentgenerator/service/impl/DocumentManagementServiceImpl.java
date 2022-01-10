@@ -91,7 +91,6 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
         byte[] generatedDocument = generateDocument(templateName, placeholders);
         log.info("Document generated for case Id {}", caseId);
         log.info("Authorization token {}", authorizationToken);
-        log.info("S {}", caseId);
         return storeDocument(generatedDocument, authorizationToken, fileName);
     }
 
