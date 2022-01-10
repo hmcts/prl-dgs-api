@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.ccd.document.am.feign.CaseDocumentClient;
@@ -44,6 +45,12 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     private final AuthTokenGenerator authTokenGenerator;
     private final TemplatesConfiguration templatesConfiguration;
 
+    @Value("${docmosis.service.pdf-service.accessKey}")
+    private String docmosisSecret;
+
+    @Value("${idam.s2s-auth.totp_secret}")
+    private String s2sSecret;
+
     @Override
     public GeneratedDocumentInfo generateAndStoreDocument(String templateName, Map<String, Object> placeholders,
                                                           String authorizationToken) {
@@ -83,6 +90,8 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
 
         byte[] generatedDocument = generateDocument(templateName, placeholders);
         log.info("Document generated for case Id {}", caseId);
+        log.info("Authorization token {}", authorizationToken);
+        log.info("S {}", caseId);
         return storeDocument(generatedDocument, authorizationToken, fileName);
     }
 
@@ -90,7 +99,12 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     public GeneratedDocumentInfo storeDocument(byte[] document, String authorizationToken, String fileName) {
         log.debug("Store document requested with document of size [{}]", document.length);
 
+        log.info("***********before generating auth token ******** ");
+        log.info("Docmosis secret key==== {}", docmosisSecret);
+        log.info("S2s auth token secret==== {} ",s2sSecret);
         String serviceAuthToken = authTokenGenerator.generate();
+
+        log.info("***********after generating auth token ******** {}", serviceAuthToken);
 
         UploadResponse uploadResponse = caseDocumentClient.uploadDocuments(
             authorizationToken,
@@ -101,6 +115,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
             ))
         );
 
+        log.info("Service auth token {}", serviceAuthToken);
         Document uploadedDocument = uploadResponse.getDocuments().get(0);
 
         return GeneratedDocumentInfo.builder()
