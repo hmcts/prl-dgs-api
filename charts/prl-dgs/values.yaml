@@ -9,7 +9,7 @@ java:
         CCD_CASE_DOCS_AM_API: "http://ccd-case-document-am-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
         REFORM_SERVICE_NAME: "prl"
         REFORM_TEAM: "prl"
-        AUTH_PROVIDER_SERVICE_CLIENT_MICROSERVICE: "prl_dgs_api"
+        AUTH_PROVIDER_SERVICE_CLIENT_MICROSERVICE: "prl_cos_api"
         AUTH_PROVIDER_SERVICE_CLIENT_TOKENTIMETOLIVEINSECONDS: "900"
     keyVaults:
         "prl":
