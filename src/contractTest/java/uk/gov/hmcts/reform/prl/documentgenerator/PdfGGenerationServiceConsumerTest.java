@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.prl.documentgenerator;
 
 
+import au.com.dius.pact.consumer.MockServer;
 import au.com.dius.pact.consumer.dsl.PactDslWithProvider;
 import au.com.dius.pact.consumer.junit5.PactConsumerTestExt;
 import au.com.dius.pact.consumer.junit5.PactTestFor;
@@ -9,8 +10,14 @@ import au.com.dius.pact.core.model.annotations.Pact;
 import au.com.dius.pact.core.model.annotations.PactFolder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
+import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.fluent.Executor;
+import org.apache.http.client.fluent.Request;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.JSONException;
 import org.junit.After;
 import org.junit.Ignore;
@@ -34,6 +41,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 import static uk.gov.hmcts.reform.prl.documentgenerator.domain.TemplateConstants.CASE_DETAILS;
 
@@ -48,6 +57,7 @@ import static uk.gov.hmcts.reform.prl.documentgenerator.domain.TemplateConstants
 public class PdfGGenerationServiceConsumerTest {
 
     private static final String SERVICE_AUTHORIZATION_HEADER = "ServiceAuthorization";
+
 
     @Autowired
     DocmosisPDFGenerationServiceImpl docmosisPDFGenerationService;
@@ -83,29 +93,43 @@ public class PdfGGenerationServiceConsumerTest {
             .method("POST")
             .headers(SERVICE_AUTHORIZATION_HEADER, someServiceAuthToken)
             .body(createJsonObject(new GenerateDocumentRequest(template, placeholders)),
-                "application/vnd.uk.gov.hmcts.pdf-service.v2+json;charset=UTF-8")
+                  "application/vnd.uk.gov.hmcts.pdf-service.v2+json;charset=UTF-8")
             .path("/pdfs")
             .willRespondWith()
             .withBinaryData("".getBytes(), "application/octet-stream")
             .matchHeader(org.springframework.http.HttpHeaders.CONTENT_TYPE,
-                "application/pdf")
+                         "application/pdf")
             .status(HttpStatus.SC_OK)
             .toPact();
     }
 
     @Test
     @PactTestFor(pactMethod = "generatePdfFromTemplate")
-    @Ignore
-    public void verifyGeneratePdfFromTemplatePact() {
-        Map<String, Object> placeholders = new HashMap<>();
-        placeholders.put(CASE_DETAILS, new HashMap<>(ImmutableMap.of(
-                "case_data", new HashMap<>()
-        )));
+    public void verifyGeneratePdfFromTemplatePact(MockServer mockServer) throws IOException, JSONException {
+        //Map<String, Object> placeholders = new HashMap<>();
+        //placeholders.put(CASE_DETAILS, new HashMap<>(ImmutableMap.of(
+        //                "case_data", new HashMap<>()
+        //)));
+        //
+        //when(templateManagementService.getTemplateByName("someTemplateName")).thenReturn(template.getBytes());
+        //when(serviceTokenGenerator.generate()).thenReturn(someServiceAuthToken);
+        //
+        //byte[] response = docmosisPDFGenerationService.generate("someTemplateName", placeholders);
 
-        when(templateManagementService.getTemplateByName("someTemplateName")).thenReturn(template.getBytes());
-        when(serviceTokenGenerator.generate()).thenReturn(someServiceAuthToken);
+        HttpClient httpClient = HttpClientBuilder.create().build();
 
-        byte[] response = docmosisPDFGenerationService.generate("someTemplateName", placeholders);
+        HttpPost request = new HttpPost(mockServer.getUrl() + "/pdfs");
+        StringEntity json = new StringEntity(createJsonObject(new GenerateDocumentRequest(template, placeholders)));
+        request.addHeader(SERVICE_AUTHORIZATION_HEADER, someServiceAuthToken);
+        request.addHeader("content-type", "application/vnd.uk.gov.hmcts.pdf-service.v2+json;charset=UTF-8");
+        request.setEntity(json);
+
+        HttpResponse generateDocumentResponse = httpClient.execute(request);
+
+        String responseContentType = generateDocumentResponse.getEntity().getContentType().toString();
+
+        assertEquals(200, generateDocumentResponse.getStatusLine().getStatusCode());
+        assertEquals("Content-Type: application/pdf", responseContentType);
 
     }
 

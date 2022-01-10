@@ -4,6 +4,13 @@ java:
         DOCMOSIS_SERVICE_DEV_MODE_FLAG: "true"
         PDF_TEST_ENABLED: "true"
         CCD_CASE_DOCS_AM_API: "http://ccd-case-document-am-api-aat.service.core-compute-aat.internal"
+        AUTH_PROVIDER_SERVICE_CLIENT_BASEURL: "http://rpe-service-auth-provider-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
+        IDAM_S2S_URL: "http://rpe-service-auth-provider-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
+        DOCMOSIS_SERVICE_BASE_URL: "https://docmosis.aat.platform.hmcts.net"
+        REFORM_SERVICE_NAME: "prl"
+        REFORM_TEAM: "prl"
+        AUTH_PROVIDER_SERVICE_CLIENT_MICROSERVICE: "prl_dgs_api"
+        AUTH_PROVIDER_SERVICE_CLIENT_TOKENTIMETOLIVEINSECONDS: "900"
 
     # Don't modify below here
     image: ${IMAGE_NAME}

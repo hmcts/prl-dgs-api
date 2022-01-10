@@ -10,7 +10,7 @@ service:
 docmosis:
     service:
         pdf-service:
-            accessKey: ${DOCMOSIS_SERVICE_ACCESS_KEY:23432}
+            accessKey: ${DOCMOSIS_SERVICE_ACCESS_KEY:ZDYxMTkzZTQtMGY2Mi00NDM1LWIyN2ItNGRkNzdjOTczMjAwOjQ1NTE0ODQ}
             renderEndpoint: "/rs/render"
             uri: ${DOCMOSIS_SERVICE_BASE_URL:http://localhost:5501}${docmosis.service.pdf-service.renderEndpoint}
             health: ${DOCMOSIS_SERVICE_BASE_URL:http://localhost:5501}/health
@@ -29,8 +29,8 @@ auth:
 
 idam:
     s2s-auth:
-        microservice: ${AUTH_PROVIDER_SERVICE_CLIENT_MICROSERVICE:prl-dgs-api}
-        totp_secret: ${AUTH_PROVIDER_SERVICE_CLIENT_KEY:AAAAAAAAAAAAAAAA}
+        microservice: ${AUTH_PROVIDER_SERVICE_CLIENT_MICROSERVICE:prl_dgs_api}
+        totp_secret: ${AUTH_PROVIDER_SERVICE_CLIENT_KEY:RB4B4JLQYZUXYO5U}
         url: ${AUTH_PROVIDER_SERVICE_CLIENT_BASEURL:http://localhost:4502}
 
 http:
@@ -59,6 +59,9 @@ document:
     templates:
         configurationList:
             -   templateName: FL-DIV-GOR-ENG-00062.docx
+                filename: TestTemplate.pdf
+                document-generator: docmosis
+            -   templateName: PRL-DRAFT-TRY-FINAL-13.docx
                 filename: TestTemplate.pdf
                 document-generator: docmosis
     pdf:
