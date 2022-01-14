@@ -10,7 +10,7 @@ service:
 docmosis:
     service:
         pdf-service:
-            accessKey: ${DOCMOSIS_SERVICE_ACCESS_KEY:ZDYxMTkzZTQtMGY2Mi00NDM1LWIyN2ItNGRkNzdjOTczMjAwOjQ1NTE0ODQ}
+            accessKey: ${DOCMOSIS_SERVICE_ACCESS_KEY:replace_me}
             renderEndpoint: "/rs/render"
             uri: ${DOCMOSIS_SERVICE_BASE_URL:http://localhost:5501}${docmosis.service.pdf-service.renderEndpoint}
             health: ${DOCMOSIS_SERVICE_BASE_URL:http://localhost:5501}/health
