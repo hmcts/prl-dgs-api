@@ -61,7 +61,7 @@ document:
             -   templateName: FL-DIV-GOR-ENG-00062.docx
                 filename: TestTemplate.pdf
                 document-generator: docmosis
-            -   templateName: PRL-DRAFT-TRY-FINAL-13.docx
+            -   templateName: PRL-DRAFT-C100-20.docx
                 filename: TestTemplate.pdf
                 document-generator: docmosis
     pdf:
