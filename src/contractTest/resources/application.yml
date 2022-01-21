@@ -123,6 +123,3 @@ logging:
 
 azure:
     app_insights_key: ${APPINSIGHTS_INSTRUMENTATIONKEY:false}
-
-test:
-  secret: ${TEST_SECRET:aaaa}

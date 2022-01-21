@@ -7,4 +7,3 @@ spring:
       aliases:
         prl.microservicekey-prl-dgs-api: AUTH_PROVIDER_SERVICE_CLIENT_KEY
         prl.docmosis-api-key: DOCMOSIS_SERVICE_ACCESS_KEY
-        prl.test-secret-docmosis: TEST_SECRET
