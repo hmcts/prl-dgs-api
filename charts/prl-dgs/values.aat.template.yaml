@@ -13,4 +13,5 @@ java:
         secrets:
           - microservicekey-prl-dgs-api
           - docmosis-api-key
+          - test-secret-docmosis
     aadIdentityName: prl
