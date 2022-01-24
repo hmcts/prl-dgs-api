@@ -30,7 +30,7 @@ auth:
 idam:
     s2s-auth:
         microservice: ${AUTH_PROVIDER_SERVICE_CLIENT_MICROSERVICE:prl_dgs_api}
-        totp_secret: ${AUTH_PROVIDER_SERVICE_CLIENT_KEY:RB4B4JLQYZUXYO5U}
+        totp_secret: ${AUTH_PROVIDER_SERVICE_CLIENT_KEY:replace_me}
         url: ${AUTH_PROVIDER_SERVICE_CLIENT_BASEURL:http://localhost:4502}
 
 http:
