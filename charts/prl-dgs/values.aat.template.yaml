@@ -7,4 +7,10 @@ java:
     # Don't modify below here
     image: ${IMAGE_NAME}
     ingressHost: ${SERVICE_FQDN}
+    keyVaults:
+      prl:
+        resourceGroup: prl
+        secrets:
+          - microservicekey-prl-dgs-api
+          - docmosis-api-key
     aadIdentityName: prl
