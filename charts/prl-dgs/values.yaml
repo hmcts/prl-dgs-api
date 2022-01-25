@@ -2,6 +2,12 @@ java:
     applicationPort: 4007
     aadIdentityName: prl
     ingressHost: "prl-dgs-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
+    keyVaults:
+      prl:
+        resourceGroup: prl
+        secrets:
+          - microservicekey-prl-dgs-api
+          - docmosis-api-key
     environment:
         AUTH_PROVIDER_SERVICE_CLIENT_BASEURL: "http://rpe-service-auth-provider-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
         IDAM_S2S_URL: "http://rpe-service-auth-provider-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
@@ -11,10 +17,3 @@ java:
         REFORM_TEAM: "prl"
         AUTH_PROVIDER_SERVICE_CLIENT_MICROSERVICE: "prl_cos_api"
         AUTH_PROVIDER_SERVICE_CLIENT_TOKENTIMETOLIVEINSECONDS: "900"
-    keyVaults:
-        "prl":
-            resourceGroup: prl
-            secrets:
-                - docmosis-api-key
-
-
