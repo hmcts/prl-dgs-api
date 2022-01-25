@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.ccd.document.am.feign.CaseDocumentClient;
@@ -44,6 +45,12 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     private final AuthTokenGenerator authTokenGenerator;
     private final TemplatesConfiguration templatesConfiguration;
 
+    @Value("${docmosis.service.pdf-service.accessKey}")
+    private String docmosisSecret;
+
+    @Value("${idam.s2s-auth.totp_secret}")
+    private String s2sSecret;
+
     @Override
     public GeneratedDocumentInfo generateAndStoreDocument(String templateName, Map<String, Object> placeholders,
                                                           String authorizationToken) {
@@ -65,8 +72,6 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
 
     private GeneratedDocumentInfo getGeneratedDocumentInfo(String templateName, Map<String, Object> placeholders,
                                                            String authorizationToken, String fileName) {
-        log.debug("Generate and Store Document requested with templateName [{}], placeholders of size [{}]",
-            templateName, placeholders.size());
         String caseId = getCaseId(placeholders);
         if (caseId == null) {
             log.warn("caseId is null for template \"" + templateName + "\"");
@@ -89,7 +94,6 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     @Override
     public GeneratedDocumentInfo storeDocument(byte[] document, String authorizationToken, String fileName) {
         log.debug("Store document requested with document of size [{}]", document.length);
-
         String serviceAuthToken = authTokenGenerator.generate();
 
         UploadResponse uploadResponse = caseDocumentClient.uploadDocuments(
