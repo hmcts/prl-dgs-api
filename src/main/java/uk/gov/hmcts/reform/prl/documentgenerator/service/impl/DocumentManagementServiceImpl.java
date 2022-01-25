@@ -72,8 +72,6 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
 
     private GeneratedDocumentInfo getGeneratedDocumentInfo(String templateName, Map<String, Object> placeholders,
                                                            String authorizationToken, String fileName) {
-        log.debug("Generate and Store Document requested with templateName [{}], placeholders of size [{}]",
-            templateName, placeholders.size());
         String caseId = getCaseId(placeholders);
         if (caseId == null) {
             log.warn("caseId is null for template \"" + templateName + "\"");
@@ -90,20 +88,13 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
 
         byte[] generatedDocument = generateDocument(templateName, placeholders);
         log.info("Document generated for case Id {}", caseId);
-        log.info("Authorization token {}", authorizationToken);
         return storeDocument(generatedDocument, authorizationToken, fileName);
     }
 
     @Override
     public GeneratedDocumentInfo storeDocument(byte[] document, String authorizationToken, String fileName) {
         log.debug("Store document requested with document of size [{}]", document.length);
-
-        log.info("***********before generating auth token ******** ");
-        log.info("Docmosis secret key==== {}", docmosisSecret);
-        log.info("S2s auth token secret==== {} ",s2sSecret);
         String serviceAuthToken = authTokenGenerator.generate();
-
-        log.info("***********after generating auth token ******** {}", serviceAuthToken);
 
         UploadResponse uploadResponse = caseDocumentClient.uploadDocuments(
             authorizationToken,
@@ -114,7 +105,6 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
             ))
         );
 
-        log.info("Service auth token {}", serviceAuthToken);
         Document uploadedDocument = uploadResponse.getDocuments().get(0);
 
         return GeneratedDocumentInfo.builder()
