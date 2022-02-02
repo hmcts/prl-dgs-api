@@ -64,7 +64,7 @@ document:
             -   templateName: PRL-DRAFT-C100-20.docx
                 filename: TestTemplate.pdf
                 document-generator: docmosis
-            -   templateName: PRL-C8-Final.docx
+            -   templateName: PRL-C8-Final-Changes.docx
                 filename: C8Document.pdf
                 document-generator: docmosis
     pdf:
