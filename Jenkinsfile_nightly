@@ -42,7 +42,7 @@ withNightlyPipeline(type, product, component) {
   enableSlackNotifications(channel)
   enableSecurityScan()
   enableFullFunctionalTest(200)
-  enableMutationTest()
+  //enableMutationTest()
 
   after('fullFunctionalTest') {
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/site/serenity/**/*'
