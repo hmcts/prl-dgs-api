@@ -43,7 +43,7 @@ withNightlyPipeline(type, product, component) {
 
 
   after('fullFunctionalTest') {
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/test-results/**/*.xml'
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/site/serenity/**/*'
   }
 
   after('fortify-scan') {
