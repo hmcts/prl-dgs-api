@@ -27,7 +27,7 @@ public class LaunchdarklyIntValidationService {
     }
 
     public String getSecretValue() {
-        return testSecret;
+        return "hello "+ testSecret;
     }
 
 }
