@@ -16,7 +16,7 @@ public class LaunchDirectlyIntValidationController {
     @Autowired
     private LaunchdarklyIntValidationService launchdarklyIntValidationService;
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<String> checkLaunchDirectly() {
 
         return ok(launchdarklyIntValidationService.checkFeatureFlag("test-flag"));

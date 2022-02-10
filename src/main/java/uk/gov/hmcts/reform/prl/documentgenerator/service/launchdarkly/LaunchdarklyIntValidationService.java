@@ -14,11 +14,12 @@ public class LaunchdarklyIntValidationService {
         this.launchDarklyClient = launchDarklyClient;
     }
 
-    public String checkFeatureFlag(String flag){
+    public  String checkFeatureFlag(String flag) {
+
         String result;
-        if(launchDarklyClient.isFeatureEnabled(flag)){
+        if (launchDarklyClient.isFeatureEnabled(flag)) {
             result = "Feature flag is on";
-        }else{
+        } else {
             result = "Feature flag is off";
         }
         return result;
