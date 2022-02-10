@@ -432,7 +432,9 @@ def sonarExclusions = [
     '**uk/gov/hmcts/reform/prl/documentgenerator/domain/**/*',
     '**uk/gov/hmcts/reform/prl/documentgenerator/exception/*',
     '**uk/gov/hmcts/reform/prl/documentgenerator/**/config/**/*',
-    '**uk/gov/hmcts/reform/prl/documentgenerator/DocumentGeneratorApplication.java'
+    '**uk/gov/hmcts/reform/prl/documentgenerator/DocumentGeneratorApplication.java',
+    '**uk/gov/hmcts/reform/prl/documentgenerator/controller/LaunchDirectlyIntValidationController.java',
+    '**uk/gov/hmcts/reform/prl/documentgenerator/service/launchdarkly/LaunchdarklyIntValidationService.java'
 ]
 
 sonarqube {
