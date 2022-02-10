@@ -131,5 +131,4 @@ azure:
     app_insights_key: ${APPINSIGHTS_INSTRUMENTATIONKEY:false}
 
 launchdarkly:
-  sdk-key: "sdk-dce5b745-a173-4ad0-9751-69c96bb9d644"
-  #sdk-key: "${LAUNCH_DARKLY_SDK_KEY:}"
+   sdk-key: "${LAUNCH_DARKLY_SDK_KEY:}"
