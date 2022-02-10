@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.service.launchdarkly;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.prl.documentgenerator.config.launchdarkly.LaunchDarklyClient;
 
@@ -9,20 +10,24 @@ public class LaunchdarklyIntValidationService {
 
     LaunchDarklyClient launchDarklyClient;
 
+    @Value("${launchdarkly.sdk-key}")
+    private String testSecret;
+
     @Autowired
     public LaunchdarklyIntValidationService(LaunchDarklyClient launchDarklyClient) {
         this.launchDarklyClient = launchDarklyClient;
     }
 
-    public  String checkFeatureFlag(String flag) {
-
-        String result;
+    public String checkFeatureFlag(String flag) {
         if (launchDarklyClient.isFeatureEnabled(flag)) {
-            result = "Feature flag is on";
+            return "Game on";
         } else {
-            result = "Feature flag is off";
+            return "Keep trying";
         }
-        return result;
+    }
+
+    public String getSecretValue() {
+        return testSecret;
     }
 
 }
