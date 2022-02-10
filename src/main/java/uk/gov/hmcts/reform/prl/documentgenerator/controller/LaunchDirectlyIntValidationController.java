@@ -10,7 +10,7 @@ import uk.gov.hmcts.reform.prl.documentgenerator.service.launchdarkly.Launchdark
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@RequestMapping(path = "launchdarkly")
+@RequestMapping(path = "/launchdarkly")
 public class LaunchDirectlyIntValidationController {
 
     @Autowired

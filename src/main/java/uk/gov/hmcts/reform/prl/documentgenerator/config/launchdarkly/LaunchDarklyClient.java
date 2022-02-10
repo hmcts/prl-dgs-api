@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
+package uk.gov.hmcts.reform.prl.documentgenerator.config.launchdarkly;
 
 import com.launchdarkly.sdk.LDUser;
 import com.launchdarkly.sdk.server.interfaces.LDClientInterface;

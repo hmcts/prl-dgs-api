@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
+package uk.gov.hmcts.reform.prl.documentgenerator.config.launchdarkly;
 
 import com.launchdarkly.sdk.LDUser;
 import com.launchdarkly.sdk.server.interfaces.LDClientInterface;
@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import uk.gov.hmcts.reform.prl.documentgenerator.config.launchdarkly.LDClientFactory;
+import uk.gov.hmcts.reform.prl.documentgenerator.config.launchdarkly.LaunchDarklyClient;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
