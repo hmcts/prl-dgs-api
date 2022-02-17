@@ -117,7 +117,7 @@ public class CdAmApiConsumerTest {
         // @formatter:off
 
         PactDslJsonBody body = new PactDslJsonBody()
-            .stringMatcher("caseTypeId", "C100")
+            .stringMatcher("caseTypeId", "PRLAPPS")
             .stringMatcher("jurisdictionId", "PRIVATELAW")
             .asBody();
 

@@ -64,7 +64,7 @@ public class DocumentManagementServiceImplTest {
         when(authTokenGenerator.generate()).thenReturn(s2sToken);
         when(pdfGenerationService.generate(D8_PETITION_WELSH_TEMPLATE, placeholderMap)).thenReturn(data);
         when(templatesConfiguration.getFileNameByTemplateName(D8_PETITION_WELSH_TEMPLATE)).thenReturn(MINI_PETITION_NAME_FOR_WELSH_PDF_FILE);
-        when(caseDocumentClient.uploadDocuments(eq(authToken), eq(s2sToken), eq("C100"), eq("PRIVATELAW"), any()))
+        when(caseDocumentClient.uploadDocuments(eq(authToken), eq(s2sToken), eq("PRLAPPS"), eq("PRIVATELAW"), any()))
             .thenReturn(uploadResponse);
 
         classUnderTest.generateAndStoreDraftDocument(D8_PETITION_WELSH_TEMPLATE, placeholderMap, authToken);
@@ -79,7 +79,7 @@ public class DocumentManagementServiceImplTest {
         when(authTokenGenerator.generate()).thenReturn(s2sToken);
         when(pdfGenerationService.generate(DRAFT_MINI_PETITION_TEMPLATE_ID, placeholderMap)).thenReturn(data);
         when(templatesConfiguration.getFileNameByTemplateName(DRAFT_MINI_PETITION_TEMPLATE_ID)).thenReturn(DRAFT_MINI_PETITION_NAME_FOR_PDF_FILE);
-        when(caseDocumentClient.uploadDocuments(eq(authToken), eq(s2sToken), eq("C100"), eq("PRIVATELAW"), any()))
+        when(caseDocumentClient.uploadDocuments(eq(authToken), eq(s2sToken), eq("PRLAPPS"), eq("PRIVATELAW"), any()))
             .thenReturn(uploadResponse);
 
         classUnderTest.generateAndStoreDraftDocument(DRAFT_MINI_PETITION_TEMPLATE_ID, placeholderMap, authToken);
