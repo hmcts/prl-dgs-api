@@ -10,7 +10,7 @@ public class TestData {
     public static final String TEST_AUTH_TOKEN = "someToken";
     public static final byte[] TEST_GENERATED_DOCUMENT = new byte[] {1};
     public static final String TEST_S2S_TOKEN = "s2s authenticated";
-    public static final String CASE_TYPE = "C100";
+    public static final String CASE_TYPE = "PRLAPPS";
     public static final String JURISDICTION = "PRIVATELAW";
 
     public static final String FILE_URL = "fileURL";
