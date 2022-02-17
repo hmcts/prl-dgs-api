@@ -70,6 +70,9 @@ document:
             -   templateName: c100-final-template-1.docx
                 filename: C100FinalDocument.pdf
                 document-generator: docmosis
+            -   templateName: PRL-C1A.docx
+                filename: C1ADocument.pdf
+                document-generator: docmosis 
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"
