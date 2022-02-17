@@ -21,10 +21,7 @@
     <notes><![CDATA[
    spring-core-5.2.15.RELEASE.jar
    ]]></notes>
-
     <cve>CVE-2021-22096</cve>
-    <cve>CVE-2021-22060</cve>
-    <cve>CVE-2021-42550</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
