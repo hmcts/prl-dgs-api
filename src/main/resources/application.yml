@@ -67,12 +67,15 @@ document:
             -   templateName: PRL-C8-Final-Changes.docx
                 filename: C8Document.pdf
                 document-generator: docmosis
-            -   templateName: c100-final-template-1.docx
+            -   templateName: C100-Final-Document.docx
                 filename: C100FinalDocument.pdf
                 document-generator: docmosis
             -   templateName: PRL-C1A.docx
                 filename: C1ADocument.pdf
-                document-generator: docmosis 
+                document-generator: docmosis
+            -   templateName: PRL-C100-Draft-Final.docx
+                filename: DraftTemplate.pdf
+                document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"
