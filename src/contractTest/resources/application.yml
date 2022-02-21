@@ -61,13 +61,13 @@ document:
       -   templateName: FL-DIV-GOR-ENG-00062.docx
           filename: TestTemplate.pdf
           document-generator: docmosis
-      -   templateName: PRL-DRAFT-C100-20.docx
+      -   templateName: PRL-C100-Draft-Final.docx
           filename: TestTemplate.pdf
           document-generator: docmosis
       -   templateName: PRL-C8-Final-Changes.docx
           filename: C8Document.pdf
           document-generator: docmosis
-      -   templateName: c100-final-template-1.docx
+      -   templateName: C100-Final-Document.docx
           filename: C100FinalDocument.pdf
           document-generator: docmosis
   pdf:
