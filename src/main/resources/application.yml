@@ -76,6 +76,18 @@ document:
             -   templateName: PRL-C100-Draft-Final.docx
                 filename: DraftTemplate.pdf
                 document-generator: docmosis
+            -   templateName: PRL-Draft-C100-Welsh.docx
+                filename: DraftWelshTemplate.pdf
+                document-generator: docmosis
+            -   templateName: C100-Final-Document-Welsh.docx
+                filename: FinalWelshTemplate.pdf
+                document-generator: docmosis
+            -   templateName: PRL-C8-Welsh.docx
+                filename: C8WelshTemplate.pdf
+                document-generator: docmosis
+            -   templateName: PRL-C1A-Welsh.docx
+                filename: C1AWelshTemplate.pdf
+                document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"
