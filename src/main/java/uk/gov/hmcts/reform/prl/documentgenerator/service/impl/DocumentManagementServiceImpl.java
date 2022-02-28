@@ -99,7 +99,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
         UploadResponse uploadResponse = caseDocumentClient.uploadDocuments(
             authorizationToken,
             serviceAuthToken,
-            "C100",
+            "PRLAPPS",
             "PRIVATELAW",
             Arrays.asList( new InMemoryMultipartFile("files", fileName, APPLICATION_PDF_VALUE, document
             ))
