@@ -88,6 +88,12 @@ document:
             -   templateName: PRL-C1A-Welsh.docx
                 filename: C1AWelshTemplate.pdf
                 document-generator: docmosis
+            -   templateName: FL401-draft.docx
+                filename: Draft-DA-application.pdf
+                document-generator: docmosis
+            -   templateName: FL401-Final.docx
+                filename: DA-application.pdf
+                document-generator: docmosis 
             -   templateName: PRL-DA-C8.docx
                 filename: DAC8Document.pdf
                 document-generator: docmosis
