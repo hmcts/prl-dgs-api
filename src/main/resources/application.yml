@@ -83,19 +83,19 @@ document:
                 filename: C100FinalDocument.pdf
                 document-generator: docmosis
             -   templateName: PRL-C100-Draft-Final.docx
-                filename: DraftTemplate.pdf
+                filename: C100DraftDocument.pdf
                 document-generator: docmosis
             -   templateName: PRL-Draft-C100-Welsh.docx
-                filename: DraftWelshTemplate.pdf
+                filename: C100DraftWelshDocument.pdf
                 document-generator: docmosis
             -   templateName: C100-Final-Document-Welsh.docx
-                filename: FinalWelshTemplate.pdf
+                filename: C100FinalWelshDocument.pdf
                 document-generator: docmosis
             -   templateName: PRL-C8-Welsh.docx
-                filename: C8WelshTemplate.pdf
+                filename: C8WelshDocument.pdf
                 document-generator: docmosis
             -   templateName: PRL-C1A-Welsh.docx
-                filename: C1AWelshTemplate.pdf
+                filename: C1AWelshDocument.pdf
                 document-generator: docmosis
             -   templateName: FL401-draft.docx
                 filename: Draft-DA-application.pdf
@@ -104,7 +104,7 @@ document:
                 filename: DA-application.pdf
                 document-generator: docmosis 
             -   templateName: PRL-DA-C8.docx
-                filename: DAC8Document.pdf
+                filename: FL401C8Document.pdf
                 document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
