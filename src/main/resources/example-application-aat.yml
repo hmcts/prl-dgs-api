@@ -15,7 +15,8 @@ docmosis:
             uri: ${DOCMOSIS_SERVICE_BASE_URL:http://localhost:5501}${docmosis.service.pdf-service.renderEndpoint}
             health: ${DOCMOSIS_SERVICE_BASE_URL:http://localhost:5501}/health
             devMode: ${DOCMOSIS_SERVICE_DEV_MODE_FLAG:false}
-
+launchDarkly:
+  sdk-key: ${DG_LAUNCH_DARKLY_SDK_KEY:sdk-key}
 case_document_am:
     url: ${CCD_CASE_DOCS_AM_API:http://localhost:5170}
 

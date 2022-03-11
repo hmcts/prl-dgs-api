@@ -67,6 +67,9 @@ document:
             -   templateName: PRL-C8-Final-Changes.docx
                 filename: C8Document.pdf
                 document-generator: docmosis
+            -   templateName: PRL-C1A.docx
+                filename: C1ADocument.pdf
+                document-generator: docmosis 
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"
@@ -129,3 +132,6 @@ logging:
 
 azure:
     app_insights_key: ${APPINSIGHTS_INSTRUMENTATIONKEY:false}
+
+launchdarkly:
+  sdk-key: "${LAUNCH_DARKLY_SDK_KEY:}"
