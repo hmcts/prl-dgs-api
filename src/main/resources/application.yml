@@ -97,6 +97,22 @@ document:
             -   templateName: PRL-DA-C8.docx
                 filename: FL401C8Document.pdf
                 document-generator: docmosis
+            -   templateName: FL401-draft.docx
+                filename: Draft-DA-application.pdf
+                document-generator: docmosis
+            -   templateName: FL401-Final.docx
+                filename: DA-application.pdf
+                document-generator: docmosis
+            -   templateName: FL401-draft-Welsh.docx
+                filename: Draft-DA-Welsh-application.pdf
+                document-generator: docmosis
+            -   templateName: FL401-Final-Welsh.docx
+                filename: DA-Welsh-application.pdf
+                document-generator: docmosis
+            -   templateName: FL401-c8-welsh.docx
+                filename: FL401C8WelshDocument.pdf
+                document-generator: docmosis
+
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"
