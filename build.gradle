@@ -305,7 +305,7 @@ dependencyManagement {
             entry 'jackson-databind'
         }
 
-        dependency group: 'org.yaml',name: 'snakeyaml', version: '1.28'
+        dependency group: 'org.yaml',name: 'snakeyaml', version: '1.30'
 
         dependency group: 'com.netflix.servo',name: 'servo-core', version: '0.13.2'
 
