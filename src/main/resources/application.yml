@@ -69,13 +69,16 @@ document:
                 document-generator: docmosis
             -   templateName: PRL-C1A.docx
                 filename: C1ADocument.pdf
-                document-generator: docmosis 
+                document-generator: docmosis
             -   templateName: FL401-draft.docx
                 filename: Draft-DA-application.pdf
                 document-generator: docmosis
             -   templateName: FL401-Final.docx
                 filename: DA-application.pdf
-                document-generator: docmosis 
+                document-generator: docmosis
+            -   templateName: FL401-Final-Welsh.docx
+                filename: DA-Welsh-application.pdf
+                document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"
