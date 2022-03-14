@@ -112,7 +112,6 @@ document:
             -   templateName: FL401-c8-welsh.docx
                 filename: FL401C8WelshDocument.pdf
                 document-generator: docmosis
-
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"
