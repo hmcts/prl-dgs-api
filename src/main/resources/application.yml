@@ -67,8 +67,26 @@ document:
             -   templateName: PRL-C8-Final-Changes.docx
                 filename: C8Document.pdf
                 document-generator: docmosis
+            -   templateName: C100-Final-Document.docx
+                filename: C100FinalDocument.pdf
+                document-generator: docmosis
             -   templateName: PRL-C1A.docx
                 filename: C1ADocument.pdf
+                document-generator: docmosis
+            -   templateName: PRL-C100-Draft-Final.docx
+                filename: C100DraftDocument.pdf
+                document-generator: docmosis
+            -   templateName: PRL-Draft-C100-WelshLang.docx
+                filename: C100DraftWelshDocument.pdf
+                document-generator: docmosis
+            -   templateName: PRL-Final-C100-WelshLang.docx
+                filename: C100FinalWelshDocument.pdf
+                document-generator: docmosis
+            -   templateName: PRL-C8-WelshLang.docx
+                filename: C8WelshDocument.pdf
+                document-generator: docmosis
+            -   templateName: PRL-C1A-WelshLang.docx
+                filename: C1AWelshDocument.pdf
                 document-generator: docmosis
             -   templateName: FL401-draft.docx
                 filename: Draft-DA-application.pdf
@@ -76,8 +94,17 @@ document:
             -   templateName: FL401-Final.docx
                 filename: DA-application.pdf
                 document-generator: docmosis
+            -   templateName: PRL-DA-C8.docx
+                filename: FL401C8Document.pdf
+                document-generator: docmosis
             -   templateName: FL401-Final-Welsh.docx
                 filename: DA-Welsh-application.pdf
+                document-generator: docmosis
+            -   templateName: FL401-draft-Welsh.docx
+                filename: Draft-DA-Welsh-application.pdf
+                document-generator: docmosis
+            -   templateName: FL401-c8-welsh.docx
+                filename: FL401C8WelshDocument.pdf
                 document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
