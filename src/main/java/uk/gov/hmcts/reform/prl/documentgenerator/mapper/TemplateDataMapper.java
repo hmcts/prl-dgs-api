@@ -44,7 +44,7 @@ public class TemplateDataMapper {
         return pageAssets;
     }
 
-    private String formatDateFromCCD(String ccdDateString) {
+    public String formatDateFromCCD(String ccdDateString) {
         try {
             ccdDateString = formatDateFromPattern(ccdDateString, CCD_DATE_FORMAT);
         } catch (Exception e) {
@@ -53,7 +53,7 @@ public class TemplateDataMapper {
         return ccdDateString;
     }
 
-    private String formatDateTimeFromCCD(String ccdDateString) {
+    public String formatDateTimeFromCCD(String ccdDateString) {
         try {
             ccdDateString = formatDateFromPattern(ccdDateString, CCD_DATE_TIME_FORMAT);
         } catch (Exception e) {
