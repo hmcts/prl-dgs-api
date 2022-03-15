@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.when;
 import static uk.gov.hmcts.reform.prl.documentgenerator.config.LanguagePreference.WELSH;
 import static uk.gov.hmcts.reform.prl.documentgenerator.config.TemplateConfig.RELATION;
@@ -74,6 +75,34 @@ public class TemplateDataMapperTest {
         Map<String, Object> actual = templateDataMapper.map(requestData);
 
         assertEquals(expectedData, actual);
+    }
+
+    @Test
+    public void formatDateFromCCD_exception() {
+        String ccdDate = "15-03-2022";
+        assertThrows(PDFGenerationException.class, ()->{
+            templateDataMapper.formatDateFromCCD(ccdDate);
+        });
+    }
+
+    @Test
+    public void formatDateFromCCD_success() {
+        String ccdDate = "2022-12-03";
+        assertEquals("03 December 2022", templateDataMapper.formatDateFromCCD(ccdDate));
+    }
+
+    @Test
+    public void formatDateTimeFromCCD_exception() {
+        String ccdDate = "15-03-2022";
+        assertThrows(PDFGenerationException.class, ()->{
+            templateDataMapper.formatDateTimeFromCCD(ccdDate);
+        });
+    }
+
+    @Test
+    public void formatDateTimeFromCCD_success() {
+        String ccdDate = "2017-11-22T10:10:15.455";
+        assertEquals("22 November 2017", templateDataMapper.formatDateTimeFromCCD(ccdDate));
     }
 
     private void mockDocmosisPdfBaseConfig() {
