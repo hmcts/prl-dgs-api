@@ -222,13 +222,13 @@ public class DocumentGenerateAndStoreE2ETest {
 
     public static Document mockCaseDocsDocuments() {
         Document.Link link = new Document.Link();
-        Document.Link link_binary = new Document.Link();
+        Document.Link linkBinary = new Document.Link();
         link.href = FILE_URL;
-        link_binary.href = BINARY_URL ;
+        linkBinary.href = BINARY_URL ;
 
         Document.Links links = new Document.Links();
         links.self = link;
-        links.binary = link_binary;
+        links.binary = linkBinary;
 
         return Document.builder()
             .links(links)
