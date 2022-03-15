@@ -45,6 +45,16 @@ sourceSets {
             srcDirs = ['src/integrationTest/resources']
         }
     }
+  functionalTest {
+    java {
+      compileClasspath += main.output + test.output
+      runtimeClasspath += main.output + test.output
+      srcDirs = ['src/functionalTest/java']
+    }
+    resources {
+      srcDirs = ['src/functionalTest/resources']
+    }
+  }
     contractTest {
         java {
             compileClasspath += main.output
@@ -58,6 +68,8 @@ sourceSets {
 configurations {
     integrationTestCompile.extendsFrom testCompile
     integrationTestRuntime.extendsFrom testRuntime
+    functionalTestCompile.extendsFrom testCompile
+    functionalTestRuntime.extendsFrom testRuntime
     contractTestCompile.extendsFrom testCompile
     contractTestRuntime.extendsFrom testRuntime
 }
@@ -195,7 +207,18 @@ dependencies {
         exclude group: 'io.reactivex', module: 'rxnetty-servo'
     }
 
-    testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '3.1.1'
+  functionalTestCompile (group: 'uk.gov.hmcts.reform', name:'service-auth-provider-client', version: versions.serviceTokenGenerator){
+    exclude group: 'io.reactivex', module: 'io.reactivex'
+    exclude group: 'io.reactivex', module: 'rxnetty'
+    exclude group: 'io.reactivex', module: 'rxnetty-contexts'
+    exclude group: 'io.reactivex', module: 'rxnetty-servo'
+  }
+
+  functionalTestCompile group: 'com.github.hmcts', name:'ccd-case-document-am-client', version: versions.ccdCaseDocumentAmClient
+
+
+
+  testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '3.1.1'
 
     compile (group: 'commons-beanutils', name: 'commons-beanutils', version: versions.commonsBeanUtils) {
         force = true
@@ -335,6 +358,17 @@ sourceSets {
         }
     }
 
+  functionalTest {
+    java {
+      compileClasspath += main.output + test.output
+      runtimeClasspath += main.output + test.output
+      srcDir('src/functionalTest/java')
+    }
+    resources {
+      srcDir('src/functionalTest/resources')
+    }
+  }
+
     contractTest {
         java {
             compileClasspath += main.output
@@ -348,6 +382,8 @@ sourceSets {
 dependencies {
     integrationTestCompile(sourceSets.test.output)
     integrationTestAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
+    functionalTestCompile(sourceSets.test.output)
+    functionalTestAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
 }
 
 task smoke(type: Test, description: 'Runs the smoke tests.', group: 'Verification') {
@@ -369,10 +405,17 @@ task bootRunAat(type: BootRun, description: 'Runs the app using AAT config', dep
 }
 
 task functional(type: Test, description: 'Runs the functional tests.', group: 'Verification') {
-    setTestClassesDirs(sourceSets.integrationTest.output.classesDirs)
-    setClasspath(sourceSets.integrationTest.runtimeClasspath)
+    setTestClassesDirs(sourceSets.functionalTest.output.classesDirs)
+    setClasspath(sourceSets.functionalTest.runtimeClasspath)
 
     finalizedBy aggregate
+}
+
+task integration(type: Test, description: 'Runs the integration tests.', group: 'Verification') {
+  setTestClassesDirs(sourceSets.integrationTest.output.classesDirs)
+  setClasspath(sourceSets.integrationTest.runtimeClasspath)
+
+  finalizedBy aggregate
 }
 
 task contract(type: Test) {
