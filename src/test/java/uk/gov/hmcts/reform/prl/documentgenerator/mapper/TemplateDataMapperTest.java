@@ -80,7 +80,7 @@ public class TemplateDataMapperTest {
     @Test
     public void formatDateFromCCD_exception() {
         String ccdDate = "15-03-2022";
-        assertThrows(PDFGenerationException.class, ()->{
+        assertThrows(PDFGenerationException.class, () -> {
             templateDataMapper.formatDateFromCCD(ccdDate);
         });
     }
@@ -94,7 +94,7 @@ public class TemplateDataMapperTest {
     @Test
     public void formatDateTimeFromCCD_exception() {
         String ccdDate = "15-03-2022";
-        assertThrows(PDFGenerationException.class, ()->{
+        assertThrows(PDFGenerationException.class, () -> {
             templateDataMapper.formatDateTimeFromCCD(ccdDate);
         });
     }
