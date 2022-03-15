@@ -9,6 +9,7 @@ java:
           - microservicekey-prl-dgs-api
           - docmosis-api-key
           - launchDarkly-sdk-key
+          - AppInsightsInstrumentationKey
     environment:
       MANAGEMENT_ENDPOINT_HEALTH_CACHE_TIMETOLIVE: "30000"
       DOCMOSIS_SERVICE_DEV_MODE_FLAG: "true"

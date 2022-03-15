@@ -44,7 +44,7 @@ import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_HASH_
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @PropertySource(value = "classpath:application.yml")
 @AutoConfigureMockMvc
-@Ignore
+
 public class DocumentGenerateAndStoreE2ETest {
     private static final String API_URL = "/version/1/generatePDF";
     private static final String CASE_DOCS_API_URL = "/cases/documents";
@@ -222,11 +222,13 @@ public class DocumentGenerateAndStoreE2ETest {
 
     public static Document mockCaseDocsDocuments() {
         Document.Link link = new Document.Link();
+        Document.Link linkBinary = new Document.Link();
         link.href = FILE_URL;
+        linkBinary.href = BINARY_URL ;
 
         Document.Links links = new Document.Links();
         links.self = link;
-        links.binary = link;
+        links.binary = linkBinary;
 
         return Document.builder()
             .links(links)

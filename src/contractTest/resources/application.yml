@@ -122,7 +122,8 @@ logging:
         console: "%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n"
 
 azure:
-    app_insights_key: ${APPINSIGHTS_INSTRUMENTATIONKEY:false}
+  application-insights:
+    instrumentation-key: ${APP_INSIGHTS_INSTRUMENTATION_KEY:00000000-0000-0000-0000-000000000000}
 
 launchdarkly:
   sdk-key: "${LAUNCH_DARKLY_SDK_KEY:}"

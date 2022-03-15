@@ -40,7 +40,6 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@Ignore("As there is an issue with healthcheck")
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ContextConfiguration(
@@ -113,7 +112,7 @@ public class HealthCheckITest {
             equalTo("UP"));
         assertThat(JsonPath.read(body, "$.components.docmosisHealthCheck.status").toString(),
             equalTo("UP"));
-        assertThat(JsonPath.read(body, "$.components.caseDocumentManagement.status").toString(),
+        assertThat(JsonPath.read(body, "$.components.caseDocumentHealthCheck.status").toString(),
             equalTo("UP"));
         assertThat(JsonPath.read(body, "$.components.diskSpace.status").toString(),
             equalTo("UP"));
@@ -135,7 +134,7 @@ public class HealthCheckITest {
             equalTo("DOWN"));
         assertThat(JsonPath.read(body, "$.components.docmosisHealthCheck.status").toString(),
             equalTo("DOWN"));
-        assertThat(JsonPath.read(body, "$.components.caseDocumentManagement.status").toString(),
+        assertThat(JsonPath.read(body, "$.components.caseDocumentHealthCheck.status").toString(),
             equalTo("DOWN"));
         assertThat(JsonPath.read(body, "$.components.diskSpace.status").toString(),
             equalTo("UP"));
@@ -157,7 +156,7 @@ public class HealthCheckITest {
             equalTo("UP"));
         assertThat(JsonPath.read(body, "$.components.docmosisHealthCheck.status").toString(),
             equalTo("DOWN"));
-        assertThat(JsonPath.read(body, "$.components.caseDocumentManagement.status").toString(),
+        assertThat(JsonPath.read(body, "$.components.caseDocumentHealthCheck.status").toString(),
             equalTo("UP"));
         assertThat(JsonPath.read(body, "$.components.diskSpace.status").toString(),
             equalTo("UP"));
@@ -179,7 +178,7 @@ public class HealthCheckITest {
             equalTo("UP"));
         assertThat(JsonPath.read(body, "$.components.docmosisHealthCheck.status").toString(),
             equalTo("UP"));
-        assertThat(JsonPath.read(body, "$.components.caseDocumentManagement.status").toString(),
+        assertThat(JsonPath.read(body, "$.components.caseDocumentHealthCheck.status").toString(),
             equalTo("DOWN"));
         assertThat(JsonPath.read(body, "$.components.diskSpace.status").toString(),
             equalTo("UP"));
@@ -201,7 +200,7 @@ public class HealthCheckITest {
             equalTo("DOWN"));
         assertThat(JsonPath.read(body, "$.components.docmosisHealthCheck.status").toString(),
             equalTo("UP"));
-        assertThat(JsonPath.read(body, "$.components.caseDocumentManagement.status").toString(),
+        assertThat(JsonPath.read(body, "$.components.caseDocumentHealthCheck.status").toString(),
             equalTo("UP"));
         assertThat(JsonPath.read(body, "$.components.diskSpace.status").toString(),
             equalTo("UP"));

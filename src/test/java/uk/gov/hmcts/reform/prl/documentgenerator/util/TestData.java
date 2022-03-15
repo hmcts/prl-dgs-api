@@ -14,6 +14,7 @@ public class TestData {
     public static final String JURISDICTION = "PRIVATELAW";
 
     public static final String FILE_URL = "fileURL";
+
     public static final String MIME_TYPE = "mimeType";
     public static final String TEST_DEFAULT_NAME_FOR_PDF_FILE = "PRLDocument.pdf";
 
