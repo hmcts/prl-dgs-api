@@ -72,6 +72,8 @@ configurations {
     functionalTestRuntime.extendsFrom testRuntime
     contractTestCompile.extendsFrom testCompile
     contractTestRuntime.extendsFrom testRuntime
+    smokeTestCompile.extendsFrom testImplementation
+    smokeTestRuntime.extendsFrom testRuntime
 }
 
 bootJar {
@@ -164,7 +166,7 @@ def versions = [
     puppyCrawl: '8.29',
     reformPropertiesVolume: '0.0.4',
     reformsJavaLogging: '5.1.1',
-    restAssured: '3.0.3',
+    restAssured: '4.5.1',
     serenity: '2.2.13',
     serenityCucumber: '1.9.51',
     serviceTokenGenerator: '3.0.0',
@@ -285,6 +287,9 @@ dependencies {
     testCompile group: 'com.github.tomakehurst', name:'wiremock', version: versions.wiremockVersion
     testCompile group: 'org.powermock', name:'powermock-api-mockito2', version:versions.powerMock
     testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: versions.powerMock
+    testCompile group: 'io.rest-assured', name: 'rest-assured', version: versions.restAssured
+    testCompile group: 'io.rest-assured', name: 'json-path', version: versions.restAssured
+    testCompile group: 'io.rest-assured', name: 'xml-path', version: versions.restAssured
     testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: versions.springBoot) {
         exclude(module: 'commons-logging')
     }
@@ -307,7 +312,13 @@ dependencies {
     contractTestCompile sourceSets.main.runtimeClasspath
     contractTestCompile sourceSets.test.runtimeClasspath
 
+    smokeTestCompile sourceSets.main.runtimeClasspath
+    smokeTestCompile sourceSets.test.runtimeClasspath
+
     testCompile 'com.github.hmcts:fortify-client:1.2.2:all'
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: versions.restAssured
+    testImplementation group: 'io.rest-assured', name: 'json-path', version: versions.restAssured
+    testImplementation group: 'io.rest-assured', name: 'xml-path', version: versions.restAssured
 }
 
 task fortifyScan(type: JavaExec)  {
@@ -377,6 +388,14 @@ sourceSets {
         }
         resources.srcDir file('src/contractTest/resources')
     }
+  smokeTest {
+    java {
+      compileClasspath += main.output + test.output
+      runtimeClasspath += main.output + test.output
+      srcDir file('src/smokeTest/java')
+    }
+    resources.srcDir file('src/smokeTest/resources')
+  }
 }
 
 dependencies {
@@ -387,12 +406,10 @@ dependencies {
 }
 
 task smoke(type: Test, description: 'Runs the smoke tests.', group: 'Verification') {
-    setTestClassesDirs(sourceSets.integrationTest.output.classesDirs)
-    setClasspath(sourceSets.integrationTest.runtimeClasspath)
+  useJUnitPlatform()
 
-    useJUnit {
-        includeCategories 'uk.gov.hmcts.reform.prl.documentgenerator.category.SmokeTest'
-    }
+  setTestClassesDirs(sourceSets.smokeTest.output.classesDirs)
+  setClasspath(sourceSets.smokeTest.runtimeClasspath)
 }
 
 task bootRunAat(type: BootRun, description: 'Runs the app using AAT config', dependsOn: 'classes', group: 'Application') {
