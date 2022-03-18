@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handleDocumentStorageAndPDFGenerationException(Exception exception) {
         log.error(exception.getMessage(), exception);
 
-        if (exception.getCause() != null && exception.getCause() instanceof HttpClientErrorException) {
+        if (exception.getCause() instanceof HttpClientErrorException) {
             HttpStatus httpClientErrorException = ((HttpClientErrorException) exception.getCause()).getStatusCode();
 
             if (httpClientErrorException == HttpStatus.BAD_REQUEST) {

@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import uk.gov.hmcts.reform.prl.documentgenerator.domain.request.GenerateDocumentRequest;
 import uk.gov.hmcts.reform.prl.documentgenerator.service.DocumentManagementService;
@@ -34,8 +34,8 @@ public class DocumentGenerateDownloadController {
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "PDF was generated successfully. Returns the PDF document."),
     })
-    @RequestMapping(value = "/generate-pdf-binary", produces = "application/octet-stream", method = RequestMethod.POST)
-    public ResponseEntity generatePdfBinary(
+    @PostMapping(value = "/generate-pdf-binary", produces = "application/octet-stream")
+    public ResponseEntity<byte[]> generatePdfBinary(
         @ApiParam(value = "JSON object containing the templateName and case details", required = true)
         @RequestBody
         @Valid

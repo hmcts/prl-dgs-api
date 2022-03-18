@@ -38,14 +38,14 @@ public class WebServiceHealthCheckUTest {
 
         when(httpEntityFactory.createRequestEntityForHealthCheck()).thenReturn(httpEntity);
 
-        when(restTemplate.exchange(eq(URI), eq(HttpMethod.GET), eq(httpEntity), eq(Object.class), eq(new HashMap<>())))
+        when(restTemplate.exchange(URI, HttpMethod.GET, httpEntity, Object.class, new HashMap<>()))
                 .thenReturn(responseEntity);
 
         assertThat(healthCheck.health()).isEqualTo(Health.up().build());
 
         verify(httpEntityFactory).createRequestEntityForHealthCheck();
-        verify(restTemplate).exchange(eq(URI), eq(HttpMethod.GET), eq(httpEntity), eq(Object.class),
-                eq(new HashMap<>()));
+        verify(restTemplate).exchange(URI, HttpMethod.GET, httpEntity, Object.class,
+                new HashMap<>());
 
         verifyNoMoreInteractions(httpEntityFactory, restTemplate);
     }
@@ -59,13 +59,13 @@ public class WebServiceHealthCheckUTest {
         HttpServerErrorException exception = mock(HttpServerErrorException.class);
 
         doThrow(exception).when(restTemplate)
-                .exchange(eq(URI), eq(HttpMethod.GET), eq(httpEntity), eq(Object.class), eq(new HashMap<>()));
+                .exchange(URI, HttpMethod.GET, httpEntity, Object.class, new HashMap<>());
 
         assertThat(healthCheck.health()).isEqualTo(Health.down().build());
 
         verify(httpEntityFactory).createRequestEntityForHealthCheck();
-        verify(restTemplate).exchange(eq(URI), eq(HttpMethod.GET), eq(httpEntity), eq(Object.class),
-                eq(new HashMap<>()));
+        verify(restTemplate).exchange(URI, HttpMethod.GET, httpEntity, Object.class,
+                new HashMap<>());
 
         verifyNoMoreInteractions(httpEntityFactory, restTemplate);
     }
@@ -79,13 +79,13 @@ public class WebServiceHealthCheckUTest {
         ResourceAccessException exception = mock(ResourceAccessException.class);
 
         doThrow(exception).when(restTemplate)
-                .exchange(eq(URI), eq(HttpMethod.GET), eq(httpEntity), eq(Object.class), eq(new HashMap<>()));
+                .exchange(URI, HttpMethod.GET, httpEntity, Object.class, new HashMap<>());
 
         assertThat(healthCheck.health()).isEqualTo(Health.down().build());
 
         verify(httpEntityFactory).createRequestEntityForHealthCheck();
-        verify(restTemplate).exchange(eq(URI), eq(HttpMethod.GET), eq(httpEntity), eq(Object.class),
-                eq(new HashMap<>()));
+        verify(restTemplate).exchange(URI, HttpMethod.GET, httpEntity, Object.class,
+                new HashMap<>());
 
         verifyNoMoreInteractions(httpEntityFactory, restTemplate);
     }
@@ -99,13 +99,13 @@ public class WebServiceHealthCheckUTest {
         RuntimeException exception = mock(RuntimeException.class);
 
         doThrow(exception).when(restTemplate)
-                .exchange(eq(URI), eq(HttpMethod.GET), eq(httpEntity), eq(Object.class), eq(new HashMap<>()));
+                .exchange(URI, HttpMethod.GET, httpEntity, Object.class, new HashMap<>());
 
         assertThat(healthCheck.health()).isEqualTo(Health.unknown().build());
 
         verify(httpEntityFactory).createRequestEntityForHealthCheck();
-        verify(restTemplate).exchange(eq(URI), eq(HttpMethod.GET), eq(httpEntity), eq(Object.class),
-                eq(new HashMap<>()));
+        verify(restTemplate).exchange(URI, HttpMethod.GET, httpEntity, Object.class,
+                new HashMap<>());
 
         verifyNoMoreInteractions(httpEntityFactory, restTemplate);
     }
@@ -117,14 +117,14 @@ public class WebServiceHealthCheckUTest {
 
         when(httpEntityFactory.createRequestEntityForHealthCheck()).thenReturn(httpEntity);
 
-        when(restTemplate.exchange(eq(URI), eq(HttpMethod.GET), eq(httpEntity), eq(Object.class), eq(new HashMap<>())))
+        when(restTemplate.exchange(URI, HttpMethod.GET, httpEntity, Object.class, new HashMap<>()))
                 .thenReturn(responseEntity);
 
         assertThat(healthCheck.health()).isEqualTo(Health.unknown().build());
 
         verify(httpEntityFactory).createRequestEntityForHealthCheck();
-        verify(restTemplate).exchange(eq(URI), eq(HttpMethod.GET), eq(httpEntity), eq(Object.class),
-                eq(new HashMap<>()));
+        verify(restTemplate).exchange(URI, HttpMethod.GET, httpEntity, Object.class,
+                new HashMap<>());
 
         verifyNoMoreInteractions(httpEntityFactory, restTemplate);
     }
