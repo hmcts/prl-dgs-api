@@ -329,33 +329,53 @@ task fortifyScan(type: JavaExec)  {
 }
 
 dependencyManagement {
-    dependencies {
-        dependency group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.4'
-
-        dependencySet(
-            group: 'com.fasterxml.jackson.core',
-            version: versions.jacksonDatabind
-        ) {
-            entry 'jackson-core'
-            entry 'jackson-databind'
-        }
-
-        dependency group: 'org.yaml',name: 'snakeyaml', version: '1.30'
-
-        dependency group: 'com.netflix.servo',name: 'servo-core', version: '0.13.2'
-
-        // CVE-2021-30640, CVE-2021-33037
-        dependencySet(group: 'org.apache.tomcat.embed', version: versions.tomcat) {
-            entry 'tomcat-embed-core'
-            entry 'tomcat-embed-websocket'
-            entry 'tomcat-embed-el'
-        }
-
-        // CVE-2021-28170
-        dependency group: 'org.glassfish', name: 'jakarta.el', version: '4.0.2'
-
-        dependency group: 'com.google.guava', name:'guava', version: versions.guava
+  imports {
+    mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+  }
+  dependencies {
+    dependencySet(
+      group: 'com.fasterxml.jackson.core',
+      version: versions.jackson
+    ) {
+      entry 'jackson-core'
+      entry 'jackson-databind'
     }
+    dependencySet(
+      group: 'com.fasterxml.jackson.datatype',
+      version: versions.jackson
+    ) {
+      entry 'jackson-datatype-jdk8'
+      entry 'jackson-datatype-jsr310'
+    }
+    dependencySet(
+      group: 'com.fasterxml.jackson.module',
+      version: versions.jackson
+    ) {
+      entry 'jackson-module-parameter-names'
+    }
+
+    // solves CVE-2014-3488, CVE-2015-2156, CVE-2019-16869, CVE-2021-21409
+    dependencySet(group: 'io.netty', version: '4.1.74.Final') {
+      entry 'netty-buffer'
+      entry 'netty-codec'
+      entry 'netty-codec-http'
+      entry 'netty-common'
+      entry 'netty-handler'
+      entry 'netty-resolver'
+      entry 'netty-transport'
+    }
+    // CVE-2019-10086
+    dependency group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.4'
+    // CVE-2020-9484
+    dependencySet(group: 'org.apache.tomcat.embed', version: versions.tomcat) {
+      entry 'tomcat-embed-core'
+      entry 'tomcat-embed-websocket'
+      entry 'tomcat-embed-el'
+    }
+    //CVE-2017-18640
+    dependency group: 'org.yaml',name: 'snakeyaml', version: '1.30'
+
+  }
 }
 
 sourceSets {
