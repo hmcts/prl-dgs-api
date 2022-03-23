@@ -458,7 +458,7 @@ pitest {
                        'uk.gov.hmcts.reform.prl.documentgenerator.exception.*']
     threads = 10
     outputFormats = ['XML', 'HTML']
-    timestampedReports = false
+    timestampedReports = true
     mutationThreshold = 80
 }
 
