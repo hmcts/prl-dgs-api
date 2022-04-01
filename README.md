@@ -78,7 +78,7 @@ As a result the following container(s) will get created and started:
 To run all integration tests locally:
 
 * Make a copy of `src/main/resources/example-application-aat.yml` as `src/main/resources/application-aat.yml`
-* Make a copy of `src/integrationTest/resources/example-application-local.yml` as `src/integrationTest/resources/application-local.yml`
+* Make a copy of `src/integrationTest/resources/example-application-local.properties` as `src/integrationTest/resources/application-local.properties`
 * Replace the `replace_me` secrets in the _newly created_ files. You can get the values from SCM and Azure secrets key vault (the new files are in .gitignore and should ***not*** be committed to git)
 * Assuming you use IntelliJ, run your application
 * And then run your gradle functional tests task
