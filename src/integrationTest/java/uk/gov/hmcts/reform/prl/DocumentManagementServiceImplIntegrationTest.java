@@ -26,9 +26,9 @@ import static org.junit.Assert.assertTrue;
 @AutoConfigureMockMvc
 public class DocumentManagementServiceImplIntegrationTest extends IntegrationTest {
 
-    private static final String INVALID_TEMPLATE_DATA_JSON = "documentgenerator/documents/jsoninput/invalid-template"
+    private static final String INVALID_TEMPLATE_DATA_JSON = "requests/invalid-template-data.json"
         + "-data.json";
-    private static final String VALID_INPUT_JSON = "documentgenerator/documents/jsoninput/DA-granted-letter.json";
+    private static final String VALID_INPUT_JSON = "requests/C100-case-data.json";
 
     private static final String IDAMAPI = "IDAM";
     private static final String DOCMOSISAPI = "DOCMOSIS";
@@ -61,7 +61,7 @@ public class DocumentManagementServiceImplIntegrationTest extends IntegrationTes
     }
 
     @Test
-    public void checkHealthStatusOfIdamApiIsUp_thenReturn200Status() throws Exception {
+    public void checkStatusOfIdamApiIsUp_thenReturn200Status() throws Exception {
 
         Response response = SerenityRest.given()
             .when()
@@ -72,7 +72,7 @@ public class DocumentManagementServiceImplIntegrationTest extends IntegrationTes
     }
 
     @Test
-    public void checkHealthStatusOfDocmosisApiIsUp_thenReturn200Status() throws Exception {
+    public void checkStatusOfDocmosisApiIsUp_thenReturn200Status() throws Exception {
 
         Response response = SerenityRest.given()
             .when()
@@ -83,7 +83,7 @@ public class DocumentManagementServiceImplIntegrationTest extends IntegrationTes
     }
 
     @Test
-    public void checkHealthStatusOfCCDCaseDocumentApiIsUp_thenReturn200Status() throws Exception {
+    public void checkStatusOfCCDCaseDocumentApiIsUp_thenReturn200Status() throws Exception {
 
         Response response = SerenityRest.given()
             .when()
