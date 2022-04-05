@@ -67,19 +67,19 @@ document:
             -   templateName: PRL-C8-Final-Changes.docx
                 filename: C8Document.pdf
                 document-generator: docmosis
-            -   templateName: C100-Final-Document.docx
+            -   templateName: PRL-C100-R1-Final-Document.docx
                 filename: C100FinalDocument.pdf
                 document-generator: docmosis
             -   templateName: PRL-C1A.docx
                 filename: C1ADocument.pdf
                 document-generator: docmosis
-            -   templateName: PRL-C100-Draft-Final.docx
+            -   templateName: PRL-C100-R1-Draft-Document.docx
                 filename: C100DraftDocument.pdf
                 document-generator: docmosis
-            -   templateName: PRL-Draft-C100-WelshLang.docx
+            -   templateName: PRL-C100-R1-Draft-WelshLang.docx
                 filename: C100DraftWelshDocument.pdf
                 document-generator: docmosis
-            -   templateName: PRL-Final-C100-WelshLang.docx
+            -   templateName: PRL-C100-R1-Final-WelshLang.docx
                 filename: C100FinalWelshDocument.pdf
                 document-generator: docmosis
             -   templateName: PRL-C8-WelshLang.docx
