@@ -42,4 +42,10 @@
   ]]></notes>
     <cve>CVE-2020-36518</cve>
   </suppress>
+  <suppress>
+    <notes><![CDATA[
+      Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')
+  ]]></notes>
+    <cve>CWE-79</cve>
+  </suppress>
 </suppressions>
