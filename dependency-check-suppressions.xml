@@ -44,8 +44,9 @@
   </suppress>
   <suppress>
     <notes><![CDATA[
-      Improper Neutralization of Input During Web Page Generation
-  ]]></notes>
-    <cve>CWE-79</cve>
+   file name: hystrix-core-1.5.12.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/com\.netflix\.hystrix/hystrix-core@.*$</packageUrl>
+    <vulnerabilityName>CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')</vulnerabilityName>
   </suppress>
 </suppressions>
