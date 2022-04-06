@@ -19,7 +19,6 @@
     <notes><![CDATA[
    spring-core-5.2.15.RELEASE.jar
    ]]></notes>
-
     <cve>CVE-2021-22096</cve>
   </suppress>
   <suppress>
@@ -28,5 +27,14 @@
          ]]></notes>
     <cve>CVE-2021-42550</cve>
     <cve>CVE-2021-22060</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+      Jackson data binding
+  ]]></notes>
+    <cve>CVE-2020-36518</cve>
+  </suppress>
+  <suppress>
+    <cve>CVE-2022-22965</cve>
   </suppress>
 </suppressions>
