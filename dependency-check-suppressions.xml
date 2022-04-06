@@ -42,11 +42,11 @@
   ]]></notes>
     <cve>CVE-2020-36518</cve>
   </suppress>
-  <suppress>
+    <suppress>
     <notes><![CDATA[
    file name: hystrix-core-1.5.12.jar
    ]]></notes>
-    <gav regex="true">^pkg:maven/com\.netflix\.hystrix/hystrix-core@.*$</gav>
-    <cve>CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')</cve>
+    <packageUrl regex="true">^pkg:maven/com\.netflix\.hystrix/hystrix-core@.*$</packageUrl>
+    <vulnerabilityName>CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')</vulnerabilityName>
   </suppress>
 </suppressions>
