@@ -48,7 +48,7 @@ withPipeline(type, product, component) {
     def map1 = secret("docmosis-api-key", "DOCMOSIS_SERVICE_ACCESS_KEY")
     map1.each{ k, v -> echo "KEY=${k} VALUE='${v}'" }
     map1.each{ k, v -> echo "KEY=${k} VALUE='${v}'" }
-    echo "####DOCMSIS KEY ===> '$DOCMOSIS_SERVICE_ACCESS_KEY' --- '${DOCMOSIS_SERVICE_ACCESS_KEY}' PRIVATE KEY ===> '${AUTH_PROVIDER_SERVICE_CLIENT_KEY}'"
+    echo "####DOCMSIS KEY ===> --- '${DOCMOSIS_SERVICE_ACCESS_KEY}' PRIVATE KEY ===> '${AUTH_PROVIDER_SERVICE_CLIENT_KEY}'"
     enableSlackNotifications(channel)
     enableAksStagingDeployment()
     disableLegacyDeployment()
