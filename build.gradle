@@ -411,6 +411,17 @@ task smoke(type: Test, description: 'Runs the smoke tests.', group: 'Verificatio
   setClasspath(sourceSets.smokeTest.runtimeClasspath)
 }
 
+bootRun {
+  doFirst() {
+      println("Loading secrets from vault")
+      systemProperty 'AUTH_PROVIDER_SERVICE_CLIENT_KEY', getVaultSecret('microservicekey-prl-dgs-api')
+      systemProperty 'DOCMOSIS_SERVICE_ACCESS_KEY', getVaultSecret('docmosis-api-key')
+      systemProperty 'LAUNCH_DARKLY_SDK_KEY', getVaultSecret('launchDarkly-sdk-key')
+      systemProperty 'APP_INSIGHTS_INSTRUMENTATION_KEY', getVaultSecret('AppInsightsInstrumentationKey')
+      systemProperty 'IDAM_CLIENT_SECRET', getVaultSecret('prl-cos-idam-client-secret')
+  }
+}
+
 task bootRunAat(type: BootRun, description: 'Runs the app using AAT config', dependsOn: 'classes', group: 'Application') {
     main = 'uk.gov.hmcts.reform.prl.documentgenerator.DocumentGeneratorApplication'
     doFirst() {
