@@ -126,7 +126,8 @@ documentation:
 spring:
     application:
         name: "prl-dgs-api"
-    resources:
+    web:
+      resources:
         static-locations:
 
 # GENERAL SPRING BOOT ACTUATOR CONFIG
