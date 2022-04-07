@@ -51,7 +51,7 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
         try {
             // Remove this log when tested
             log.info("Making Docmosis Request From {}", docmosisPdfServiceEndpoint);
-
+            log.info("template name {} and endpoint {} and key {}", templateName, docmosisPdfServiceEndpoint, docmosisPdfServiceAccessKey);
             HttpHeaders headers = new HttpHeaders();
             headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
 

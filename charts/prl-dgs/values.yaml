@@ -4,7 +4,6 @@ java:
     ingressHost: "prl-dgs-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
     keyVaults:
       prl:
-        resourceGroup: prl
         secrets:
           - name: microservicekey-prl-dgs-api
             alias: AUTH_PROVIDER_SERVICE_CLIENT_KEY

@@ -9,7 +9,6 @@ java:
     ingressHost: ${SERVICE_FQDN}
     keyVaults:
       prl:
-        resourceGroup: prl
         secrets:
           - name: microservicekey-prl-dgs-api
             alias: AUTH_PROVIDER_SERVICE_CLIENT_KEY
