@@ -1,0 +1,140 @@
+server:
+  port: ${PRL_DOCUMENT_GENERATOR_PORT:4007}
+
+service:
+  service-auth-provider:
+    health:
+      context-path: /health
+      uri: ${AUTH_PROVIDER_SERVICE_CLIENT_BASEURL:http://localhost:4502}${service.service-auth-provider.health.context-path}
+
+docmosis:
+  service:
+    pdf-service:
+      accessKey: ${DOCMOSIS_SERVICE_ACCESS_KEY:ZDYxMTkzZTQtMGY2Mi00NDM1LWIyN2ItNGRkNzdjOTczMjAwOjQ1NTE0ODQ}
+      renderEndpoint: "/rs/render"
+      uri: ${DOCMOSIS_SERVICE_BASE_URL:https://docmosis.aat.platform.hmcts.net}${docmosis.service.pdf-service.renderEndpoint}
+      health: ${DOCMOSIS_SERVICE_BASE_URL:https://docmosis.aat.platform.hmcts.net}/health
+      devMode: ${DOCMOSIS_SERVICE_DEV_MODE_FLAG:false}
+
+case_document_am:
+  url: ${CCD_CASE_DOCS_AM_API:http://localhost:4455}
+
+auth:
+  provider:
+    service:
+      client:
+        port: 4502
+        baseUrl: ${AUTH_PROVIDER_SERVICE_CLIENT_BASEURL:http://localhost:4502}
+        tokenTimeToLiveInSeconds: 900
+
+idam:
+  api:
+    url: http://localhost:5000
+  s2s-auth:
+    url: http://localhost:4502
+    totp_secret: AABBCCDDEEFFGGHH
+    microservice: prl_cos_api
+  client:
+    id: prl_cos_api
+    redirect_uri: https://localhost:9000/oauth2/callback
+    secret: OOOOOOOOOOOOOOOO
+
+http:
+  connect:
+    timeout: 60000
+    request:
+      timeout: 60000
+
+health:
+  check:
+    http:
+      connect:
+        timeout: 5000
+        request:
+          timeout: 5000
+
+info:
+  app:
+    name: ${spring.application.name}
+
+pdf:
+  test:
+    enabled: false
+
+document:
+  templates:
+    configurationList:
+      -   templateName: FL-DIV-GOR-ENG-00062.docx
+          filename: TestTemplate.pdf
+          document-generator: docmosis
+      -   templateName: FL-DIV-GNO-ENG-00356.docx
+          filename: TestTemplate.pdf
+          document-generator: docmosis
+      -   templateName: PRL-DRAFT-C100-20.docx
+          filename: TestTemplate1.pdf
+          document-generator: docmosis
+      -   templateName: PRL-C8-Final.docx
+          filename: TestTemplatecool.pdf
+          document-generator: docmosis
+  pdf:
+    familyCourtImgKey: "familycourt"
+    familyCourtImgVal: "[userImage:familycourt.png]"
+    hmctsImgKey: "hmcts"
+    hmctsImgVal: "[userImage:hmcts.png]"
+    displayTemplateKey: "displayTemplateOnly"
+    displayTemplateVal: "1"
+
+evidence-management-api:
+  service:
+    stub:
+      enabled: false
+
+documentation:
+  swagger:
+    enabled: true
+
+spring:
+  application:
+    name: "prl-dgs-api"
+  resources:
+    static-locations:
+
+# GENERAL SPRING BOOT ACTUATOR CONFIG
+# Context path for Spring Boot Actuator endpoints
+# Allow actuator endpoints to be accessed without requiring authentication
+# Enable default health indicators
+# Enable disk space health check
+# HEALTH ENDPOINT CONFIG
+# Enable the health endpoint
+# Enable sensitive health information
+# Defines the URL of the health check to ${management.context-path}/health
+# Caching period in milliseconds of health endpoint
+# METRICS ENDPOINT CONFIG
+# Enable the metrics endpoint
+# Enable sensitive metrics information
+management:
+  endpoint:
+    health:
+      show-details: "ALWAYS"
+      cache:
+        time-to-live: 5000
+  endpoints:
+    web:
+      base-path: /
+      path-mapping:
+        health: health
+      exposure:
+        include: info, health, metrics
+  health:
+    case-document-am-api:
+      enabled: true
+
+logging:
+  level:
+    org.springframework.web: ERROR
+    uk.gov.hmcts.reform.prl.documentgenerator: DEBUG
+  pattern:
+    console: "%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n"
+
+azure:
+  app_insights_key: ${APPINSIGHTS_INSTRUMENTATIONKEY:false}
