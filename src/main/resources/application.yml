@@ -126,6 +126,9 @@ documentation:
 spring:
     application:
         name: "prl-dgs-api"
+    cloud:
+      bootstrap:
+        enabled: true
     web:
       resources:
         static-locations:
