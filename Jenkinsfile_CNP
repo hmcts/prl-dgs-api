@@ -42,9 +42,12 @@ env.PACT_BROKER_FULL_URL = 'https://pact-broker.platform.hmcts.net'
 
 withPipeline(type, product, component) {
     loadVaultSecrets(secrets)
-    def map = secret("docmosis-api-key", "DOCMOSIS_SERVICE_ACCESS_KEY")
-    map.each{ k, v -> 'echo "${k}:${v}"' }
-    map.each{ k, v -> 'echo "${k}:${v.toString()}"' }
+    def map = secret("microservicekey-prl-dgs-api", "AUTH_PROVIDER_SERVICE_CLIENT_KEY")
+    map.each{ k, v -> echo 'authprov "${k}:${v}"' }
+    map.each{ k, v -> echo 'auth prov "${k}:${v.toString()}"' }
+    def map1 = secret("docmosis-api-key", "DOCMOSIS_SERVICE_ACCESS_KEY")
+    map1.each{ k, v -> echo 'docmosis "${k}:${v}"' }
+    map1.each{ k, v -> echo 'docmosis "${k}:${v.toString()}"' }
     echo '####DOCMSIS KEY ===> "$DOCMOSIS_SERVICE_ACCESS_KEY" --- "${DOCMOSIS_SERVICE_ACCESS_KEY}" PRIVATE KEY ===> "${AUTH_PROVIDER_SERVICE_CLIENT_KEY}"'
     enableSlackNotifications(channel)
     enableAksStagingDeployment()
