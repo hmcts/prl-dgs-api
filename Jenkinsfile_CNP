@@ -42,6 +42,7 @@ env.PACT_BROKER_FULL_URL = 'https://pact-broker.platform.hmcts.net'
 
 withPipeline(type, product, component) {
     loadVaultSecrets(secrets)
+    echo '####DOCMSIS KEY ===> ${DOCMOSIS_SERVICE_ACCESS_KEY} PRIVATE KEY ===> ${AUTH_PROVIDER_SERVICE_CLIENT_KEY}'
     enableSlackNotifications(channel)
     enableAksStagingDeployment()
     disableLegacyDeployment()
