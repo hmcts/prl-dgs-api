@@ -2,7 +2,7 @@ import org.springframework.boot.gradle.tasks.run.BootRun
 
 buildscript {
     ext {
-        springBootVersion = '2.5.4'
+        springBootVersion = '2.3.11.RELEASE'
     }
     repositories {
         mavenLocal()
@@ -22,7 +22,7 @@ plugins {
     id 'jacoco'
     id 'org.owasp.dependencycheck' version '6.2.0'
     id 'org.sonarqube' version '3.3'
-    id 'org.springframework.boot' version '2.5.4'
+    id 'org.springframework.boot' version '2.3.11.RELEASE'
     id 'info.solidsoft.pitest' version '1.7.0'
     id 'au.com.dius.pact' version '4.2.0'
 }
@@ -172,8 +172,8 @@ def versions = [
     serviceTokenGenerator: '3.0.0',
     sonarPitest: '0.5',
     spring_security_rsa: '1.0.9.RELEASE',
-    springBoot: '2.5.4',
-    springCloud: '3.0.3',
+    springBoot: '2.3.11.RELEASE',
+    springCloud: '2.2.5.RELEASE',
     springfoxSwagger: '2.9.2',
     springHateoas: '0.25.1.RELEASE',
     unirest: '1.4.9',
@@ -246,7 +246,7 @@ dependencies {
     compile group: 'io.springfox', name: 'springfox-swagger2', version: versions.springfoxSwagger
     compile group: 'io.springfox', name: 'springfox-swagger-ui', version: versions.springfoxSwagger
 
-    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-ribbon', version: '2.2.5.RELEASE'
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-ribbon', version: versions.springCloud
     compile (group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign',  version: versions.springCloud) {
         exclude group: 'io.reactivex', module: 'io.reactivex'
         exclude group: 'io.reactivex', module: 'rxnetty'

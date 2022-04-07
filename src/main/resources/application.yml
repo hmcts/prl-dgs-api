@@ -126,9 +126,8 @@ documentation:
 spring:
     application:
         name: "prl-dgs-api"
-    web:
-        resources:
-            static-locations:
+    resources:
+        static-locations:
 
 # GENERAL SPRING BOOT ACTUATOR CONFIG
 # Context path for Spring Boot Actuator endpoints
