@@ -40,7 +40,7 @@ withNightlyPipeline(type, product, component) {
   loadVaultSecrets(secrets)
   enableSlackNotifications(channel)
   enableFortifyScan()
-//  enableMutationTest()
+  enableMutationTest()
   enableFullFunctionalTest(200)
 
 

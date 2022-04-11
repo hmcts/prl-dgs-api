@@ -10,6 +10,12 @@ java:
           - docmosis-api-key
           - launchDarkly-sdk-key
           - AppInsightsInstrumentationKey
+          - prl-cos-idam-client-secret
+          - test-genericpassword
+          - idam-solicitor-username
+          - idam-solicitor-password
+          - system-update-user-username
+          - system-update-user-password
     environment:
       MANAGEMENT_ENDPOINT_HEALTH_CACHE_TIMETOLIVE: "30000"
       DOCMOSIS_SERVICE_DEV_MODE_FLAG: "true"
