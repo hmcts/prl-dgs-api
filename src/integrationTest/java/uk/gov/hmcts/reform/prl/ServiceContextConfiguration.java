@@ -15,9 +15,8 @@ import uk.gov.hmcts.reform.authorisation.generators.ServiceAuthTokenGenerator;
 
 @Lazy
 @Configuration
-@ComponentScan(basePackages = {"uk.gov.hmcts.reform.prl.divorce", "uk.gov.hmcts.auth.provider.service"})
+@ComponentScan(basePackages = {"uk.gov.hmcts.reform.prl.documentgenerator", "uk.gov.hmcts.auth.provider.service"})
 @PropertySource({"classpath:application.properties"})
-@PropertySource({"classpath:application-${env}.properties"})
 public class ServiceContextConfiguration {
 
     @Bean
@@ -32,5 +31,10 @@ public class ServiceContextConfiguration {
             .target(ServiceAuthorisationApi.class, s2sUrl);
 
         return new ServiceAuthTokenGenerator(secret, microService, serviceAuthorisationApi);
+    }
+
+    @Bean
+    public IdamUtils getIdamUtil() {
+        return new IdamUtils();
     }
 }
