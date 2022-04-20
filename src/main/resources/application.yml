@@ -106,13 +106,13 @@ document:
             -   templateName: FL401-c8-welsh.docx
                 filename: FL401C8WelshDocument.pdf
                 document-generator: docmosis
-            -   templateName: PRL-C21-Common.docx
+            -   templateName: PRL-ORDER-C21-COMMON.docx
                 filename: C21CreateOrder.pdf
                 document-generator: docmosis
-            -   templateName: PRL-C21-Draft-Common.docx
+            -   templateName: PRL-ORDER-C21-DRAFT-COMMON.docx
                 filename: C21CreateOrderDraft.pdf
                 document-generator: docmosis
-            -   templateName: PRL-C21-Welsh-Common.docx
+            -   templateName: PRL-ORDER-C21-DRAFT-WELSH-COMMON.docx
                 filename: C21WelshCreateOrder.pdf
                 document-generator: docmosis
 
