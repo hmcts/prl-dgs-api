@@ -121,6 +121,13 @@ document:
             -   templateName: PRL-ORDER-C43A-FINAL.docx
                 filename: C43AFinalCreateOrder.pdf
                 document-generator: docmosis
+            -   templateName: PRL-ORDER-C43-FINAL.docx
+                filename: C43CreateOrder.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ORDER-C43-DRAFT.docx
+                filename: C43CreateOrderDraft.pdf
+                document-generator: docmosis
+
 
     pdf:
         familyCourtImgKey: "familycourt"
