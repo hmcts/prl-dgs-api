@@ -115,6 +115,12 @@ document:
             -   templateName: PRL-ORDER-C21-DRAFT-WELSH-COMMON.docx
                 filename: C21WelshCreateOrder.pdf
                 document-generator: docmosis
+            -   templateName: PRL-ORDER-C43A-DRAFT.docx
+                filename: C43ADraftCreateOrder.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ORDER-C43A-FINAL.docx
+                filename: C43AFinalCreateOrder.pdf
+                document-generator: docmosis
 
     pdf:
         familyCourtImgKey: "familycourt"
