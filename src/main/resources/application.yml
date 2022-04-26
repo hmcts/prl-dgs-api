@@ -112,8 +112,14 @@ document:
             -   templateName: PRL-ORDER-C21-DRAFT-COMMON.docx
                 filename: C21CreateOrderDraft.pdf
                 document-generator: docmosis
-            -   templateName: PRL-ORDER-C21-DRAFT-WELSH-COMMON.docx
+            -   templateName: PRL-ORDER-C21-WELSH-COMMON.docx
                 filename: C21WelshCreateOrder.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ORDER-C49-COMMON.docx
+                filename: C49CreateOrder.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ORDER-C49-DRAFT-COMMON.docx
+                filename: C49CreateOrderDraft.pdf
                 document-generator: docmosis
 
     pdf:
