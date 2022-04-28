@@ -14,7 +14,7 @@
     ]]></notes>
     <cve>CVE-2020-10663</cve>
     <cve>CVE-2020-7712</cve>
-   </suppress>
+  </suppress>
   <suppress>
     <notes><![CDATA[
    spring-core-5.2.15.RELEASE.jar
@@ -37,5 +37,6 @@
   </suppress>
   <suppress>
     <cve>CVE-2022-22965</cve>
+    <cve>CVE-2021-44228</cve>
   </suppress>
 </suppressions>
