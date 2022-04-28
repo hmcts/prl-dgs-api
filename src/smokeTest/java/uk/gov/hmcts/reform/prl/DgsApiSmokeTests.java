@@ -1,9 +1,8 @@
-package uk.gov.hmcts.reform.prl.documentgenerator.functionaltest;
+package uk.gov.hmcts.reform.prl;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.junit.WireMockClassRule;
 import org.junit.ClassRule;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,13 +38,14 @@ import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.MIME_TYPE;
 import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_DEFAULT_NAME_FOR_PDF_FILE;
 import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_HASH_TOKEN;
 
+
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = DocumentGeneratorApplication.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @PropertySource(value = "classpath:application.yml")
 @AutoConfigureMockMvc
 
-public class DocumentGenerateAndStoreE2ETest {
+public class DgsApiSmokeTests {
     private static final String API_URL = "/version/1/generatePDF";
     private static final String CASE_DOCS_API_URL = "/cases/documents";
     private static final String DOCMOSIS_API_URL = "/rs/render";
@@ -76,9 +76,9 @@ public class DocumentGenerateAndStoreE2ETest {
         final GenerateDocumentRequest generateDocumentRequest = new GenerateDocumentRequest(template, values);
 
         webClient.perform(post(API_URL)
-            .content(ObjectMapperTestUtil.convertObjectToJsonString(generateDocumentRequest))
-            .contentType(MediaType.APPLICATION_JSON)
-            .accept(MediaType.APPLICATION_JSON))
+                              .content(ObjectMapperTestUtil.convertObjectToJsonString(generateDocumentRequest))
+                              .contentType(MediaType.APPLICATION_JSON)
+                              .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isBadRequest());
     }
 
@@ -90,9 +90,9 @@ public class DocumentGenerateAndStoreE2ETest {
         final GenerateDocumentRequest generateDocumentRequest = new GenerateDocumentRequest(template, values);
 
         webClient.perform(post(API_URL)
-            .content(ObjectMapperTestUtil.convertObjectToJsonString(generateDocumentRequest))
-            .contentType(MediaType.APPLICATION_JSON)
-            .accept(MediaType.APPLICATION_JSON))
+                              .content(ObjectMapperTestUtil.convertObjectToJsonString(generateDocumentRequest))
+                              .contentType(MediaType.APPLICATION_JSON)
+                              .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isBadRequest());
     }
 
@@ -104,9 +104,9 @@ public class DocumentGenerateAndStoreE2ETest {
         final GenerateDocumentRequest generateDocumentRequest = new GenerateDocumentRequest(template, values);
 
         webClient.perform(post(API_URL)
-            .content(ObjectMapperTestUtil.convertObjectToJsonString(generateDocumentRequest))
-            .contentType(MediaType.APPLICATION_JSON)
-            .accept(MediaType.APPLICATION_JSON))
+                              .content(ObjectMapperTestUtil.convertObjectToJsonString(generateDocumentRequest))
+                              .contentType(MediaType.APPLICATION_JSON)
+                              .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isBadRequest());
     }
 
@@ -124,9 +124,9 @@ public class DocumentGenerateAndStoreE2ETest {
         mockServiceAuthServer(HttpStatus.SERVICE_UNAVAILABLE, "");
 
         webClient.perform(post(API_URL)
-            .content(ObjectMapperTestUtil.convertObjectToJsonString(generateDocumentRequest))
-            .contentType(MediaType.APPLICATION_JSON)
-            .accept(MediaType.APPLICATION_JSON))
+                              .content(ObjectMapperTestUtil.convertObjectToJsonString(generateDocumentRequest))
+                              .contentType(MediaType.APPLICATION_JSON)
+                              .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isServiceUnavailable());
     }
 
@@ -143,9 +143,9 @@ public class DocumentGenerateAndStoreE2ETest {
         mockServiceAuthServer(HttpStatus.UNAUTHORIZED, "");
 
         webClient.perform(post(API_URL)
-            .content(ObjectMapperTestUtil.convertObjectToJsonString(generateDocumentRequest))
-            .contentType(MediaType.APPLICATION_JSON)
-            .accept(MediaType.APPLICATION_JSON))
+                              .content(ObjectMapperTestUtil.convertObjectToJsonString(generateDocumentRequest))
+                              .contentType(MediaType.APPLICATION_JSON)
+                              .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isUnauthorized());
     }
 
@@ -171,9 +171,9 @@ public class DocumentGenerateAndStoreE2ETest {
         //When
         final GenerateDocumentRequest generateDocumentRequest = new GenerateDocumentRequest(templateId, values);
         MvcResult result = webClient.perform(post(API_URL)
-                .content(ObjectMapperTestUtil.convertObjectToJsonString(generateDocumentRequest))
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+                                                 .content(ObjectMapperTestUtil.convertObjectToJsonString(generateDocumentRequest))
+                                                 .contentType(MediaType.APPLICATION_JSON)
+                                                 .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andReturn();
 
@@ -195,29 +195,29 @@ public class DocumentGenerateAndStoreE2ETest {
 
     private void mockDocmosisPdfService(HttpStatus expectedResponse, byte[] body) {
         docmosisClientServiceServer.stubFor(WireMock.post(DOCMOSIS_API_URL)
-            .willReturn(aResponse()
-                .withStatus(expectedResponse.value())
-                .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
-                .withBody(ObjectMapperTestUtil.convertObjectToJsonString(body))
-            ));
+                                                .willReturn(aResponse()
+                                                                .withStatus(expectedResponse.value())
+                                                                .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
+                                                                .withBody(ObjectMapperTestUtil.convertObjectToJsonString(body))
+                                                ));
     }
 
     private void mockServiceAuthServer(HttpStatus expectedResponse, String body) {
         serviceAuthServer.stubFor(WireMock.post(S2S_API_URL)
-            .willReturn(aResponse()
-                .withStatus(expectedResponse.value())
-                .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
-                .withBody(ObjectMapperTestUtil.convertObjectToJsonString(body))
-            ));
+                                      .willReturn(aResponse()
+                                                      .withStatus(expectedResponse.value())
+                                                      .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
+                                                      .withBody(ObjectMapperTestUtil.convertObjectToJsonString(body))
+                                      ));
     }
 
     private void mockCaseDocsClientApi(HttpStatus expectedResponse, UploadResponse uploadResponse) {
         caseDocsClientApiServiceServer.stubFor(WireMock.post(CASE_DOCS_API_URL)
-            .willReturn(aResponse()
-                .withStatus(expectedResponse.value())
-                .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
-                .withBody(ObjectMapperTestUtil.convertObjectToJsonString(uploadResponse))
-            ));
+                                                   .willReturn(aResponse()
+                                                                   .withStatus(expectedResponse.value())
+                                                                   .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
+                                                                   .withBody(ObjectMapperTestUtil.convertObjectToJsonString(uploadResponse))
+                                                   ));
     }
 
     public static Document mockCaseDocsDocuments() {

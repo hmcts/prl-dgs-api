@@ -1,7 +1,7 @@
 #!groovy
 
 properties([
-  pipelineTriggers([cron('0 23 * * *')]),
+  pipelineTriggers([cron('0 3 * * 1-5')]),
   parameters([
     string(name: 'URL_TO_TEST', defaultValue: 'http://prl-dgs-aat.service.core-compute-aat.internal/', description: 'The URL you want to run these tests against')
   ])
@@ -19,7 +19,8 @@ def secrets = [
   'prl-${env}': [
     secret("microservicekey-prl-dgs-api", "AUTH_PROVIDER_SERVICE_CLIENT_KEY"),
     secret("docmosis-api-key", "DOCMOSIS_SERVICE_ACCESS_KEY"),
-    secret("launchDarkly-sdk-key", "LAUNCH_DARKLY_SDK_KEY")
+    secret("launchDarkly-sdk-key", "LAUNCH_DARKLY_SDK_KEY"),
+    secret("AppInsightsInstrumentationKey", "APP_INSIGHTS_INSTRUMENTATION_KEY")
   ]
 ]
 
@@ -39,7 +40,7 @@ withNightlyPipeline(type, product, component) {
   loadVaultSecrets(secrets)
   enableSlackNotifications(channel)
   enableFortifyScan()
-//  enableMutationTest()
+  enableMutationTest()
   enableFullFunctionalTest(200)
 
 

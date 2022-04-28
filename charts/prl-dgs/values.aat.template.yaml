@@ -14,4 +14,12 @@ java:
           - microservicekey-prl-dgs-api
           - docmosis-api-key
           - launchDarkly-sdk-key
+          - AppInsightsInstrumentationKey
+          - prl-cos-idam-client-secret
+          - test-genericpassword
+          - idam-solicitor-username
+          - idam-solicitor-password
+          - system-update-user-username
+          - system-update-user-password
+
     aadIdentityName: prl

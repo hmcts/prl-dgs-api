@@ -10,18 +10,18 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath("net.serenity-bdd:serenity-gradle-plugin:2.4.24")
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.4.34")
     }
 }
 
 plugins {
     id 'application'
     id 'checkstyle'
-    id 'com.github.ben-manes.versions' version '0.39.0'
+    id 'com.github.ben-manes.versions' version '0.41.0'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'jacoco'
     id 'org.owasp.dependencycheck' version '6.2.0'
-    id 'org.sonarqube' version '3.2.0'
+    id 'org.sonarqube' version '3.3'
     id 'org.springframework.boot' version '2.3.11.RELEASE'
     id 'info.solidsoft.pitest' version '1.7.0'
     id 'au.com.dius.pact' version '4.3.5'
@@ -45,6 +45,16 @@ sourceSets {
             srcDirs = ['src/integrationTest/resources']
         }
     }
+  functionalTest {
+    java {
+      compileClasspath += main.output + test.output
+      runtimeClasspath += main.output + test.output
+      srcDirs = ['src/functionalTest/java']
+    }
+    resources {
+      srcDirs = ['src/functionalTest/resources']
+    }
+  }
     contractTest {
         java {
             compileClasspath += main.output
@@ -58,8 +68,12 @@ sourceSets {
 configurations {
     integrationTestCompile.extendsFrom testCompile
     integrationTestRuntime.extendsFrom testRuntime
+    functionalTestCompile.extendsFrom testCompile
+    functionalTestRuntime.extendsFrom testRuntime
     contractTestCompile.extendsFrom testCompile
     contractTestRuntime.extendsFrom testRuntime
+    smokeTestCompile.extendsFrom testImplementation
+    smokeTestRuntime.extendsFrom testRuntime
 }
 
 bootJar {
@@ -152,7 +166,7 @@ def versions = [
     puppyCrawl: '8.29',
     reformPropertiesVolume: '0.0.4',
     reformsJavaLogging: '5.1.1',
-    restAssured: '3.0.3',
+    restAssured: '4.5.1',
     serenity: '2.2.13',
     serenityCucumber: '1.9.51',
     serviceTokenGenerator: '3.0.0',
@@ -176,7 +190,6 @@ dependencies {
     //integration test
     integrationTestCompile group: 'com.mashape.unirest', name: 'unirest-java', version: versions.unirest
     integrationTestCompile group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: versions.nimbus
-    integrationTestCompile group: 'io.rest-assured', name: 'rest-assured', version: versions.restAssured
     integrationTestCompile group: 'net.serenity-bdd', name: 'serenity-core', version: versions.serenity
     integrationTestCompile group: 'net.serenity-bdd', name: 'serenity-cucumber', version: versions.serenityCucumber
     integrationTestCompile group: 'net.serenity-bdd', name: 'serenity-junit', version: versions.serenity
@@ -195,7 +208,18 @@ dependencies {
         exclude group: 'io.reactivex', module: 'rxnetty-servo'
     }
 
-    testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '3.1.0'
+  functionalTestCompile (group: 'uk.gov.hmcts.reform', name:'service-auth-provider-client', version: versions.serviceTokenGenerator){
+    exclude group: 'io.reactivex', module: 'io.reactivex'
+    exclude group: 'io.reactivex', module: 'rxnetty'
+    exclude group: 'io.reactivex', module: 'rxnetty-contexts'
+    exclude group: 'io.reactivex', module: 'rxnetty-servo'
+  }
+
+  functionalTestCompile group: 'com.github.hmcts', name:'ccd-case-document-am-client', version: versions.ccdCaseDocumentAmClient
+
+
+
+  testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '3.1.1'
 
     compile (group: 'commons-beanutils', name: 'commons-beanutils', version: versions.commonsBeanUtils) {
         force = true
@@ -253,7 +277,7 @@ dependencies {
     compile group:'info.solidsoft.gradle.pitest', name: 'gradle-pitest-plugin', version: versions.gradlePitest
     compile group:'org.codehaus.sonar-plugins', name:'sonar-pitest-plugin', version: versions.sonarPitest
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
-    compile group: 'com.launchdarkly', name: 'launchdarkly-java-server-sdk', version: '5.2.2'
+    compile group: 'com.launchdarkly', name: 'launchdarkly-java-server-sdk', version: '5.7.1'
 
     annotationProcessor("org.projectlombok:lombok:${versions.lombok}")
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
@@ -262,6 +286,9 @@ dependencies {
     testCompile group: 'com.github.tomakehurst', name:'wiremock', version: versions.wiremockVersion
     testCompile group: 'org.powermock', name:'powermock-api-mockito2', version:versions.powerMock
     testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: versions.powerMock
+    testCompile group: 'io.rest-assured', name: 'rest-assured', version: versions.restAssured
+    testCompile group: 'io.rest-assured', name: 'json-path', version: versions.restAssured
+    testCompile group: 'io.rest-assured', name: 'xml-path', version: versions.restAssured
     testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: versions.springBoot) {
         exclude(module: 'commons-logging')
     }
@@ -284,7 +311,13 @@ dependencies {
     contractTestCompile sourceSets.main.runtimeClasspath
     contractTestCompile sourceSets.test.runtimeClasspath
 
+    smokeTestCompile sourceSets.main.runtimeClasspath
+    smokeTestCompile sourceSets.test.runtimeClasspath
+
     testCompile 'com.github.hmcts:fortify-client:1.2.2:all'
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: versions.restAssured
+    testImplementation group: 'io.rest-assured', name: 'json-path', version: versions.restAssured
+    testImplementation group: 'io.rest-assured', name: 'xml-path', version: versions.restAssured
 }
 
 task fortifyScan(type: JavaExec)  {
@@ -305,7 +338,7 @@ dependencyManagement {
             entry 'jackson-databind'
         }
 
-        dependency group: 'org.yaml',name: 'snakeyaml', version: '1.28'
+        dependency group: 'org.yaml',name: 'snakeyaml', version: '1.30'
 
         dependency group: 'com.netflix.servo',name: 'servo-core', version: '0.13.2'
 
@@ -335,6 +368,17 @@ sourceSets {
         }
     }
 
+  functionalTest {
+    java {
+      compileClasspath += main.output + test.output
+      runtimeClasspath += main.output + test.output
+      srcDir('src/functionalTest/java')
+    }
+    resources {
+      srcDir('src/functionalTest/resources')
+    }
+  }
+
     contractTest {
         java {
             compileClasspath += main.output
@@ -343,20 +387,28 @@ sourceSets {
         }
         resources.srcDir file('src/contractTest/resources')
     }
+  smokeTest {
+    java {
+      compileClasspath += main.output + test.output
+      runtimeClasspath += main.output + test.output
+      srcDir file('src/smokeTest/java')
+    }
+    resources.srcDir file('src/smokeTest/resources')
+  }
 }
 
 dependencies {
     integrationTestCompile(sourceSets.test.output)
     integrationTestAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
+    functionalTestCompile(sourceSets.test.output)
+    functionalTestAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
 }
 
 task smoke(type: Test, description: 'Runs the smoke tests.', group: 'Verification') {
-    setTestClassesDirs(sourceSets.integrationTest.output.classesDirs)
-    setClasspath(sourceSets.integrationTest.runtimeClasspath)
+  useJUnitPlatform()
 
-    useJUnit {
-        includeCategories 'uk.gov.hmcts.reform.prl.documentgenerator.category.SmokeTest'
-    }
+  setTestClassesDirs(sourceSets.smokeTest.output.classesDirs)
+  setClasspath(sourceSets.smokeTest.runtimeClasspath)
 }
 
 task bootRunAat(type: BootRun, description: 'Runs the app using AAT config', dependsOn: 'classes', group: 'Application') {
@@ -369,10 +421,17 @@ task bootRunAat(type: BootRun, description: 'Runs the app using AAT config', dep
 }
 
 task functional(type: Test, description: 'Runs the functional tests.', group: 'Verification') {
-    setTestClassesDirs(sourceSets.integrationTest.output.classesDirs)
-    setClasspath(sourceSets.integrationTest.runtimeClasspath)
+    setTestClassesDirs(sourceSets.functionalTest.output.classesDirs)
+    setClasspath(sourceSets.functionalTest.runtimeClasspath)
 
     finalizedBy aggregate
+}
+
+task integration(type: Test, description: 'Runs the integration tests.', group: 'Verification') {
+  setTestClassesDirs(sourceSets.integrationTest.output.classesDirs)
+  setClasspath(sourceSets.integrationTest.runtimeClasspath)
+
+  finalizedBy aggregate
 }
 
 task contract(type: Test) {
@@ -398,7 +457,7 @@ pitest {
                        'uk.gov.hmcts.reform.prl.documentgenerator.exception.*']
     threads = 10
     outputFormats = ['XML', 'HTML']
-    timestampedReports = false
+    timestampedReports = true
     mutationThreshold = 80
 }
 

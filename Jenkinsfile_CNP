@@ -23,7 +23,8 @@ def secrets = [
     'prl-${env}': [
         secret("microservicekey-prl-dgs-api", "AUTH_PROVIDER_SERVICE_CLIENT_KEY"),
         secret("docmosis-api-key", "DOCMOSIS_SERVICE_ACCESS_KEY"),
-        secret("launchDarkly-sdk-key", "LAUNCH_DARKLY_SDK_KEY")
+        secret("launchDarkly-sdk-key", "LAUNCH_DARKLY_SDK_KEY"),
+        secret("AppInsightsInstrumentationKey", "APP_INSIGHTS_INSTRUMENTATION_KEY")
     ]
 ]
 
@@ -82,6 +83,7 @@ withPipeline(type, product, component) {
 
     onPR() {
       env.ENV = 'preview'
+      // enableCleanupOfHelmReleaseOnSuccess()
       enablePactAs([AppPipelineDsl.PactRoles.CONSUMER])
     }
 }

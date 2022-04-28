@@ -1,9 +1,8 @@
-package uk.gov.hmcts.reform.prl.documentgenerator.functionaltest;
+package uk.gov.hmcts.reform.prl.functionaltest;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.junit.WireMockClassRule;
 import org.junit.ClassRule;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +37,7 @@ import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.FILE_URL;
 import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.MIME_TYPE;
 import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_DEFAULT_NAME_FOR_PDF_FILE;
 import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_HASH_TOKEN;
+
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = DocumentGeneratorApplication.class)

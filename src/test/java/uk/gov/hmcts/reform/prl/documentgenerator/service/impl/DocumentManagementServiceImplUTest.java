@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.ccd.document.am.feign.CaseDocumentClient;
@@ -62,17 +63,30 @@ public class DocumentManagementServiceImplUTest {
     }
 
 
-    @Ignore
     @Test
     public void givenTemplateNameIsAosInvitation_whenGenerateAndStoreDocument_thenProceedAsExpected() {
         when(pdfGenerationService.generate(eq(TEST_TEMPLATE), any())).thenReturn(TEST_GENERATED_DOCUMENT);
         when(templatesConfiguration.getFileNameByTemplateName(TEST_TEMPLATE)).thenReturn(TEST_TEMPLATE_FILE_NAME);
         when(caseDocumentClient.uploadDocuments(
-            eq(TEST_AUTH_TOKEN), eq(TEST_S2S_TOKEN), eq(CASE_TYPE), eq(JURISDICTION), any()
+            Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(), any()
         )).thenReturn(expectedUploadResponse);
 
         GeneratedDocumentInfo generatedDocumentInfo = classUnderTest
             .generateAndStoreDocument(TEST_TEMPLATE, new HashMap<>(), TEST_AUTH_TOKEN);
+
+        assertGeneratedDocumentInfoIsAsExpected(generatedDocumentInfo);
+    }
+
+    @Test
+    public void givenTemplateNameIsAosInvitation_whenGenerateAndStoreDraftDocument_thenProceedAsExpected() {
+        when(pdfGenerationService.generate(eq(TEST_TEMPLATE), any())).thenReturn(TEST_GENERATED_DOCUMENT);
+        when(templatesConfiguration.getFileNameByTemplateName(TEST_TEMPLATE)).thenReturn(TEST_TEMPLATE_FILE_NAME);
+        when(caseDocumentClient.uploadDocuments(
+            Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(), any()
+        )).thenReturn(expectedUploadResponse);
+
+        GeneratedDocumentInfo generatedDocumentInfo = classUnderTest
+            .generateAndStoreDraftDocument(TEST_TEMPLATE, new HashMap<>(), TEST_AUTH_TOKEN);
 
         assertGeneratedDocumentInfoIsAsExpected(generatedDocumentInfo);
     }
@@ -97,4 +111,5 @@ public class DocumentManagementServiceImplUTest {
         assertThat(generatedDocumentInfo.getHashToken(), equalTo(TEST_HASH_TOKEN));
         assertThat(generatedDocumentInfo.getBinaryUrl(), equalTo(BINARY_URL));
     }
+
 }

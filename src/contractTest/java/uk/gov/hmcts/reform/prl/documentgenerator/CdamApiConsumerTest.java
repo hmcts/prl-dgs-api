@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest({
     "CCD_CASE_DOCS_AM_API:http://localhost:5170"
 })
-public class CdAmApiConsumerTest {
+public class CdamApiConsumerTest {
 
 
     private static final String SERVICE_AUTHORIZATION_HEADER = "ServiceAuthorization";
