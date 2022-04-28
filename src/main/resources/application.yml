@@ -67,19 +67,19 @@ document:
             -   templateName: PRL-C8-Final-Changes.docx
                 filename: C8Document.pdf
                 document-generator: docmosis
-            -   templateName: PRL-C100-R1-Final-Document.docx
+            -   templateName: C100-Final-Document.docx
                 filename: C100FinalDocument.pdf
                 document-generator: docmosis
             -   templateName: PRL-C1A.docx
                 filename: C1ADocument.pdf
                 document-generator: docmosis
-            -   templateName: PRL-C100-R1-Draft-Document.docx
+            -   templateName: PRL-C100-Draft-Final.docx
                 filename: C100DraftDocument.pdf
                 document-generator: docmosis
-            -   templateName: PRL-C100-R1-Draft-WelshLang.docx
+            -   templateName: PRL-Draft-C100-WelshLang.docx
                 filename: C100DraftWelshDocument.pdf
                 document-generator: docmosis
-            -   templateName: PRL-C100-R1-Final-WelshLang.docx
+            -   templateName: PRL-Final-C100-WelshLang.docx
                 filename: C100FinalWelshDocument.pdf
                 document-generator: docmosis
             -   templateName: PRL-C8-WelshLang.docx
@@ -124,11 +124,11 @@ documentation:
         enabled: true
 
 spring:
-  web:
     application:
-      name: "prl-dgs-api"
-    resources:
-      static-locations:
+        name: "prl-dgs-api"
+    web:
+        resources:
+            static-locations:
 
 # GENERAL SPRING BOOT ACTUATOR CONFIG
 # Context path for Spring Boot Actuator endpoints
