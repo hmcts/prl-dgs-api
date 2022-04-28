@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
-import com.fasterxml.jackson.core.*;
-import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,9 +16,6 @@ import uk.gov.hmcts.reform.prl.documentgenerator.domain.response.GeneratedDocume
 import uk.gov.hmcts.reform.prl.documentgenerator.service.DocumentManagementService;
 import uk.gov.hmcts.reform.prl.documentgenerator.service.PDFGenerationService;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Clock;
 import java.util.Arrays;
@@ -124,7 +121,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
                 templateName, placeholders.size(),new ObjectMapper().writeValueAsString(placeholders)
             );
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
 
         return generatorService.generate(templateName, placeholders);

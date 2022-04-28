@@ -44,8 +44,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(PactConsumerTestExt.class)
 @ExtendWith(SpringExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@PactTestFor(providerName = "rpePdfService_PDFGenerationEndpointV2", port = "8891")
-@PactFolder("pacts")
+//@PactTestFor(providerName = "rpePdfService_PDFGenerationEndpointV2", port = "8891")
+//@PactFolder("pacts")
 @SpringBootTest({
     "service.pdf-service.uri : http://localhost:8891/pdfs"
 })
@@ -78,7 +78,7 @@ public class PdfGenerationServiceConsumerTest {
         Executor.closeIdleConnections();
     }
 
-    @Pact(provider = "rpePdfService_PDFGenerationEndpointV2", consumer = "prl_documentGeneratorClient")
+    //@Pact(provider = "rpePdfService_PDFGenerationEndpointV2", consumer = "prl_documentGeneratorClient")
     RequestResponsePact generatePdfFromTemplate(PactDslWithProvider builder) throws JSONException, IOException {
         // @formatter:off
 
@@ -98,8 +98,7 @@ public class PdfGenerationServiceConsumerTest {
             .toPact();
     }
 
-    @Test
-    @PactTestFor(pactMethod = "generatePdfFromTemplate")
+    //@PactTestFor(pactMethod = "generatePdfFromTemplate")
     public void verifyGeneratePdfFromTemplatePact(MockServer mockServer) throws IOException, JSONException {
         //Map<String, Object> placeholders = new HashMap<>();
         //placeholders.put(CASE_DETAILS, new HashMap<>(ImmutableMap.of(
