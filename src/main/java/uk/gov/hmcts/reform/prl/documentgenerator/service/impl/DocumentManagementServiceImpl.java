@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
+import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.databind.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -117,8 +119,13 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
 
     @Override
     public byte[] generateDocument(String templateName, Map<String, Object> placeholders) {
-        log.debug("Generate document requested with templateName [{}], placeholders of size[{}]",
-            templateName, placeholders.size());
+        try {
+            log.debug("Generate document requested with templateName [{}], placeholders of size[{}] , placeholders data[{}]",
+                templateName, placeholders.size(),new ObjectMapper().writeValueAsString(placeholders)
+            );
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
 
         return generatorService.generate(templateName, placeholders);
     }
