@@ -232,7 +232,8 @@ dependencies {
 
     compile group: 'org.springframework.security', name: 'spring-security-crypto', version: versions.springSecurityCrypto
 
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: versions.springBoot
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap', version: versions.springCloud
     implementation group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: versions.bouncycastle
 
     implementation group: 'com.github.hmcts', name:'ccd-case-document-am-client', version: versions.ccdCaseDocumentAmClient
