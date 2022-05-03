@@ -117,7 +117,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     @Override
     public byte[] generateDocument(String templateName, Map<String, Object> placeholders) {
         try {
-            log.debug("Generate document requested with templateName [{}], placeholders of size[{}] , placeholders data[{}]",
+            log.info("Generate document requested with templateName [{}], placeholders of size[{}] , placeholders data[{}]",
                 templateName, placeholders.size(),new ObjectMapper().writeValueAsString(placeholders)
             );
         } catch (JsonProcessingException e) {
