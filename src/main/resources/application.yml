@@ -139,6 +139,12 @@ document:
             -   templateName: PRL-ORDER-C49-DRAFT-COMMON.docx
                 filename: C49CreateOrderDraft.pdf
                 document-generator: docmosis
+            -   templateName: PRL-ORDERS-C45A-FINAL.docx
+                filename: C45ACreateOrder.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ORDERS-C45A-DRAFT.docx
+                filename: C45ACreateOrderDraft.pdf
+                document-generator: docmosis
 
     pdf:
         familyCourtImgKey: "familycourt"
