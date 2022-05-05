@@ -128,10 +128,10 @@ document:
                 filename: C43CreateOrderDraft.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDERS-C47A-FINAL.docx
-                filename: C47ACreateOrder.pdf
+                filename: AppointmentOfaGuardian(C47A).pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDERS-C47A-DRAFT.docx
-                filename: C47ACreateOrderDraft.pdf
+                filename: AppointmentOfaGuardian(C47A)Draft.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDER-C49-COMMON.docx
                 filename: C49CreateOrder.pdf
