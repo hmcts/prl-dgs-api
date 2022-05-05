@@ -145,6 +145,12 @@ document:
             -   templateName: PRL-ORDERS-C45A-DRAFT.docx
                 filename: C45ACreateOrderDraft.pdf
                 document-generator: docmosis
+            -   templateName: PRL-FL402-Notice-Of-Proceedings-Draft.docx
+                filename: NoticeOfProceedings(FL402)Draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-FL402-Notice-Of-Proceedings-Final.docx
+                filename: NoticeOfProceedings(FL402).pdf
+                document-generator: docmosis
 
     pdf:
         familyCourtImgKey: "familycourt"
