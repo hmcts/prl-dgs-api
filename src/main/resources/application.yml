@@ -125,7 +125,7 @@ document:
                 filename: FL404bCreateOrderDraft.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDER-FL404b-FINAL-COMMON.docx
-                filename: FL404bCreateOrderDraft.pdf
+                filename: FL404bCreateOrder.pdf
                 document-generator: docmosis
 
     pdf:
