@@ -17,6 +17,9 @@ import uk.gov.hmcts.reform.prl.documentgenerator.service.PDFGenerationService;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.Clock;
 import java.util.Arrays;
@@ -94,6 +97,13 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     @Override
     public GeneratedDocumentInfo storeDocument(byte[] document, String authorizationToken, String fileName) {
         log.debug("Store document requested with document of size [{}]", document.length);
+
+        try {
+            Path path = Paths.get("/Users/m_2133152/Desktop/test.pdf");
+            Files.write(path, document);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         String serviceAuthToken = authTokenGenerator.generate();
 
         UploadResponse uploadResponse = caseDocumentClient.uploadDocuments(

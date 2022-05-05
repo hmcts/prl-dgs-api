@@ -10,10 +10,10 @@ service:
 docmosis:
     service:
         pdf-service:
-            accessKey: ${DOCMOSIS_SERVICE_ACCESS_KEY:replace_me}
-            renderEndpoint: "/rs/render"
-            uri: ${DOCMOSIS_SERVICE_BASE_URL:http://localhost:5501}${docmosis.service.pdf-service.renderEndpoint}
-            health: ${DOCMOSIS_SERVICE_BASE_URL:http://localhost:5501}/health
+            accessKey: 3PAD-KLTK-JAKP-FKIA-EBBH-2ELH-RBKQ-FS07-E7E1-B-001E
+            renderEndpoint: "/api/render"
+            uri: http://localhost:8091/api/render
+            health: ${DOCMOSIS_SERVICE_BASE_URL:https://docmosis.aat.platform.hmcts.net}/health
             devMode: ${DOCMOSIS_SERVICE_DEV_MODE_FLAG:false}
 
 case_document_am:
@@ -120,6 +120,9 @@ document:
                 document-generator: docmosis
             -   templateName: PRL-ORDER-C49-DRAFT-COMMON.docx
                 filename: C49CreateOrderDraft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ORDER-FL404b-DRAFT-COMMON.docx
+                filename: FL404bCreateOrderDraft.pdf
                 document-generator: docmosis
 
     pdf:
