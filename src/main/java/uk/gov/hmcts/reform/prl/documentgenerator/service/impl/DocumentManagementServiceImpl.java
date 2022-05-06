@@ -14,12 +14,7 @@ import uk.gov.hmcts.reform.prl.documentgenerator.domain.response.GeneratedDocume
 import uk.gov.hmcts.reform.prl.documentgenerator.service.DocumentManagementService;
 import uk.gov.hmcts.reform.prl.documentgenerator.service.PDFGenerationService;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
 import java.text.SimpleDateFormat;
 import java.time.Clock;
 import java.util.Arrays;
@@ -90,12 +85,6 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
         );
 
         byte[] generatedDocument = generateDocument(templateName, placeholders);
-        try {
-            Path path= Paths.get("/Users/m_2120297/Desktop/test.pdf");
-            Files.write(path, generatedDocument);
-        } catch(Exception e) {
-            throw new RuntimeException(e);
-        }
         log.info("Document generated for case Id {}", caseId);
         return storeDocument(generatedDocument, authorizationToken, fileName);
     }
