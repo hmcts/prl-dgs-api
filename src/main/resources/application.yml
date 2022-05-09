@@ -150,6 +150,17 @@ document:
                 document-generator: docmosis
             -   templateName: PRL-FL402-Notice-Of-Proceedings-Final.docx
                 filename: NoticeOfProceedings(FL402).pdf
+            -   templateName: PRL-ORDERS-N117-DRAFT.docx
+                filename: N117CreateOrderDraft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ORDERS-N117-FINAL.docx
+                filename: N117CreateOrder.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ORDER-FL404b-DRAFT-COMMON.docx
+                filename: FL404bCreateOrderDraft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ORDER-FL404b-FINAL-COMMON.docx
+                filename: FL404bCreateOrder.pdf
                 document-generator: docmosis
 
     pdf:
