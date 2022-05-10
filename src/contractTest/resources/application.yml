@@ -10,10 +10,10 @@ service:
 docmosis:
   service:
     pdf-service:
-      accessKey: 3PAD-KLTK-JAKP-FKIA-EBBH-2ELH-RBKQ-FS07-E7E1-B-001E
-      renderEndpoint: "/api/render"
-      uri: http://localhost:8091/api/render
-      health: ${DOCMOSIS_SERVICE_BASE_URL:https://docmosis.aat.platform.hmcts.net}/health
+      accessKey: ${DOCMOSIS_SERVICE_ACCESS_KEY:23432}
+      renderEndpoint: "/rs/render"
+      uri: ${DOCMOSIS_SERVICE_BASE_URL:http://localhost:5501}${docmosis.service.pdf-service.renderEndpoint}
+      health: ${DOCMOSIS_SERVICE_BASE_URL:http://localhost:5501}/health
       devMode: ${DOCMOSIS_SERVICE_DEV_MODE_FLAG:false}
 
 case_document_am:
@@ -29,8 +29,8 @@ auth:
 
 idam:
   s2s-auth:
-    microservice: ${AUTH_PROVIDER_SERVICE_CLIENT_MICROSERVICE:prl_cos_api}
-    totp_secret: ${AUTH_PROVIDER_SERVICE_CLIENT_KEY:replace_me}
+    microservice: ${AUTH_PROVIDER_SERVICE_CLIENT_MICROSERVICE:prl-dgs-api}
+    totp_secret: ${AUTH_PROVIDER_SERVICE_CLIENT_KEY:AAAAAAAAAAAAAAAA}
     url: ${AUTH_PROVIDER_SERVICE_CLIENT_BASEURL:http://localhost:4502}
 
 http:
@@ -58,94 +58,9 @@ pdf:
 document:
   templates:
     configurationList:
-      - templateName: FL-DIV-GOR-ENG-00062.docx
-        filename: TestTemplate.pdf
-        document-generator: docmosis
-      - templateName: PRL-DRAFT-C100-20.docx
-        filename: TestTemplate.pdf
-        document-generator: docmosis
-      - templateName: PRL-C8-Final-Changes.docx
-        filename: C8Document.pdf
-        document-generator: docmosis
-      - templateName: PRL-C100-R1-Final-Document.docx
-        filename: C100FinalDocument.pdf
-        document-generator: docmosis
-      - templateName: PRL-C1A.docx
-        filename: C1ADocument.pdf
-        document-generator: docmosis
-      - templateName: PRL-C100-R1-Draft-Document.docx
-        filename: C100DraftDocument.pdf
-        document-generator: docmosis
-      - templateName: PRL-C100-R1-Draft-WelshLang.docx
-        filename: C100DraftWelshDocument.pdf
-        document-generator: docmosis
-      - templateName: PRL-C100-R1-Final-WelshLang.docx
-        filename: C100FinalWelshDocument.pdf
-        document-generator: docmosis
-      - templateName: PRL-C8-WelshLang.docx
-        filename: C8WelshDocument.pdf
-        document-generator: docmosis
-      - templateName: PRL-C1A-WelshLang.docx
-        filename: C1AWelshDocument.pdf
-        document-generator: docmosis
-      - templateName: FL401-draft.docx
-        filename: Draft-DA-application.pdf
-        document-generator: docmosis
-      - templateName: FL401-Final.docx
-        filename: DA-application.pdf
-        document-generator: docmosis
-      - templateName: PRL-DA-C8.docx
-        filename: FL401C8Document.pdf
-        document-generator: docmosis
-      - templateName: FL401-Final-Welsh.docx
-        filename: DA-Welsh-application.pdf
-        document-generator: docmosis
-      - templateName: FL401-draft-Welsh.docx
-        filename: Draft-DA-Welsh-application.pdf
-        document-generator: docmosis
-      - templateName: FL401-c8-welsh.docx
-        filename: FL401C8WelshDocument.pdf
-        document-generator: docmosis
-      - templateName: PRL-ORDER-C21-COMMON.docx
-        filename: C21CreateOrder.pdf
-        document-generator: docmosis
-      - templateName: PRL-ORDER-C21-DRAFT-COMMON.docx
-        filename: C21CreateOrderDraft.pdf
-        document-generator: docmosis
-      - templateName: PRL-ORDER-C21-DRAFT-WELSH-COMMON.docx
-        filename: C21WelshCreateOrder.pdf
-        document-generator: docmosis
-      - templateName: PRL-ORDER-C43A-DRAFT.docx
-        filename: C43ADraftCreateOrder.pdf
-        document-generator: docmosis
-      - templateName: PRL-ORDER-C43A-FINAL.docx
-        filename: C43AFinalCreateOrder.pdf
-        document-generator: docmosis
-      - templateName: PRL-ORDER-C43-FINAL.docx
-        filename: C43CreateOrder.pdf
-        document-generator: docmosis
-      - templateName: PRL-ORDER-C43-DRAFT.docx
-        filename: C43CreateOrderDraft.pdf
-        document-generator: docmosis
-      - templateName: PRL-ORDERS-C47A-FINAL.docx
-        filename: C47ACreateOrder.pdf
-        document-generator: docmosis
-      - templateName: PRL-ORDERS-C47A-DRAFT.docx
-        filename: C47ACreateOrderDraft.pdf
-        document-generator: docmosis
-      - templateName: PRL-ORDER-C49-COMMON.docx
-        filename: C49CreateOrder.pdf
-        document-generator: docmosis
-      - templateName: PRL-ORDER-C49-DRAFT-COMMON.docx
-        filename: C49CreateOrderDraft.pdf
-        document-generator: docmosis
-      - templateName: PRL-ORDER-C45A-FINAL-COMMON.docx
-        filename: C45ACreateOrder.pdf
-        document-generator: docmosis
-      - templateName: PRL-ORDER-C45A-DRAFT-COMMON.docx
-        filename: C45ACreateOrderDraft.pdf
-        document-generator: docmosis
-
+      -   templateName: FL-DIV-GOR-ENG-00062.docx
+          filename: TestTemplate.pdf
+          document-generator: docmosis
   pdf:
     familyCourtImgKey: "familycourt"
     familyCourtImgVal: "[userImage:familycourt.png]"
@@ -197,7 +112,7 @@ management:
         include: info, health, metrics
   health:
     case-document-am-api:
-      enabled: false
+      enabled: true
 
 logging:
   level:
