@@ -139,12 +139,6 @@ document:
             -   templateName: PRL-ORDER-C49-DRAFT-COMMON.docx
                 filename: C49CreateOrderDraft.pdf
                 document-generator: docmosis
-            -   templateName: PRL-ORDER-C45A-FINAL-COMMON.docx
-                filename: C45ACreateOrder.pdf
-                document-generator: docmosis
-            -   templateName: PRL-ORDER-C45A-DRAFT-COMMON.docx
-                filename: C45ACreateOrderDraft.pdf
-                document-generator: docmosis
             -   templateName: PRL-FL402-Notice-Of-Proceedings-Draft.docx
                 filename: NoticeOfProceedings(FL402)Draft.pdf
                 document-generator: docmosis
