@@ -128,10 +128,10 @@ document:
                 filename: N117CreateOrder.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDER-FL404b-DRAFT-COMMON.docx
-                filename: FL404bCreateOrderDraft.pdf
+                filename: blank_order_fl404b_draft.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDER-FL404b-FINAL-COMMON.docx
-                filename: FL404bCreateOrder.pdf
+                filename: blank_order_fl404b_final.pdf
                 document-generator: docmosis
 
     pdf:
