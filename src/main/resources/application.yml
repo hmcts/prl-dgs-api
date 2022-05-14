@@ -122,10 +122,10 @@ document:
                 filename: C43AFinalCreateOrder.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDER-C43-FINAL.docx
-                filename: C43CreateOrder.pdf
+                filename: ChildArrangements_Specific_Prohibited_Steps_C43.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDER-C43-DRAFT.docx
-                filename: C43CreateOrderDraft.pdf
+                filename: ChildArrangements_Specific_Prohibited_Steps_C43_Draft.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDERS-C47A-FINAL.docx
                 filename: Appointment_of_a_guardian_C47A.pdf
