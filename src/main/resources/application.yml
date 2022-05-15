@@ -127,6 +127,12 @@ document:
             -   templateName: PRL-ORDERS-N117-FINAL.docx
                 filename: N117CreateOrder.pdf
                 document-generator: docmosis
+            -   templateName: PRL-ORDERS-FL404-DRAFT.docx
+                filename: occupation_order_FL404_draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ORDERS-FL404-FINAL.docx
+                filename: occupation_order_FL404_final.pdf
+                document-generator: docmosis
 
     pdf:
         familyCourtImgKey: "familycourt"
