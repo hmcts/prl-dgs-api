@@ -133,6 +133,12 @@ document:
             -   templateName: PRL-ORDERS-FL404-FINAL.docx
                 filename: occupation_order_FL404_final.pdf
                 document-generator: docmosis
+            -   templateName: PRL-ORDER-FL404b-DRAFT-COMMON.docx
+                filename: amended_dischared_or_varied_order_fl404b_draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ORDER-FL404b-FINAL-COMMON.docx
+                filename: amended_dischared_or_varied_order_fl404b_final.pdf
+                document-generator: docmosis
 
     pdf:
         familyCourtImgKey: "familycourt"
