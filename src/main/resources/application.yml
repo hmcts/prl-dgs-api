@@ -167,7 +167,14 @@ document:
                 document-generator: docmosis
             -   templateName: PRL-ORDER-C45A-DRAFT-COMMON.docx
                 filename: ParentalResponsibilityOrderDraft.pdf
-                document-generator: docmosis 
+                document-generator: docmosis
+            -   templateName: PRL-ORDERS-FL404A-NM-DRAFT.docx
+                filename: non_molestation_order_fl404a_draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ORDERS-FL404A-NM-FINAL.docx
+                filename: non_molestation_order_fl404a_final.pdf
+                document-generator: docmosis                
+                
 
     pdf:
         familyCourtImgKey: "familycourt"
