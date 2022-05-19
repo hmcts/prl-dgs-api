@@ -106,20 +106,20 @@ document:
             -   templateName: FL401-c8-welsh.docx
                 filename: FL401C8WelshDocument.pdf
                 document-generator: docmosis
-            -   templateName: PRL-ORDER-C21-COMMON.docx
-                filename: C21CreateOrder.pdf
+            -   templateName: PRL-ORDER-C21-FINAL.docx
+                filename: Blank_Order_Directions_C21.pdf
                 document-generator: docmosis
-            -   templateName: PRL-ORDER-C21-DRAFT-COMMON.docx
-                filename: C21CreateOrderDraft.pdf
+            -   templateName: PRL-ORDER-C21-DRAFT-FINAL.docx
+                filename: Blank_Order_Directions_C21_Draft.pdf
                 document-generator: docmosis
-            -   templateName: PRL-ORDER-C21-DRAFT-WELSH-COMMON.docx
-                filename: C21WelshCreateOrder.pdf
+            -   templateName: PRL-ORDER-C21-WELSH-COMMON.docx
+                filename: Blank_Order_Directions_C21_Welsh.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDER-C43A-DRAFT.docx
-                filename: C43ADraftCreateOrder.pdf
+                filename: Special_Guardianship_Order_C43A_Draft.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDER-C43A-FINAL.docx
-                filename: C43AFinalCreateOrder.pdf
+                filename: Special_Guardianship_Order_C43A.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDER-C43-FINAL.docx
                 filename: ChildArrangements_Specific_Prohibited_Steps_C43.pdf
@@ -173,8 +173,8 @@ document:
                 document-generator: docmosis
             -   templateName: PRL-ORDERS-FL404A-NM-FINAL.docx
                 filename: non_molestation_order_fl404a_final.pdf
-                document-generator: docmosis                
-                
+                document-generator: docmosis
+
 
     pdf:
         familyCourtImgKey: "familycourt"
