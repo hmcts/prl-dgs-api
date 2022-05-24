@@ -112,8 +112,26 @@ document:
             -   templateName: PRL-ORDER-C21-DRAFT-COMMON.docx
                 filename: C21CreateOrderDraft.pdf
                 document-generator: docmosis
-            -   templateName: PRL-ORDER-C21-WELSH-COMMON.docx
+            -   templateName: PRL-ORDER-C21-DRAFT-WELSH-COMMON.docx
                 filename: C21WelshCreateOrder.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ORDER-C43A-DRAFT.docx
+                filename: C43ADraftCreateOrder.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ORDER-C43A-FINAL.docx
+                filename: C43AFinalCreateOrder.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ORDER-C43-FINAL.docx
+                filename: ChildArrangements_Specific_Prohibited_Steps_C43.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ORDER-C43-DRAFT.docx
+                filename: ChildArrangements_Specific_Prohibited_Steps_C43_Draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ORDERS-C47A-FINAL.docx
+                filename: Appointment_of_a_guardian_C47A.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ORDERS-C47A-DRAFT.docx
+                filename: Appointment_of_a_guardian_C47A_draft.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDER-C49-COMMON.docx
                 filename: C49CreateOrder.pdf
@@ -121,6 +139,11 @@ document:
             -   templateName: PRL-ORDER-C49-DRAFT-COMMON.docx
                 filename: C49CreateOrderDraft.pdf
                 document-generator: docmosis
+            -   templateName: PRL-FL402-Notice-Of-Proceedings-Draft.docx
+                filename: NoticeOfProceedings(FL402)Draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-FL402-Notice-Of-Proceedings-Final.docx
+                filename: NoticeOfProceedings(FL402).pdf
             -   templateName: PRL-ORDERS-N117-DRAFT.docx
                 filename: N117CreateOrderDraft.pdf
                 document-generator: docmosis
@@ -145,6 +168,12 @@ document:
             -   templateName: PRL-ORDERS-FL404A-NM-FINAL.docx
                 filename: non_molestation_order_fl404a_final.pdf
                 document-generator: docmosis
+            -   templateName: PRL-ORDER-C45A-FINAL-COMMON.docx
+                filename: ParentalResponsibilityOrderFinal.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ORDER-C45A-DRAFT-COMMON.docx
+                filename: ParentalResponsibilityOrderDraft.pdf
+                document-generator: docmosis 
 
     pdf:
         familyCourtImgKey: "familycourt"
@@ -166,8 +195,9 @@ documentation:
 spring:
     application:
         name: "prl-dgs-api"
-    resources:
-        static-locations:
+    web:
+        resources:
+            static-locations:
 
 # GENERAL SPRING BOOT ACTUATOR CONFIG
 # Context path for Spring Boot Actuator endpoints

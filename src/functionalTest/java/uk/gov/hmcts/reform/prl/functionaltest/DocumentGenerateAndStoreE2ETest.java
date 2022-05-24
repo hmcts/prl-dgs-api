@@ -71,6 +71,10 @@ public class DocumentGenerateAndStoreE2ETest {
     @Test
     public void givenTemplateNameIsNull_whenGenerateAndStoreDocument_thenReturnHttp400() throws Exception {
         final String template = null;
+        perform(template);
+    }
+
+    private void perform(String template) throws Exception {
         final Map<String, Object> values = Collections.emptyMap();
 
         final GenerateDocumentRequest generateDocumentRequest = new GenerateDocumentRequest(template, values);
@@ -85,29 +89,13 @@ public class DocumentGenerateAndStoreE2ETest {
     @Test
     public void givenTemplateNameIsBlank_whenGenerateAndStoreDocument_thenReturnHttp400() throws Exception {
         final String template = "  ";
-        final Map<String, Object> values = Collections.emptyMap();
-
-        final GenerateDocumentRequest generateDocumentRequest = new GenerateDocumentRequest(template, values);
-
-        webClient.perform(post(API_URL)
-            .content(ObjectMapperTestUtil.convertObjectToJsonString(generateDocumentRequest))
-            .contentType(MediaType.APPLICATION_JSON)
-            .accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isBadRequest());
+        perform(template);
     }
 
     @Test
     public void givenTemplateNotFound_whenGenerateAndStoreDocument_thenReturnHttp400() throws Exception {
         final String template = "nonExistingTemplate";
-        final Map<String, Object> values = Collections.emptyMap();
-
-        final GenerateDocumentRequest generateDocumentRequest = new GenerateDocumentRequest(template, values);
-
-        webClient.perform(post(API_URL)
-            .content(ObjectMapperTestUtil.convertObjectToJsonString(generateDocumentRequest))
-            .contentType(MediaType.APPLICATION_JSON)
-            .accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isBadRequest());
+        perform(template);
     }
 
     @Test
