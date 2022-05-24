@@ -116,10 +116,10 @@ document:
                 filename: C21WelshCreateOrder.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDER-C43A-DRAFT.docx
-                filename: C43ADraftCreateOrder.pdf
+                filename: SpecialGuardianshipOrderDraft.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDER-C43A-FINAL.docx
-                filename: C43AFinalCreateOrder.pdf
+                filename: SpecialGuardianshipOrderFinal.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDER-C43-FINAL.docx
                 filename: ChildArrangements_Specific_Prohibited_Steps_C43.pdf
