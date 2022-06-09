@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
+import com.launchdarkly.shaded.com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -119,6 +120,8 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     public byte[] generateDocument(String templateName, Map<String, Object> placeholders) {
         log.debug("Generate document requested with templateName [{}], placeholders of size[{}]",
             templateName, placeholders.size());
+
+        log.info("template name {} with Case data : {}", templateName ,new Gson().toJson(placeholders));
 
         return generatorService.generate(templateName, placeholders);
     }
