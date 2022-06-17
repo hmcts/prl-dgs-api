@@ -116,10 +116,10 @@ document:
                 filename: C21WelshCreateOrder.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDER-C43A-DRAFT.docx
-                filename: C43ADraftCreateOrder.pdf
+                filename: SpecialGuardianshipOrderDraft.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDER-C43A-FINAL.docx
-                filename: C43AFinalCreateOrder.pdf
+                filename: SpecialGuardianshipOrderFinal.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDER-C43-FINAL.docx
                 filename: ChildArrangements_Specific_Prohibited_Steps_C43.pdf
@@ -162,10 +162,10 @@ document:
             -   templateName: PRL-ORDER-FL404b-FINAL-COMMON.docx
                 filename: amended_dischared_or_varied_order_fl404b_final.pdf
                 document-generator: docmosis
-            -   templateName: PRL-ORDER-C45A-FINAL-COMMON.docx
+            -   templateName: PRL-ORDER-C45A-FINAL.docx
                 filename: ParentalResponsibilityOrderFinal.pdf
                 document-generator: docmosis
-            -   templateName: PRL-ORDER-C45A-DRAFT-COMMON.docx
+            -   templateName: PRL-ORDER-C45A-DRAFT-FINAL.docx
                 filename: ParentalResponsibilityOrderDraft.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDERS-FL404A-NM-DRAFT.docx
@@ -174,7 +174,6 @@ document:
             -   templateName: PRL-ORDERS-FL404A-NM-FINAL.docx
                 filename: non_molestation_order_fl404a_final.pdf
                 document-generator: docmosis                
-                
 
     pdf:
         familyCourtImgKey: "familycourt"
