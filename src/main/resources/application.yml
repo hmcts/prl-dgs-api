@@ -173,13 +173,6 @@ document:
             -   templateName: PRL-ORDERS-FL404A-NM-FINAL.docx
                 filename: non_molestation_order_fl404a_final.pdf
                 document-generator: docmosis
-                document-generator: docmosis
-            -   templateName: PRL-ORDERS-FL404A-NM-DRAFT.docx
-                filename: non_molestation_order_fl404a_draft.pdf
-                document-generator: docmosis
-            -   templateName: PRL-ORDERS-FL404A-NM-FINAL.docx
-                filename: non_molestation_order_fl404a_final.pdf
-                document-generator: docmosis
             -   templateName: PRL-C7-BLANK-DOCUMENT.docx
                 filename: C7BlankDocument.pdf
                 document-generator: docmosis
