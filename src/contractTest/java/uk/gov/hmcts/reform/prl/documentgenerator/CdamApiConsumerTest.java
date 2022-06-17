@@ -64,6 +64,7 @@ public class CdamApiConsumerTest {
             .uponReceiving("a request to download a valid document")
             .method("GET")
             .headers(SERVICE_AUTHORIZATION_HEADER, someServiceAuthToken)
+            .headers(AUTHORIZATION_HEADER, someAuthToken)
             .path("/cases/documents/" + someDocumentId)
             .willRespondWith()
             .matchHeader(org.springframework.http.HttpHeaders.CONTENT_TYPE,
@@ -77,7 +78,9 @@ public class CdamApiConsumerTest {
     public void verifyDownloadDocument(MockServer mockServer) throws IOException {
 
         HttpResponse downloadDocumentResponse = Request.Get(mockServer.getUrl() + "/cases/documents/" + someDocumentId)
-            .addHeader(SERVICE_AUTHORIZATION_HEADER, someServiceAuthToken).execute().returnResponse();
+            .addHeader(SERVICE_AUTHORIZATION_HEADER, someServiceAuthToken)
+            .addHeader(AUTHORIZATION_HEADER, someAuthToken)
+            .execute().returnResponse();
 
         assertEquals(200, downloadDocumentResponse.getStatusLine().getStatusCode());
     }
