@@ -34,44 +34,44 @@ version = '3.0.0'
 sourceCompatibility = 11
 targetCompatibility = 11
 
-//sourceSets {
-//  integrationTest {
-//      java {
-//          compileClasspath += main.output + test.output
-//          runtimeClasspath += main.output + test.output
-//          srcDirs = ['src/integrationTest/java']
-//      }
-//      resources {
-//          srcDirs = ['src/integrationTest/resources']
-//      }
-//  }
-//  functionalTest {
-//      java {
-//        compileClasspath += main.output + test.output
-//        runtimeClasspath += main.output + test.output
-//        srcDirs = ['src/functionalTest/java']
-//      }
-//      resources {
-//        srcDirs = ['src/functionalTest/resources']
-//      }
-//  }
-//  contractTest {
-//      java {
-//          compileClasspath += main.output
-//          runtimeClasspath += main.output
-//          srcDir file('src/contractTest/java')
-//      }
-//      resources.srcDir file('src/contractTest/resources')
-//  }
-//  smokeTest {
-//      java {
-//        compileClasspath += main.output + test.output
-//        runtimeClasspath += main.output + test.output
-//        srcDir file('src/smokeTest/java')
-//      }
-//      resources.srcDir file('src/smokeTest/resources')
-//  }
-//}
+sourceSets {
+  integrationTest {
+      java {
+          compileClasspath += main.output + test.output
+          runtimeClasspath += main.output + test.output
+          srcDirs = ['src/integrationTest/java']
+      }
+      resources {
+          srcDirs = ['src/integrationTest/resources']
+      }
+  }
+  functionalTest {
+      java {
+        compileClasspath += main.output + test.output
+        runtimeClasspath += main.output + test.output
+        srcDirs = ['src/functionalTest/java']
+      }
+      resources {
+        srcDirs = ['src/functionalTest/resources']
+      }
+  }
+  contractTest {
+      java {
+          compileClasspath += main.output
+          runtimeClasspath += main.output
+          srcDir file('src/contractTest/java')
+      }
+      resources.srcDir file('src/contractTest/resources')
+  }
+  smokeTest {
+      java {
+        compileClasspath += main.output + test.output
+        runtimeClasspath += main.output + test.output
+        srcDir file('src/smokeTest/java')
+      }
+      resources.srcDir file('src/smokeTest/resources')
+  }
+}
 
 configurations {
     integrationTestCompile.extendsFrom testCompile
