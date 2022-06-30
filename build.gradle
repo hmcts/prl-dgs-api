@@ -409,12 +409,12 @@ sourceSets {
   }
 }
 
-//dependencies {
-//    integrationTestCompile(sourceSets.test.output)
-//    integrationTestAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
-//    functionalTestCompile(sourceSets.test.output)
-//    functionalTestAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
-//}
+dependencies {
+    integrationTestCompile(sourceSets.test.output)
+    integrationTestAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
+    functionalTestCompile(sourceSets.test.output)
+    functionalTestAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
+}
 
 task smoke(type: Test, description: 'Runs the smoke tests.', group: 'Verification') {
   useJUnitPlatform()
