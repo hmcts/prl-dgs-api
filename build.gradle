@@ -80,8 +80,6 @@ configurations {
     functionalTestRuntime.extendsFrom testRuntime
     contractTestCompile.extendsFrom testCompile
     contractTestRuntime.extendsFrom testRuntime
-    smokeTestCompile.extendsFrom testImplementation
-    smokeTestRuntime.extendsFrom testRuntime
 }
 
 bootJar {
@@ -397,15 +395,6 @@ sourceSets {
         srcDir file('src/contractTest/java')
       }
       resources.srcDir file('src/contractTest/resources')
-  }
-
-  smokeTest {
-      java {
-        compileClasspath += main.output + test.output
-        runtimeClasspath += main.output + test.output
-        srcDir file('src/smokeTest/java')
-      }
-      resources.srcDir file('src/smokeTest/resources')
   }
 }
 
