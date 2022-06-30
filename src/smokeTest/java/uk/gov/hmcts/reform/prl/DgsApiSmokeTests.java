@@ -44,7 +44,6 @@ import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_HASH_
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @PropertySource(value = "classpath:application.yml")
 @AutoConfigureMockMvc
-
 public class DgsApiSmokeTests {
     private static final String API_URL = "/version/1/generatePDF";
     private static final String CASE_DOCS_API_URL = "/cases/documents";
