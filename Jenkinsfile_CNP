@@ -41,9 +41,10 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 env.PACT_BROKER_FULL_URL = 'https://pact-broker.platform.hmcts.net'
 
 withPipeline(type, product, component) {
+    pipelineConf = config;
     loadVaultSecrets(secrets)
-    enableSlackNotifications(channel)
     enableAksStagingDeployment()
+    enableSlackNotifications(channel)
     disableLegacyDeployment()
 
     after('checkout') {
@@ -52,6 +53,9 @@ withPipeline(type, product, component) {
 
     before('smoketest:aat') {
         env.test_environment = 'aat'
+    }
+
+    after('smoketest:aat') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/site/serenity/**/*'
     }
 
@@ -61,6 +65,9 @@ withPipeline(type, product, component) {
 
     before('smoketest:preview') {
         env.test_environment = 'aat'
+    }
+
+    after('smoketest:preview') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/site/serenity/**/*'
     }
 
