@@ -97,6 +97,18 @@ document:
             -   templateName: PRL-DA-C8.docx
                 filename: FL401C8Document.pdf
                 document-generator: docmosis
+            -   templateName: FL-PRL-CON-ENG-01118.docx
+                filename: C8DocumentDraft.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-CON-WEL-01122.docx
+                filename: C8Document_Draft_Welsh.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-APP-WEL-01121.docx
+                filename: C1A_Document_Draft_Welsh.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-APP-ENG-01119.docx
+                filename: C1A_DocumentDraft.pdf
+                document-generator: docmosis
             -   templateName: FL401-Final-Welsh.docx
                 filename: DA-Welsh-application.pdf
                 document-generator: docmosis
