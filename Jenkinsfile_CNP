@@ -41,6 +41,7 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 env.PACT_BROKER_FULL_URL = 'https://pact-broker.platform.hmcts.net'
 
 withPipeline(type, product, component) {
+    pipelineConf = config;
     loadVaultSecrets(secrets)
     enableSlackNotifications(channel)
     enableAksStagingDeployment()
