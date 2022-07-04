@@ -2,6 +2,9 @@ package uk.gov.hmcts.reform.prl.documentgenerator.util;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
@@ -9,6 +12,7 @@ import java.lang.reflect.Modifier;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+@RunWith(MockitoJUnitRunner.class)
 public class NullOrEmptyValidatorUTest {
 
     private static final String BLANK_STRING = " ";
@@ -23,9 +27,9 @@ public class NullOrEmptyValidatorUTest {
         constructor.newInstance();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void givenArrayIsNull_whenRequireNonEmpty_thenThrowsIllegalArgumentException() {
-        NullOrEmptyValidator.requireNonEmpty(null);
+        Assertions.assertThrows(IllegalArgumentException.class,() -> NullOrEmptyValidator.requireNonEmpty(null));
     }
 
     @Test(expected = IllegalArgumentException.class)

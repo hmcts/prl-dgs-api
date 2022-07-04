@@ -2,7 +2,7 @@ import org.springframework.boot.gradle.tasks.run.BootRun
 
 buildscript {
     ext {
-        springBootVersion = '2.5.4'
+        springBootVersion = '2.7.0'
     }
     repositories {
         mavenLocal()
@@ -22,7 +22,7 @@ plugins {
     id 'jacoco'
     id 'org.owasp.dependencycheck' version '6.2.0'
     id 'org.sonarqube' version '3.3'
-    id 'org.springframework.boot' version '2.5.4'
+    id 'org.springframework.boot' version '2.7.0'
     id 'info.solidsoft.pitest' version '1.7.0'
     id 'au.com.dius.pact' version '4.2.0'
 }
@@ -172,9 +172,8 @@ def versions = [
     serviceTokenGenerator: '3.0.0',
     sonarPitest: '0.5',
     spring_security_rsa: '1.0.9.RELEASE',
-    springBoot: '2.5.4',
-    springCloud: '3.0.3',
-    springfoxSwagger: '2.9.2',
+    springBoot: '2.7.0',
+    springCloud: '3.1.1',
     springHateoas: '0.25.1.RELEASE',
     unirest: '1.4.9',
     wiremockVersion: '2.27.2',
@@ -246,8 +245,7 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: versions.springBoot
     compile group: 'com.puppycrawl.tools', name: 'checkstyle', version:  versions.puppyCrawl
     compile group: 'commons-io', name: 'commons-io', version: versions.commonsIo
-    compile group: 'io.springfox', name: 'springfox-swagger2', version: versions.springfoxSwagger
-    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: versions.springfoxSwagger
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.9'
 
     compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-ribbon', version: '2.2.5.RELEASE'
     compile (group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign',  version: versions.springCloud) {
@@ -287,8 +285,6 @@ dependencies {
     implementation group: 'org.projectlombok', name: 'lombok', version: versions.lombok
     implementation("org.springframework.boot:spring-boot-starter-validation")
     testCompile group: 'com.github.tomakehurst', name:'wiremock', version: versions.wiremockVersion
-    testCompile group: 'org.powermock', name:'powermock-api-mockito2', version:versions.powerMock
-    testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: versions.powerMock
     testCompile group: 'io.rest-assured', name: 'rest-assured', version: versions.restAssured
     testCompile group: 'io.rest-assured', name: 'json-path', version: versions.restAssured
     testCompile group: 'io.rest-assured', name: 'xml-path', version: versions.restAssured
@@ -321,6 +317,7 @@ dependencies {
     testImplementation group: 'io.rest-assured', name: 'rest-assured', version: versions.restAssured
     testImplementation group: 'io.rest-assured', name: 'json-path', version: versions.restAssured
     testImplementation group: 'io.rest-assured', name: 'xml-path', version: versions.restAssured
+    testImplementation group: 'org.mockito', name: 'mockito-inline', version: '4.6.1'
 }
 
 task fortifyScan(type: JavaExec)  {
