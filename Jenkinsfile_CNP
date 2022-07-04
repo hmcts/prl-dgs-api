@@ -51,6 +51,11 @@ withPipeline(type, product, component) {
         echo '${product}-${component} checked out'
     }
 
+    after('test') {
+    steps.junit '**/test-results/**/*.xml'
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'build/reports/**/*'
+    }
+
     before('functionalTest:aat') {
         env.test_environment = 'aat'
     }
