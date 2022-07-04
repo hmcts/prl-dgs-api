@@ -52,7 +52,7 @@ withPipeline(type, product, component) {
     }
 
     after('test') {
-    steps.junit '**/test-reports/**/*.xml'
+    steps.junit '**/test-results/**/*.xml', '**/test-reports/**/*.xml'
     steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'build/reports/**/*'
     }
 
