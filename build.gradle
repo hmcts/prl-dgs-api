@@ -280,7 +280,7 @@ dependencies {
     compile group:'info.solidsoft.gradle.pitest', name: 'gradle-pitest-plugin', version: versions.gradlePitest
     compile group:'org.codehaus.sonar-plugins', name:'sonar-pitest-plugin', version: versions.sonarPitest
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
-    compile group: 'com.launchdarkly', name: 'launchdarkly-java-server-sdk', version: '5.8.0'
+    compile group: 'com.launchdarkly', name: 'launchdarkly-java-server-sdk', version: '5.9.1'
 
     annotationProcessor("org.projectlombok:lombok:${versions.lombok}")
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
