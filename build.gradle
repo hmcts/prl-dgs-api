@@ -34,53 +34,7 @@ version = '3.0.0'
 sourceCompatibility = 11
 targetCompatibility = 11
 
-sourceSets {
-  integrationTest {
-      java {
-          compileClasspath += main.output + test.output
-          runtimeClasspath += main.output + test.output
-          srcDirs = ['src/integrationTest/java']
-      }
-      resources {
-          srcDirs = ['src/integrationTest/resources']
-      }
-  }
-  functionalTest {
-      java {
-        compileClasspath += main.output + test.output
-        runtimeClasspath += main.output + test.output
-        srcDirs = ['src/functionalTest/java']
-      }
-      resources {
-        srcDirs = ['src/functionalTest/resources']
-      }
-  }
-  contractTest {
-      java {
-          compileClasspath += main.output
-          runtimeClasspath += main.output
-          srcDir file('src/contractTest/java')
-      }
-      resources.srcDir file('src/contractTest/resources')
-  }
-  smokeTest {
-      java {
-        compileClasspath += main.output + test.output
-        runtimeClasspath += main.output + test.output
-        srcDir file('src/smokeTest/java')
-      }
-      resources.srcDir file('src/smokeTest/resources')
-  }
-}
 
-configurations {
-    integrationTestCompile.extendsFrom testCompile
-    integrationTestRuntime.extendsFrom testRuntime
-    functionalTestCompile.extendsFrom testCompile
-    functionalTestRuntime.extendsFrom testRuntime
-    contractTestCompile.extendsFrom testCompile
-    contractTestRuntime.extendsFrom testRuntime
-}
 
 bootJar {
     manifest {
@@ -194,6 +148,53 @@ def versions = [
 ]
 
 ext["logback.version"] = '1.2.11'
+sourceSets {
+  integrationTest {
+    java {
+      compileClasspath += main.output + test.output
+      runtimeClasspath += main.output + test.output
+      srcDirs = ['src/integrationTest/java']
+    }
+    resources {
+      srcDirs = ['src/integrationTest/resources']
+    }
+  }
+  functionalTest {
+    java {
+      compileClasspath += main.output
+      runtimeClasspath += main.output
+      srcDirs = ['src/functionalTest/java']
+    }
+    resources {
+      srcDirs = ['src/functionalTest/resources']
+    }
+  }
+  contractTest {
+    java {
+      compileClasspath += main.output
+      runtimeClasspath += main.output
+      srcDir file('src/contractTest/java')
+    }
+    resources.srcDir file('src/contractTest/resources')
+  }
+  smokeTest {
+    java {
+      compileClasspath += main.output + test.output
+      runtimeClasspath += main.output + test.output
+      srcDir file('src/smokeTest/java')
+    }
+    resources.srcDir file('src/smokeTest/resources')
+  }
+}
+
+configurations {
+  integrationTestCompile.extendsFrom testCompile
+  integrationTestRuntime.extendsFrom testRuntime
+  functionalTestImplementation.extendsFrom testImplementation
+  functionalTestRuntime.extendsFrom testRuntime
+  contractTestCompile.extendsFrom testCompile
+  contractTestRuntime.extendsFrom testRuntime
+}
 
 dependencies {
     //integration test
@@ -217,6 +218,11 @@ dependencies {
         exclude group: 'io.reactivex', module: 'rxnetty-servo'
     }
 
+  functionalTestImplementation sourceSets.main.runtimeClasspath
+  functionalTestImplementation sourceSets.test.runtimeClasspath
+  functionalTestAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
+  functionalTestImplementation group: 'org.springframework', name: 'spring-context-support'
+  functionalTestImplementation group: 'org.projectlombok', name: 'lombok', version: versions.lombok
   functionalTestCompile (group: 'uk.gov.hmcts.reform', name:'service-auth-provider-client', version: versions.serviceTokenGenerator){
     exclude group: 'io.reactivex', module: 'io.reactivex'
     exclude group: 'io.reactivex', module: 'rxnetty'
@@ -241,6 +247,8 @@ dependencies {
 
     compile group: 'org.springframework.security', name: 'spring-security-crypto', version: versions.springSecurityCrypto
 
+
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.2'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap', version: versions.springCloud
     implementation group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: versions.bouncycastle
@@ -368,8 +376,6 @@ dependencyManagement {
 dependencies {
     integrationTestCompile(sourceSets.test.output)
     integrationTestAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
-    functionalTestCompile(sourceSets.test.output)
-    functionalTestAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
 }
 
 task smoke(type: Test, description: 'Runs the smoke tests.', group: 'Verification') {
@@ -377,6 +383,7 @@ task smoke(type: Test, description: 'Runs the smoke tests.', group: 'Verificatio
 
   setTestClassesDirs(sourceSets.smokeTest.output.classesDirs)
   setClasspath(sourceSets.smokeTest.runtimeClasspath)
+
 }
 
 task bootRunAat(type: BootRun, description: 'Runs the app using AAT config', dependsOn: 'classes', group: 'Application') {
@@ -392,12 +399,9 @@ task functional(type: Test, description: 'Runs the functional tests.', group: 'V
     useJUnitPlatform()
     setTestClassesDirs(sourceSets.functionalTest.output.classesDirs)
     setClasspath(sourceSets.functionalTest.runtimeClasspath)
-
-    finalizedBy aggregate
 }
 
 task integration(type: Test, description: 'Runs the integration tests.', group: 'Verification') {
-  useJUnitPlatform()
   setTestClassesDirs(sourceSets.integrationTest.output.classesDirs)
   setClasspath(sourceSets.integrationTest.runtimeClasspath)
 

@@ -40,10 +40,10 @@ import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_DEFAU
 import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_HASH_TOKEN;
 
 
+@Slf4j
+@SpringBootTest
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = DocumentGeneratorApplication.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@PropertySource(value = "classpath:application.yml")
+@ContextConfiguration
 @AutoConfigureMockMvc
 public class DgsApiSmokeTests {
     private static final String API_URL = "/version/1/generatePDF";
