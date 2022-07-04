@@ -50,15 +50,7 @@ withPipeline(type, product, component) {
         echo '${product}-${component} checked out'
     }
 
-    before('smoketest:aat') {
-        env.test_environment = 'aat'
-    }
-
     before('functionalTest:aat') {
-        env.test_environment = 'aat'
-    }
-
-    before('smoketest:preview') {
         env.test_environment = 'aat'
     }
 
@@ -69,11 +61,13 @@ withPipeline(type, product, component) {
     }
 
     after('functionalTest:preview') {
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/site/serenity/**/*'
+      steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/site/serenity/**/*'
+      steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'build/reports/**/*'
     }
 
     after('functionalTest:aat') {
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/site/serenity/**/*'
+      steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/site/serenity/**/*'
+      steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'build/reports/**/*'
     }
 
     onMaster() {
