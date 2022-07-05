@@ -52,12 +52,14 @@ withPipeline(type, product, component) {
     }
 
     before('smoketest:aat') {
+        echo 'Smoketest is starting'
         env.test_environment = 'aat'
     }
 
     after('smoketest:aat') {
         steps.junit '**/test-results/**/*.xml'
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'build/reports/**/*'
+        echo 'Smoketest is done'
     }
 
     before('functionalTest:aat') {
@@ -65,12 +67,14 @@ withPipeline(type, product, component) {
     }
 
     before('smoketest:preview') {
+        echo 'Smoketest is starting'
         env.test_environment = 'aat'
     }
 
     after('smoketest:preview') {
         steps.junit '**/test-results/**/*.xml'
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'build/reports/**/*'
+        echo 'Smoketest is done'
     }
 
     // Kubernetes does not retrieve variables from the output terraform
