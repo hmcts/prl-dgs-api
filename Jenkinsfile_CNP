@@ -56,7 +56,8 @@ withPipeline(type, product, component) {
     }
 
     after('smoketest:aat') {
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/site/serenity/**/*'
+        steps.junit '**/test-results/**/*.xml'
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'build/reports/**/*'
     }
 
     before('functionalTest:aat') {
@@ -68,8 +69,8 @@ withPipeline(type, product, component) {
     }
 
     after('smoketest:preview') {
-        /opt/jenkins/workspace/HMCTS_j_to_z_prl-dgs-api_PR-145/src/smokeTest/java/uk/gov/hmcts/reform/prl/DgsApiSmokeTests.java
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/site/serenity/**/*'
+        steps.junit '**/test-results/**/*.xml'
+        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'build/reports/**/*'
     }
 
     // Kubernetes does not retrieve variables from the output terraform
