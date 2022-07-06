@@ -41,39 +41,48 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 env.PACT_BROKER_FULL_URL = 'https://pact-broker.platform.hmcts.net'
 
 withPipeline(type, product, component) {
- pipelineConf = config;
-  loadVaultSecrets(secrets)
-  enableAksStagingDeployment()
-  enableSlackNotifications(channel)
-  disableLegacyDeployment()
+    pipelineConf = config;
+    loadVaultSecrets(secrets)
+    enableSlackNotifications(channel)
+    enableAksStagingDeployment()
+    disableLegacyDeployment()
 
-  after('checkout') {
-    echo 'prl-dgs-api checked out'
-  }
+    after('checkout') {
+        echo '${product}-${component} checked out'
+    }
 
-  after('test') {
-    steps.junit '**/test-results/**/*.xml'
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'build/reports/**/*'
-  }
+    after('test') {
+      steps.junit '**/test-results/**/*.xml'
+      steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'build/reports/**/*'
+    }
 
-  before('functionalTest:aat') {
-    env.test_environment = 'aat'
-  }
+    before('smoketest:aat') {
+        env.test_environment = 'aat'
+    }
 
-  after('functionalTest:aat') {
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/site/serenity/**/*'
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'build/reports/**/*'
-  }
+    before('functionalTest:aat') {
+        env.test_environment = 'aat'
+    }
 
-  // Kubernetes does not retrieve variables from the output terraform
-  before('functionalTest:preview') {
-    env.test_environment = 'aat'
-  }
+    before('smoketest:preview') {
+        env.test_environment = 'aat'
+    }
 
-  after('functionalTest:preview') {
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/site/serenity/**/*'
-    steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'build/reports/**/*'
-  }
+    // Kubernetes does not retrieve variables from the output terraform
+    before('functionalTest:preview') {
+        env.FEATURE_RESP_SOLICITOR_DETAILS = 'true'
+        env.test_environment = 'aat'
+    }
+
+    after('functionalTest:preview') {
+      steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/site/serenity/**/*'
+      steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'build/reports/**/*'
+    }
+
+    after('functionalTest:aat') {
+      steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/site/serenity/**/*'
+      steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'build/reports/**/*'
+    }
 
     onMaster() {
       env.ENV = 'aat'
