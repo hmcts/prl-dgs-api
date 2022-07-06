@@ -185,6 +185,15 @@ document:
             -   templateName: PRL-PRIVACY-NOTICE-DOCUMENT.docx
                 filename: PrivacyNoticeDocument.pdf
                 document-generator: docmosis
+            -   templateName: PRL-FL406-ORDERS-DRAFT.docx
+                filename: Power_of_arrest.pdf
+                document-generator: docmosis
+            -   templateName: PRL-FL406-ORDERS-FINAL-ENGLISH.docx
+                filename: Power_of_arrest.pdf
+                document-generator: docmosis
+            -   templateName: PRL-FL406-ORDERS-FINAL-WELSH.docx
+                filename: Power_of_arrest.pdf
+                document-generator: docmosis
 
     pdf:
         familyCourtImgKey: "familycourt"
