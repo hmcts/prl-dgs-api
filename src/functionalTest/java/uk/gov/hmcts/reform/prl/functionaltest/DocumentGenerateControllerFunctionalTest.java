@@ -4,7 +4,7 @@ import groovy.util.logging.Slf4j;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.PropertySource;
