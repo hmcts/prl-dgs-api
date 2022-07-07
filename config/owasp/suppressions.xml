@@ -14,4 +14,10 @@
       spring-core-5.3.20.jar ]]></notes>
         <cve>CVE-2016-1000027</cve>
     </suppress>
+  <suppress>
+    <notes><![CDATA[
+      apache:log4j:2.17.2:*:*:*:*:*:*:*
+       ]]></notes>
+    <cve>CVE-2022-33915</cve>
+  </suppress>
 </suppressions>

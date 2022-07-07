@@ -2,8 +2,10 @@ package uk.gov.hmcts.reform.prl;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.junit.WireMockClassRule;
+import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
 import org.junit.ClassRule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -27,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 import static org.junit.Assert.assertEquals;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -40,11 +43,9 @@ import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_HASH_
 
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = DocumentGeneratorApplication.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@PropertySource(value = "classpath:application.yml")
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = DocumentGeneratorApplication.class)
 @AutoConfigureMockMvc
-
+@PropertySource(value = "classpath:application.yml")
 public class DgsApiSmokeTests {
     private static final String API_URL = "/version/1/generatePDF";
     private static final String CASE_DOCS_API_URL = "/cases/documents";
@@ -59,14 +60,17 @@ public class DgsApiSmokeTests {
     @Autowired
     private MockMvc webClient;
 
-    @ClassRule
-    public static WireMockClassRule caseDocsClientApiServiceServer = new WireMockClassRule(5170);
+    @RegisterExtension
+    public static WireMockExtension caseDocsClientApiServiceServer = WireMockExtension.newInstance().options(
+        wireMockConfig().port(5170)).build();
 
-    @ClassRule
-    public static WireMockClassRule docmosisClientServiceServer = new WireMockClassRule(5501);
+    @RegisterExtension
+    public static WireMockExtension docmosisClientServiceServer =  WireMockExtension.newInstance().options(
+        wireMockConfig().port(5501)).build();
 
-    @ClassRule
-    public static WireMockClassRule serviceAuthServer = new WireMockClassRule(4502);
+    @RegisterExtension
+    public static WireMockExtension serviceAuthServer =  WireMockExtension.newInstance().options(
+        wireMockConfig().port(4502)).build();
 
     @Test
     public void givenTemplateNameIsNull_whenGenerateAndStoreDocument_thenReturnHttp400() throws Exception {
