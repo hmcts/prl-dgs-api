@@ -157,10 +157,10 @@ document:
                 filename: occupation_order_FL404_final.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDER-FL404b-DRAFT-COMMON.docx
-                filename: amended_dischared_or_varied_order_fl404b_draft.pdf
+                filename: amended_discharged_or_varied_order_fl404b_draft.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDER-FL404b-FINAL-COMMON.docx
-                filename: amended_dischared_or_varied_order_fl404b_final.pdf
+                filename: amended_discharged_or_varied_order_fl404b_final.pdf
                 document-generator: docmosis
             -   templateName: PRL-ORDER-C45A-FINAL.docx
                 filename: Parental_Responsibility_Order_C45A.pdf
@@ -184,6 +184,15 @@ document:
                 document-generator: docmosis
             -   templateName: PRL-PRIVACY-NOTICE-DOCUMENT.docx
                 filename: PrivacyNoticeDocument.pdf
+                document-generator: docmosis
+            -   templateName: PRL-FL406-ORDERS-DRAFT.docx
+                filename: Power_of_arrest.pdf
+                document-generator: docmosis
+            -   templateName: PRL-FL406-ORDERS-FINAL-ENGLISH.docx
+                filename: Power_of_arrest.pdf
+                document-generator: docmosis
+            -   templateName: PRL-FL406-ORDERS-FINAL-WELSH.docx
+                filename: Power_of_arrest.pdf
                 document-generator: docmosis
 
     pdf:
