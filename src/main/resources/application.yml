@@ -106,13 +106,13 @@ document:
             -   templateName: FL401-c8-welsh.docx
                 filename: FL401C8WelshDocument.pdf
                 document-generator: docmosis
-            -   templateName: PLR-GOR-ENG-C21-Blank-Order-Final.docx
+            -   templateName: PRL-GOR-ENG-C21-Blank-Order-Final.docx
                 filename: Blank_Order_Directions_C21.pdf
                 document-generator: docmosis
-            -   templateName: PLR-GOR-ENG-C21-Blank-Order-Draft.docx
+            -   templateName: PRL-GOR-ENG-C21-Blank-Order-Draft.docx
                 filename: Blank_Order_Directions_C21_Draft.pdf
                 document-generator: docmosis
-            -   templateName: PLR-GOR-WEL-C21-Blank-Order-Final.docx
+            -   templateName: PRL-GOR-WEL-C21-Blank-Order-Final.docx
                 filename: Blank_Order_Directions_C21_Welsh.pdf
                 document-generator: docmosis
             -   templateName: PRL-GOR-ENG-C43A-Special-Guardianship-Order-Draft.docx
