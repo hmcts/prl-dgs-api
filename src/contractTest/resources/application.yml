@@ -128,3 +128,14 @@ azure:
 
 launchdarkly:
   sdk-key: "${LAUNCH_DARKLY_SDK_KEY:}"
+
+springdoc:
+    swagger-ui:
+        operationsSorter: alpha
+        tagsSorter : alpha
+        doc-expansion : none
+    model-converters:
+        pageable-converter:
+            enabled: true
+        polymorphic-converter:
+            enabled: true

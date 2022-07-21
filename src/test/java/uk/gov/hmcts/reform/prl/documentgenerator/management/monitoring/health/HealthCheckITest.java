@@ -13,7 +13,6 @@ import org.apache.http.util.EntityUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
@@ -56,7 +55,7 @@ public class HealthCheckITest {
     private static final String HEALTH_UP_RESPONSE = "{ \"status\": \"UP\"}";
     private static final String HEALTH_DOWN_RESPONSE = "{ \"status\": \"DOWN\"}";
 
-    @LocalServerPort
+    @Value("${local.server.port}")
     private int port;
 
     @ClassRule

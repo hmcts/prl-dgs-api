@@ -2,6 +2,8 @@ package uk.gov.hmcts.reform.prl.documentgenerator.management.monitoring.health;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.http.HttpEntity;
@@ -56,7 +58,7 @@ public class WebServiceHealthCheckUTest {
 
         when(httpEntityFactory.createRequestEntityForHealthCheck()).thenReturn(httpEntity);
 
-        HttpServerErrorException exception = mock(HttpServerErrorException.class);
+        HttpServerErrorException exception = new HttpServerErrorException(HttpStatus.SERVICE_UNAVAILABLE,"unknown error");
 
         doThrow(exception).when(restTemplate)
                 .exchange(URI, HttpMethod.GET, httpEntity, Object.class, new HashMap<>());
@@ -76,7 +78,7 @@ public class WebServiceHealthCheckUTest {
 
         when(httpEntityFactory.createRequestEntityForHealthCheck()).thenReturn(httpEntity);
 
-        ResourceAccessException exception = mock(ResourceAccessException.class);
+        ResourceAccessException exception = new ResourceAccessException("no resource found");
 
         doThrow(exception).when(restTemplate)
                 .exchange(URI, HttpMethod.GET, httpEntity, Object.class, new HashMap<>());
@@ -96,7 +98,7 @@ public class WebServiceHealthCheckUTest {
 
         when(httpEntityFactory.createRequestEntityForHealthCheck()).thenReturn(httpEntity);
 
-        RuntimeException exception = mock(RuntimeException.class);
+        RuntimeException exception = new RuntimeException("internal server error");
 
         doThrow(exception).when(restTemplate)
                 .exchange(URI, HttpMethod.GET, httpEntity, Object.class, new HashMap<>());

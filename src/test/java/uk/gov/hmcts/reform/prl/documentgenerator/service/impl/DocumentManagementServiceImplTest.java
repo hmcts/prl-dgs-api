@@ -6,6 +6,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.ccd.document.am.feign.CaseDocumentClient;
@@ -23,7 +24,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.same;
 import static org.mockito.Mockito.verify;
-import static org.powermock.api.mockito.PowerMockito.when;
 import static uk.gov.hmcts.reform.prl.documentgenerator.functionaltest.DocumentGenerateAndStoreE2ETest.mockCaseDocsDocuments;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -61,10 +61,12 @@ public class DocumentManagementServiceImplTest {
 
     @Test
     public void testGenerateAndStoreDraftDocumentMock() {
-        when(authTokenGenerator.generate()).thenReturn(s2sToken);
-        when(pdfGenerationService.generate(D8_PETITION_WELSH_TEMPLATE, placeholderMap)).thenReturn(data);
-        when(templatesConfiguration.getFileNameByTemplateName(D8_PETITION_WELSH_TEMPLATE)).thenReturn(MINI_PETITION_NAME_FOR_WELSH_PDF_FILE);
-        when(caseDocumentClient.uploadDocuments(eq(authToken), eq(s2sToken), eq("PRLAPPS"), eq("PRIVATELAW"), any()))
+        Mockito.when(authTokenGenerator.generate()).thenReturn(s2sToken);
+        Mockito.when(pdfGenerationService.generate(D8_PETITION_WELSH_TEMPLATE, placeholderMap)).thenReturn(data);
+        Mockito.when(templatesConfiguration.getFileNameByTemplateName(D8_PETITION_WELSH_TEMPLATE))
+                .thenReturn(MINI_PETITION_NAME_FOR_WELSH_PDF_FILE);
+        Mockito.when(caseDocumentClient.uploadDocuments(eq(authToken),
+                        eq(s2sToken), eq("PRLAPPS"), eq("PRIVATELAW"), any()))
             .thenReturn(uploadResponse);
 
         classUnderTest.generateAndStoreDraftDocument(D8_PETITION_WELSH_TEMPLATE, placeholderMap, authToken);
@@ -76,10 +78,12 @@ public class DocumentManagementServiceImplTest {
 
     @Test
     public void testGenerateAndStoreDraftDocument_WithDraftPrefixMock() {
-        when(authTokenGenerator.generate()).thenReturn(s2sToken);
-        when(pdfGenerationService.generate(DRAFT_MINI_PETITION_TEMPLATE_ID, placeholderMap)).thenReturn(data);
-        when(templatesConfiguration.getFileNameByTemplateName(DRAFT_MINI_PETITION_TEMPLATE_ID)).thenReturn(DRAFT_MINI_PETITION_NAME_FOR_PDF_FILE);
-        when(caseDocumentClient.uploadDocuments(eq(authToken), eq(s2sToken), eq("PRLAPPS"), eq("PRIVATELAW"), any()))
+        Mockito.when(authTokenGenerator.generate()).thenReturn(s2sToken);
+        Mockito.when(pdfGenerationService.generate(DRAFT_MINI_PETITION_TEMPLATE_ID, placeholderMap)).thenReturn(data);
+        Mockito.when(templatesConfiguration.getFileNameByTemplateName(DRAFT_MINI_PETITION_TEMPLATE_ID))
+                .thenReturn(DRAFT_MINI_PETITION_NAME_FOR_PDF_FILE);
+        Mockito.when(caseDocumentClient.uploadDocuments(eq(authToken),
+                        eq(s2sToken), eq("PRLAPPS"), eq("PRIVATELAW"), any()))
             .thenReturn(uploadResponse);
 
         classUnderTest.generateAndStoreDraftDocument(DRAFT_MINI_PETITION_TEMPLATE_ID, placeholderMap, authToken);
