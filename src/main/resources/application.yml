@@ -196,6 +196,9 @@ document:
             -   templateName: PRL-GOR-WEL-FL406-Power-Of-Arrest-Final.docx
                 filename: Power_of_arrest.pdf
                 document-generator: docmosis
+            -   templateName: PRL-CA-GOR-ENG-Draft-An-Order.docx
+                filename: Draft_an_order.pdf
+                document-generator: docmosis
 
     pdf:
         familyCourtImgKey: "familycourt"
