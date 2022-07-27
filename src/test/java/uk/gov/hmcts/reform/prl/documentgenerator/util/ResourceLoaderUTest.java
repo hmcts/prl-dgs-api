@@ -3,9 +3,9 @@ package uk.gov.hmcts.reform.prl.documentgenerator.util;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 import uk.gov.hmcts.reform.prl.documentgenerator.exception.ErrorLoadingTemplateException;
 
 import java.lang.reflect.Constructor;
@@ -14,20 +14,19 @@ import java.nio.charset.StandardCharsets;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.verifyStatic;
+import static org.mockito.Mockito.verify;
 
-@PowerMockIgnore("com.microsoft.applicationinsights.*")
-@RunWith(PowerMockRunner.class)
-@PrepareForTest(NullOrEmptyValidator.class)
+@RunWith(MockitoJUnitRunner.class)
 public class ResourceLoaderUTest {
     private static final String NON_EXISTENT_PATH = "somePath";
     private static final String EXISTING_PATH = "ResourceLoadTest.txt";
     private static final String DATA_IN_FILE = "Resource Load Test";
 
+    MockedStatic<NullOrEmptyValidator> nullOrEmptyValidator;
+
     @Before
     public void beforeTest() {
-        mockStatic(NullOrEmptyValidator.class);
+
     }
 
     @Test
@@ -40,9 +39,10 @@ public class ResourceLoaderUTest {
 
     @Test(expected = ErrorLoadingTemplateException.class)
     public void givenFileIsDoNotExists_whenLoadResource_thenThrowsErrorLoadingTemplateException() {
+        nullOrEmptyValidator =  Mockito.mockStatic(NullOrEmptyValidator.class);
         ResourceLoader.loadResource(NON_EXISTENT_PATH);
 
-        verifyStatic(NullOrEmptyValidator.class);
+        verify(NullOrEmptyValidator.class);
         NullOrEmptyValidator.requireNonBlank(NON_EXISTENT_PATH);
     }
 
@@ -52,7 +52,7 @@ public class ResourceLoaderUTest {
 
         assertEquals(DATA_IN_FILE, new String(data, StandardCharsets.UTF_8));
 
-        verifyStatic(NullOrEmptyValidator.class);
+        verify(NullOrEmptyValidator.class);
         NullOrEmptyValidator.requireNonBlank(EXISTING_PATH);
     }
 }
