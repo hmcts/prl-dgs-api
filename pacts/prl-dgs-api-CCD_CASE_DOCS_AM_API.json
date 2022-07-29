@@ -47,7 +47,6 @@
         "method": "GET",
         "path": "/cases/documents/456c0976-3178-46dd-b9ce-5ab5d47c625a",
         "headers": {
-          "Authorization": "someAuthToken",
           "ServiceAuthorization": "someServiceAuthToken"
         }
       },
