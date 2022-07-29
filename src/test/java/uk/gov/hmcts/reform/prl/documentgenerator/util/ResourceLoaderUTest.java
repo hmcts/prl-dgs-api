@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.util;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +15,8 @@ import java.nio.charset.StandardCharsets;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.verify;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ResourceLoaderUTest {
@@ -22,11 +24,17 @@ public class ResourceLoaderUTest {
     private static final String EXISTING_PATH = "ResourceLoadTest.txt";
     private static final String DATA_IN_FILE = "Resource Load Test";
 
-    MockedStatic<NullOrEmptyValidator> nullOrEmptyValidator;
+    MockedStatic<NullOrEmptyValidator> nullOrEmptyValidator ;
 
     @Before
     public void beforeTest() {
+        nullOrEmptyValidator = Mockito.mockStatic(NullOrEmptyValidator.class);
 
+    }
+
+    @After
+    public void afterTest() {
+        nullOrEmptyValidator.close();
     }
 
     @Test
@@ -39,20 +47,20 @@ public class ResourceLoaderUTest {
 
     @Test(expected = ErrorLoadingTemplateException.class)
     public void givenFileIsDoNotExists_whenLoadResource_thenThrowsErrorLoadingTemplateException() {
-        nullOrEmptyValidator =  Mockito.mockStatic(NullOrEmptyValidator.class);
-        ResourceLoader.loadResource(NON_EXISTENT_PATH);
 
-        verify(NullOrEmptyValidator.class);
+        nullOrEmptyValidator.verifyNoInteractions();
+        ResourceLoader.loadResource(NON_EXISTENT_PATH);
         NullOrEmptyValidator.requireNonBlank(NON_EXISTENT_PATH);
     }
 
     @Test
     public void givenFileExists_whenLoadResource_thenLoadFile() {
         byte[] data = ResourceLoader.loadResource(EXISTING_PATH);
+        nullOrEmptyValidator.verify(
+            () -> NullOrEmptyValidator.requireNonBlank(anyString())
+        );
 
         assertEquals(DATA_IN_FILE, new String(data, StandardCharsets.UTF_8));
-
-        verify(NullOrEmptyValidator.class);
         NullOrEmptyValidator.requireNonBlank(EXISTING_PATH);
     }
 }
