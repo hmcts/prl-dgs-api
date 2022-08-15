@@ -6,6 +6,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import uk.gov.hmcts.reform.prl.documentgenerator.domain.request.GenerateDocumentRequest;
+import uk.gov.hmcts.reform.prl.documentgenerator.domain.request.UploadDocumentRequest;
+import uk.gov.hmcts.reform.prl.documentgenerator.domain.response.CreatedDocumentInfo;
 import uk.gov.hmcts.reform.prl.documentgenerator.domain.response.GeneratedDocumentInfo;
 import uk.gov.hmcts.reform.prl.documentgenerator.service.DocumentManagementService;
 
@@ -62,6 +64,46 @@ public class DocumentGeneratorControllerUTest {
 
         verify(documentManagementService)
                 .generateAndStoreDraftDocument(templateName, placeholder, "testToken");
+    }
+
+    @Test
+    public void whenCreateDcoument_thenReturnCreatedDocumentInfo() {
+        final String templateName = "templateName";
+        final Map<String, Object> placeholder = Collections.emptyMap();
+
+        final CreatedDocumentInfo expected = CreatedDocumentInfo.builder().build();
+
+        when(documentManagementService.createDocument(templateName, placeholder, "testToken"))
+            .thenReturn(expected);
+
+        CreatedDocumentInfo actual = classUnderTest
+            .createPdf("testToken", new GenerateDocumentRequest(templateName, placeholder));
+
+        assertEquals(expected, actual);
+
+        verify(documentManagementService)
+            .createDocument(templateName, placeholder, "testToken");
+    }
+
+
+    @Test
+    public void whenUploadDcoument_thenReturnGeneratedDocumentInfo() {
+        final String templateName = "templateName";
+        final String fileName = "TestFile";
+        final byte[] document = "Any String you want".getBytes();
+
+        final GeneratedDocumentInfo expected = GeneratedDocumentInfo.builder().build();
+
+        when(documentManagementService.storeDocument(document,"testToken", fileName))
+            .thenReturn(expected);
+
+        GeneratedDocumentInfo actual = classUnderTest
+            .uploadPdf("testToken", new UploadDocumentRequest(fileName,document));
+
+        assertEquals(expected, actual);
+
+        verify(documentManagementService)
+            .storeDocument(document, "testToken",fileName);
     }
 
 }

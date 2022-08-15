@@ -10,6 +10,7 @@ import uk.gov.hmcts.reform.ccd.document.am.model.Document;
 import uk.gov.hmcts.reform.ccd.document.am.model.UploadResponse;
 import uk.gov.hmcts.reform.ccd.document.am.util.InMemoryMultipartFile;
 import uk.gov.hmcts.reform.prl.documentgenerator.config.TemplatesConfiguration;
+import uk.gov.hmcts.reform.prl.documentgenerator.domain.response.CreatedDocumentInfo;
 import uk.gov.hmcts.reform.prl.documentgenerator.domain.response.GeneratedDocumentInfo;
 import uk.gov.hmcts.reform.prl.documentgenerator.service.DocumentManagementService;
 import uk.gov.hmcts.reform.prl.documentgenerator.service.PDFGenerationService;
@@ -123,5 +124,32 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     private String getCaseId(Map<String, Object> placeholders) {
         Map<String, Object> caseDetails = (Map<String, Object>) placeholders.getOrDefault("caseDetails", emptyMap());
         return (String) caseDetails.get("id");
+    }
+
+    @Override
+    public CreatedDocumentInfo createDocument(String templateName, Map<String, Object> placeholders,
+                                              String authorizationToken) {
+        String caseId = getCaseId(placeholders);
+        if (caseId == null) {
+            log.warn("caseId is null for template \"" + templateName + "\"");
+        }
+
+        log.info("Generating document for case Id {}", caseId);
+
+        placeholders.put(
+            CURRENT_DATE_KEY,
+            new SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
+                .format(Date.from(clock.instant())
+                )
+        );
+
+        String fileName = templatesConfiguration.getFileNameByTemplateName(templateName);
+
+        byte[] generatedDocument = generateDocument(templateName, placeholders);
+        log.info("Document created for case Id {}", caseId);
+        return CreatedDocumentInfo.builder()
+            .fileName(fileName)
+            .document(generatedDocument)
+            .build();
     }
 }

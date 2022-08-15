@@ -12,6 +12,7 @@ import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.ccd.document.am.feign.CaseDocumentClient;
 import uk.gov.hmcts.reform.ccd.document.am.model.UploadResponse;
 import uk.gov.hmcts.reform.prl.documentgenerator.config.TemplatesConfiguration;
+import uk.gov.hmcts.reform.prl.documentgenerator.domain.response.CreatedDocumentInfo;
 import uk.gov.hmcts.reform.prl.documentgenerator.domain.response.GeneratedDocumentInfo;
 import uk.gov.hmcts.reform.prl.documentgenerator.service.PDFGenerationService;
 
@@ -110,6 +111,29 @@ public class DocumentManagementServiceImplUTest {
         assertThat(generatedDocumentInfo.getMimeType(), equalTo(MIME_TYPE));
         assertThat(generatedDocumentInfo.getHashToken(), equalTo(TEST_HASH_TOKEN));
         assertThat(generatedDocumentInfo.getBinaryUrl(), equalTo(BINARY_URL));
+    }
+
+    @Test
+    public void givenTemplateNameIsAosInvitation_whenCreateDocument_thenProceedAsExpected() {
+        when(pdfGenerationService.generate(eq(TEST_TEMPLATE), any())).thenReturn(TEST_GENERATED_DOCUMENT);
+        when(templatesConfiguration.getFileNameByTemplateName(TEST_TEMPLATE)).thenReturn(TEST_TEMPLATE_FILE_NAME);
+
+        CreatedDocumentInfo createdDocumentInfo = classUnderTest
+            .createDocument(TEST_TEMPLATE, new HashMap<>(), TEST_AUTH_TOKEN);
+
+        assertThat(createdDocumentInfo.getDocument(), equalTo(TEST_GENERATED_DOCUMENT));
+    }
+
+    @Test
+    public void givenFileName_whenUploadDocument_thenProceedAsExpected() {
+        when(caseDocumentClient.uploadDocuments(
+            Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(), any()
+        )).thenReturn(expectedUploadResponse);
+
+        GeneratedDocumentInfo generatedDocumentInfo = classUnderTest
+            .storeDocument(TEST_GENERATED_DOCUMENT, TEST_AUTH_TOKEN, TEST_TEMPLATE_FILE_NAME);
+
+        assertGeneratedDocumentInfoIsAsExpected(generatedDocumentInfo);
     }
 
 }
