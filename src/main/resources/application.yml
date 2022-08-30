@@ -208,7 +208,7 @@ document:
             -   templateName: PRL-GOR-WEL-FL406-Power-Of-Arrest-Final.docx
                 filename: Power_of_arrest.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-ENG-Citizen-Uploaded-Statement.docx
+            -   templateName: FL-PRL-GOR-ENG-Citizen-Uploaded-Statement.docx
                 filename: Citizen_Uploaded_Statement.pdf
                 document-generator: docmosis
 
