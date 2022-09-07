@@ -211,6 +211,9 @@ document:
             -   templateName: FL-PRL-GOR-ENG-Citizen-Uploaded-Statement.docx
                 filename: Citizen_Uploaded_Statement.pdf
                 document-generator: docmosis
+            -   templateName: PRL-CA-GOR-ENG-Solicitor-Draft-An-Order.docx
+                filename: Draft_an_order.pdf
+                document-generator: docmosis
 
     pdf:
         familyCourtImgKey: "familycourt"
