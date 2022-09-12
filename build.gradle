@@ -342,7 +342,6 @@ dependencyManagement {
 
         dependency group: 'org.yaml',name: 'snakeyaml', version: '1.31'
 
-
         dependency group: 'com.netflix.servo',name: 'servo-core', version: '0.13.2'
 
         // CVE-2021-30640, CVE-2021-33037
