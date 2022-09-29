@@ -124,7 +124,7 @@ document:
             -   templateName: PRL-GOR-ENG-C21-Blank-Order-Draft.docx
                 filename: Blank_Order_Directions_C21_Draft.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-C21-Blank-Order-Final.docxƒ
+            -   templateName: PRL-GOR-WEL-C21-Blank-Order-Final.docx
                 filename: Blank_Order_Directions_C21_Welsh.pdf
                 document-generator: docmosis
             -   templateName: PRL-GOR-ENG-C43A-Special-Guardianship-Order-Draft.docx
