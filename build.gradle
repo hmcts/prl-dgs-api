@@ -2,7 +2,7 @@ import org.springframework.boot.gradle.tasks.run.BootRun
 
 buildscript {
     ext {
-        springBootVersion = '2.7.0'
+        springBootVersion = '2.7.4'
     }
     repositories {
         mavenLocal()
