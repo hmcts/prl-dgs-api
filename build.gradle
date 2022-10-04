@@ -186,6 +186,9 @@ def versions = [
 ]
 
 ext["logback.version"] = '1.2.11'
+ext['snakeyaml.version'] = '1.32'
+
+
 
 dependencies {
     //integration test
@@ -278,9 +281,10 @@ dependencies {
     compile group:'info.solidsoft.gradle.pitest', name: 'gradle-pitest-plugin', version: versions.gradlePitest
     compile group:'org.codehaus.sonar-plugins', name:'sonar-pitest-plugin', version: versions.sonarPitest
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
-    compile group: 'com.launchdarkly', name: 'launchdarkly-java-server-sdk', version: '5.8.0'
+    compile (group: 'com.launchdarkly', name: 'launchdarkly-java-server-sdk', version: '5.10.2')
 
-    annotationProcessor("org.projectlombok:lombok:${versions.lombok}")
+
+  annotationProcessor("org.projectlombok:lombok:${versions.lombok}")
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
     implementation group: 'org.projectlombok', name: 'lombok', version: versions.lombok
     implementation("org.springframework.boot:spring-boot-starter-validation")
@@ -340,7 +344,7 @@ dependencyManagement {
             entry 'jackson-databind'
         }
 
-        dependency group: 'org.yaml',name: 'snakeyaml', version: '1.30'
+        dependency group: 'org.yaml',name: 'snakeyaml', version: '1.32'
 
         dependency group: 'com.netflix.servo',name: 'servo-core', version: '0.13.2'
 
