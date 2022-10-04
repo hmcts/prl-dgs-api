@@ -79,10 +79,11 @@ documentation:
         enabled: true
 
 spring:
+  web:
     application:
-        name: "prl-dgs-api"
+      name: "prl-dgs-api"
     resources:
-        static-locations:
+      static-locations:
 
 # GENERAL SPRING BOOT ACTUATOR CONFIG
 # Context path for Spring Boot Actuator endpoints
@@ -127,3 +128,14 @@ azure:
 
 launchdarkly:
   sdk-key: "${LAUNCH_DARKLY_SDK_KEY:}"
+
+springdoc:
+    swagger-ui:
+        operationsSorter: alpha
+        tagsSorter : alpha
+        doc-expansion : none
+    model-converters:
+        pageable-converter:
+            enabled: true
+        polymorphic-converter:
+            enabled: true
