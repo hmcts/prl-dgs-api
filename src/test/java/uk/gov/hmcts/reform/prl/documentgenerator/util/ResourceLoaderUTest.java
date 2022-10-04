@@ -1,11 +1,12 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.util;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 import uk.gov.hmcts.reform.prl.documentgenerator.exception.ErrorLoadingTemplateException;
 
 import java.lang.reflect.Constructor;
@@ -14,20 +15,26 @@ import java.nio.charset.StandardCharsets;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.verifyStatic;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 
-@PowerMockIgnore("com.microsoft.applicationinsights.*")
-@RunWith(PowerMockRunner.class)
-@PrepareForTest(NullOrEmptyValidator.class)
+@RunWith(MockitoJUnitRunner.class)
 public class ResourceLoaderUTest {
     private static final String NON_EXISTENT_PATH = "somePath";
     private static final String EXISTING_PATH = "ResourceLoadTest.txt";
     private static final String DATA_IN_FILE = "Resource Load Test";
 
+    MockedStatic<NullOrEmptyValidator> nullOrEmptyValidator ;
+
     @Before
     public void beforeTest() {
-        mockStatic(NullOrEmptyValidator.class);
+        nullOrEmptyValidator = Mockito.mockStatic(NullOrEmptyValidator.class);
+
+    }
+
+    @After
+    public void afterTest() {
+        nullOrEmptyValidator.close();
     }
 
     @Test
@@ -40,19 +47,20 @@ public class ResourceLoaderUTest {
 
     @Test(expected = ErrorLoadingTemplateException.class)
     public void givenFileIsDoNotExists_whenLoadResource_thenThrowsErrorLoadingTemplateException() {
-        ResourceLoader.loadResource(NON_EXISTENT_PATH);
 
-        verifyStatic(NullOrEmptyValidator.class);
+        nullOrEmptyValidator.verifyNoInteractions();
+        ResourceLoader.loadResource(NON_EXISTENT_PATH);
         NullOrEmptyValidator.requireNonBlank(NON_EXISTENT_PATH);
     }
 
     @Test
     public void givenFileExists_whenLoadResource_thenLoadFile() {
         byte[] data = ResourceLoader.loadResource(EXISTING_PATH);
+        nullOrEmptyValidator.verify(
+            () -> NullOrEmptyValidator.requireNonBlank(anyString())
+        );
 
         assertEquals(DATA_IN_FILE, new String(data, StandardCharsets.UTF_8));
-
-        verifyStatic(NullOrEmptyValidator.class);
         NullOrEmptyValidator.requireNonBlank(EXISTING_PATH);
     }
 }

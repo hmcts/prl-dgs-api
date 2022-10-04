@@ -14,9 +14,6 @@ import uk.gov.hmcts.reform.prl.documentgenerator.domain.response.GeneratedDocume
 import uk.gov.hmcts.reform.prl.documentgenerator.service.DocumentManagementService;
 import uk.gov.hmcts.reform.prl.documentgenerator.service.PDFGenerationService;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Clock;
 import java.util.Arrays;
