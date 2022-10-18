@@ -124,7 +124,7 @@ document:
             -   templateName: PRL-GOR-ENG-C21-Blank-Order-Draft.docx
                 filename: Blank_Order_Directions_C21_Draft.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-C21-Blank-Order-Final.docx
+            -   templateName: FL-PRL-GOR-WEL-C21-Final.docx
                 filename: Blank_Order_Directions_C21_Welsh.pdf
                 document-generator: docmosis
             -   templateName: PRL-GOR-ENG-C43A-Special-Guardianship-Order-Draft.docx
@@ -210,6 +210,15 @@ document:
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-Citizen-Uploaded-Statement.docx
                 filename: Citizen_Uploaded_Statement.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-C7R.docx
+                filename: C7_Draft_Document.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-C7R-Final.docx
+                filename: C7_Document.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-C7R-Final.docx
+                filename: C7_Document_Welsh.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-Solicitor-Draft-Order.docx
                 filename: Draft_an_order.pdf
