@@ -174,19 +174,16 @@ document:
                 document-generator: docmosis
             -   templateName: PRL-GOR-ENG-FL404B-Common-Draft.docx
                 filename: amended_discharged_or_varied_order_fl404b_draft.pdf
-                document-generator: docmosis
-                
+                document-generator: docmosis             
             -   templateName: PRL-GOR-WEL-FL404B-Common-Draft.docx
                 filename: welsh_amended_discharged_or_varied_order_fl404b_draft.pdf
-                document-generator: docmosis
-                
+                document-generator: docmosis      
             -   templateName: PRL-GOR-ENG-FL404B-Common-Final.docx
                 filename: amended_discharged_or_varied_order_fl404b_final.pdf
                 document-generator: docmosis
             -   templateName: PRL-GOR-WEL-FL404B-Common-Final.docx
                 filename: welsh_amended_discharged_or_varied_order_fl404b_final.pdf
-                document-generator: docmosis
-                
+                document-generator: docmosis    
             -   templateName: PRL-GOR-ENG-C45A-Parental-Responsibility-Order-Final.docx
                 filename: Parental_Responsibility_Order_C45A.pdf
                 document-generator: docmosis
