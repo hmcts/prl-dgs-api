@@ -233,7 +233,7 @@ document:
                 filename: Final_order.pdf
                 document-generator: docmosis
             -   templateName: PRL-GOR-WEL-FL406-Power-Of-Arrest-Draft.docx
-                filename: Welsh_Power_of_arrest.pdf
+                filename: Welsh_Power_of_arrest_draft.pdf
                 document-generator: docmosis
             -   templateName: PRL-GOR-WEL-FL406-Power-Of-Arrest-Final.docx
                 filename: Welsh_Power_of_arrest.pdf
