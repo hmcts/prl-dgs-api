@@ -126,7 +126,7 @@ document:
                 document-generator: docmosis
             -   templateName: PRL-GOR-WEL-C21-Blank-Order-Draft.docx
                 filename: Welsh_Blank_Order_Directions_C21_Draft.pdf
-                document-generator: docmosis  
+                document-generator: docmosis
             -   templateName: FL-PRL-GOR-WEL-C21-Final.docx
                 filename: Blank_Order_Directions_C21_Welsh.pdf
                 document-generator: docmosis
@@ -174,16 +174,16 @@ document:
                 document-generator: docmosis
             -   templateName: PRL-GOR-ENG-FL404B-Common-Draft.docx
                 filename: amended_discharged_or_varied_order_fl404b_draft.pdf
-                document-generator: docmosis             
+                document-generator: docmosis
             -   templateName: PRL-GOR-WEL-FL404B-Common-Draft.docx
                 filename: welsh_amended_discharged_or_varied_order_fl404b_draft.pdf
-                document-generator: docmosis      
+                document-generator: docmosis
             -   templateName: PRL-GOR-ENG-FL404B-Common-Final.docx
                 filename: amended_discharged_or_varied_order_fl404b_final.pdf
                 document-generator: docmosis
             -   templateName: PRL-GOR-WEL-FL404B-Common-Final.docx
                 filename: welsh_amended_discharged_or_varied_order_fl404b_final.pdf
-                document-generator: docmosis    
+                document-generator: docmosis
             -   templateName: PRL-GOR-ENG-C45A-Parental-Responsibility-Order-Final.docx
                 filename: Parental_Responsibility_Order_C45A.pdf
                 document-generator: docmosis
@@ -214,9 +214,6 @@ document:
             -   templateName: PRL-GOR-ENG-FL406-Power-Of-Arrest-Final.docx
                 filename: Power_of_arrest.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-FL406-Power-Of-Arrest-Final.docx
-                filename: Power_of_arrest.pdf
-                document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-Citizen-Uploaded-Statement.docx
                 filename: Citizen_Uploaded_Statement.pdf
                 document-generator: docmosis
@@ -234,7 +231,7 @@ document:
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-Solicitor-Final-Order.docx
                 filename: Final_order.pdf
-                document-generator: docmosis          
+                document-generator: docmosis
             -   templateName: PRL-GOR-WEL-FL406-Power-Of-Arrest-Draft.docx
                 filename: Welsh_Power_of_arrest.pdf
                 document-generator: docmosis
