@@ -234,6 +234,24 @@ document:
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-Solicitor-Final-Order.docx
                 filename: Final_order.pdf
+                document-generator: docmosis          
+            -   templateName: PRL-GOR-WEL-FL406-Power-Of-Arrest-Draft.docx
+                filename: Welsh_Power_of_arrest.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-FL406-Power-Of-Arrest-Final.docx
+                filename: Welsh_Power_of_arrest.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-FL404-Occupation-Order-Final.docx
+                filename: welsh_occupation_order_FL404_final.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-FL404-Occupation-Order-Draft.docx
+                filename: welsh_occupation_order_FL404_draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-FL404A-Non-Molestation-Order-Final.docx
+                filename: welsh_non_molestation_order_fl404a_final.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-FL404A-Non-Molestation-Order-Draft.docx
+                filename: welsh_non_molestation_order_fl404a_draft.pdf
                 document-generator: docmosis
 
     pdf:
