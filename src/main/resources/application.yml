@@ -250,6 +250,12 @@ document:
             -   templateName: PRL-GOR-WEL-FL404A-Non-Molestation-Order-Draft.docx
                 filename: welsh_non_molestation_order_fl404a_draft.pdf
                 document-generator: docmosis
+            -   templateName: PRL-HNO-WEL-FL402-Notice-Of-Proceedings-Draft.docx
+                filename: Welsh_NoticeOfProceedings(FL402)Draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-HNO-WEL-FL402-Notice-Of-Proceedings-Final.docx
+                filename: Welsh_NoticeOfProceedings(FL402).pdf
+                document-generator: docmosis
 
     pdf:
         familyCourtImgKey: "familycourt"
