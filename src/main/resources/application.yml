@@ -274,6 +274,12 @@ document:
             -   templateName: PRL-GOR-WEL-C43A-Special-Guardianship-Order-Final.docx
                 filename: Welsh_Special_Guardianship_Order_C43A.pdf
                 document-generator: docmosis
+            - templateName: PRL-GOR-WEL-C47A-Appointment-Of-Guardian-Final.docx
+              filename: Welsh_Appointment_of_a_guardian_C47A.pdf
+              document-generator: docmosis
+            - templateName: PRL-GOR-WEL-C47A-Appointment-Of-Guardian-Draft.docx
+              filename: Welsh_Appointment_of_a_guardian_C47A_draft.pdf
+              document-generator: docmosis
 
     pdf:
         familyCourtImgKey: "familycourt"
