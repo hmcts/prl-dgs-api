@@ -262,6 +262,18 @@ document:
             -   templateName: PRL-GOR-WEL-N117-General-Undertaking-Form-Final.docx
                 filename: Welsh_N117CreateOrder.pdf
                 document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-C43-Child-Arrangements-Final.docx
+                filename: Welsh_ChildArrangements_Specific_Prohibited_Steps_C43.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-C43-Child-Arrangements-Draft.docx
+                filename: Welsh_ChildArrangements_Specific_Prohibited_Steps_C43_Draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-C43A-Special-Guardianship-Order-Draft.docx
+                filename: Welsh_Special_Guardianship_Order_C43A_Draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-C43A-Special-Guardianship-Order-Final.docx
+                filename: Welsh_Special_Guardianship_Order_C43A.pdf
+                document-generator: docmosis
 
     pdf:
         familyCourtImgKey: "familycourt"
