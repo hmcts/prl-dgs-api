@@ -280,6 +280,12 @@ document:
             -   templateName: PRL-GOR-WEL-C47A-Appointment-Of-Guardian-Draft.docx
                 filename: Welsh_Appointment_of_a_guardian_C47A_draft.pdf
                 document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-C45A-Parental-Responsibility-Order-Final.docx
+                filename: Welsh_Parental_Responsibility_Order_C45A.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-C45A-Parental-Responsibility-Order-Draft.docx
+                filename: Welsh_Parental_Responsibility_Order_C45A_draft.pdf
+                document-generator: docmosis
 
     pdf:
         familyCourtImgKey: "familycourt"
