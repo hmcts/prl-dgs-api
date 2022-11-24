@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.controller;
 
+import com.launchdarkly.shaded.com.google.gson.Gson;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -54,8 +55,8 @@ public class DocumentGeneratorController {
         @Valid
             GenerateDocumentRequest templateData) {
         //This service is internal to PRL system. No need to do service authentication here
-        log.info("Document generation requested with templateName [{}], placeholders map of size[{}]",
-                templateData.getTemplate(), templateData.getValues().size());
+        log.info("Document generation requested with templateName [{}], placeholders map of size[{}], casedata [{}]",
+                templateData.getTemplate(), templateData.getValues().size(), new Gson().toJson(templateData));
         return documentManagementService.generateAndStoreDocument(templateData.getTemplate(), templateData.getValues(),
             authorizationToken);
     }
