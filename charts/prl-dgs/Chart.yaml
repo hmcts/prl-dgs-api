@@ -5,5 +5,5 @@ name: prl-dgs
 version: 0.0.12
 dependencies:
     - name: java
-      version: 4.0.1
+      version: 4.0.3
       repository: "https://hmctspublic.azurecr.io/helm/v1/repo/"
