@@ -55,7 +55,7 @@ public class DocumentGeneratorController {
         @Valid
             GenerateDocumentRequest templateData) {
         //This service is internal to PRL system. No need to do service authentication here
-        log.info("Document generation requested with templateName [{}], placeholders map of size[{}], casedata [{}]",
+        log.info("Document generation requested with templateName [{}], placeholders map of size[{}], caseData {}",
                 templateData.getTemplate(), templateData.getValues().size(), new Gson().toJson(templateData));
         return documentManagementService.generateAndStoreDocument(templateData.getTemplate(), templateData.getValues(),
             authorizationToken);
