@@ -287,7 +287,16 @@ document:
                 filename: Welsh_Parental_Responsibility_Order_C45A_draft.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-APP-ENG-C1A-REVISED-01119.docx
+                filename: C1A_Document.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-APP-ENG-C1A-REVISED-DRAFT-01119.docx
                 filename: C1A_DocumentDraft.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-APP-WEL-C1A-REVISED-01119.docx
+                filename: C1A_Document_Welsh.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-APP-WEL-C1A-REVISED-DRAFT-01119.docx
+                filename: C1A_Document_Draft_Welsh.pdf
                 document-generator: docmosis
 
 
