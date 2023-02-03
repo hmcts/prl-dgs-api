@@ -177,7 +177,7 @@ def versions = [
     springHateoas: '0.25.1.RELEASE',
     unirest: '1.4.9',
     wiremockVersion: '2.27.2',
-    springSecurityCrypto: '5.4.5',
+    springSecurityCrypto: '6.0.1',
     tomcat: '9.0.69',
     pact_version: '4.1.11',
     httpComponents: '4.5.13',
