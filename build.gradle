@@ -171,7 +171,7 @@ def versions = [
     serenityCucumber: '1.9.51',
     serviceTokenGenerator: '3.0.0',
     sonarPitest: '0.5',
-    spring_security_rsa: '1.0.9.RELEASE',
+    spring_security_rsa: '1.0.11.RELEASE',
     springBoot: '2.7.0',
     springCloud: '3.1.1',
     springHateoas: '0.25.1.RELEASE',
@@ -181,7 +181,7 @@ def versions = [
     tomcat: '9.0.69',
     pact_version: '4.1.11',
     httpComponents: '4.5.13',
-    bouncycastle: '1.61',
+    bouncycastle: '1.70',
     ccdCaseDocumentAmClient: '1.7.2'
 ]
 
