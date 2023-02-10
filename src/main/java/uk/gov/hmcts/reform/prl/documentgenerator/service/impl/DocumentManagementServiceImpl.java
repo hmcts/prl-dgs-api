@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
+import com.launchdarkly.shaded.com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -57,7 +58,8 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
 
     @Override
     public GeneratedDocumentInfo generateAndStoreDraftDocument(String templateName,
-                                                               Map<String, Object> placeholders, String authorizationToken) {
+                                                               Map<String, Object> placeholders,
+                                                               String authorizationToken) {
         String fileName = templatesConfiguration.getFileNameByTemplateName(templateName);
         if (!fileName.startsWith(DRAFT_PREFIX)) {
             fileName = String.join("", DRAFT_PREFIX, fileName);
@@ -75,6 +77,8 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
         }
 
         log.info("Generating document for case Id {}", caseId);
+
+        log.info("Generating document for case Id {} {} {}", caseId,templateName, new Gson().toJson(placeholders));
 
         placeholders.put(
             CURRENT_DATE_KEY,
@@ -98,7 +102,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
             serviceAuthToken,
             "PRLAPPS",
             "PRIVATELAW",
-            Arrays.asList( new InMemoryMultipartFile("files", fileName, APPLICATION_PDF_VALUE, document
+            Arrays.asList(new InMemoryMultipartFile("files", fileName, APPLICATION_PDF_VALUE, document
             ))
         );
 
