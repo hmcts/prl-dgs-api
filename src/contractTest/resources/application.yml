@@ -1,320 +1,87 @@
 server:
-  port: ${PRL_DOCUMENT_GENERATOR_PORT:4007}
+    port: ${PRL_DOCUMENT_GENERATOR_PORT:4007}
 
 service:
-  service-auth-provider:
-    health:
-      context-path: /health
-      uri: ${AUTH_PROVIDER_SERVICE_CLIENT_BASEURL:http://localhost:4502}${service.service-auth-provider.health.context-path}
+    service-auth-provider:
+        health:
+            context-path: /health
+            uri: ${AUTH_PROVIDER_SERVICE_CLIENT_BASEURL:http://localhost:4502}${service.service-auth-provider.health.context-path}
 
 docmosis:
-  service:
-    pdf-service:
-      accessKey: ${DOCMOSIS_SERVICE_ACCESS_KEY:replace_me}
-      renderEndpoint: "/rs/render"
-      uri: ${DOCMOSIS_SERVICE_BASE_URL:http://localhost:5501}${docmosis.service.pdf-service.renderEndpoint}
-      health: ${DOCMOSIS_SERVICE_BASE_URL:http://localhost:5501}/health
-      devMode: ${DOCMOSIS_SERVICE_DEV_MODE_FLAG:false}
+    service:
+        pdf-service:
+            accessKey: ${DOCMOSIS_SERVICE_ACCESS_KEY:23432}
+            renderEndpoint: "/rs/render"
+            uri: ${DOCMOSIS_SERVICE_BASE_URL:http://localhost:5501}${docmosis.service.pdf-service.renderEndpoint}
+            health: ${DOCMOSIS_SERVICE_BASE_URL:http://localhost:5501}/health
+            devMode: ${DOCMOSIS_SERVICE_DEV_MODE_FLAG:false}
 
 case_document_am:
-  url: ${CCD_CASE_DOCS_AM_API:http://localhost:5170}
+    url: ${CCD_CASE_DOCS_AM_API:http://localhost:5170}
 
 auth:
-  provider:
-    service:
-      client:
-        port: 4502
-        baseUrl: ${AUTH_PROVIDER_SERVICE_CLIENT_BASEURL:http://localhost:4502}
-        tokenTimeToLiveInSeconds: 900
+    provider:
+        service:
+            client:
+                port: 4502
+                baseUrl: ${AUTH_PROVIDER_SERVICE_CLIENT_BASEURL:http://localhost:4502}
+                tokenTimeToLiveInSeconds: 900
 
 idam:
-  s2s-auth:
-    microservice: ${AUTH_PROVIDER_SERVICE_CLIENT_MICROSERVICE:prl_cos_api}
-    totp_secret: ${AUTH_PROVIDER_SERVICE_CLIENT_KEY:replace_me}
-    url: ${AUTH_PROVIDER_SERVICE_CLIENT_BASEURL:http://localhost:4502}
+    s2s-auth:
+        microservice: ${AUTH_PROVIDER_SERVICE_CLIENT_MICROSERVICE:prl-dgs-api}
+        totp_secret: ${AUTH_PROVIDER_SERVICE_CLIENT_KEY:AAAAAAAAAAAAAAAA}
+        url: ${AUTH_PROVIDER_SERVICE_CLIENT_BASEURL:http://localhost:4502}
 
 http:
-  connect:
-    timeout: 60000
-    request:
-      timeout: 60000
+    connect:
+        timeout: 60000
+        request:
+            timeout: 60000
 
 health:
-  check:
-    http:
-      connect:
-        timeout: 5000
-        request:
-          timeout: 5000
+    check:
+        http:
+            connect:
+                timeout: 5000
+                request:
+                    timeout: 5000
 
 info:
-  app:
-    name: ${spring.application.name}
+    app:
+        name: ${spring.application.name}
 
 pdf:
-  test:
-    enabled: false
+    test:
+        enabled: false
 
 document:
-  templates:
-    configurationList:
-      -   templateName: FL-DIV-GOR-ENG-00062.docx
-          filename: TestTemplate.pdf
-          document-generator: docmosis
-      -   templateName: PRL-DRAFT-C100-20.docx
-          filename: TestTemplate.pdf
-          document-generator: docmosis
-      -   templateName: PRL-C8-Final-Changes.docx
-          filename: C8Document.pdf
-          document-generator: docmosis
-      -   templateName: PRL-C100-R1-Final-Document.docx
-          filename: C100FinalDocument.pdf
-          document-generator: docmosis
-      -   templateName: PRL-C1A.docx
-          filename: C1ADocument.pdf
-          document-generator: docmosis
-      -   templateName: PRL-C100-R1-Draft-Document.docx
-          filename: C100DraftDocument.pdf
-          document-generator: docmosis
-      -   templateName: PRL-C100-R1-Draft-WelshLang.docx
-          filename: C100DraftWelshDocument.pdf
-          document-generator: docmosis
-      -   templateName: PRL-C100-R1-Final-WelshLang.docx
-          filename: C100FinalWelshDocument.pdf
-          document-generator: docmosis
-      -   templateName: PRL-C8-WelshLang.docx
-          filename: C8WelshDocument.pdf
-          document-generator: docmosis
-      -   templateName: PRL-C1A-WelshLang.docx
-          filename: C1AWelshDocument.pdf
-          document-generator: docmosis
-      -   templateName: FL401-draft.docx
-          filename: Draft-DA-application.pdf
-          document-generator: docmosis
-      -   templateName: FL401-Final.docx
-          filename: DA-application.pdf
-          document-generator: docmosis
-      -   templateName: PRL-DA-C8.docx
-          filename: FL401C8Document.pdf
-          document-generator: docmosis
-      -   templateName: FL-PRL-CON-ENG-01118.docx
-          filename: C8DocumentDraft.pdf
-          document-generator: docmosis
-      -   templateName: FL-PRL-CON-WEL-01122.docx
-          filename: C8Document_Draft_Welsh.pdf
-          document-generator: docmosis
-      -   templateName: FL-PRL-APP-WEL-01121.docx
-          filename: C1A_Document_Draft_Welsh.pdf
-          document-generator: docmosis
-      -   templateName: FL-PRL-APP-ENG-01119.docx
-          filename: C1A_DocumentDraft.pdf
-          document-generator: docmosis
-      -   templateName: FL401-Final-Welsh.docx
-          filename: DA-Welsh-application.pdf
-          document-generator: docmosis
-      -   templateName: FL401-draft-Welsh.docx
-          filename: Draft-DA-Welsh-application.pdf
-          document-generator: docmosis
-      -   templateName: FL401-c8-welsh.docx
-          filename: FL401C8WelshDocument.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-C21-Blank-Order-Final.docx
-          filename: Blank_Order_Directions_C21.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-C21-Blank-Order-Draft.docx
-          filename: Blank_Order_Directions_C21_Draft.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-WEL-C21-Blank-Order-Draft.docx
-          filename: Welsh_Blank_Order_Directions_C21_Draft.pdf
-          document-generator: docmosis
-      -   templateName: FL-PRL-GOR-WEL-C21-Final.docx
-          filename: Blank_Order_Directions_C21_Welsh.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-C43A-Special-Guardianship-Order-Draft.docx
-          filename: Special_Guardianship_Order_C43A_Draft.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-C43A-Special-Guardianship-Order-Final.docx
-          filename: Special_Guardianship_Order_C43A.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-C43-Child-Arrangements-Final.docx
-          filename: ChildArrangements_Specific_Prohibited_Steps_C43.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-C43-Child-Arrangements-Draft.docx
-          filename: ChildArrangements_Specific_Prohibited_Steps_C43_Draft.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-C47A-Appointment-Of-Guardian-Final.docx
-          filename: Appointment_of_a_guardian_C47A.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-C47A-Appointment-Of-Guardian-Draft.docx
-          filename: Appointment_of_a_guardian_C47A_draft.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-C49-Transfer-Of-Case-Final.docx
-          filename: C49CreateOrder.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-C49-Transfer-Of-Case-Draft.docx
-          filename: C49CreateOrderDraft.pdf
-          document-generator: docmosis
-      -   templateName: PRL-HNO-ENG-FL402-Notice-Of-Proceedings-Draft.docx
-          filename: NoticeOfProceedings(FL402)Draft.pdf
-          document-generator: docmosis
-      -   templateName: PRL-HNO-ENG-FL402-Notice-Of-Proceedings-Final.docx
-          filename: NoticeOfProceedings(FL402).pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-N117-General-Undertaking-Form-Draft.docx
-          filename: N117CreateOrderDraft.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-N117-General-Undertaking-Form-Final.docx
-          filename: N117CreateOrder.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-FL404-Occupation-Order-Draft.docx
-          filename: occupation_order_FL404_draft.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-FL404-Occupation-Order-Final.docx
-          filename: occupation_order_FL404_final.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-FL404B-Common-Draft.docx
-          filename: amended_discharged_or_varied_order_fl404b_draft.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-WEL-FL404B-Common-Draft.docx
-          filename: welsh_amended_discharged_or_varied_order_fl404b_draft.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-FL404B-Common-Final.docx
-          filename: amended_discharged_or_varied_order_fl404b_final.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-WEL-FL404B-Common-Final.docx
-          filename: welsh_amended_discharged_or_varied_order_fl404b_final.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-C45A-Parental-Responsibility-Order-Final.docx
-          filename: Parental_Responsibility_Order_C45A.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-C45A-Parental-Responsibility-Order-Draft.docx
-          filename: Parental_Responsibility_Order_C45A_draft.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-FL404A-Non-Molestation-Order-Draft.docx
-          filename: non_molestation_order_fl404a_draft.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-FL404A-Non-Molestation-Order-Final.docx
-          filename: non_molestation_order_fl404a_final.pdf
-          document-generator: docmosis
-      -   templateName: PRL-C7-BLANK-DOCUMENT.docx
-          filename: C7BlankDocument.pdf
-          document-generator: docmosis
-      -   templateName: PRL-C8-BLANK-DOCUMENT.docx
-          filename: C8BlankDocument.pdf
-          document-generator: docmosis
-      -   templateName: PRL-C1A-BLANK-DOCUMENT.docx
-          filename: C1ABlankDocument.pdf
-          document-generator: docmosis
-      -   templateName: PRL-PRIVACY-NOTICE-DOCUMENT.docx
-          filename: PrivacyNoticeDocument.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-FL406-Power-Of-Arrest-Draft.docx
-          filename: Power_of_arrest.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-ENG-FL406-Power-Of-Arrest-Final.docx
-          filename: Power_of_arrest.pdf
-          document-generator: docmosis
-      -   templateName: FL-PRL-GOR-ENG-Citizen-Uploaded-Statement.docx
-          filename: Citizen_Uploaded_Statement.pdf
-          document-generator: docmosis
-      -   templateName: FL-PRL-GOR-ENG-C7R.docx
-          filename: C7_Draft_Document.pdf
-          document-generator: docmosis
-      -   templateName: FL-PRL-GOR-ENG-C7R-Final.docx
-          filename: C7_Document.pdf
-          document-generator: docmosis
-      -   templateName: FL-PRL-GOR-WEL-C7R-Final.docx
-          filename: C7_Document_Welsh.pdf
-          document-generator: docmosis
-      -   templateName: FL-PRL-GOR-ENG-SOLICITOR-C7R-DRAFT.docx
-          filename: C7_Response_Draft_Document.pdf
-          document-generator: docmosis
-      -   templateName: FL-PRL-GOR-ENG-SOLICITOR-C7R-FINAL.docx
-          filename: C7_Response_Final_Document.pdf
-          document-generator: docmosis
-      -   templateName: FL-PRL-GOR-ENG-Solicitor-Draft-Order.docx
-          filename: Draft_an_order.pdf
-          document-generator: docmosis
-      -   templateName: FL-PRL-GOR-ENG-Solicitor-Final-Order.docx
-          filename: Final_order.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-WEL-FL406-Power-Of-Arrest-Draft.docx
-          filename: Welsh_Power_of_arrest_draft.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-WEL-FL406-Power-Of-Arrest-Final.docx
-          filename: Welsh_Power_of_arrest.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-WEL-FL404-Occupation-Order-Final.docx
-          filename: welsh_occupation_order_FL404_final.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-WEL-FL404-Occupation-Order-Draft.docx
-          filename: welsh_occupation_order_FL404_draft.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-WEL-FL404A-Non-Molestation-Order-Final.docx
-          filename: welsh_non_molestation_order_fl404a_final.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-WEL-FL404A-Non-Molestation-Order-Draft.docx
-          filename: welsh_non_molestation_order_fl404a_draft.pdf
-          document-generator: docmosis
-      -   templateName: PRL-HNO-WEL-FL402-Notice-Of-Proceedings-Draft.docx
-          filename: Welsh_NoticeOfProceedings(FL402)Draft.pdf
-          document-generator: docmosis
-      -   templateName: PRL-HNO-WEL-FL402-Notice-Of-Proceedings-Final.docx
-          filename: Welsh_NoticeOfProceedings(FL402).pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-WEL-N117-General-Undertaking-Form-Draft.docx
-          filename: Welsh_N117CreateOrderDraft.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-WEL-N117-General-Undertaking-Form-Final.docx
-          filename: Welsh_N117CreateOrder.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-WEL-C43-Child-Arrangements-Final.docx
-          filename: Welsh_ChildArrangements_Specific_Prohibited_Steps_C43.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-WEL-C43-Child-Arrangements-Draft.docx
-          filename: Welsh_ChildArrangements_Specific_Prohibited_Steps_C43_Draft.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-WEL-C43A-Special-Guardianship-Order-Draft.docx
-          filename: Welsh_Special_Guardianship_Order_C43A_Draft.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-WEL-C43A-Special-Guardianship-Order-Final.docx
-          filename: Welsh_Special_Guardianship_Order_C43A.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-WEL-C47A-Appointment-Of-Guardian-Final.docx
-          filename: Welsh_Appointment_of_a_guardian_C47A.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-WEL-C47A-Appointment-Of-Guardian-Draft.docx
-          filename: Welsh_Appointment_of_a_guardian_C47A_draft.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-WEL-C45A-Parental-Responsibility-Order-Final.docx
-          filename: Welsh_Parental_Responsibility_Order_C45A.pdf
-          document-generator: docmosis
-      -   templateName: PRL-GOR-WEL-C45A-Parental-Responsibility-Order-Draft.docx
-          filename: Welsh_Parental_Responsibility_Order_C45A_draft.pdf
-          document-generator: docmosis
-
-
-  pdf:
-    familyCourtImgKey: "familycourt"
-    familyCourtImgVal: "[userImage:familycourt.png]"
-    hmctsImgKey: "hmcts"
-    hmctsImgVal: "[userImage:hmcts.png]"
-    displayTemplateKey: "displayTemplateOnly"
-    displayTemplateVal: "1"
+    templates:
+        configurationList:
+            -   templateName: FL-DIV-GOR-ENG-00062.docx
+                filename: TestTemplate.pdf
+                document-generator: docmosis
+    pdf:
+        familyCourtImgKey: "familycourt"
+        familyCourtImgVal: "[userImage:familycourt.png]"
+        hmctsImgKey: "hmcts"
+        hmctsImgVal: "[userImage:hmcts.png]"
+        displayTemplateKey: "displayTemplateOnly"
+        displayTemplateVal: "1"
 
 evidence-management-api:
-  service:
-    stub:
-      enabled: false
+    service:
+        stub:
+            enabled: false
 
 documentation:
-  swagger:
-    enabled: true
+    swagger:
+        enabled: true
 
 spring:
-  application:
-    name: "prl-dgs-api"
   web:
+    application:
+      name: "prl-dgs-api"
     resources:
       static-locations:
 
@@ -332,28 +99,28 @@ spring:
 # Enable the metrics endpoint
 # Enable sensitive metrics information
 management:
-  endpoint:
+    endpoint:
+        health:
+            show-details: "ALWAYS"
+            cache:
+                time-to-live: 5000
+    endpoints:
+        web:
+            base-path: /
+            path-mapping:
+                health: health
+            exposure:
+                include: info, health, metrics
     health:
-      show-details: "ALWAYS"
-      cache:
-        time-to-live: 5000
-  endpoints:
-    web:
-      base-path: /
-      path-mapping:
-        health: health
-      exposure:
-        include: info, health, metrics
-  health:
-    case-document-am-api:
-      enabled: false
+        case-document-am-api:
+            enabled: true
 
 logging:
-  level:
-    org.springframework.web: ERROR
-    uk.gov.hmcts.reform.prl.documentgenerator: DEBUG
-  pattern:
-    console: "%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n"
+    level:
+        org.springframework.web: ERROR
+        uk.gov.hmcts.reform.prl.documentgenerator: DEBUG
+    pattern:
+        console: "%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n"
 
 azure:
   application-insights:
@@ -361,3 +128,14 @@ azure:
 
 launchdarkly:
   sdk-key: "${LAUNCH_DARKLY_SDK_KEY:}"
+
+springdoc:
+    swagger-ui:
+        operationsSorter: alpha
+        tagsSorter : alpha
+        doc-expansion : none
+    model-converters:
+        pageable-converter:
+            enabled: true
+        polymorphic-converter:
+            enabled: true
