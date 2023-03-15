@@ -2,6 +2,11 @@ java:
     applicationPort: 4007
     aadIdentityName: prl
     ingressHost: "prl-dgs-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
+    autoscaling:
+      enabled: true
+      maxReplicas: 9
+      minReplicas: 6
+      targetCPUUtilizationPercentage: 80 # Default is 80% target CPU utilization
     keyVaults:
       prl:
         resourceGroup: prl
