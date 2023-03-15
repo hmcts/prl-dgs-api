@@ -124,7 +124,10 @@ document:
             -   templateName: PRL-GOR-ENG-C21-Blank-Order-Draft.docx
                 filename: Blank_Order_Directions_C21_Draft.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-C21-Blank-Order-Final.docx
+            -   templateName: PRL-GOR-WEL-C21-Blank-Order-Draft.docx
+                filename: Welsh_Blank_Order_Directions_C21_Draft.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-C21-Final.docx
                 filename: Blank_Order_Directions_C21_Welsh.pdf
                 document-generator: docmosis
             -   templateName: PRL-GOR-ENG-C43A-Special-Guardianship-Order-Draft.docx
@@ -172,8 +175,14 @@ document:
             -   templateName: PRL-GOR-ENG-FL404B-Common-Draft.docx
                 filename: amended_discharged_or_varied_order_fl404b_draft.pdf
                 document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-FL404B-Common-Draft.docx
+                filename: welsh_amended_discharged_or_varied_order_fl404b_draft.pdf
+                document-generator: docmosis
             -   templateName: PRL-GOR-ENG-FL404B-Common-Final.docx
                 filename: amended_discharged_or_varied_order_fl404b_final.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-FL404B-Common-Final.docx
+                filename: welsh_amended_discharged_or_varied_order_fl404b_final.pdf
                 document-generator: docmosis
             -   templateName: PRL-GOR-ENG-C45A-Parental-Responsibility-Order-Final.docx
                 filename: Parental_Responsibility_Order_C45A.pdf
@@ -205,11 +214,17 @@ document:
             -   templateName: PRL-GOR-ENG-FL406-Power-Of-Arrest-Final.docx
                 filename: Power_of_arrest.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-FL406-Power-Of-Arrest-Final.docx
-                filename: Power_of_arrest.pdf
-                document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-Citizen-Uploaded-Statement.docx
                 filename: Citizen_Uploaded_Statement.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-C7R.docx
+                filename: C7_Draft_Document.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-C7R-Final.docx
+                filename: C7_Document.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-C7R-Final.docx
+                filename: C7_Document_Welsh.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-Solicitor-Draft-Order.docx
                 filename: Draft_an_order.pdf
@@ -217,6 +232,61 @@ document:
             -   templateName: FL-PRL-GOR-ENG-Solicitor-Final-Order.docx
                 filename: Final_order.pdf
                 document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-FL406-Power-Of-Arrest-Draft.docx
+                filename: Welsh_Power_of_arrest_draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-FL406-Power-Of-Arrest-Final.docx
+                filename: Welsh_Power_of_arrest.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-FL404-Occupation-Order-Final.docx
+                filename: welsh_occupation_order_FL404_final.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-FL404-Occupation-Order-Draft.docx
+                filename: welsh_occupation_order_FL404_draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-FL404A-Non-Molestation-Order-Final.docx
+                filename: welsh_non_molestation_order_fl404a_final.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-FL404A-Non-Molestation-Order-Draft.docx
+                filename: welsh_non_molestation_order_fl404a_draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-HNO-WEL-FL402-Notice-Of-Proceedings-Draft.docx
+                filename: Welsh_NoticeOfProceedings(FL402)Draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-HNO-WEL-FL402-Notice-Of-Proceedings-Final.docx
+                filename: Welsh_NoticeOfProceedings(FL402).pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-N117-General-Undertaking-Form-Draft.docx
+                filename: Welsh_N117CreateOrderDraft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-N117-General-Undertaking-Form-Final.docx
+                filename: Welsh_N117CreateOrder.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-C43-Child-Arrangements-Final.docx
+                filename: Welsh_ChildArrangements_Specific_Prohibited_Steps_C43.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-C43-Child-Arrangements-Draft.docx
+                filename: Welsh_ChildArrangements_Specific_Prohibited_Steps_C43_Draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-C43A-Special-Guardianship-Order-Draft.docx
+                filename: Welsh_Special_Guardianship_Order_C43A_Draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-C43A-Special-Guardianship-Order-Final.docx
+                filename: Welsh_Special_Guardianship_Order_C43A.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-C47A-Appointment-Of-Guardian-Final.docx
+                filename: Welsh_Appointment_of_a_guardian_C47A.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-C47A-Appointment-Of-Guardian-Draft.docx
+                filename: Welsh_Appointment_of_a_guardian_C47A_draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-C45A-Parental-Responsibility-Order-Final.docx
+                filename: Welsh_Parental_Responsibility_Order_C45A.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-C45A-Parental-Responsibility-Order-Draft.docx
+                filename: Welsh_Parental_Responsibility_Order_C45A_draft.pdf
+                document-generator: docmosis
+
 
     pdf:
         familyCourtImgKey: "familycourt"
