@@ -64,13 +64,13 @@ document:
             -   templateName: PRL-DRAFT-C100-20.docx
                 filename: TestTemplate.pdf
                 document-generator: docmosis
-            -   templateName: PRL-C8-Final-Changes.docx
+            -   templateName: FL-PRL-APP-ENG-C100-C8-Final.docx
                 filename: C8Document.pdf
                 document-generator: docmosis
-            -   templateName: PRL-C100-R1-Final-Document.docx
+            -   templateName: FL-PRL-APP-ENG-C100-Final.docx
                 filename: C100FinalDocument.pdf
                 document-generator: docmosis
-            -   templateName: PRL-C1A.docx
+            -   templateName: FL-PRL-APP-ENG-C100-C1A-Final.docx
                 filename: C1ADocument.pdf
                 document-generator: docmosis
             -   templateName: PRL-C100-R1-Draft-Document.docx
@@ -91,10 +91,10 @@ document:
             -   templateName: FL401-draft.docx
                 filename: Draft-DA-application.pdf
                 document-generator: docmosis
-            -   templateName: FL401-Final.docx
+            -   templateName: FL-PRL-APP-ENG-Fl401-Final.docx
                 filename: DA-application.pdf
                 document-generator: docmosis
-            -   templateName: PRL-DA-C8.docx
+            -   templateName: FL-PRL-APP-ENG-FL401-C8-Final.docx
                 filename: FL401C8Document.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-CON-ENG-01118.docx
