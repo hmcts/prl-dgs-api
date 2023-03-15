@@ -19,6 +19,7 @@ public class ConnectionCloseExtension extends ResponseTransformer {
             .build();
     }
 
+
     @Override
     public String getName() {
         return "ConnectionCloseExtension";
