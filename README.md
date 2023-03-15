@@ -73,6 +73,11 @@ docker-compose up
 As a result the following container(s) will get created and started:
  - long living container for API application exposing port `4007`
 
+#### Troubleshooting
+
+### Managing Preview environment PODs
+Make sure you have added the label 'keep-helm' while creating the PR. Otherwise, add the label and re-trigger the build.
+
 ## Testing
 
 **Integration tests**
