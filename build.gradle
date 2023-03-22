@@ -249,7 +249,7 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: versions.springBoot
     compile group: 'com.puppycrawl.tools', name: 'checkstyle', version:  versions.puppyCrawl
     compile group: 'commons-io', name: 'commons-io', version: versions.commonsIo
-    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.9'
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.15'
 
     compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-ribbon', version: '2.2.5.RELEASE'
     compile (group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign',  version: versions.springCloud) {
