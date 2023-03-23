@@ -238,7 +238,7 @@ dependencies {
     compile group: 'org.springframework.security', name: 'spring-security-crypto', version: versions.springSecurityCrypto
 
    
-    implementation (group: 'org.springframework.boot', name: 'org.springframework.boot:spring-boot-starter-logging'){
+    implementation (group: 'org.springframework.boot', name: 'spring-boot-starter-logging'){
         exclude group: 'org.yaml', module: 'org.yaml'
     }
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap', version: versions.springCloud
