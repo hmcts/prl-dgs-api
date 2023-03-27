@@ -324,7 +324,7 @@ dependencies {
     testImplementation group: 'io.rest-assured', name: 'rest-assured', version: versions.restAssured
     testImplementation group: 'io.rest-assured', name: 'json-path', version: versions.restAssured
     testImplementation group: 'io.rest-assured', name: 'xml-path', version: versions.restAssured
-    testImplementation group: 'org.mockito', name: 'mockito-inline', version: '4.6.1'
+    testImplementation group: 'org.mockito', name: 'mockito-inline', version: '5.2.0'
 }
 
 task fortifyScan(type: JavaExec)  {
