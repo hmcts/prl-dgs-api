@@ -74,11 +74,11 @@ sourceSets {
 }
 
 configurations {
-    integrationTestCompile.extendsFrom testCompile
+    integrationTestCompile.extendsFrom testImplementation
     integrationTestRuntime.extendsFrom testRuntime
     functionalTestCompile.extendsFrom testImplementation
     functionalTestRuntime.extendsFrom testRuntime
-    contractTestCompile.extendsFrom testCompile
+    contractTestCompile.extendsFrom testImplementation
     contractTestRuntime.extendsFrom testRuntime
     smokeTestCompile.extendsFrom testImplementation
     smokeTestRuntime.extendsFrom testRuntime
@@ -313,9 +313,9 @@ dependencies {
 
     runtimeOnly("org.springframework.boot:spring-boot-properties-migrator")
 
-    contractTestCompile group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
-    contractTestCompile group: 'au.com.dius.pact.consumer', name: 'junit5', version: versions.pact_version
-    contractTestCompile group: 'au.com.dius.pact.consumer', name: 'java8', version: versions.pact_version
+    contractTestImplementation group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
+    contractTestImplementation group: 'au.com.dius.pact.consumer', name: 'junit5', version: versions.pact_version
+    contractTestImplementation group: 'au.com.dius.pact.consumer', name: 'java8', version: versions.pact_version
     contractTestRuntime group: 'au.com.dius.pact.consumer', name: 'junit5', version: versions.pact_version
     contractTestRuntime group: 'au.com.dius.pact.consumer', name: 'java8', version: versions.pact_version
 
