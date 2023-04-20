@@ -31,8 +31,16 @@ apply plugin: 'net.serenity-bdd.aggregator'
 
 group = 'uk.gov.hmcts.reform.prl'
 version = '3.0.0'
-sourceCompatibility = JavaVersion.toVersion('17')
-targetCompatibility = JavaVersion.toVersion('17')
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(17)
+  }
+}
+
+jacoco {
+  toolVersion = "0.8.8"
+}
 
 sourceSets {
     integrationTest {
@@ -117,12 +125,17 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
+tasks.withType(JavaExec).configureEach {
+  javaLauncher.set(javaToolchains.launcherFor(java.toolchain))
+}
+
+
 checkstyle {
     toolVersion = '8.29'
     configFile = project(':').file('checkstyle.xml')
+    //getConfigDirectory().set(new File(rootDir, 'config/checkstyle'))
     configProperties = ["suppressionFile": project(':').file('suppressions.xml')]
 }
-
 // make build fail on Checkstyle issues (https://github.com/gradle/gradle/issues/881)
 tasks.withType(Checkstyle).each { checkstyleTask ->
     checkstyleTask.doLast {
@@ -157,7 +170,7 @@ def versions = [
     jacksonDatabind: '2.14.0-rc1',
     apacheLogging: '2.17.2',
     jsonAssert: '1.2.3',
-    junit: '4.13.1',
+    junit: '4.13.2',
     lombok: '1.18.26',
     nimbus: '5.1',
     pdfbox: '2.0.8',
@@ -325,6 +338,7 @@ dependencies {
     testImplementation group: 'io.rest-assured', name: 'json-path', version: versions.restAssured
     testImplementation group: 'io.rest-assured', name: 'xml-path', version: versions.restAssured
     testImplementation group: 'org.mockito', name: 'mockito-inline', version: '5.2.0'
+
 }
 
 task fortifyScan(type: JavaExec)  {
