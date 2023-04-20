@@ -309,9 +309,9 @@ dependencies {
         exclude(module: 'commons-logging')
     }
     testImplementation('org.springframework.security:spring-security-test')
-    implementation('org.springframework.boot:spring-boot-devtools')
+    runtimeOnly('org.springframework.boot:spring-boot-devtools')
 
-    implementation("org.springframework.boot:spring-boot-properties-migrator")
+    runtimeOnly("org.springframework.boot:spring-boot-properties-migrator")
 
     contractTestCompile group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
     contractTestCompile group: 'au.com.dius.pact.consumer', name: 'junit5', version: versions.pact_version
