@@ -133,7 +133,6 @@ tasks.withType(JavaExec).configureEach {
 checkstyle {
     toolVersion = '8.29'
     configFile = project(':').file('checkstyle.xml')
-    //getConfigDirectory().set(new File(rootDir, 'config/checkstyle'))
     configProperties = ["suppressionFile": project(':').file('suppressions.xml')]
 }
 // make build fail on Checkstyle issues (https://github.com/gradle/gradle/issues/881)
