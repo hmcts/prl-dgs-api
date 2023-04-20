@@ -297,21 +297,21 @@ dependencies {
     implementation (group: 'com.launchdarkly', name: 'launchdarkly-java-server-sdk', version: '6.0.6')
 
 
-  annotationProcessor("org.projectlombok:lombok:${versions.lombok}")
+    annotationProcessor("org.projectlombok:lombok:${versions.lombok}")
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
     implementation group: 'org.projectlombok', name: 'lombok', version: versions.lombok
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    testCompile group: 'com.github.tomakehurst', name:'wiremock', version: versions.wiremockVersion
-    testCompile group: 'io.rest-assured', name: 'rest-assured', version: versions.restAssured
-    testCompile group: 'io.rest-assured', name: 'json-path', version: versions.restAssured
-    testCompile group: 'io.rest-assured', name: 'xml-path', version: versions.restAssured
-    testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: versions.springBoot) {
+    testImplementation group: 'com.github.tomakehurst', name:'wiremock', version: versions.wiremockVersion
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: versions.restAssured
+    testImplementation group: 'io.rest-assured', name: 'json-path', version: versions.restAssured
+    testImplementation group: 'io.rest-assured', name: 'xml-path', version: versions.restAssured
+    testImplementation(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: versions.springBoot) {
         exclude(module: 'commons-logging')
     }
-    testCompile('org.springframework.security:spring-security-test')
-    runtime('org.springframework.boot:spring-boot-devtools')
+    testImplementation('org.springframework.security:spring-security-test')
+    implementation('org.springframework.boot:spring-boot-devtools')
 
-    runtime("org.springframework.boot:spring-boot-properties-migrator")
+    implementation("org.springframework.boot:spring-boot-properties-migrator")
 
     contractTestCompile group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
     contractTestCompile group: 'au.com.dius.pact.consumer', name: 'junit5', version: versions.pact_version
@@ -332,7 +332,7 @@ dependencies {
     smokeTestCompile sourceSets.main.runtimeClasspath
     smokeTestCompile sourceSets.test.runtimeClasspath
 
-    testCompile 'com.github.hmcts:fortify-client:1.2.2:all'
+    testImplementation 'com.github.hmcts:fortify-client:1.2.2:all'
     testImplementation group: 'io.rest-assured', name: 'rest-assured', version: versions.restAssured
     testImplementation group: 'io.rest-assured', name: 'json-path', version: versions.restAssured
     testImplementation group: 'io.rest-assured', name: 'xml-path', version: versions.restAssured
