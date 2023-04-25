@@ -232,6 +232,9 @@ document:
             -   templateName: FL-PRL-GOR-ENG-Solicitor-Final-Order.docx
                 filename: Final_order.pdf
                 document-generator: docmosis
+            -   templateName: PRL-GOR-ENG-FL401-LIST-ON-NOTICE-FL404B.docx
+                filename: fl401-list-on-notice-fl404b.pdf
+                document-generator: docmosis
             -   templateName: PRL-GOR-WEL-FL406-Power-Of-Arrest-Draft.docx
                 filename: Welsh_Power_of_arrest_draft.pdf
                 document-generator: docmosis
