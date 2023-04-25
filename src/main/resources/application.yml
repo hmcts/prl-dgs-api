@@ -295,6 +295,13 @@ document:
             -   templateName: PRL-GOR-WEL-C45A-Parental-Responsibility-Order-Draft.docx
                 filename: Welsh_Parental_Responsibility_Order_C45A_draft.pdf
                 document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-Standard-Directions-Order-Draft.docx
+                filename: Standard_Directions_Order_draft.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-Standard-Directions-Order-Final.docx
+                filename: Standard_Directions_Order_Final.pdf
+                document-generator: docmosis
+                
 
 
     pdf:
