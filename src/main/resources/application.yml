@@ -64,13 +64,13 @@ document:
             -   templateName: PRL-DRAFT-C100-20.docx
                 filename: TestTemplate.pdf
                 document-generator: docmosis
-            -   templateName: PRL-C8-Final-Changes.docx
+            -   templateName: FL-PRL-APP-ENG-C100-C8-Final.docx
                 filename: C8Document.pdf
                 document-generator: docmosis
-            -   templateName: PRL-C100-R1-Final-Document.docx
+            -   templateName: FL-PRL-APP-ENG-C100-Final.docx
                 filename: C100FinalDocument.pdf
                 document-generator: docmosis
-            -   templateName: PRL-C1A.docx
+            -   templateName: FL-PRL-APP-ENG-C100-C1A-Final.docx
                 filename: C1ADocument.pdf
                 document-generator: docmosis
             -   templateName: PRL-C100-R1-Draft-Document.docx
@@ -91,10 +91,10 @@ document:
             -   templateName: FL401-draft.docx
                 filename: Draft-DA-application.pdf
                 document-generator: docmosis
-            -   templateName: FL401-Final.docx
+            -   templateName: FL-PRL-APP-ENG-Fl401-Final.docx
                 filename: DA-application.pdf
                 document-generator: docmosis
-            -   templateName: PRL-DA-C8.docx
+            -   templateName: FL-PRL-APP-ENG-FL401-C8-Final.docx
                 filename: FL401C8Document.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-CON-ENG-01118.docx
@@ -109,7 +109,7 @@ document:
             -   templateName: FL-PRL-APP-ENG-01119.docx
                 filename: C1A_DocumentDraft.pdf
                 document-generator: docmosis
-            -   templateName: FL401-Final-Welsh.docx
+            -   templateName: FL-PRL-APP-WEL-FL401-Final.docx
                 filename: DA-Welsh-application.pdf
                 document-generator: docmosis
             -   templateName: FL401-draft-Welsh.docx
@@ -226,6 +226,15 @@ document:
             -   templateName: FL-PRL-GOR-WEL-C7R-Final.docx
                 filename: C7_Document_Welsh.pdf
                 document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-SOLICITOR-C7R-DRAFT.docx
+                filename: C7_Response_Draft_Document.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-SOLICITOR-C7R-FINAL.docx
+                filename: C7_Response_Final_Document.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-RESP-SOLICITOR-C1A-DRAFT.docx
+                filename: C1A_Allegation_Of_Harm_Draft_Document.pdf
+                document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-Solicitor-Draft-Order.docx
                 filename: Draft_an_order.pdf
                 document-generator: docmosis
@@ -298,6 +307,13 @@ document:
             -   templateName: PRL-GOR-ENG-C6a-Notice-of-nonparties-Order-Final.docx
                 filename: Notice_Of_Parties_Order_C6a.pdf
                 document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-Standard-Directions-Order-Draft.docx
+                filename: Standard_Directions_Order_draft.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-Standard-Directions-Order-Final.docx
+                filename: Standard_Directions_Order_Final.pdf
+                document-generator: docmosis
+                
 
 
     pdf:
