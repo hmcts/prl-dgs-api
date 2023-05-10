@@ -304,6 +304,9 @@ document:
             -   templateName: FL-PRL-GOR-ENG-Standard-Directions-Order-Final.docx
                 filename: Standard_Directions_Order_Final.pdf
                 document-generator: docmosis
+            -   templateName: PRL-DOCUMENT-COVER-SHEET.docx
+                filename: PrlPostDocumentCoverSheet.pdf
+                document-generator: docmosis
                 
 
 
