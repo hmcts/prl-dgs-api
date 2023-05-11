@@ -299,16 +299,16 @@ document:
                 filename: Welsh_Parental_Responsibility_Order_C45A_draft.pdf
                 document-generator: docmosis
             -   templateName: PRL-GOR-ENG-C6-Notice-of-parties-Order-Draft.docx
-                filename: Notice_Of_Parties_Order_C6_draft.pdf
+                filename: Notice_Of_Proceeding_Order_C6_draft.pdf
                 document-generator: docmosis
             -   templateName: PRL-GOR-ENG-C6-Notice-of-parties-Order-Final.docx
-                filename: Notice_Of_Parties_Order_C6.pdf
+                filename: Notice_Of_Proceeding_Order_C6.pdf
                 document-generator: docmosis
             -   templateName: PRL-GOR-ENG-C6a-Notice-of-nonparties-Order-Draft.docx
-                filename: Notice_Of_Parties_Order_C6a_draft.pdf
+                filename: Notice_Of_Proceeding_Order_C6a_draft.pdf
                 document-generator: docmosis
             -   templateName: PRL-GOR-ENG-C6a-Notice-of-nonparties-Order-Final.docx
-                filename: Notice_Of_Parties_Order_C6a.pdf
+                filename: Notice_Of_Proceeding_Order_C6a.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-Standard-Directions-Order-Draft.docx
                 filename: Standard_Directions_Order_draft.pdf
@@ -319,7 +319,7 @@ document:
             -   templateName: PRL-DOCUMENT-COVER-SHEET.docx
                 filename: PrlPostDocumentCoverSheet.pdf
                 document-generator: docmosis
-                
+
 
 
     pdf:
