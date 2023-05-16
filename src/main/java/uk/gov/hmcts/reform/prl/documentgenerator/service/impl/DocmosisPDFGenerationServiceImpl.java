@@ -73,7 +73,8 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
             .templateName(templateName)
             .outputName("result.pdf")
             .devMode(docmosisDevMode)
-            .data(templateName.equals("FL-PRL-GOR-ENG-SOLICITOR-C7R-DRAFT.docx") ? templateDataMapper.mapAll(placeholders) : templateDataMapper.map(placeholders))
+            .data(templateName.equals("FL-PRL-GOR-ENG-SOLICITOR-C7R-DRAFT.docx") ? templateDataMapper
+                .mapAll(placeholders) : templateDataMapper.map(placeholders))
             .build();
     }
 
