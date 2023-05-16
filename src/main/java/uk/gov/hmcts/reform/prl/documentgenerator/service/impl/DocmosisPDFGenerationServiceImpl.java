@@ -67,12 +67,13 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
     }
 
     private PdfDocumentRequest request(String templateName, Map<String, Object> placeholders) {
+        log.info("swanky placeholder {}", templateName);
         return PdfDocumentRequest.builder()
             .accessKey(docmosisPdfServiceAccessKey)
             .templateName(templateName)
             .outputName("result.pdf")
             .devMode(docmosisDevMode)
-            .data(templateName.equals("solicitorC7DraftTemplate") ? templateDataMapper.mapAll(placeholders) : templateDataMapper.map(placeholders))
+            .data(templateName.equals("FL-PRL-GOR-ENG-SOLICITOR-C7R-DRAFT.docx") ? templateDataMapper.mapAll(placeholders) : templateDataMapper.map(placeholders))
             .build();
     }
 
