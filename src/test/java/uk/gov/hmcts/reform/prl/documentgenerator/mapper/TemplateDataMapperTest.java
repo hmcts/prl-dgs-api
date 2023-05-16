@@ -73,6 +73,15 @@ public class TemplateDataMapperTest {
     }
 
     @Test
+    public void putAll() {
+        Map<String, Object> caseData = new HashMap<>();
+
+        Map<String, Object> actual = templateDataMapper.mapAll(caseData);
+
+        assertEquals(expectedData, actual);
+    }
+
+    @Test
     public void formatDateFromCCD_exception() {
         String ccdDate = "15-03-2022";
         assertThrows(PDFGenerationException.class, () -> {

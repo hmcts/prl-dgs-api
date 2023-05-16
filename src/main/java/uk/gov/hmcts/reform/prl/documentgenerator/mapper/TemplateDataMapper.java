@@ -34,6 +34,19 @@ public class TemplateDataMapper {
         return data;
     }
 
+    @SuppressWarnings("unchecked")
+    public Map<String, Object> mapAll(Map<String, Object> placeholders) {
+
+        Map<String, Object> data = new HashMap<>();
+
+        // Clone placeholder into data
+        data.putAll(placeholders);
+
+        // Get page assets
+        data.putAll(getPageAssets());
+        return data;
+    }
+
     private Map<String, Object> getPageAssets() {
         Map<String, Object> pageAssets = new HashMap<>();
         pageAssets.put(docmosisBasePdfConfig.getDisplayTemplateKey(), docmosisBasePdfConfig.getDisplayTemplateVal());
