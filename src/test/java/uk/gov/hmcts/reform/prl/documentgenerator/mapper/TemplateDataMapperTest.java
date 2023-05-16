@@ -76,7 +76,7 @@ public class TemplateDataMapperTest {
     public void putAll() {
         Map<String, Object> caseData = new HashMap<>();
 
-        Map<String, Object> actual = templateDataMapper.mapAll(caseData);
+        Map<String, Object> actual = templateDataMapper.map(caseData);
 
         assertEquals(expectedData, actual);
     }
