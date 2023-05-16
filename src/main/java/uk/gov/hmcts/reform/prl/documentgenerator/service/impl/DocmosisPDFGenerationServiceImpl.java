@@ -67,7 +67,6 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
     }
 
     private PdfDocumentRequest request(String templateName, Map<String, Object> placeholders) {
-        log.info("swanky placeholder {}", templateName);
         return PdfDocumentRequest.builder()
             .accessKey(docmosisPdfServiceAccessKey)
             .templateName(templateName)
