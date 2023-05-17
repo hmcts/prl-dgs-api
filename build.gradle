@@ -31,8 +31,16 @@ apply plugin: 'net.serenity-bdd.aggregator'
 
 group = 'uk.gov.hmcts.reform.prl'
 version = '3.0.0'
-sourceCompatibility = 11
-targetCompatibility = 11
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(17)
+  }
+}
+
+jacoco {
+  toolVersion = "0.8.8"
+}
 
 sourceSets {
     integrationTest {
@@ -66,11 +74,11 @@ sourceSets {
 }
 
 configurations {
-    integrationTestCompile.extendsFrom testCompile
+    integrationTestCompile.extendsFrom testImplementation
     integrationTestRuntime.extendsFrom testRuntime
     functionalTestCompile.extendsFrom testImplementation
     functionalTestRuntime.extendsFrom testRuntime
-    contractTestCompile.extendsFrom testCompile
+    contractTestCompile.extendsFrom testImplementation
     contractTestRuntime.extendsFrom testRuntime
     smokeTestCompile.extendsFrom testImplementation
     smokeTestRuntime.extendsFrom testRuntime
@@ -98,7 +106,7 @@ repositories {
     mavenLocal()
     jcenter()
 
-    maven { url "http://repo.maven.apache.org/maven2" }
+    maven { url "https://repo.maven.apache.org/maven2" }
     maven { url 'https://repo.spring.io/libs-milestone' }
     maven { url 'https://jitpack.io' }
 }
@@ -117,12 +125,16 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
+tasks.withType(JavaExec).configureEach {
+  javaLauncher.set(javaToolchains.launcherFor(java.toolchain))
+}
+
+
 checkstyle {
     toolVersion = '8.29'
     configFile = project(':').file('checkstyle.xml')
     configProperties = ["suppressionFile": project(':').file('suppressions.xml')]
 }
-
 // make build fail on Checkstyle issues (https://github.com/gradle/gradle/issues/881)
 tasks.withType(Checkstyle).each { checkstyleTask ->
     checkstyleTask.doLast {
@@ -157,7 +169,7 @@ def versions = [
     jacksonDatabind: '2.14.0-rc1',
     apacheLogging: '2.17.2',
     jsonAssert: '1.2.3',
-    junit: '4.13.1',
+    junit: '4.13.2',
     lombok: '1.18.26',
     nimbus: '5.1',
     pdfbox: '2.0.8',
@@ -226,16 +238,16 @@ dependencies {
 
   testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '3.1.1'
 
-    compile (group: 'commons-beanutils', name: 'commons-beanutils', version: versions.commonsBeanUtils) {
+  implementation (group: 'commons-beanutils', name: 'commons-beanutils', version: versions.commonsBeanUtils) {
         force = true
     }
 
-    compile (group:  'org.springframework.security', name: 'spring-security-rsa', version: versions.spring_security_rsa) {
+  implementation (group:  'org.springframework.security', name: 'spring-security-rsa', version: versions.spring_security_rsa) {
         force = true
         exclude group: 'org.springframework.security', module: 'spring-security-crypto'
     }
 
-    compile group: 'org.springframework.security', name: 'spring-security-crypto', version: versions.springSecurityCrypto
+  implementation group: 'org.springframework.security', name: 'spring-security-crypto', version: versions.springSecurityCrypto
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap', version: versions.springCloud
@@ -243,16 +255,16 @@ dependencies {
 
     implementation group: 'com.github.hmcts', name:'ccd-case-document-am-client', version: versions.ccdCaseDocumentAmClient
 
-    compile(group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: versions.apacheLogging)
-    compile(group: 'org.apache.logging.log4j', name: 'log4j-api', version: versions.apacheLogging)
+    implementation(group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: versions.apacheLogging)
+    implementation(group: 'org.apache.logging.log4j', name: 'log4j-api', version: versions.apacheLogging)
 
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: versions.springBoot
-    compile group: 'com.puppycrawl.tools', name: 'checkstyle', version:  versions.puppyCrawl
-    compile group: 'commons-io', name: 'commons-io', version: versions.commonsIo
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: versions.springBoot
+    implementation group: 'com.puppycrawl.tools', name: 'checkstyle', version:  versions.puppyCrawl
+    implementation group: 'commons-io', name: 'commons-io', version: versions.commonsIo
     implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.9'
 
-    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-ribbon', version: '2.2.5.RELEASE'
-    compile (group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign',  version: versions.springCloud) {
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-ribbon', version: '2.2.5.RELEASE'
+    implementation (group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign',  version: versions.springCloud) {
         exclude group: 'io.reactivex', module: 'io.reactivex'
         exclude group: 'io.reactivex', module: 'rxnetty'
         exclude group: 'io.reactivex', module: 'rxnetty-contexts'
@@ -260,16 +272,16 @@ dependencies {
         exclude group: 'org.bouncycastle'
     }
 
-    compile group: 'io.github.openfeign', name: 'feign-httpclient', version: versions.feignHttpClient
-    compile group: 'org.springframework.hateoas', name: 'spring-hateoas', version: versions.springHateoas
-    compile group: 'org.apache.commons', name: 'commons-lang3', version : versions.commonsLang3
+    implementation group: 'io.github.openfeign', name: 'feign-httpclient', version: versions.feignHttpClient
+    implementation group: 'org.springframework.hateoas', name: 'spring-hateoas', version: versions.springHateoas
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version : versions.commonsLang3
 
-    compile group: 'uk.gov.hmcts.reform', name: 'logging', version: versions.reformsJavaLogging
-    compile group: 'uk.gov.hmcts.reform', name: 'logging-appinsights', version: versions.reformsJavaLogging
-    compile group: 'uk.gov.hmcts.reform', name: 'logging-spring', version: versions.reformsJavaLogging
-    compile group: 'uk.gov.hmcts.reform', name: 'logging-httpcomponents', version: versions.reformsJavaLogging
-    compile group: 'uk.gov.hmcts.reform', name: 'properties-volume-spring-boot-starter', version: versions.reformPropertiesVolume
-    compile (group: 'uk.gov.hmcts.reform', name:'service-auth-provider-client', version: versions.serviceTokenGenerator) {
+    implementation group: 'uk.gov.hmcts.reform', name: 'logging', version: versions.reformsJavaLogging
+    implementation group: 'uk.gov.hmcts.reform', name: 'logging-appinsights', version: versions.reformsJavaLogging
+    implementation group: 'uk.gov.hmcts.reform', name: 'logging-spring', version: versions.reformsJavaLogging
+    implementation group: 'uk.gov.hmcts.reform', name: 'logging-httpcomponents', version: versions.reformsJavaLogging
+    implementation group: 'uk.gov.hmcts.reform', name: 'properties-volume-spring-boot-starter', version: versions.reformPropertiesVolume
+    implementation (group: 'uk.gov.hmcts.reform', name:'service-auth-provider-client', version: versions.serviceTokenGenerator) {
         exclude group: 'io.reactivex', module: 'io.reactivex'
         exclude group: 'io.reactivex', module: 'rxnetty'
         exclude group: 'io.reactivex', module: 'rxnetty-contexts'
@@ -277,33 +289,33 @@ dependencies {
         exclude group: 'org.bouncycastle'
     }
 
-    compile group: 'junit', name: 'junit', version: versions.junit
-    compile group: 'org.pitest', name: 'pitest', version: versions.pitest
-    compile group:'info.solidsoft.gradle.pitest', name: 'gradle-pitest-plugin', version: versions.gradlePitest
-    compile group:'org.codehaus.sonar-plugins', name:'sonar-pitest-plugin', version: versions.sonarPitest
-    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
-    compile (group: 'com.launchdarkly', name: 'launchdarkly-java-server-sdk', version: '6.0.6')
+    implementation group: 'junit', name: 'junit', version: versions.junit
+    implementation group: 'org.pitest', name: 'pitest', version: versions.pitest
+    implementation group:'info.solidsoft.gradle.pitest', name: 'gradle-pitest-plugin', version: versions.gradlePitest
+    implementation group:'org.codehaus.sonar-plugins', name:'sonar-pitest-plugin', version: versions.sonarPitest
+    implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
+    implementation (group: 'com.launchdarkly', name: 'launchdarkly-java-server-sdk', version: '6.0.6')
 
 
-  annotationProcessor("org.projectlombok:lombok:${versions.lombok}")
+    annotationProcessor("org.projectlombok:lombok:${versions.lombok}")
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
     implementation group: 'org.projectlombok', name: 'lombok', version: versions.lombok
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    testCompile group: 'com.github.tomakehurst', name:'wiremock', version: versions.wiremockVersion
-    testCompile group: 'io.rest-assured', name: 'rest-assured', version: versions.restAssured
-    testCompile group: 'io.rest-assured', name: 'json-path', version: versions.restAssured
-    testCompile group: 'io.rest-assured', name: 'xml-path', version: versions.restAssured
-    testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: versions.springBoot) {
+    testImplementation group: 'com.github.tomakehurst', name:'wiremock', version: versions.wiremockVersion
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: versions.restAssured
+    testImplementation group: 'io.rest-assured', name: 'json-path', version: versions.restAssured
+    testImplementation group: 'io.rest-assured', name: 'xml-path', version: versions.restAssured
+    testImplementation(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: versions.springBoot) {
         exclude(module: 'commons-logging')
     }
-    testCompile('org.springframework.security:spring-security-test')
-    runtime('org.springframework.boot:spring-boot-devtools')
+    testImplementation('org.springframework.security:spring-security-test')
+    runtimeOnly('org.springframework.boot:spring-boot-devtools')
 
-    runtime("org.springframework.boot:spring-boot-properties-migrator")
+    runtimeOnly("org.springframework.boot:spring-boot-properties-migrator")
 
-    contractTestCompile group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
-    contractTestCompile group: 'au.com.dius.pact.consumer', name: 'junit5', version: versions.pact_version
-    contractTestCompile group: 'au.com.dius.pact.consumer', name: 'java8', version: versions.pact_version
+    contractTestImplementation group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
+    contractTestImplementation group: 'au.com.dius.pact.consumer', name: 'junit5', version: versions.pact_version
+    contractTestImplementation group: 'au.com.dius.pact.consumer', name: 'java8', version: versions.pact_version
     contractTestRuntime group: 'au.com.dius.pact.consumer', name: 'junit5', version: versions.pact_version
     contractTestRuntime group: 'au.com.dius.pact.consumer', name: 'java8', version: versions.pact_version
 
@@ -320,11 +332,12 @@ dependencies {
     smokeTestCompile sourceSets.main.runtimeClasspath
     smokeTestCompile sourceSets.test.runtimeClasspath
 
-    testCompile 'com.github.hmcts:fortify-client:1.2.2:all'
+    testImplementation 'com.github.hmcts:fortify-client:1.2.2:all'
     testImplementation group: 'io.rest-assured', name: 'rest-assured', version: versions.restAssured
     testImplementation group: 'io.rest-assured', name: 'json-path', version: versions.restAssured
     testImplementation group: 'io.rest-assured', name: 'xml-path', version: versions.restAssured
     testImplementation group: 'org.mockito', name: 'mockito-inline', version: '5.2.0'
+
 }
 
 task fortifyScan(type: JavaExec)  {
