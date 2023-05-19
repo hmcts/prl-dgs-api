@@ -73,7 +73,7 @@ public class TemplateDataMapperTest {
     }
 
     @Test
-    public void putAll() {
+    public void putAllDataInmMap() {
         Map<String, Object> caseData = new HashMap<>();
 
         Map<String, Object> actual = templateDataMapper.map(caseData);
