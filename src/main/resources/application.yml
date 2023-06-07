@@ -235,6 +235,9 @@ document:
             -   templateName: FL-PRL-GOR-ENG-RESP-SOLICITOR-C1A-DRAFT.docx
                 filename: C1A_Allegation_Of_Harm_Draft_Document.pdf
                 document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-RESP-SOLICITOR-C1A-FINAL.docx
+                filename: C1A_Allegation_Of_Harm_Final_Document.pdf
+                document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-Solicitor-Draft-Order.docx
                 filename: Draft_an_order.pdf
                 document-generator: docmosis
