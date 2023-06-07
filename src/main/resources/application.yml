@@ -340,8 +340,21 @@ document:
             -   templateName: PRL-GOR-WEL-C6a-Notice-of-nonparties-Order-Final.docx
                 filename: Welsh_Notice_Of_Proceeding_Order_C6a.pdf
                 document-generator: docmosis
-
-
+            -   templateName: PRL-ENG-ANNEX-Y.docx
+                filename: Anexure-y.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ENG-ANNEX-Z.docx
+                filename: Anexure-z.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ENG-MEDIATION-VOUCHER.docx
+                filename: Mediation_voucher.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ENG-SAFETY-PROTECTION.docx
+                filename: SafetyProtection.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ENG-FL416.docx
+                filename: Fl416.pdf
+                document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"

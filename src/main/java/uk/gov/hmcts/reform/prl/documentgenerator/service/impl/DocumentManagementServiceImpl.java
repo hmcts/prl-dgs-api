@@ -109,6 +109,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
             .mimeType(uploadedDocument.mimeType)
             .hashToken(uploadedDocument.hashToken)
             .binaryUrl(uploadedDocument.links.binary.href)
+            .docName(fileName)
             .build();
     }
 
