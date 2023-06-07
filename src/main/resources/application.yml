@@ -355,7 +355,6 @@ document:
             -   templateName: PRL-ENG-FL416.docx
                 filename: Fl416.pdf
                 document-generator: docmosis
-
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"
