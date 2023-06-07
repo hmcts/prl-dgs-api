@@ -340,7 +340,7 @@ document:
             -   templateName: PRL-GOR-WEL-C6a-Notice-of-nonparties-Order-Final.docx
                 filename: Welsh_Notice_Of_Proceeding_Order_C6a.pdf
                 document-generator: docmosis
-            -  templateName: PRL-ENG-ANNEX-Y.docx
+            -   templateName: PRL-ENG-ANNEX-Y.docx
                 filename: Anexure-y.pdf
                 document-generator: docmosis
             -   templateName: PRL-ENG-ANNEX-Z.docx
