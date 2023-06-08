@@ -343,6 +343,12 @@ document:
             -   templateName: PRL-GOR-WEL-C6a-Notice-of-nonparties-Order-Final.docx
                 filename: Welsh_Notice_Of_Proceeding_Order_C6a.pdf
                 document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-RES-C8-DRAFT.docx
+                filename: C8DocumentDraft.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-RES-C8-FINAL.docx
+                filename: C8Document.pdf
+                document-generator: docmosis
 
 
     pdf:
