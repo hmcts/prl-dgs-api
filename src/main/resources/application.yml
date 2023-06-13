@@ -349,8 +349,21 @@ document:
             -   templateName: FL-PRL-GOR-ENG-RES-C8-FINAL.docx
                 filename: C8Document.pdf
                 document-generator: docmosis
-
-
+            -   templateName: PRL-ENG-ANNEX-Y.docx
+                filename: Anexure-y.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ENG-ANNEX-Z.docx
+                filename: Anexure-z.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ENG-MEDIATION-VOUCHER.docx
+                filename: Mediation_voucher.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ENG-SAFETY-PROTECTION.docx
+                filename: SafetyProtection.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ENG-FL416.docx
+                filename: Fl416.pdf
+                document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"
