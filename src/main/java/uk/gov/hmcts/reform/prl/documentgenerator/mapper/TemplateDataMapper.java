@@ -25,9 +25,16 @@ public class TemplateDataMapper {
 
     @SuppressWarnings("unchecked")
     public Map<String, Object> map(Map<String, Object> placeholders) {
-
+        Map<String, Object> data = new HashMap<>();
         // Get case data
-        Map<String, Object> data = (Map<String, Object>) ((Map) placeholders.get(CASE_DETAILS)).get(CASE_DATA);
+        if (placeholders.containsKey(CASE_DETAILS)) {
+            Map<String, Object> caseDetails = (Map) placeholders.get(CASE_DETAILS);
+            if (caseDetails.containsKey(CASE_DATA)) {
+                data = (Map<String, Object>) caseDetails.get(CASE_DATA);
+            }
+        } else {
+            data.putAll(placeholders);
+        }
 
         // Get page assets
         data.putAll(getPageAssets());

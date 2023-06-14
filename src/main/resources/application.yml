@@ -253,6 +253,9 @@ document:
             -   templateName: FL-PRL-GOR-ENG-Solicitor-Final-Order.docx
                 filename: Final_order.pdf
                 document-generator: docmosis
+            -   templateName: PRL-GOR-ENG-FL401-LIST-ON-NOTICE-FL404B.docx
+                filename: fl401-list-on-notice-fl404b.pdf
+                document-generator: docmosis
             -   templateName: PRL-GOR-WEL-FL406-Power-Of-Arrest-Draft.docx
                 filename: Welsh_Power_of_arrest_draft.pdf
                 document-generator: docmosis
@@ -307,11 +310,62 @@ document:
             -   templateName: PRL-GOR-WEL-C45A-Parental-Responsibility-Order-Draft.docx
                 filename: Welsh_Parental_Responsibility_Order_C45A_draft.pdf
                 document-generator: docmosis
+            -   templateName: PRL-GOR-ENG-C6-Notice-of-parties-Order-Draft.docx
+                filename: Notice_Of_Proceeding_Order_C6_draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-ENG-C6-Notice-of-parties-Order-Final.docx
+                filename: Notice_Of_Proceeding_Order_C6.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-ENG-C6a-Notice-of-nonparties-Order-Draft.docx
+                filename: Notice_Of_Proceeding_Order_C6a_draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-ENG-C6a-Notice-of-nonparties-Order-Final.docx
+                filename: Notice_Of_Proceeding_Order_C6a.pdf
+                document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-Standard-Directions-Order-Draft.docx
                 filename: Standard_Directions_Order_draft.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-Standard-Directions-Order-Final.docx
                 filename: Standard_Directions_Order_Final.pdf
+                document-generator: docmosis
+            -   templateName: PRL-DOCUMENT-COVER-SHEET.docx
+                filename: PrlPostDocumentCoverSheet.pdf
+                document-generator: docmosis
+            -   templateName: PRL-WEL-DOCUMENT-COVER-SHEET.docx
+                filename: WelshPrlPostDocumentCoverSheet.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-Standard-Directions-Order-Draft.docx
+                filename: Welsh_Standard_Directions_Order_draft.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-Standard-Directions-Order-Final.docx
+                filename: Welsh_Standard_Directions_Order_Final.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-C6-Notice-of-parties-Order-Draft.docx
+                filename: Welsh_Notice_Of_Proceeding_Order_C6_draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-C6-Notice-of-parties-Order-Final.docx
+                filename: Welsh_Notice_Of_Proceeding_Order_C6.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-C6a-Notice-of-nonparties-Order-Draft.docx
+                filename: Welsh_Notice_Of_Proceeding_Order_C6a_draft.pdf
+                document-generator: docmosis
+            -   templateName: PRL-GOR-WEL-C6a-Notice-of-nonparties-Order-Final.docx
+                filename: Welsh_Notice_Of_Proceeding_Order_C6a.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ENG-ANNEX-Y.docx
+                filename: Anexure-y.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ENG-ANNEX-Z.docx
+                filename: Anexure-z.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ENG-MEDIATION-VOUCHER.docx
+                filename: Mediation_voucher.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ENG-SAFETY-PROTECTION.docx
+                filename: SafetyProtection.pdf
+                document-generator: docmosis
+            -   templateName: PRL-ENG-FL416.docx
+                filename: Fl416.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-CON-ENG-01118-V2.docx
                 filename: C8Document.pdf

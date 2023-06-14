@@ -192,6 +192,7 @@ public class DgsApiSmokeTests {
             .hashToken(TEST_HASH_TOKEN)
             .mimeType(MIME_TYPE)
             .binaryUrl(BINARY_URL)
+            .docName("TestTemplate.pdf") //added for filename
             .build();
 
         return generatedDocumentInfo;
