@@ -364,6 +364,12 @@ document:
             -   templateName: PRL-ENG-FL416.docx
                 filename: Fl416.pdf
                 document-generator: docmosis
+            -   templateName: PRL-LET-ENG-RE5.docx
+                filename: cover_letter_access_code.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-ENG-AP6.docx
+                filename: cover_letter_access_code.pdf
+                document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"
