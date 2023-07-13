@@ -379,6 +379,21 @@ document:
             -   templateName: PRL-LET-ENG-AP8.docx
                 filename: cover_letter_access_code.pdf
                 document-generator: docmosis
+            -   templateName: PRL-LET-ENG-FL401-RE1.docx
+                filename: cover_letter_access_code.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-ENG-FL401-RE2.docx
+                filename: cover_letter_access_code.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-ENG-FL401-RE3.docx
+                filename: cover_letter_access_code.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-ENG-FL401-RE4.docx
+                filename: cover_letter_access_code.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-ENG-C100-RE6.docx
+                filename: cover_letter_access_code.pdf
+                document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"
