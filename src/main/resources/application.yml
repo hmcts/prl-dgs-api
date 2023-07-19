@@ -391,7 +391,7 @@ document:
             -   templateName: FL-PRL-APP-ENG-C1A-Final-V2.docx
                 filename: C1ADocument.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-APP-WEL-C1A-DRAFT-V2.docx
+            -   templateName: FL-PRL-APP-ENG-C1A-DRAFT-V2.docx
                 filename: C1A_DocumentDraft.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-APP-WEL-C1A-DRAFT-V2.docx
