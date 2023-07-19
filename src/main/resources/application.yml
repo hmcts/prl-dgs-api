@@ -79,13 +79,13 @@ document:
             -   templateName: PRL-C100-R1-Draft-Document.docx
                 filename: C100DraftDocument.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-APP-ENG-C100-Draft-Final-V2.docx
+            -   templateName: FL-PRL-APP-ENG-C100-DRAFT-V2.docx
                 filename: C100DraftDocument.pdf
                 document-generator: docmosis
             -   templateName: PRL-C100-R1-Draft-WelshLang.docx
                 filename: C100DraftWelshDocument.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-APP-WEL-C100-Draft-Final-V2.docx
+            -   templateName: FL-PRL-APP-WEL-C100-Draft-V2.docx
                 filename: C100DraftWelshDocument.pdf
                 document-generator: docmosis
             -   templateName: PRL-C100-R1-Final-WelshLang.docx
@@ -376,28 +376,28 @@ document:
             -   templateName: PRL-ENG-FL416.docx
                 filename: Fl416.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-CON-ENG-01118-V2.docx
+            -   templateName: FL-PRL-CON-ENG-C8-Final-V2.docx
                 filename: C8Document.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-CON-ENG-DRAFT-01118-V2.docx
+            -   templateName: FL-PRL-CON-ENG-C8-Draft-V2.docx
                 filename: C8DocumentDraft.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-CON-WEL-DRAFT-01122-V2.docx
+            -   templateName: FL-PRL-CON-WEL-C8-Draft-V2.docx
                 filename: C8Document_Draft_Welsh.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-CON-WEL-01122-V2.docx
+            -   templateName: FL-PRL-CON-WEL-C8-Final-V2.docx
                 filename: C8Document_Welsh.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-APP-ENG-C1A-01119-V2.docx
+            -   templateName: FL-PRL-APP-ENG-C1A-Final-V2.docx
                 filename: C1ADocument.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-APP-ENG-C1A-DRAFT-01119-V2.docx
+            -   templateName: FL-PRL-APP-WEL-C1A-DRAFT-V2.docx
                 filename: C1A_DocumentDraft.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-APP-WEL-C1A-DRAFT-01119-V2.docx
+            -   templateName: FL-PRL-APP-WEL-C1A-DRAFT-V2.docx
                 filename: C1A_Document_Draft_Welsh.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-APP-WEL-C1A-01119-V2.docx
+            -   templateName: FL-PRL-APP-WEL-C1A-Final-V2.docx
                 filename: C1AWelshDocument.pdf
                 document-generator: docmosis
             -   templateName: PRL-LET-ENG-RE5.docx
