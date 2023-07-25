@@ -16,6 +16,7 @@ java:
           - idam-solicitor-password
           - system-update-user-username
           - system-update-user-password
+          - app-insights-connection-string
     environment:
       MANAGEMENT_ENDPOINT_HEALTH_CACHE_TIMETOLIVE: "30000"
       DOCMOSIS_SERVICE_DEV_MODE_FLAG: "true"
