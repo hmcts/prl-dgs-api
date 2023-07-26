@@ -30,6 +30,7 @@
         <cve>CVE-2022-1471</cve>
         <cve>CVE-2023-20860</cve>
         <cve>CVE-2023-20873</cve>
+        <cve>CVE-2023-34036</cve>
     </suppress>
     <suppress>
         <notes>Temporary Suppression</notes>
