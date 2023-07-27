@@ -45,10 +45,10 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
         classes = {DocumentGeneratorApplication.class, HealthCheckITest.LocalRibbonClientConfiguration.class})
 @PropertySource(value = "classpath:application.properties")
 @TestPropertySource(properties = {
-        "management.endpoint.health.cache.time-to-live=0",
-        "feign.hystrix.enabled=true",
-        "eureka.client.enabled=false",
-    })
+    "management.endpoint.health.cache.time-to-live=0",
+    "feign.hystrix.enabled=true",
+    "eureka.client.enabled=false",
+})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 public class HealthCheckITest {
 
