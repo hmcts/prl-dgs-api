@@ -32,16 +32,16 @@ public class DocumentGeneratorController {
     @Operation(description = "Generate PDF document based on the supplied template name and placeholder "
             + "texts and saves it in the evidence management.", tags = {"Document Generation"})
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "PDF was generated successfully and stored in the "
+        @ApiResponse(responseCode = "200", description = "PDF was generated successfully and stored in the "
                     + "evidence management. Returns the url to the stored document.", content =
             @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))),
-            @ApiResponse(responseCode = "400", description = "Returned when input parameters are invalid "
+        @ApiResponse(responseCode = "400", description = "Returned when input parameters are invalid "
                     + "or template not found", content =
             @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))),
-            @ApiResponse(responseCode = "503", description = "Returned when the PDF Service or Evidence "
+        @ApiResponse(responseCode = "503", description = "Returned when the PDF Service or Evidence "
                     +  "Management Client Api cannot be reached", content =
             @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))),
-            @ApiResponse(responseCode = "500", description = "Returned when there is an unknown server error",
+        @ApiResponse(responseCode = "500", description = "Returned when there is an unknown server error",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class)))
         })
     @PostMapping("/generatePDF")
@@ -63,16 +63,16 @@ public class DocumentGeneratorController {
     @Operation(description = "Generate draft PDF document based on the supplied template name and placeholder texts "
             + "and saves it in the evidence management.", tags = {"Document Generation"})
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "PDF was generated successfully and stored in the "
+        @ApiResponse(responseCode = "200", description = "PDF was generated successfully and stored in the "
                     + "evidence management. Returns the url to the stored document.",content =
             @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))),
-            @ApiResponse(responseCode = "400", description = "Returned when input parameters are invalid or "
+        @ApiResponse(responseCode = "400", description = "Returned when input parameters are invalid or "
                     + "template not found", content =
             @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))),
-            @ApiResponse(responseCode = "503", description = "Returned when the PDF Service or Evidence Management "
+        @ApiResponse(responseCode = "503", description = "Returned when the PDF Service or Evidence Management "
                     + "Client Api cannot be reached", content =
             @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))),
-            @ApiResponse(responseCode = "500", description = "Returned when there is an unknown server error",
+        @ApiResponse(responseCode = "500", description = "Returned when there is an unknown server error",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class)))
         })
     @PostMapping("/generateDraftPDF")
