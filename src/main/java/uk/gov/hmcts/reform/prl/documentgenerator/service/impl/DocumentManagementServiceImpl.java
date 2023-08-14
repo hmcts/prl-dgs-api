@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
-import com.launchdarkly.shaded.com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -77,8 +76,6 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
         }
 
         log.info("Generating document for case Id {}", caseId);
-
-        log.info("Generating document for case Id {} {} {}", caseId,templateName, new Gson().toJson(placeholders));
 
         placeholders.put(
             CURRENT_DATE_KEY,
