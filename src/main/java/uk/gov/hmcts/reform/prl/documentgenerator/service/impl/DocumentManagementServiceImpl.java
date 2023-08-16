@@ -57,7 +57,8 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
 
     @Override
     public GeneratedDocumentInfo generateAndStoreDraftDocument(String templateName,
-                                                               Map<String, Object> placeholders, String authorizationToken) {
+                                                               Map<String, Object> placeholders,
+                                                               String authorizationToken) {
         String fileName = templatesConfiguration.getFileNameByTemplateName(templateName);
         if (!fileName.startsWith(DRAFT_PREFIX)) {
             fileName = String.join("", DRAFT_PREFIX, fileName);
@@ -98,7 +99,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
             serviceAuthToken,
             "PRLAPPS",
             "PRIVATELAW",
-            Arrays.asList( new InMemoryMultipartFile("files", fileName, APPLICATION_PDF_VALUE, document
+            Arrays.asList(new InMemoryMultipartFile("files", fileName, APPLICATION_PDF_VALUE, document
             ))
         );
 
