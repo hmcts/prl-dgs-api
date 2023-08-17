@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -80,15 +81,35 @@ public class DocumentGeneratorController {
         @RequestHeader(value = "Authorization", required = false)
             String authorizationToken,
         @Parameter(name = "GenerateDocumentRequest",description = "JSON object containing the "
-                + "templateName and the placeholder text map", required = true)
+            + "templateName and the placeholder text map", required = true)
         @RequestBody
         @Valid
-            GenerateDocumentRequest templateData) {
+        GenerateDocumentRequest templateData) {
         //This service is internal to Divorce system. No need to do service authentication here
         log.info("Document generation requested with templateName [{}], placeholders map of size[{}]",
-                templateData.getTemplate(), templateData.getValues().size());
+                 templateData.getTemplate(), templateData.getValues().size()
+        );
         return documentManagementService.generateAndStoreDraftDocument(templateData.getTemplate(),
-                templateData.getValues(), authorizationToken);
+                                                                       templateData.getValues(), authorizationToken
+        );
+    }
+
+    @PostMapping("/convertDocToPdf")
+    public GeneratedDocumentInfo convertDocumentToPdf(
+        @RequestHeader(value = "Authorization", required = false)
+        String authorizationToken,
+        @Parameter(name = "GenerateDocumentRequest", description = "JSON object containing the "
+            + "templateName and the placeholder text map", required = true)
+        @RequestBody
+        @Valid
+        GenerateDocumentRequest templateData,
+        @PathVariable("fileName") String fileName) {
+        //This service is internal to Divorce system. No need to do service authentication here
+        log.info("Document generation requested with templateName [{}], placeholders map of size[{}]",
+                 templateData.getTemplate(), templateData.getValues().size()
+        );
+        return documentManagementService.converToPdf(
+            templateData.getValues(), authorizationToken, fileName);
     }
 
 }
