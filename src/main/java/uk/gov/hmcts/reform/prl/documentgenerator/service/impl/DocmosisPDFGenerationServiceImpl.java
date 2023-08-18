@@ -101,7 +101,7 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
             fileMap.add(CONTENT_DISPOSITION, contentDisposition.toString());
 
             final MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
-            body.add("file", new HttpEntity<>(placeholders, fileMap));
+            body.add("file", new HttpEntity<>(placeholders.get("fileName"), fileMap));
             body.add("accessKey", docmosisPdfServiceAccessKey);
 
             final HttpHeaders headers = new HttpHeaders();
