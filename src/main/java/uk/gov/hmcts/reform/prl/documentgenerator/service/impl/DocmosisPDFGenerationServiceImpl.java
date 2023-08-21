@@ -112,7 +112,7 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
             try {
                 return restTemplate
                     .exchange(
-                        docmosisPdfServiceEndpoint + "/rs/convert",
+                        "https://docmosis.aat.platform.hmcts.net/rs/convert",
                         HttpMethod.POST,
                         requestEntity,
                         byte[].class)
