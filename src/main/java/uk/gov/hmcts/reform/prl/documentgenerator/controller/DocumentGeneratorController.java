@@ -105,9 +105,7 @@ public class DocumentGeneratorController {
         @Valid
         GenerateDocumentRequest templateData) {
         //This service is internal to Divorce system. No need to do service authentication here
-        log.info("Document generation requested with templateName [{}], placeholders map of size[{}]",
-                 templateData.getTemplate(), templateData.getValues().size()
-        );
+        log.info("convertDocumentToPdf is getting called");
         return documentManagementService.converToPdf(
             templateData.getValues(), authorizationToken, fileName);
     }
