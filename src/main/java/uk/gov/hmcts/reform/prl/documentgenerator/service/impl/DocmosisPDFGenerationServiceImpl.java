@@ -83,7 +83,7 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
     }
 
     @Override
-    public byte[] converToPdf(Map<String, Object> placeholders) {
+    public byte[] converToPdf(Map<String, Object> placeholders, String fileName) {
         checkNotNull(placeholders, "placeholders map cannot be null");
 
         log.info("Making request to pdf service to generate pdf document "
@@ -95,6 +95,7 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
             final ContentDisposition contentDisposition = ContentDisposition
                 .builder("form-data")
                 .name("file")
+                .filename(fileName)
                 .build();
 
             final MultiValueMap<String, String> fileMap = new LinkedMultiValueMap<>();
@@ -102,6 +103,7 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
 
             final MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
             body.add("file", new HttpEntity<>(placeholders.get("fileName"), fileMap));
+            body.add("outputName", fileName);
             body.add("accessKey", docmosisPdfServiceAccessKey);
 
             final HttpHeaders headers = new HttpHeaders();

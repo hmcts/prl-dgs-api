@@ -135,7 +135,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
             placeholders.size()
         );
 
-        byte[] generatedDocument = generatorService.converToPdf(placeholders);
+        byte[] generatedDocument = generatorService.converToPdf(placeholders, fileName);
         return storeDocument(generatedDocument, authorizationToken, fileName);
     }
 }
