@@ -94,7 +94,7 @@ public class DocumentGeneratorController {
         );
     }
 
-    @PostMapping("/convertDocToPdf")
+    @PostMapping("/convertDocToPdf/{fileName}")
     public GeneratedDocumentInfo convertDocumentToPdf(
         @PathVariable("fileName") String fileName,
         @RequestHeader(value = "Authorization", required = false)
