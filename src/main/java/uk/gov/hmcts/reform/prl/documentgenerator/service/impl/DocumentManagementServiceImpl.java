@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
@@ -136,6 +137,6 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
         );
 
         byte[] generatedDocument = generatorService.converToPdf(placeholders, fileName);
-        return storeDocument(generatedDocument, authorizationToken, fileName);
+        return storeDocument(generatedDocument, authorizationToken, FilenameUtils.getBaseName(fileName) + ".pdf");
     }
 }
