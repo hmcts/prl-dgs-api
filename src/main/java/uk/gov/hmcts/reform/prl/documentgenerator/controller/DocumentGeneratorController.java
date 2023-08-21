@@ -103,8 +103,7 @@ public class DocumentGeneratorController {
             + "templateName and the placeholder text map", required = true)
         @RequestBody
         @Valid
-        GenerateDocumentRequest templateData
-        ) {
+        GenerateDocumentRequest templateData) {
         //This service is internal to Divorce system. No need to do service authentication here
         log.info("Document generation requested with templateName [{}], placeholders map of size[{}]",
                  templateData.getTemplate(), templateData.getValues().size()
