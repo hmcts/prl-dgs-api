@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ContentDisposition;
@@ -103,7 +104,7 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
 
             final MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
             body.add("file", new HttpEntity<>(placeholders.get("fileName"), fileMap));
-            body.add("outputName", fileName);
+            body.add("outputName", FilenameUtils.removeExtension(fileName).concat("." + "pdf"));
             body.add("accessKey", docmosisPdfServiceAccessKey);
 
             final HttpHeaders headers = new HttpHeaders();
