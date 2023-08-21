@@ -1,10 +1,11 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
+import com.google.common.io.Files;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ContentDisposition;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -13,20 +14,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import uk.gov.hmcts.reform.prl.documentgenerator.domain.request.PdfDocumentRequest;
 import uk.gov.hmcts.reform.prl.documentgenerator.exception.PDFGenerationException;
 import uk.gov.hmcts.reform.prl.documentgenerator.mapper.TemplateDataMapper;
 import uk.gov.hmcts.reform.prl.documentgenerator.service.PDFGenerationService;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Strings.isNullOrEmpty;
-import static org.apache.commons.fileupload.FileUploadBase.CONTENT_DISPOSITION;
-import static org.springframework.http.MediaType.MULTIPART_FORM_DATA;
 
 @Service
 @Slf4j
@@ -85,49 +85,40 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
 
     @Override
     public byte[] converToPdf(Map<String, Object> placeholders, String fileName) {
-        checkNotNull(placeholders, "placeholders map cannot be null");
-
-        log.info("Making request to pdf service to generate pdf document "
-                     + " and placeholders of size [{}]", placeholders.size());
 
         try {
-            // Remove this log when tested
-            log.info("Making Docmosis Request From {}", docmosisPdfServiceEndpoint);
-            final ContentDisposition contentDisposition = ContentDisposition
-                .builder("form-data")
-                .name("file")
-                .filename(fileName)
-                .build();
+            String filename = FilenameUtils.removeExtension(fileName).concat("." + "pdf");
+            byte[] docInBytes = (byte[]) placeholders.get("fileName");
+            File file = new File(fileName);
+            Files.write(docInBytes, file);
 
-            final MultiValueMap<String, String> fileMap = new LinkedMultiValueMap<>();
-            fileMap.add(CONTENT_DISPOSITION, contentDisposition.toString());
+            return restTemplate
+                .postForObject(
+                    "https://docmosis.aat.platform.hmcts.net/rs/convert",
+                    createRequest(file, filename),
+                    byte[].class
+                );
 
-            final MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
-            body.add("file", new HttpEntity<>(placeholders.get("fileName"), fileMap));
-            body.add("outputName", FilenameUtils.removeExtension(fileName).concat("." + "pdf"));
-            body.add("accessKey", docmosisPdfServiceAccessKey);
-
-            final HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MULTIPART_FORM_DATA);
-
-            final HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
-
-            try {
-                return restTemplate
-                    .exchange(
-                        "https://docmosis.aat.platform.hmcts.net/rs/convert",
-                        HttpMethod.POST,
-                        requestEntity,
-                        byte[].class)
-                    .getBody();
-            } catch (HttpClientErrorException.BadRequest ex) {
-                log.error("Document conversion failed" + ex.getResponseBodyAsString());
-                throw ex;
-            }
-
-        } catch (Exception e) {
-            throw new PDFGenerationException("Failed to request PDF from REST endpoint " + e.getMessage(), e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
+
+    }
+
+
+    private HttpEntity<MultiValueMap<String, Object>> createRequest(
+        File file,
+        String outputFilename
+    ) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+        body.add("accessKey", docmosisPdfServiceAccessKey);
+        body.add("outputName", outputFilename);
+        body.add("file", new FileSystemResource(file));
+
+        return new HttpEntity<>(body, headers);
     }
 
 }
