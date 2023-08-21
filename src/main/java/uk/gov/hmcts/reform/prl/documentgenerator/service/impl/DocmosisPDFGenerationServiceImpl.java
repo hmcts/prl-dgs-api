@@ -88,7 +88,7 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
     public byte[] converToPdf(Map<String, Object> placeholders, String fileName) {
 
         try {
-            String filename = FilenameUtils.removeExtension(fileName).concat("." + "pdf");
+            String filename = FilenameUtils.getBaseName(fileName) + ".pdf";
             ObjectMapper objectMapper = new ObjectMapper();
             byte[] docInBytes = objectMapper.convertValue(placeholders.get("fileName"), byte[].class);
             // byte[] docInBytes = (byte[]) placeholders.get("fileName");
