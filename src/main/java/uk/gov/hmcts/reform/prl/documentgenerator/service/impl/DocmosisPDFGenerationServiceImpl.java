@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.io.Files;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
@@ -88,7 +89,9 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
 
         try {
             String filename = FilenameUtils.removeExtension(fileName).concat("." + "pdf");
-            byte[] docInBytes = (byte[]) placeholders.get("fileName");
+            ObjectMapper objectMapper = new ObjectMapper();
+            byte[] docInBytes = objectMapper.convertValue(placeholders.get("fileName"), byte[].class);
+           // byte[] docInBytes = (byte[]) placeholders.get("fileName");
             File file = new File(fileName);
             Files.write(docInBytes, file);
 
