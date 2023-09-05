@@ -2,7 +2,7 @@ import org.springframework.boot.gradle.tasks.run.BootRun
 
 buildscript {
     ext {
-        springBootVersion = '2.7.12'
+        springBootVersion = '2.7.15'
     }
     repositories {
         mavenLocal()
@@ -185,6 +185,7 @@ def versions = [
     reformsJavaLogging: '5.1.1',
     restAssured: '4.5.1',
     serenity: '2.2.13',
+    serenityCucumber: '1.9.51',
     serviceTokenGenerator: '3.0.0',
     sonarPitest: '0.5',
     spring_security_rsa: '1.0.11.RELEASE',
@@ -197,7 +198,7 @@ def versions = [
     tomcat   : '9.0.80',
     pact_version: '4.1.11',
     httpComponents: '4.5.13',
-    bouncycastle: '1.61',
+    bouncycastle: '1.70',
     ccdCaseDocumentAmClient: '1.7.2',
     springFramework    : '5.3.27'
 ]
@@ -271,7 +272,9 @@ dependencies {
     implementation group: 'commons-io', name: 'commons-io', version: versions.commonsIo
     implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.9'
 
-    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-ribbon', version: '2.2.5.RELEASE'
+  implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.5'
+
+  implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-ribbon', version: '2.2.10.RELEASE'
     implementation (group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign',  version: versions.springCloud) {
         exclude group: 'io.reactivex', module: 'io.reactivex'
         exclude group: 'io.reactivex', module: 'rxnetty'
