@@ -400,7 +400,7 @@ document:
             -   templateName: FL-PRL-APP-WEL-C1A-Final-V2.docx
                 filename: C1AWelshDocument.pdf
                 document-generator: docmosis
-            -   templateName: PRL-LET-ENG-RE5.docx
+            -   templateName: PRL-LET-ENG-C100-RE5.docx
                 filename: cover_letter_access_code.pdf
                 document-generator: docmosis
             -   templateName: PRL-LET-ENG-FL401-AP2.docx
