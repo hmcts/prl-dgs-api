@@ -51,7 +51,12 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     @Override
     public GeneratedDocumentInfo generateAndStoreDocument(String templateName, Map<String, Object> placeholders,
                                                           String authorizationToken) {
-        String fileName = templatesConfiguration.getFileNameByTemplateName(templateName);
+        String fileName = "";
+        if (placeholders.containsKey("dynamic_fileName")) {
+            fileName = String.valueOf(placeholders.get("dynamic_fileName"));
+        } else {
+            fileName = templatesConfiguration.getFileNameByTemplateName(templateName);
+        }
         return getGeneratedDocumentInfo(templateName, placeholders, authorizationToken, fileName);
     }
 
@@ -59,7 +64,12 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     public GeneratedDocumentInfo generateAndStoreDraftDocument(String templateName,
                                                                Map<String, Object> placeholders,
                                                                String authorizationToken) {
-        String fileName = templatesConfiguration.getFileNameByTemplateName(templateName);
+        String fileName = "";
+        if (placeholders.containsKey("dynamic_fileName")) {
+            fileName = String.valueOf(placeholders.get("dynamic_fileName"));
+        } else {
+            fileName = templatesConfiguration.getFileNameByTemplateName(templateName);
+        }
         if (!fileName.startsWith(DRAFT_PREFIX)) {
             fileName = String.join("", DRAFT_PREFIX, fileName);
         }
@@ -117,7 +127,8 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     @Override
     public byte[] generateDocument(String templateName, Map<String, Object> placeholders) {
         log.debug("Generate document requested with templateName [{}], placeholders of size[{}]",
-            templateName, placeholders.size());
+                  templateName, placeholders.size()
+        );
 
         return generatorService.generate(templateName, placeholders);
     }

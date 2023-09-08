@@ -14,6 +14,9 @@ Store and return the link to the stored data.
 
 Updated with master code base until 2.1
 
+### Dynamic file name
+You must pass **dynamic_fileName** key in the **placeholders** map to get a dynamic file name
+
 ### Setup
 
 **Prerequisites**
@@ -76,7 +79,7 @@ As a result the following container(s) will get created and started:
 #### Troubleshooting
 
 ### Managing Preview environment PODs
-Make sure you have added the label 'keep-helm' while creating the PR. Otherwise, add the label and re-trigger the build.
+Make sure you have added the label 'enable_keep_helm' while creating the PR. Otherwise, add the label and re-trigger the build.
 
 ## Testing
 
