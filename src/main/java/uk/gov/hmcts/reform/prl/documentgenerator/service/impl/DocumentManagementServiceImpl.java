@@ -51,12 +51,16 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     @Override
     public GeneratedDocumentInfo generateAndStoreDocument(String templateName, Map<String, Object> placeholders,
                                                           String authorizationToken) {
+        log.info("I am here in generateAndStoreDocument method in service impl");
         String fileName = "";
         if (placeholders.containsKey("dynamic_fileName")) {
             fileName = String.valueOf(placeholders.get("dynamic_fileName"));
+            log.info("dynamic_fileName is present and file name got is {}", fileName);
         } else {
             fileName = templatesConfiguration.getFileNameByTemplateName(templateName);
+            log.info("dynamic_fileName is not present and file name got is {}", fileName);
         }
+        log.info("final file name got is {}", fileName);
         return getGeneratedDocumentInfo(templateName, placeholders, authorizationToken, fileName);
     }
 
@@ -64,12 +68,16 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     public GeneratedDocumentInfo generateAndStoreDraftDocument(String templateName,
                                                                Map<String, Object> placeholders,
                                                                String authorizationToken) {
+        log.info("I am here in generateAndStoreDraftDocument method in service impl");
         String fileName = "";
         if (placeholders.containsKey("dynamic_fileName")) {
             fileName = String.valueOf(placeholders.get("dynamic_fileName"));
+            log.info("dynamic_fileName is present and file name got is {}", fileName);
         } else {
             fileName = templatesConfiguration.getFileNameByTemplateName(templateName);
+            log.info("dynamic_fileName is not present and file name got is {}", fileName);
         }
+        log.info("final file name got is {}", fileName);
         if (!fileName.startsWith(DRAFT_PREFIX)) {
             fileName = String.join("", DRAFT_PREFIX, fileName);
         }
