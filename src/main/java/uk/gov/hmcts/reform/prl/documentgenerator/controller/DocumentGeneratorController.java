@@ -54,7 +54,6 @@ public class DocumentGeneratorController {
         @Valid
             GenerateDocumentRequest templateData) {
         //This service is internal to PRL system. No need to do service authentication here
-        log.info("I am here in generateAndUploadPdf method");
         log.info("Document generation requested with templateName [{}], placeholders map of size[{}]",
                 templateData.getTemplate(), templateData.getValues().size());
         return documentManagementService.generateAndStoreDocument(templateData.getTemplate(), templateData.getValues(),
@@ -85,7 +84,6 @@ public class DocumentGeneratorController {
         @RequestBody
         @Valid
             GenerateDocumentRequest templateData) {
-        log.info("I am here in generateAndUploadDraftPdf method");
         //This service is internal to Divorce system. No need to do service authentication here
         log.info("Document generation requested with templateName [{}], placeholders map of size[{}]",
                 templateData.getTemplate(), templateData.getValues().size());
