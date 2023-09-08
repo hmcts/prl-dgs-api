@@ -77,10 +77,11 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
             fileName = templatesConfiguration.getFileNameByTemplateName(templateName);
             log.info("dynamic_fileName is not present and file name got is {}", fileName);
         }
-        log.info("final file name got is {}", fileName);
+        log.info("final-1 file name got is {}", fileName);
         if (!fileName.startsWith(DRAFT_PREFIX)) {
             fileName = String.join("", DRAFT_PREFIX, fileName);
         }
+        log.info("final-2 file name got is {}", fileName);
         placeholders.put(IS_DRAFT, true);
 
         return getGeneratedDocumentInfo(templateName, placeholders, authorizationToken, fileName);
@@ -88,6 +89,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
 
     private GeneratedDocumentInfo getGeneratedDocumentInfo(String templateName, Map<String, Object> placeholders,
                                                            String authorizationToken, String fileName) {
+        log.info("final-3 file name got is {}", fileName);
         String caseId = getCaseId(placeholders);
         if (caseId == null) {
             log.warn("caseId is null for template \"" + templateName + "\"");
@@ -104,6 +106,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
 
         byte[] generatedDocument = generateDocument(templateName, placeholders);
         log.info("Document generated for case Id {}", caseId);
+        log.info("final-4 file name got is {}", fileName);
         return storeDocument(generatedDocument, authorizationToken, fileName);
     }
 
@@ -111,7 +114,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     public GeneratedDocumentInfo storeDocument(byte[] document, String authorizationToken, String fileName) {
         log.debug("Store document requested with document of size [{}]", document.length);
         String serviceAuthToken = authTokenGenerator.generate();
-
+        log.info("final-5 file name got is {}", fileName);
         UploadResponse uploadResponse = caseDocumentClient.uploadDocuments(
             authorizationToken,
             serviceAuthToken,
@@ -122,7 +125,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
         );
 
         Document uploadedDocument = uploadResponse.getDocuments().get(0);
-
+        log.info("final-5 file name got is {}", fileName);
         return GeneratedDocumentInfo.builder()
             .url(uploadedDocument.links.self.href)
             .mimeType(uploadedDocument.mimeType)
