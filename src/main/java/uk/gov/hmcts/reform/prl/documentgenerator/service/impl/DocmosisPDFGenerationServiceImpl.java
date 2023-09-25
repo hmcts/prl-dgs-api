@@ -48,7 +48,8 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
     @Value("${docmosis.service.pdf-service.devMode}")
     private String docmosisDevMode;
 
-    private String docMosisUrl = "https://docmosis.aat.platform.hmcts.net/rs/convert";
+    @Value("${docmosis.service.pdf-service.convert}")
+    private String docmosisPdfConvertEndpoint;
 
     @Override
     public byte[] generate(String templateName, Map<String, Object> placeholders) {
@@ -98,7 +99,7 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
 
             return restTemplate
                 .postForObject(
-                    docMosisUrl,
+                    docmosisPdfConvertEndpoint,
                     createRequest(file, filename),
                     byte[].class
                 );

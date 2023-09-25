@@ -5,7 +5,6 @@
 - [ ] tests have been updated / new tests has been added (if needed)
 - [ ] the enable_keep_helm label has been added, if the helm release should be persisted after a successful build
 
-
 Please remove this line and everything above and fill the following sections:
 
 
