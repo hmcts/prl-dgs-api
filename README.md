@@ -76,7 +76,7 @@ As a result the following container(s) will get created and started:
 #### Troubleshooting
 
 ### Managing Preview environment PODs
-Make sure you have added the label 'keep-helm' while creating the PR. Otherwise, add the label and re-trigger the build.
+Make sure you have added the label 'enable_keep_helm' while creating the PR. Otherwise, add the label and re-trigger the build.
 
 ## Testing
 
