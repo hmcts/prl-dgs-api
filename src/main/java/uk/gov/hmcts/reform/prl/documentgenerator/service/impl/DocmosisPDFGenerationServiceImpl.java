@@ -48,6 +48,9 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
     @Value("${docmosis.service.pdf-service.devMode}")
     private String docmosisDevMode;
 
+    @Value("${docmosis.service.pdf-service.convert}")
+    private String docmosisPdfConvertEndpoint;
+
     @Override
     public byte[] generate(String templateName, Map<String, Object> placeholders) {
         checkArgument(!isNullOrEmpty(templateName), "document generation template cannot be empty");
@@ -97,7 +100,7 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
 
             return restTemplate
                 .postForObject(
-                    "https://docmosis.aat.platform.hmcts.net/rs/convert",
+                    docmosisPdfConvertEndpoint,
                     createRequest(file, filename),
                     byte[].class
                 );
