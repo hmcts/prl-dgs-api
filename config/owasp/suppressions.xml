@@ -27,6 +27,20 @@
   </suppress>
   <suppress>
     <notes><![CDATA[
+     tomcat-embed-core-9.0.80.jar ]]></notes>
+    <cve>CVE-2023-42794</cve>
+    <cve>CVE-2023-42795</cve>
+    <cve>CVE-2023-45648</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+     tomcat-embed-websocket-9.0.80.jar ]]></notes>
+    <cve>CVE-2023-42794</cve>
+    <cve>CVE-2023-42795</cve>
+    <cve>CVE-2023-45648</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
      spring-security-core-5.6.2.jar]]></notes>
     <cve>CVE-2023-34034</cve>
     <cve>CVE-2023-20862</cve>
