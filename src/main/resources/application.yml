@@ -19,6 +19,9 @@ docmosis:
 case_document_am:
     url: ${CCD_CASE_DOCS_AM_API:http://localhost:5170}
 
+
+    
+
 auth:
     provider:
         service:
