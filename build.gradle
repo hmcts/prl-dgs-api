@@ -2,7 +2,7 @@ import org.springframework.boot.gradle.tasks.run.BootRun
 
 buildscript {
     ext {
-        springBootVersion = '2.7.15'
+        springBootVersion = '2.7.18'
     }
     repositories {
         mavenLocal()
@@ -188,22 +188,22 @@ def versions = [
     serenityCucumber: '1.9.51',
     serviceTokenGenerator: '3.0.0',
     sonarPitest: '0.5',
-    spring_security_rsa: '1.0.11.RELEASE',
-    springBoot: '2.7.12',
-    springCloud: '3.1.4',
+    spring_security_rsa: '1.0.12.RELEASE',
+    springBoot: '2.7.18',
+    springCloud: '3.1.6',
     springHateoas: '0.25.1.RELEASE',
     unirest: '1.4.9',
     wiremockVersion: '2.27.2',
     springSecurityCrypto: '5.7.5',
-    tomcat   : '9.0.80',
+    tomcat   : '9.0.83',
     pact_version: '4.1.11',
     httpComponents: '4.5.13',
-    bouncycastle: '1.70',
+    bouncycastle: '1.73',
     ccdCaseDocumentAmClient: '1.7.2',
     springFramework    : '5.3.27'
 ]
 
-ext["logback.version"] = '1.2.11'
+ext["logback.version"] = '1.2.13'
 ext['snakeyaml.version'] = '2.2'
 ext['jackson.version'] = '2.15.2'
 ext['spring-framework.version'] = '5.3.27'
@@ -260,7 +260,7 @@ dependencies {
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap', version: versions.springCloud
-    implementation group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: versions.bouncycastle
+    implementation group: 'org.bouncycastle', name: 'bcprov-jdk18on', version: versions.bouncycastle
 
     implementation group: 'com.github.hmcts', name:'ccd-case-document-am-client', version: versions.ccdCaseDocumentAmClient
 
