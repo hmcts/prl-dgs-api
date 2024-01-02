@@ -36,9 +36,9 @@ public class TemplateDataMapper {
                 data = (Map<String, Object>) caseDetails.get(CASE_DATA);
             }
             //EXUI -1144 - party names
-            if (caseDetails.containsKey(TEMP_PARTY_NAMES_KEY)) {
-                log.info("Temp party names map {}", caseDetails.get(TEMP_PARTY_NAMES_KEY));
-                data.putAll((Map<String, Object>) caseDetails.get(TEMP_PARTY_NAMES_KEY));
+            if (placeholders.containsKey(TEMP_PARTY_NAMES_KEY)) {
+                log.info("Temp party names map {}", placeholders.get(TEMP_PARTY_NAMES_KEY));
+                data.putAll((Map<String, Object>) placeholders.get(TEMP_PARTY_NAMES_KEY));
             }
         } else {
             data.putAll(placeholders);
