@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.mapper;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.prl.documentgenerator.config.DocmosisBasePdfConfig;
@@ -20,7 +19,6 @@ import static uk.gov.hmcts.reform.prl.documentgenerator.domain.TemplateConstants
 import static uk.gov.hmcts.reform.prl.documentgenerator.domain.TemplateConstants.TEMP_PARTY_NAMES_KEY;
 
 @Component
-@Slf4j
 public class TemplateDataMapper {
 
     @Autowired
@@ -37,7 +35,6 @@ public class TemplateDataMapper {
             }
             //EXUI -1144 - party names
             if (placeholders.containsKey(TEMP_PARTY_NAMES_KEY)) {
-                log.info("Temp party names map {}", placeholders.get(TEMP_PARTY_NAMES_KEY));
                 data.putAll((Map<String, Object>) placeholders.get(TEMP_PARTY_NAMES_KEY));
             }
         } else {
@@ -46,7 +43,6 @@ public class TemplateDataMapper {
 
         // Get page assets
         data.putAll(getPageAssets());
-        log.info("Case data map {}", data);
         return data;
     }
 
