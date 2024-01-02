@@ -16,6 +16,7 @@ import static uk.gov.hmcts.reform.prl.documentgenerator.domain.TemplateConstants
 import static uk.gov.hmcts.reform.prl.documentgenerator.domain.TemplateConstants.CCD_DATE_FORMAT;
 import static uk.gov.hmcts.reform.prl.documentgenerator.domain.TemplateConstants.CCD_DATE_TIME_FORMAT;
 import static uk.gov.hmcts.reform.prl.documentgenerator.domain.TemplateConstants.LETTER_DATE_FORMAT;
+import static uk.gov.hmcts.reform.prl.documentgenerator.domain.TemplateConstants.TEMP_PARTY_NAMES_KEY;
 
 @Component
 public class TemplateDataMapper {
@@ -31,6 +32,10 @@ public class TemplateDataMapper {
             Map<String, Object> caseDetails = (Map) placeholders.get(CASE_DETAILS);
             if (caseDetails.containsKey(CASE_DATA)) {
                 data = (Map<String, Object>) caseDetails.get(CASE_DATA);
+            }
+            //EXUI -1144 - party names
+            if (caseDetails.containsKey(TEMP_PARTY_NAMES_KEY)) {
+                data.putAll((Map<String, Object>) caseDetails.get(TEMP_PARTY_NAMES_KEY));
             }
         } else {
             data.putAll(placeholders);
