@@ -84,10 +84,11 @@ public class TemplateDataMapperTest {
 
     @Test
     public void putAllPartyNamesInMap() {
+        Map<String, Object> caseData = new HashMap<>();
         Map<String, Object> partyNamesMap = new HashMap<>();
-        Map<String, Object> requestData = Collections.singletonMap(
-            CASE_DETAILS, Collections.singletonMap(TEMP_PARTY_NAMES_KEY, partyNamesMap)
-        );
+        Map<String, Object> requestData = new HashMap<>();
+        requestData.put(CASE_DETAILS, Collections.singletonMap(CASE_DATA, caseData));
+        requestData.put(TEMP_PARTY_NAMES_KEY, partyNamesMap);
 
         Map<String, Object> actual = templateDataMapper.map(requestData);
 
