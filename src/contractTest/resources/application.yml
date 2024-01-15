@@ -12,8 +12,10 @@ docmosis:
         pdf-service:
             accessKey: ${DOCMOSIS_SERVICE_ACCESS_KEY:23432}
             renderEndpoint: "/rs/render"
+            convertEndpoint: "/rs/convert"
             uri: ${DOCMOSIS_SERVICE_BASE_URL:http://localhost:5501}${docmosis.service.pdf-service.renderEndpoint}
             health: ${DOCMOSIS_SERVICE_BASE_URL:http://localhost:5501}/health
+            convert: ${DOCMOSIS_SERVICE_BASE_URL:http://localhost:5501}${docmosis.service.pdf-service.convertEndpoint}
             devMode: ${DOCMOSIS_SERVICE_DEV_MODE_FLAG:false}
 
 case_document_am:
