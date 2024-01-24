@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
@@ -127,7 +128,8 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     @Override
     public byte[] generateDocument(String templateName, Map<String, Object> placeholders) {
         log.debug("Generate document requested with templateName [{}], placeholders of size[{}]",
-            templateName, placeholders.size());
+                  templateName, placeholders.size()
+        );
 
         return generatorService.generate(templateName, placeholders);
     }
@@ -135,5 +137,16 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     private String getCaseId(Map<String, Object> placeholders) {
         Map<String, Object> caseDetails = (Map<String, Object>) placeholders.getOrDefault("caseDetails", emptyMap());
         return (String) caseDetails.get("id");
+    }
+
+    @Override
+    public GeneratedDocumentInfo converToPdf(Map<String, Object> placeholders, String authorizationToken, String fileName) {
+        log.debug(
+            "Generate document requested with templateName [{}], placeholders of size[{}]",
+            placeholders.size()
+        );
+
+        byte[] generatedDocument = generatorService.converToPdf(placeholders, fileName);
+        return storeDocument(generatedDocument, authorizationToken, FilenameUtils.getBaseName(fileName) + ".pdf");
     }
 }
