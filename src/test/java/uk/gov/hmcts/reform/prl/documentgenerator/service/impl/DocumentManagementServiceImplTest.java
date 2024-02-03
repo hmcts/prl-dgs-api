@@ -92,4 +92,23 @@ public class DocumentManagementServiceImplTest {
         Map<String, Object> value = placeHolderCaptor.getValue();
         assertThat("Draft value set ", value.get(IS_DRAFT), is(true));
     }
+
+    @Test
+    public void testConvertToPdf() {
+        final Map<String, Object> placeholders = new HashMap<>();
+
+        byte[] test = "Any String you want".getBytes();
+        placeholders.put("fileName",test);
+        Mockito.when(authTokenGenerator.generate()).thenReturn(s2sToken);
+        Mockito.when(pdfGenerationService.converToPdf(placeholders,"fileName")).thenReturn(test);
+
+        Mockito.when(caseDocumentClient.uploadDocuments(eq(authToken),
+                                                        eq(s2sToken), eq("PRLAPPS"), eq("PRIVATELAW"), any()))
+            .thenReturn(uploadResponse);
+
+        classUnderTest.converToPdf(placeholders, authToken,"fileName");
+
+        verify(pdfGenerationService).converToPdf(placeholders,"fileName");
+    }
+
 }

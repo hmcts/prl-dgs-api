@@ -14,6 +14,9 @@ Store and return the link to the stored data.
 
 Updated with master code base until 2.1
 
+### Dynamic file name
+You must pass **dynamic_fileName** key in the **placeholders** map to get a dynamic file name
+
 ### Setup
 
 **Prerequisites**
