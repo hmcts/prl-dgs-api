@@ -20,4 +20,5 @@ public class TemplateConstants {
     public static final String CCD_DATE_FORMAT = "yyyy-MM-dd";
     public static final String CCD_DATE_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS";
     public static final String LETTER_DATE_FORMAT = "dd MMMM yyyy";
+    public static final String TEMP_PARTY_NAMES_KEY = "tempPartyNamesForDocGen";
 }
