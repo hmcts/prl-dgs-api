@@ -403,34 +403,34 @@ document:
                 filename: C1AWelshDocument.pdf
                 document-generator: docmosis
             -   templateName: PRL-LET-ENG-C100-RE5.docx
-                filename: cover_letter_access_code.pdf
+                filename: cover_letter_re5.pdf
                 document-generator: docmosis
             -   templateName: PRL-LET-ENG-FL401-AP2.docx
-                filename: cover_letter_access_code.pdf
+                filename: cover_letter_ap2.pdf
                 document-generator: docmosis
             -   templateName: PRL-LET-ENG-C100-AP6.docx
-                filename: cover_letter_access_code.pdf
+                filename: cover_letter_ap6.pdf
                 document-generator: docmosis
             -   templateName: PRL-LET-ENG-C100-AP7.docx
-                filename: cover_letter_access_code.pdf
+                filename: cover_letter_ap7.pdf
                 document-generator: docmosis
             -   templateName: PRL-LET-ENG-C100-AP8.docx
-                filename: cover_letter_access_code.pdf
+                filename: cover_letter_ap8.pdf
                 document-generator: docmosis
             -   templateName: PRL-LET-ENG-FL401-RE1.docx
-                filename: cover_letter_access_code.pdf
+                filename: cover_letter_re1.pdf
                 document-generator: docmosis
             -   templateName: PRL-LET-ENG-FL401-RE2.docx
-                filename: cover_letter_access_code.pdf
+                filename: cover_letter_re2.pdf
                 document-generator: docmosis
             -   templateName: PRL-LET-ENG-FL401-RE3.docx
-                filename: cover_letter_access_code.pdf
+                filename: cover_letter_re3.pdf
                 document-generator: docmosis
             -   templateName: PRL-LET-ENG-FL401-RE4.docx
-                filename: cover_letter_access_code.pdf
+                filename: cover_letter_re4.pdf
                 document-generator: docmosis
             -   templateName: PRL-LET-ENG-C100-RE6.docx
-                filename: cover_letter_access_code.pdf
+                filename: cover_letter_re6.pdf
                 document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
