@@ -35,6 +35,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
 
     private static final String DRAFT_PREFIX = "Draft";
     private static final String IS_DRAFT = "isDraft";
+    public static final String DYNAMIC_FILE_NAME = "dynamic_fileName";
 
     private final Clock clock = Clock.systemDefaultZone();
 
@@ -52,7 +53,12 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     @Override
     public GeneratedDocumentInfo generateAndStoreDocument(String templateName, Map<String, Object> placeholders,
                                                           String authorizationToken) {
-        String fileName = templatesConfiguration.getFileNameByTemplateName(templateName);
+        String fileName = "";
+        if (placeholders.containsKey(DYNAMIC_FILE_NAME)) {
+            fileName = String.valueOf(placeholders.get(DYNAMIC_FILE_NAME));
+        } else {
+            fileName = templatesConfiguration.getFileNameByTemplateName(templateName);
+        }
         return getGeneratedDocumentInfo(templateName, placeholders, authorizationToken, fileName);
     }
 
@@ -60,7 +66,12 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     public GeneratedDocumentInfo generateAndStoreDraftDocument(String templateName,
                                                                Map<String, Object> placeholders,
                                                                String authorizationToken) {
-        String fileName = templatesConfiguration.getFileNameByTemplateName(templateName);
+        String fileName = "";
+        if (placeholders.containsKey(DYNAMIC_FILE_NAME)) {
+            fileName = String.valueOf(placeholders.get(DYNAMIC_FILE_NAME));
+        } else {
+            fileName = templatesConfiguration.getFileNameByTemplateName(templateName);
+        }
         if (!fileName.startsWith(DRAFT_PREFIX)) {
             fileName = String.join("", DRAFT_PREFIX, fileName);
         }
