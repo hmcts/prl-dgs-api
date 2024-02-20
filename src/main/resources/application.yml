@@ -432,6 +432,9 @@ document:
             -   templateName: PRL-LET-ENG-C100-RE6.docx
                 filename: cover_letter_re6.pdf
                 document-generator: docmosis
+            -   templateName: PRL-LET-ENG-LIST-WITHOUT-NOTICE.docx
+                filename: List_without_notice_letter.pdf
+                document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"
