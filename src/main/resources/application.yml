@@ -234,7 +234,7 @@ document:
             -   templateName: FL-PRL-GOR-ENG-C7R.docx
                 filename: C7_Draft_Document.pdf
                 document-generator: docmosis
-            - templateName: FL-PRL-GOR-WEL-C7R.docx
+            -   templateName: FL-PRL-GOR-WEL-C7R.docx
                 filename: Draft_C7_response_Welsh.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-C7R-Final.docx
