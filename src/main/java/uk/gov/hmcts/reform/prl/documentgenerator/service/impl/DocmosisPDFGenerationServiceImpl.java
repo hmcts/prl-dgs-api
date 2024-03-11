@@ -66,6 +66,8 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
             HttpHeaders headers = new HttpHeaders();
             headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
 
+            log.info("Entire JSON Placeholder ========>>>>> {}", new ObjectMapper().writeValueAsString(placeholders));
+
             HttpEntity<PdfDocumentRequest> httpEntity = new HttpEntity<>(request(templateName, placeholders), headers);
 
             ResponseEntity<byte[]> response =
