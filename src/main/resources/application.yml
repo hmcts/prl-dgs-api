@@ -432,8 +432,11 @@ document:
             -   templateName: PRL-LET-ENG-C100-RE6.docx
                 filename: cover_letter_re6.pdf
                 document-generator: docmosis
-            -   templateName: PRL-DOCUMENT-COVER-CITIZEN-SHEET.docx
+            -   templateName: PRL-DOCUMENT-COVER-SERVE-ORDER-SHEET.docx
                 filename: PrlPostDocumentCoverSheet.pdf
+                document-generator: docmosis
+            -   templateName: PRL-WEL-DOCUMENT-COVER-SERVE-ORDER-SHEET.docx
+                filename: WelshPrlPostDocumentCoverSheet.pdf
                 document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
