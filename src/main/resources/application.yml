@@ -234,11 +234,14 @@ document:
             -   templateName: FL-PRL-GOR-ENG-C7R.docx
                 filename: C7_Draft_Document.pdf
                 document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-C7R.docx
+                filename: Draft_C7_response_Welsh.pdf
+                document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-C7R-Final.docx
                 filename: C7_Document.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-WEL-C7R-Final.docx
-                filename: C7_Document_Welsh.pdf
+                filename: Final_C7_response_Welsh.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-SOLICITOR-C7R-DRAFT.docx
                 filename: C7_Response_Draft_Document.pdf
@@ -431,6 +434,15 @@ document:
                 document-generator: docmosis
             -   templateName: PRL-LET-ENG-C100-RE6.docx
                 filename: cover_letter_re6.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-ENG-LIST-WITHOUT-NOTICE.docx
+                filename: List_without_notice_letter.pdf
+                document-generator: docmosis
+            -   templateName: PRL-DOCUMENT-COVER-SERVE-ORDER-SHEET.docx
+                filename: PrlPostDocumentCoverSheet.pdf
+                document-generator: docmosis
+            -   templateName: PRL-WEL-DOCUMENT-COVER-SERVE-ORDER-SHEET.docx
+                filename: WelshPrlPostDocumentCoverSheet.pdf
                 document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
