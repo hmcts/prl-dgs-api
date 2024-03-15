@@ -186,16 +186,16 @@ document:
             -   templateName: FL-PRL-GOR-ENG-FL404-Occupation-Order-Final.docx
                 filename: occupation_order_FL404_final.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-ENG-FL404B-Common-Draft.docx
+            -   templateName: FL-PRL-GOR-ENG-FL404B-Common-Draft.docx
                 filename: fl404b_draft.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-FL404B-Common-Draft.docx
+            -   templateName: FL-PRL-GOR-WEL-FL404B-Common-Draft.docx
                 filename: welsh_fl404b_draft.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-FL404B-Common-Final.docx
                 filename: fl404b_final.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-FL404B-Common-Final.docx
+            -   templateName: FL-PRL-GOR-WEL-FL404B-Common-Final.docx
                 filename: welsh_fl404b_final.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-C45A-Parental-Responsibility-Order-Final.docx
