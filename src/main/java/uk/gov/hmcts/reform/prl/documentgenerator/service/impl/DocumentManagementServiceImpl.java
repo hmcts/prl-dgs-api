@@ -76,7 +76,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
             fileName = String.join("", DRAFT_PREFIX, fileName);
         }
         placeholders.put(IS_DRAFT, true);
-        log.info("generateAndStoreDraftDocument - placeholders values [{}]", placeholders.toString());
+
         return getGeneratedDocumentInfo(templateName, placeholders, authorizationToken, fileName);
     }
 
@@ -132,6 +132,10 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
                   templateName, placeholders.size()
         );
 
+        if(placeholders != null) {
+            log.debug(" generateDocument ---->  "+ placeholders.toString());
+            placeholders.forEach((key, value) -> log.debug(" generateDocument ---->  " + key + ":" + value));
+        }
         return generatorService.generate(templateName, placeholders);
     }
 
