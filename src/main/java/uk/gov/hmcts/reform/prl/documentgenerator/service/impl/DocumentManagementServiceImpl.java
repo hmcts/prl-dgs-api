@@ -132,8 +132,8 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
                   templateName, placeholders.size()
         );
 
-        if(placeholders != null) {
-            log.debug(" generateDocument ---->  "+ placeholders.toString());
+        if (placeholders != null) {
+            log.debug(" generateDocument ---->  " + placeholders.toString());
             placeholders.forEach((key, value) -> log.debug(" generateDocument ---->  " + key + ":" + value));
         }
         return generatorService.generate(templateName, placeholders);
