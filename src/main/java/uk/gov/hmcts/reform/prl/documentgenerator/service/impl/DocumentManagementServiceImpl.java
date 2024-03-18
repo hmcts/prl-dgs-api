@@ -76,7 +76,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
             fileName = String.join("", DRAFT_PREFIX, fileName);
         }
         placeholders.put(IS_DRAFT, true);
-
+        log.info("generateAndStoreDraftDocument - placeholders values [{}]", placeholders.toString());
         return getGeneratedDocumentInfo(templateName, placeholders, authorizationToken, fileName);
     }
 
