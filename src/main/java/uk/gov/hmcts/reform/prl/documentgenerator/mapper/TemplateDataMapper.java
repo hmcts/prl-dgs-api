@@ -1,8 +1,12 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.mapper;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.prl.documentgenerator.config.DocmosisBasePdfConfig;
+import uk.gov.hmcts.reform.prl.documentgenerator.exception.ErrorLoadingTemplateException;
 import uk.gov.hmcts.reform.prl.documentgenerator.exception.PDFGenerationException;
 
 import java.time.LocalDate;
@@ -19,6 +23,7 @@ import static uk.gov.hmcts.reform.prl.documentgenerator.domain.TemplateConstants
 import static uk.gov.hmcts.reform.prl.documentgenerator.domain.TemplateConstants.TEMP_PARTY_NAMES_KEY;
 
 @Component
+@Slf4j
 public class TemplateDataMapper {
 
     @Autowired
@@ -43,6 +48,11 @@ public class TemplateDataMapper {
 
         // Get page assets
         data.putAll(getPageAssets());
+        try {
+            log.info("Entire JSON Placeholder ========>>>>> {}", new ObjectMapper().writeValueAsString(data));
+        } catch (JsonProcessingException e) {
+            throw new ErrorLoadingTemplateException(e.getMessage(), e);
+        }
         return data;
     }
 
