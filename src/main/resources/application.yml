@@ -459,16 +459,16 @@ document:
             -   templateName: PRL-WEL-DOCUMENT-COVER-SERVE-ORDER-SHEET.docx
                 filename: WelshPrlPostDocumentCoverSheet.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-APP-ENG-C100-DRAFT-V4.docx
+            -   templateName: FL-PRL-APP-ENG-C100-DRAFT-V3.docx
                 filename: C100DraftDocument.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-APP-ENG-C100-Final-V4.docx
+            -   templateName: FL-PRL-APP-ENG-C100-Final-V3.docx
                 filename: C100FinalDocument.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-APP-WEL-C100-Draft-V4.docx
+            -   templateName: FL-PRL-APP-WEL-C100-Draft-V3.docx
                 filename: C100DraftWelshDocument.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-APP-WEL-C100-Final-V4.docx
+            -   templateName: FL-PRL-APP-WEL-C100-Final-V3.docx
                 filename: C100FinalWelshDocument.pdf
                 document-generator: docmosis
     pdf:
