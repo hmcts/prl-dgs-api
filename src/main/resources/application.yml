@@ -429,6 +429,9 @@ document:
             -   templateName: PRL-LET-ENG-C100-AP6.docx
                 filename: cover_letter_ap6.pdf
                 document-generator: docmosis
+            -   templateName: PRL-BLANK-FM5-DOCUMENT.pdf
+                filename: FM5_0424.pdf
+                document-generator: docmosis
             -   templateName: PRL-LET-ENG-C100-AP7.docx
                 filename: cover_letter_ap7.pdf
                 document-generator: docmosis
