@@ -188,6 +188,7 @@ public class DocumentGenerateAndStoreE2ETest {
             .hashToken(TEST_HASH_TOKEN)
             .mimeType(MIME_TYPE)
             .binaryUrl(BINARY_URL)
+            .docName("TestTemplate.pdf")
             .build();
 
         return generatedDocumentInfo;

@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
@@ -34,6 +35,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
 
     private static final String DRAFT_PREFIX = "Draft";
     private static final String IS_DRAFT = "isDraft";
+    public static final String DYNAMIC_FILE_NAME = "dynamic_fileName";
 
     private final Clock clock = Clock.systemDefaultZone();
 
@@ -51,14 +53,25 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     @Override
     public GeneratedDocumentInfo generateAndStoreDocument(String templateName, Map<String, Object> placeholders,
                                                           String authorizationToken) {
-        String fileName = templatesConfiguration.getFileNameByTemplateName(templateName);
+        String fileName = "";
+        if (placeholders.containsKey(DYNAMIC_FILE_NAME)) {
+            fileName = String.valueOf(placeholders.get(DYNAMIC_FILE_NAME));
+        } else {
+            fileName = templatesConfiguration.getFileNameByTemplateName(templateName);
+        }
         return getGeneratedDocumentInfo(templateName, placeholders, authorizationToken, fileName);
     }
 
     @Override
     public GeneratedDocumentInfo generateAndStoreDraftDocument(String templateName,
-                                                               Map<String, Object> placeholders, String authorizationToken) {
-        String fileName = templatesConfiguration.getFileNameByTemplateName(templateName);
+                                                               Map<String, Object> placeholders,
+                                                               String authorizationToken) {
+        String fileName = "";
+        if (placeholders.containsKey(DYNAMIC_FILE_NAME)) {
+            fileName = String.valueOf(placeholders.get(DYNAMIC_FILE_NAME));
+        } else {
+            fileName = templatesConfiguration.getFileNameByTemplateName(templateName);
+        }
         if (!fileName.startsWith(DRAFT_PREFIX)) {
             fileName = String.join("", DRAFT_PREFIX, fileName);
         }
@@ -98,7 +111,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
             serviceAuthToken,
             "PRLAPPS",
             "PRIVATELAW",
-            Arrays.asList( new InMemoryMultipartFile("files", fileName, APPLICATION_PDF_VALUE, document
+            Arrays.asList(new InMemoryMultipartFile("files", fileName, APPLICATION_PDF_VALUE, document
             ))
         );
 
@@ -109,13 +122,15 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
             .mimeType(uploadedDocument.mimeType)
             .hashToken(uploadedDocument.hashToken)
             .binaryUrl(uploadedDocument.links.binary.href)
+            .docName(fileName)
             .build();
     }
 
     @Override
     public byte[] generateDocument(String templateName, Map<String, Object> placeholders) {
         log.debug("Generate document requested with templateName [{}], placeholders of size[{}]",
-            templateName, placeholders.size());
+                  templateName, placeholders.size()
+        );
 
         return generatorService.generate(templateName, placeholders);
     }
@@ -123,5 +138,16 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     private String getCaseId(Map<String, Object> placeholders) {
         Map<String, Object> caseDetails = (Map<String, Object>) placeholders.getOrDefault("caseDetails", emptyMap());
         return (String) caseDetails.get("id");
+    }
+
+    @Override
+    public GeneratedDocumentInfo converToPdf(Map<String, Object> placeholders, String authorizationToken, String fileName) {
+        log.debug(
+            "Generate document requested with templateName [{}], placeholders of size[{}]",
+            placeholders.size()
+        );
+
+        byte[] generatedDocument = generatorService.converToPdf(placeholders, fileName);
+        return storeDocument(generatedDocument, authorizationToken, FilenameUtils.getBaseName(fileName) + ".pdf");
     }
 }
