@@ -356,6 +356,16 @@ task fortifyScan(type: JavaExec)  {
   classpath += sourceSets.test.runtimeClasspath
   jvmArgs = ['--add-opens=java.base/java.lang.reflect=ALL-UNNAMED']
 }
+processContractTestResources {
+  duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+processFunctionalTestResources {
+  duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+processIntegrationTestResources {
+  duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
 
 dependencyManagement {
     dependencies {
