@@ -10,6 +10,7 @@ import uk.gov.hmcts.reform.prl.documentgenerator.domain.response.GeneratedDocume
 import uk.gov.hmcts.reform.prl.documentgenerator.service.DocumentManagementService;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -62,6 +63,25 @@ public class DocumentGeneratorControllerUTest {
 
         verify(documentManagementService)
                 .generateAndStoreDraftDocument(templateName, placeholder, "testToken");
+    }
+
+    @Test
+    public void whenConvertPDF_thenReturnConvertedPDFDocumentInfo() {
+        final String templateName = "templateName";
+        Map<String, Object> placeholder = new HashMap<>();
+
+        final GeneratedDocumentInfo expected = GeneratedDocumentInfo.builder().build();
+
+        when(documentManagementService.converToPdf(placeholder, "authToken","fileName"))
+            .thenReturn(expected);
+
+        GeneratedDocumentInfo actual = classUnderTest
+            .convertDocumentToPdf("fileName","authToken", new GenerateDocumentRequest(templateName, placeholder));
+
+        assertEquals(expected, actual);
+
+        verify(documentManagementService, times(1))
+            .converToPdf(placeholder, "authToken","fileName");
     }
 
 }
