@@ -90,7 +90,6 @@ public class PdfGenerationServiceConsumerTest {
                   "application/vnd.uk.gov.hmcts.pdf-service.v2+json;charset=UTF-8")
             .path("/pdfs")
             .willRespondWith()
-            .withBinaryData("".getBytes(), "application/octet-stream")
             .matchHeader(org.springframework.http.HttpHeaders.CONTENT_TYPE,
                          "application/pdf")
             .status(HttpStatus.SC_OK)
