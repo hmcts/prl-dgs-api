@@ -5,6 +5,10 @@ import com.github.tomakehurst.wiremock.junit.WireMockClassRule;
 import org.junit.ClassRule;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -68,37 +72,10 @@ public class DocumentGenerateAndStoreE2ETest {
     @ClassRule
     public static WireMockClassRule serviceAuthServer = new WireMockClassRule(4502);
 
-    @Test
-    public void givenTemplateNameIsNull_whenGenerateAndStoreDocument_thenReturnHttp400() throws Exception {
-        final String template = null;
-        final Map<String, Object> values = Collections.emptyMap();
-
-        final GenerateDocumentRequest generateDocumentRequest = new GenerateDocumentRequest(template, values);
-
-        webClient.perform(post(API_URL)
-            .content(ObjectMapperTestUtil.convertObjectToJsonString(generateDocumentRequest))
-            .contentType(MediaType.APPLICATION_JSON)
-            .accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isBadRequest());
-    }
-
-    @Test
-    public void givenTemplateNameIsBlank_whenGenerateAndStoreDocument_thenReturnHttp400() throws Exception {
-        final String template = "  ";
-        final Map<String, Object> values = Collections.emptyMap();
-
-        final GenerateDocumentRequest generateDocumentRequest = new GenerateDocumentRequest(template, values);
-
-        webClient.perform(post(API_URL)
-            .content(ObjectMapperTestUtil.convertObjectToJsonString(generateDocumentRequest))
-            .contentType(MediaType.APPLICATION_JSON)
-            .accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isBadRequest());
-    }
-
-    @Test
-    public void givenTemplateNotFound_whenGenerateAndStoreDocument_thenReturnHttp400() throws Exception {
-        final String template = "nonExistingTemplate";
+    @ParameterizedTest
+    @NullSource
+    @ValueSource(strings = {" ", "nonExistingTemplate"})
+    void givenTemplateNameIsNull_whenGenerateAndStoreDocument_thenReturnHttp400(String template) throws Exception {
         final Map<String, Object> values = Collections.emptyMap();
 
         final GenerateDocumentRequest generateDocumentRequest = new GenerateDocumentRequest(template, values);
