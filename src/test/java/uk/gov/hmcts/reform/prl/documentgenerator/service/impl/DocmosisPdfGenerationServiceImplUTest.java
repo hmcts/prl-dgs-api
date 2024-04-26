@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.junit.Assert;
 import org.junit.Before;
@@ -24,10 +25,12 @@ import uk.gov.hmcts.reform.prl.documentgenerator.mapper.TemplateDataMapper;
 import uk.gov.hmcts.reform.prl.documentgenerator.util.NullOrEmptyValidator;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DocmosisPdfGenerationServiceImplUTest {
@@ -41,6 +44,9 @@ public class DocmosisPdfGenerationServiceImplUTest {
     @Mock
     private TemplateDataMapper templateDataMapper;
 
+    @Mock
+    ObjectMapper objectMapper;
+
 
     @InjectMocks
     @Spy
@@ -49,6 +55,9 @@ public class DocmosisPdfGenerationServiceImplUTest {
     @Before
     public void before() throws IllegalAccessException {
         FieldUtils.writeField(classUnderTest, "docmosisPdfServiceEndpoint", "test", true);
+        FieldUtils.writeField(classUnderTest, "docmosisPdfConvertEndpoint", "test", true);
+        FieldUtils.writeField(classUnderTest, "docmosisPdfServiceAccessKey", "test", true);
+
     }
 
     @Test
@@ -95,6 +104,25 @@ public class DocmosisPdfGenerationServiceImplUTest {
 
 
         byte[] expected = classUnderTest.generate(template, placeholders);
+
+        Assert.assertNotNull(expected);
+    }
+
+    @Test
+    public void givenFileNAme_whenConvertPDf_thenReturnProperResponse() throws Exception {
+        final Map<String, Object> placeholders = new HashMap<>();
+
+        byte[] test = "Any String you want".getBytes();
+        placeholders.put("fileName",test);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
+        Mockito.when(restTemplate.postForObject(ArgumentMatchers.any(String.class),
+                                           ArgumentMatchers.any(),
+                                           ArgumentMatchers.<Class<byte[]>>any())).thenReturn(test);
+
+
+        byte[] expected = classUnderTest.converToPdf(placeholders,"testFile");
 
         Assert.assertNotNull(expected);
     }

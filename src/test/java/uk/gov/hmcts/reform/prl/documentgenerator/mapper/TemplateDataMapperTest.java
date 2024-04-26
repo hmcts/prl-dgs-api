@@ -20,6 +20,7 @@ import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.when;
 import static uk.gov.hmcts.reform.prl.documentgenerator.domain.TemplateConstants.CASE_DATA;
 import static uk.gov.hmcts.reform.prl.documentgenerator.domain.TemplateConstants.CASE_DETAILS;
+import static uk.gov.hmcts.reform.prl.documentgenerator.domain.TemplateConstants.TEMP_PARTY_NAMES_KEY;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TemplateDataMapperTest {
@@ -66,6 +67,28 @@ public class TemplateDataMapperTest {
         Map<String, Object> requestData = Collections.singletonMap(
             CASE_DETAILS, Collections.singletonMap(CASE_DATA, caseData)
         );
+
+        Map<String, Object> actual = templateDataMapper.map(requestData);
+
+        assertEquals(expectedData, actual);
+    }
+
+    @Test
+    public void putAllDataInmMap() {
+        Map<String, Object> caseData = new HashMap<>();
+
+        Map<String, Object> actual = templateDataMapper.map(caseData);
+
+        assertEquals(expectedData, actual);
+    }
+
+    @Test
+    public void putAllPartyNamesInMap() {
+        Map<String, Object> caseData = new HashMap<>();
+        Map<String, Object> partyNamesMap = new HashMap<>();
+        Map<String, Object> requestData = new HashMap<>();
+        requestData.put(CASE_DETAILS, Collections.singletonMap(CASE_DATA, caseData));
+        requestData.put(TEMP_PARTY_NAMES_KEY, partyNamesMap);
 
         Map<String, Object> actual = templateDataMapper.map(requestData);
 
