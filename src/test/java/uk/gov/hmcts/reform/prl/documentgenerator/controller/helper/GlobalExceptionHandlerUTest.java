@@ -13,12 +13,11 @@ import uk.gov.hmcts.reform.prl.documentgenerator.exception.PDFGenerationExceptio
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
-public class GlobalExceptionHandlerUTest {
+class GlobalExceptionHandlerUTest {
 
     private final GlobalExceptionHandler classUnderTest = new GlobalExceptionHandler();
-
     @Test
-    public void whenHandleBadRequestException_thenReturnBadRequest() {
+    void whenHandleBadRequestException_thenReturnBadRequest() {
         final Exception exception = new Exception();
 
         ResponseEntity<Object> response = classUnderTest.handleBadRequestException(exception);
@@ -27,7 +26,7 @@ public class GlobalExceptionHandlerUTest {
     }
 
     @Test
-    public void whenHandleTemplateLoadingException_thenReturnBadRequest() {
+    void whenHandleTemplateLoadingException_thenReturnBadRequest() {
         final String message = "some message";
         final Exception exception = new Exception();
         final ErrorLoadingTemplateException errorLoadingTemplateException =
@@ -40,7 +39,7 @@ public class GlobalExceptionHandlerUTest {
     }
 
     @Test
-    public void givenHttpClientErrorExceptionWrappedIn_whenHandleDocumentStorageAndPDFGenerationException_thenReturnStatusCodeOfHttpClientErrorException() {
+    void givenHttpClientErrorExceptionWrappedIn_whenHandleDocumentStorageAndPDFGenerationException_thenReturnStatusCodeOfHttpClientErrorException() {
         final HttpStatus httpStatus = HttpStatus.MOVED_PERMANENTLY;
 
         final HttpClientErrorException httpClientErrorException = new HttpClientErrorException(httpStatus);
@@ -57,7 +56,7 @@ public class GlobalExceptionHandlerUTest {
     }
 
     @Test
-    public void givenHttpClientErrorResponseCode200_whenHandleDocumentStorageAndPDFGenerationException_thenReturnStatus503() {
+    void givenHttpClientErrorResponseCode200_whenHandleDocumentStorageAndPDFGenerationException_thenReturnStatus503() {
         final HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
 
         final HttpClientErrorException httpClientErrorException = new HttpClientErrorException(httpStatus);
@@ -74,7 +73,7 @@ public class GlobalExceptionHandlerUTest {
     }
 
     @Test
-    public void givenWrappedInExceptionIsNull_whenHandleDocumentStorageAndPDFGenerationException_thenReturnInternalServerError() {
+    void givenWrappedInExceptionIsNull_whenHandleDocumentStorageAndPDFGenerationException_thenReturnInternalServerError() {
         final String message = "some message";
 
         PDFGenerationException pdfGenerationException = new PDFGenerationException(message, null);
@@ -87,7 +86,7 @@ public class GlobalExceptionHandlerUTest {
     }
 
     @Test
-    public void givenWrappedInIsNotHttpClientErrorException_whenHandleDocumentStorageAndPDFGenerationException_thenReturnInternalServerError() {
+    void givenWrappedInIsNotHttpClientErrorException_whenHandleDocumentStorageAndPDFGenerationException_thenReturnInternalServerError() {
         final String message = "some message";
         final Exception exception = new Exception();
 
