@@ -16,6 +16,7 @@ import static org.junit.Assert.assertEquals;
 class GlobalExceptionHandlerUTest {
 
     private final GlobalExceptionHandler classUnderTest = new GlobalExceptionHandler();
+
     @Test
     void whenHandleBadRequestException_thenReturnBadRequest() {
         final Exception exception = new Exception();
