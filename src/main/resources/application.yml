@@ -429,9 +429,6 @@ document:
             -   templateName: PRL-LET-ENG-C100-AP6.docx
                 filename: cover_letter_ap6.pdf
                 document-generator: docmosis
-            -   templateName: PRL-BLANK-FM5-DOCUMENT.pdf
-                filename: FM5_0424.pdf
-                document-generator: docmosis
             -   templateName: PRL-LET-ENG-C100-AP7.docx
                 filename: cover_letter_ap7.pdf
                 document-generator: docmosis
@@ -473,6 +470,9 @@ document:
                 document-generator: docmosis
             -   templateName: FL-PRL-APP-WEL-C100-Final-V3.docx
                 filename: C100FinalWelshDocument.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LTR-ENG-C100-FM5.docx
+                filename: Cover_letter_fm5.pdf
                 document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
