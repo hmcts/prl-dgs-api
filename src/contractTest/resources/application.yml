@@ -61,6 +61,27 @@ document:
             -   templateName: FL-DIV-GOR-ENG-00062.docx
                 filename: TestTemplate.pdf
                 document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-SOLICITOR-C7R-DRAFT.docx
+                filename: C7_Response_Draft_Document.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-SOLICITOR-C7R-FINAL.docx
+                filename: C7_Response_Final_Document.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-SOLICITOR-C7R-DRAFT.docx
+                filename: Draft_C7_response_Welsh.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-SOLICITOR-C7R-FINAL.docx
+                filename: Final_C7_response_Welsh.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-RESP-SOLICITOR-C1A-DRAFT.docx
+                filename: C1A_Allegation_Of_Harm_Draft_Document.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-RESP-SOLICITOR-C1A-DRAFT.docx
+                filename: C1A_Allegation_Of_Harm_Welsh_Draft_Document.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-RESP-SOLICITOR-C1A-FINAL.docx
+                filename: C1A_Allegation_Of_Harm_Welsh_Final_Document.pdf
+                document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"

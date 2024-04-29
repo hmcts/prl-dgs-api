@@ -10,38 +10,54 @@
         <cve>CVE-2022-34305</cve>
     </suppress>
     <suppress>
+      <notes><![CDATA[
+        tomcat-embed-websocket-9.0.69.jar ]]></notes>
+      <cve>CVE-2023-41080</cve>
+    </suppress>
+    <suppress>
         <notes><![CDATA[
       spring-core-5.3.20.jar ]]></notes>
-        <cve>CVE-2016-1000027</cve>
-      <cve>CVE-2023-20863</cve>
-    </suppress>
-    <suppress>
-        <notes><![CDATA[
-      apache:log4j:2.17.2:*:*:*:*:*:*:*
-       ]]></notes>
-        <cve>CVE-2022-33915</cve>
-        <cve>CVE-2022-31569</cve>
-    </suppress>
-    <suppress>
-        <notes>Temporary Suppression</notes>
-        <cve>CVE-2021-37533</cve>
-        <cve>CVE-2022-45688</cve>
-        <cve>CVE-2023-24998</cve>
-        <cve>CVE-2022-1471</cve>
-        <cve>CVE-2023-20860</cve>
-    </suppress>
-    <suppress>
-        <notes>Temporary Suppression</notes>
-        <cve>CVE-2021-4277</cve>
-        <cve>CVE-2021-4235</cve>
-        <cve>CVE-2022-3064</cve>
-        <cve>CVE-2022-22978</cve>
-        <cve>CVE-2022-22976</cve>
-        <cve>CVE-2021-22119</cve>
-        <cve>CVE-2020-15522</cve>
-        <cve>CVE-2021-22053</cve>
-        <cve>CVE-2022-1471</cve>
-        <cve>CVE-2023-20861</cve>
-        <cve>CVE-2023-28708</cve>
-    </suppress>
+    <cve>CVE-2016-1000027</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+      jackson-databind-2.13.3.jar ]]></notes>
+    <cve>CVE-2023-35116</cve>
+    <cve>CVE-2022-45688</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+     tomcat-embed-core-9.0.80.jar ]]></notes>
+    <cve>CVE-2023-42794</cve>
+    <cve>CVE-2023-42795</cve>
+    <cve>CVE-2023-45648</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+     tomcat-embed-websocket-9.0.80.jar ]]></notes>
+    <cve>CVE-2023-42794</cve>
+    <cve>CVE-2023-42795</cve>
+    <cve>CVE-2023-45648</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+     spring-security-core-5.6.2.jar]]></notes>
+    <cve>CVE-2023-34034</cve>
+    <cve>CVE-2023-20862</cve>
+  </suppress>
+  <suppress>
+  <notes><![CDATA[
+   file name: spring-hateoas-0.25.1.RELEASE.jar
+   ]]></notes>
+  <packageUrl regex="true">^pkg:maven/org\.springframework\.hateoas/spring\-hateoas@.*$</packageUrl>
+  <cve>CVE-2023-34036</cve>
+  </suppress>
+  <suppress>
+    <notes>temporary></notes>
+    <cve>CVE-2023-45648</cve>
+    <cve>CVE-2023-42795</cve>
+    <cve>CVE-2023-44487</cve>
+    <cve>CVE-2023-5072</cve>
+    <cve>CVE-2023-42794</cve>
+  </suppress>
 </suppressions>
