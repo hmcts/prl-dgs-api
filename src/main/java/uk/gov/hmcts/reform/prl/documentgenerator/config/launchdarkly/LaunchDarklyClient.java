@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.config.launchdarkly;
 
-import com.launchdarkly.sdk.LDContext;
 import com.launchdarkly.sdk.LDUser;
 import com.launchdarkly.sdk.server.interfaces.LDClientInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +27,10 @@ public class LaunchDarklyClient {
     }
 
     public boolean isFeatureEnabled(String feature) {
-        return internalClient.boolVariation(feature, LDContext.fromUser(LaunchDarklyClient.PRL_DGS_USER), false);
+        return internalClient.boolVariation(feature, LaunchDarklyClient.PRL_DGS_USER, false);
     }
 
-    public boolean isFeatureEnabled(String feature, LDContext user) {
+    public boolean isFeatureEnabled(String feature, LDUser user) {
         return internalClient.boolVariation(feature, user, false);
     }
 
