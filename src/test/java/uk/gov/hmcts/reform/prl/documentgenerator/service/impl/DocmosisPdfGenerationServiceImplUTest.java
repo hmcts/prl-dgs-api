@@ -50,7 +50,8 @@ public class DocmosisPdfGenerationServiceImplUTest {
 
     @InjectMocks
     @Spy
-    private final DocmosisPDFGenerationServiceImpl classUnderTest = new DocmosisPDFGenerationServiceImpl();
+    private final DocmosisPDFGenerationServiceImpl classUnderTest = new
+        DocmosisPDFGenerationServiceImpl(restTemplate,templateDataMapper);
 
     @Before
     public void before() throws IllegalAccessException {

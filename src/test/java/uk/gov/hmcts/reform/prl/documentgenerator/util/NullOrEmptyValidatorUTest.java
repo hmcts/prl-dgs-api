@@ -28,13 +28,11 @@ public class NullOrEmptyValidatorUTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    @Ignore
     public void givenArrayIsNull_whenRequireNonEmpty_thenThrowsIllegalArgumentException() {
         NullOrEmptyValidator.requireNonEmpty(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    @Ignore
     public void givenArrayIsEmpty_whenRequireNonEmpty_thenThrowsIllegalArgumentException() {
         NullOrEmptyValidator.requireNonEmpty(ArrayUtils.EMPTY_BYTE_ARRAY);
     }
@@ -49,19 +47,16 @@ public class NullOrEmptyValidatorUTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    @Ignore
     public void givenTextIsNull_whenRequireNonBlank_thenThrowsIllegalArgumentException() {
         NullOrEmptyValidator.requireNonBlank(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    @Ignore
     public void givenTextIsEmpty_whenRequireNonBlank_thenThrowsIllegalArgumentException() {
         NullOrEmptyValidator.requireNonBlank(EMPTY_STRING);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    @Ignore
     public void givenTextIsBlank_whenRequireNonBlank_thenThrowsIllegalArgumentException() {
         NullOrEmptyValidator.requireNonBlank(BLANK_STRING);
     }

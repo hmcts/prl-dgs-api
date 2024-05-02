@@ -33,11 +33,15 @@ import static com.google.common.base.Strings.isNullOrEmpty;
 @Slf4j
 public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
 
-    @Autowired
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
+
+    private final TemplateDataMapper templateDataMapper;
 
     @Autowired
-    private TemplateDataMapper templateDataMapper;
+    public DocmosisPDFGenerationServiceImpl(RestTemplate restTemplate,TemplateDataMapper templateDataMapper) {
+        this.restTemplate = restTemplate;
+        this.templateDataMapper = templateDataMapper;
+    }
 
     @Value("${docmosis.service.pdf-service.uri}")
     private String docmosisPdfServiceEndpoint;
@@ -88,26 +92,19 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
     }
 
     @Override
-    public byte[] converToPdf(Map<String, Object> placeholders, String fileName) {
+    public byte[] converToPdf(Map<String, Object> placeholders, String fileName) throws IOException {
+        String filename = FilenameUtils.getBaseName(fileName) + ".pdf";
+        ObjectMapper objectMapper = new ObjectMapper();
+        byte[] docInBytes = objectMapper.convertValue(placeholders.get("fileName"), byte[].class);
+        File file = new File(fileName);
+        Files.write(docInBytes, file);
 
-        try {
-            String filename = FilenameUtils.getBaseName(fileName) + ".pdf";
-            ObjectMapper objectMapper = new ObjectMapper();
-            byte[] docInBytes = objectMapper.convertValue(placeholders.get("fileName"), byte[].class);
-            File file = new File(fileName);
-            Files.write(docInBytes, file);
-
-            return restTemplate
-                .postForObject(
-                    docmosisPdfConvertEndpoint,
-                    createRequest(file, filename),
-                    byte[].class
-                );
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+        return restTemplate
+            .postForObject(
+                docmosisPdfConvertEndpoint,
+                createRequest(file, filename),
+                byte[].class
+            );
     }
 
 

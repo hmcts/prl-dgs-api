@@ -31,13 +31,13 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handleDocumentStorageAndPDFGenerationException(Exception exception) {
         log.error(exception.getMessage(), exception);
 
-        if (exception.getCause() instanceof HttpClientErrorException) {
-            HttpStatus httpClientErrorException = ((HttpClientErrorException) exception.getCause()).getStatusCode();
+        if (exception.getCause() instanceof HttpClientErrorException httpClientErrorException) {
+            HttpStatus httpClientStatus = httpClientErrorException.getStatusCode();
 
-            if (httpClientErrorException == HttpStatus.BAD_REQUEST) {
+            if (httpClientStatus == HttpStatus.BAD_REQUEST) {
                 return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(exception.getMessage());
             } else {
-                return ResponseEntity.status(httpClientErrorException).body(exception.getMessage());
+                return ResponseEntity.status(httpClientStatus).body(exception.getMessage());
             }
         }
 

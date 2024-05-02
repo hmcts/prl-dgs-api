@@ -9,6 +9,7 @@ import uk.gov.hmcts.reform.prl.documentgenerator.domain.request.GenerateDocument
 import uk.gov.hmcts.reform.prl.documentgenerator.domain.response.GeneratedDocumentInfo;
 import uk.gov.hmcts.reform.prl.documentgenerator.service.DocumentManagementService;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -66,7 +67,7 @@ public class DocumentGeneratorControllerUTest {
     }
 
     @Test
-    public void whenConvertPDF_thenReturnConvertedPDFDocumentInfo() {
+    public void whenConvertPDF_thenReturnConvertedPDFDocumentInfo() throws IOException {
         final String templateName = "templateName";
         Map<String, Object> placeholder = new HashMap<>();
 

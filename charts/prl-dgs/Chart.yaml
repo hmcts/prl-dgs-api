@@ -2,8 +2,8 @@ apiVersion: v2
 appVersion: "1.0"
 description: Family Private Law - Document Generator Service
 name: prl-dgs
-version: 0.0.49
+version: 0.0.50
 dependencies:
     - name: java
-      version: 5.0.0
+      version: 5.2.0
       repository: "https://hmctspublic.azurecr.io/helm/v1/repo/"

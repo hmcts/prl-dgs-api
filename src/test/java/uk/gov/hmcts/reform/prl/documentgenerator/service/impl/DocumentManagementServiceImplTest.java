@@ -15,6 +15,7 @@ import uk.gov.hmcts.reform.ccd.document.am.model.UploadResponse;
 import uk.gov.hmcts.reform.prl.documentgenerator.config.TemplatesConfiguration;
 import uk.gov.hmcts.reform.prl.documentgenerator.service.PDFGenerationService;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -110,7 +111,7 @@ public class DocumentManagementServiceImplTest {
     }
 
     @Test
-    public void testConvertToPdf() {
+    public void testConvertToPdf() throws IOException {
         final Map<String, Object> placeholders = new HashMap<>();
 
         byte[] test = "Any String you want".getBytes();
