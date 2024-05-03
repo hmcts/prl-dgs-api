@@ -200,7 +200,7 @@ def versions = [
     httpComponents: '4.5.13',
     bouncycastle: '1.73',
     ccdCaseDocumentAmClient: '1.7.2',
-    springFramework    : '5.3.27'
+    springFramework    : '5.3.29'
 ]
 
 ext["logback.version"] = '1.2.13'
