@@ -175,7 +175,7 @@ def versions = [
     apacheLogging: '2.20.0',
     jsonAssert: '1.2.3',
     junit: '4.13.1',
-    lombok: '1.18.26',
+    lombok: '1.18.32',
     nimbus: '5.1',
     pdfbox: '2.0.24',
     pitest: '1.7.3',
