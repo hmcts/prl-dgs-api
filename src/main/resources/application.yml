@@ -474,6 +474,9 @@ document:
             -   templateName: FL-PRL-GOR-ENG-CITIZEN-C1A-RESPONSE-FINAL.docx
                 filename: C1AResponseDocument.pdf
                 document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-CITIZEN-C1A-RESPONSE-FINAL.docx
+                filename: C1AResponseWelshDocument.pdf
+                document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"
