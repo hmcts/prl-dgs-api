@@ -471,6 +471,9 @@ document:
             -   templateName: FL-PRL-APP-WEL-C100-Final-V3.docx
                 filename: C100FinalWelshDocument.pdf
                 document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-CITIZEN-C1A-RESPONSE-FINAL.docx
+                filename: C1AResponseDocument.pdf
+                document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"
