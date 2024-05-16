@@ -471,6 +471,9 @@ document:
             -   templateName: FL-PRL-APP-WEL-C100-Final-V3.docx
                 filename: C100FinalWelshDocument.pdf
                 document-generator: docmosis
+            -   templateName: PRL-LTR-ENG-C100-FM5.docx
+                filename: Cover_letter_fm5.pdf
+                document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"

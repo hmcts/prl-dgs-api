@@ -3,6 +3,9 @@ FROM hmctspublic.azurecr.io/base/java:17-distroless
 
 ENV APP prl-dgs-api.jar
 
+# Change to non-root privilege
+USER hmcts
+
 COPY lib/AI-Agent.xml /opt/app/
 COPY build/libs/$APP /opt/app/
 COPY lib/applicationinsights.json /opt/app/
