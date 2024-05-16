@@ -462,6 +462,21 @@ document:
             -   templateName: PRL-LEG-REP-REMOVED.docx
                 filename: Cover_letter_with_access_code.pdf
                 document-generator: docmosis
+            -   templateName: FL-PRL-APP-ENG-C100-DRAFT-V3.docx
+                filename: C100DraftDocument.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-APP-ENG-C100-Final-V3.docx
+                filename: C100FinalDocument.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-APP-WEL-C100-Draft-V3.docx
+                filename: C100DraftWelshDocument.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-APP-WEL-C100-Final-V3.docx
+                filename: C100FinalWelshDocument.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LTR-ENG-C100-FM5.docx
+                filename: Cover_letter_fm5.pdf
+                document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"
