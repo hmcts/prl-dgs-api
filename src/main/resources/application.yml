@@ -459,6 +459,9 @@ document:
             -   templateName: PRL-WEL-DOCUMENT-COVER-SERVE-ORDER-SHEET.docx
                 filename: WelshPrlPostDocumentCoverSheet.pdf
                 document-generator: docmosis
+            -   templateName: PRL-LEG-REP-REMOVED.docx
+                filename: Cover_letter_with_access_code.pdf
+                document-generator: docmosis
             -   templateName: FL-PRL-APP-ENG-C100-DRAFT-V3.docx
                 filename: C100DraftDocument.pdf
                 document-generator: docmosis
@@ -471,6 +474,11 @@ document:
             -   templateName: FL-PRL-APP-WEL-C100-Final-V3.docx
                 filename: C100FinalWelshDocument.pdf
                 document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-CITIZEN-C1A-RESPONSE-FINAL.docx
+                filename: C1AResponseDocument.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-CITIZEN-C1A-RESPONSE-FINAL.docx
+                filename: C1AResponseWelshDocument.pdf
             -   templateName: PRL-LTR-ENG-C100-FM5.docx
                 filename: Cover_letter_fm5.pdf
                 document-generator: docmosis
