@@ -204,7 +204,7 @@ document:
             -   templateName: FL-PRL-GOR-ENG-C45A-Parental-Responsibility-Order-Draft.docx
                 filename: Parental_Responsibility_Order_C45A_draft.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-ENG-FL404A-Non-Molestation-Order-Draft.docx
+            -   templateName: FL-PRL-GOR-ENG-FL404A-Non-Molestation-Order-Draft.docx
                 filename: non_molestation_order_fl404a_draft.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-FL404A-Non-Molestation-Order-Final.docx
@@ -288,10 +288,10 @@ document:
             -   templateName: PRL-GOR-WEL-FL404-Occupation-Order-Draft.docx
                 filename: welsh_occupation_order_FL404_draft.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-FL404A-Non-Molestation-Order-Final.docx
+            -   templateName: FL-PRL-GOR-WEL-FL404A-Non-Molestation-Order-Final.docx
                 filename: welsh_non_molestation_order_fl404a_final.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-FL404A-Non-Molestation-Order-Draft.docx
+            -   templateName: FL-PRL-GOR-WEL-FL404A-Non-Molestation-Order-Draft.docx
                 filename: welsh_non_molestation_order_fl404a_draft.pdf
                 document-generator: docmosis
             -   templateName: PRL-HNO-WEL-FL402-Notice-Of-Proceedings-Draft.docx
