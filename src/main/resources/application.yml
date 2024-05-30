@@ -249,11 +249,23 @@ document:
             -   templateName: FL-PRL-GOR-ENG-SOLICITOR-C7R-FINAL.docx
                 filename: C7_Response_Final_Document.pdf
                 document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-SOLICITOR-C7R-DRAFT.docx
+                filename: Draft_C7_response_Welsh.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-SOLICITOR-C7R-FINAL.docx
+                filename: Final_C7_response_Welsh.pdf
+                document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-RESP-SOLICITOR-C1A-DRAFT.docx
                 filename: C1A_Allegation_Of_Harm_Draft_Document.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-RESP-SOLICITOR-C1A-FINAL.docx
                 filename: C1A_Allegation_Of_Harm_Final_Document.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-RESP-SOLICITOR-C1A-DRAFT.docx
+                filename: C1A_Allegation_Of_Harm_Welsh_Draft_Document.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-RESP-SOLICITOR-C1A-FINAL.docx
+                filename: C1A_Allegation_Of_Harm_Welsh_Final_Document.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-Solicitor-Draft-Order.docx
                 filename: Draft_an_order.pdf
@@ -408,6 +420,9 @@ document:
             -   templateName: PRL-LET-ENG-C100-RE5.docx
                 filename: cover_letter_re5.pdf
                 document-generator: docmosis
+            -   templateName: PRL-LET-ENG-C100-RE7.docx
+                filename: cover_letter_re7.pdf
+                document-generator: docmosis
             -   templateName: PRL-LET-ENG-FL401-AP2.docx
                 filename: cover_letter_ap2.pdf
                 document-generator: docmosis
@@ -443,6 +458,29 @@ document:
                 document-generator: docmosis
             -   templateName: PRL-WEL-DOCUMENT-COVER-SERVE-ORDER-SHEET.docx
                 filename: WelshPrlPostDocumentCoverSheet.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LEG-REP-REMOVED.docx
+                filename: Cover_letter_with_access_code.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-APP-ENG-C100-DRAFT-V3.docx
+                filename: C100DraftDocument.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-APP-ENG-C100-Final-V3.docx
+                filename: C100FinalDocument.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-APP-WEL-C100-Draft-V3.docx
+                filename: C100DraftWelshDocument.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-APP-WEL-C100-Final-V3.docx
+                filename: C100FinalWelshDocument.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-CITIZEN-C1A-RESPONSE-FINAL.docx
+                filename: C1AResponseDocument.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-CITIZEN-C1A-RESPONSE-FINAL.docx
+                filename: C1AResponseWelshDocument.pdf
+            -   templateName: PRL-LTR-ENG-C100-FM5.docx
+                filename: Cover_letter_fm5.pdf
                 document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
