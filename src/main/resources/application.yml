@@ -222,7 +222,7 @@ document:
             -   templateName: PRL-PRIVACY-NOTICE-DOCUMENT.docx
                 filename: PrivacyNoticeDocument.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-ENG-FL406-Power-Of-Arrest-Draft.docx
+            -   templateName: FL-PRL-GOR-ENG-FL406-Power-Of-Arrest-Draft.docx
                 filename: Power_of_arrest.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-FL406-Power-Of-Arrest-Final.docx
@@ -276,10 +276,10 @@ document:
             -   templateName: PRL-GOR-ENG-FL401-LIST-ON-NOTICE-FL404B.docx
                 filename: fl401-list-on-notice-fl404b.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-FL406-Power-Of-Arrest-Draft.docx
+            -   templateName: FL-PRL-GOR-WEL-FL406-Power-Of-Arrest-Draft.docx
                 filename: Welsh_Power_of_arrest_draft.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-FL406-Power-Of-Arrest-Final.docx
+            -   templateName: FL-PRL-GOR-WEL-FL406-Power-Of-Arrest-Final.docx
                 filename: Welsh_Power_of_arrest.pdf
                 document-generator: docmosis
             -   templateName: PRL-GOR-WEL-FL404-Occupation-Order-Final.docx
