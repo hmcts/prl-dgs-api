@@ -423,6 +423,9 @@ document:
             -   templateName: PRL-LET-ENG-C100-RE7.docx
                 filename: cover_letter_re7.pdf
                 document-generator: docmosis
+            -   templateName: PRL-LET-ENG-FL401-AP1.docx
+                filename: cover_letter_ap1.pdf
+                document-generator: docmosis
             -   templateName: PRL-LET-ENG-FL401-AP2.docx
                 filename: cover_letter_ap2.pdf
                 document-generator: docmosis
