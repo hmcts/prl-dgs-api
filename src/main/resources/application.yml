@@ -180,7 +180,7 @@ document:
             -   templateName: FL-PRL-GOR-ENG-N117-General-Undertaking-Form-Final.docx
                 filename: N117CreateOrder.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-ENG-FL404-Occupation-Order-Draft.docx
+            -   templateName: FL-PRL-GOR-ENG-FL404-Occupation-Order-Draft.docx
                 filename: occupation_order_FL404_draft.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-FL404-Occupation-Order-Final.docx
@@ -282,10 +282,10 @@ document:
             -   templateName: FL-PRL-GOR-WEL-FL406-Power-Of-Arrest-Final.docx
                 filename: Welsh_Power_of_arrest.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-FL404-Occupation-Order-Final.docx
+            -   templateName: FL-PRL-GOR-WEL-FL404-Occupation-Order-Final.docx
                 filename: welsh_occupation_order_FL404_final.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-FL404-Occupation-Order-Draft.docx
+            -   templateName: FL-PRL-GOR-WEL-FL404-Occupation-Order-Draft.docx
                 filename: welsh_occupation_order_FL404_draft.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-WEL-FL404A-Non-Molestation-Order-Final.docx
