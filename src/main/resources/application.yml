@@ -78,31 +78,31 @@ document:
             -   templateName: FL-PRL-APP-ENG-C100-C1A-Final.docx
                 filename: C1ADocument.pdf
                 document-generator: docmosis
-            -   templateName: PRL-C100-R1-Draft-Document.docx
+            -   templateName: FL-PRL-APP-ENG-C100-R1-Draft-Document.docx
                 filename: C100DraftDocument.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-APP-ENG-C100-DRAFT-V2.docx
                 filename: C100DraftDocument.pdf
                 document-generator: docmosis
-            -   templateName: PRL-C100-R1-Draft-WelshLang.docx
+            -   templateName: FL-PRL-APP-WEL-C100-R1-Draft.docx
                 filename: C100DraftWelshDocument.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-APP-WEL-C100-Draft-V2.docx
                 filename: C100DraftWelshDocument.pdf
                 document-generator: docmosis
-            -   templateName: PRL-C100-R1-Final-WelshLang.docx
+            -   templateName: FL-PRL-APP-WEL-C100-R1-Final.docx
                 filename: C100FinalWelshDocument.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-APP-WEL-C100-Final-V2.docx
                 filename: C100FinalWelshDocument.pdf
                 document-generator: docmosis
-            -   templateName: PRL-C8-WelshLang.docx
+            -   templateName: FL-PRL-CON-WEL-C8-Final.docx
                 filename: C8WelshDocument.pdf
                 document-generator: docmosis
-            -   templateName: PRL-C1A-WelshLang.docx
+            -   templateName: FL-PRL-APP-WEL-C1A-Final.docx
                 filename: C1AWelshDocument.pdf
                 document-generator: docmosis
-            -   templateName: FL401-draft.docx
+            -   templateName: FL-PRL-APP-ENG-FL401-draft.docx
                 filename: Draft-DA-application.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-APP-ENG-Fl401-Final.docx
@@ -126,10 +126,10 @@ document:
             -   templateName: FL-PRL-APP-WEL-FL401-Final.docx
                 filename: DA-Welsh-application.pdf
                 document-generator: docmosis
-            -   templateName: FL401-draft-Welsh.docx
+            -   templateName: FL-PRL-APP-WEL-FL401-draft.docx
                 filename: Draft-DA-Welsh-application.pdf
                 document-generator: docmosis
-            -   templateName: FL401-c8-welsh.docx
+            -   templateName: FL-PRL-APP-WEL-FL401-C8.docx
                 filename: FL401C8WelshDocument.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-C21-Blank-Order-Final.docx
