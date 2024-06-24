@@ -171,7 +171,7 @@ def versions = [
     feignHttpClient: '10.2.0',
     gradlePitest: '1.4.5',
     guava: '32.1.2-jre',
-    jacksonDatabind: '2.15.2',
+    jacksonDatabind: '2.16.0',
     apacheLogging: '2.20.0',
     jsonAssert: '1.2.3',
     junit: '4.13.1',
@@ -194,7 +194,7 @@ def versions = [
     springHateoas: '0.25.1.RELEASE',
     unirest: '1.4.9',
     wiremockVersion: '2.27.2',
-    springSecurityCrypto: '5.7.5',
+    springSecurityCrypto: '5.7.10',
     tomcat   : '9.0.83',
     pact_version: '4.1.11',
     httpComponents: '4.5.13',
@@ -205,7 +205,7 @@ def versions = [
 
 ext["logback.version"] = '1.2.13'
 ext['snakeyaml.version'] = '2.2'
-ext['jackson.version'] = '2.15.2'
+ext['jackson.version'] = '2.16.0'
 ext['spring-framework.version'] = '5.3.27'
 
 
