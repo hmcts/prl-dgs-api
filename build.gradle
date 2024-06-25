@@ -191,7 +191,7 @@ def versions = [
     spring_security_rsa: '1.0.12.RELEASE',
     springBoot: '2.7.18',
     springCloud: '3.1.6',
-    springHateoas: '1.5.5',
+    springHateoas: '0.25.1.RELEASE',
     unirest: '1.4.9',
     wiremockVersion: '2.27.2',
     springSecurityCrypto: '5.7.11',
