@@ -84,6 +84,12 @@ document:
             -   templateName: FL-PRL-GOR-WEL-RESP-SOLICITOR-C1A-FINAL.docx
                 filename: C1A_Allegation_Of_Harm_Welsh_Final_Document.pdf
                 document-generator: docmosis
+            -   templateName: PRL-LET-ENG-FL401-RE8.docx
+                filename: Cover_letter_re8.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-RE8.docx
+                filename: Cover_letter_welsh_re8.pdf
+                document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"
