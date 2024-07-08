@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.mapper;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.prl.documentgenerator.config.DocmosisBasePdfConfig;
@@ -19,10 +20,10 @@ import static uk.gov.hmcts.reform.prl.documentgenerator.domain.TemplateConstants
 import static uk.gov.hmcts.reform.prl.documentgenerator.domain.TemplateConstants.TEMP_PARTY_NAMES_KEY;
 
 @Component
+@RequiredArgsConstructor
 public class TemplateDataMapper {
 
-    @Autowired
-    private DocmosisBasePdfConfig docmosisBasePdfConfig;
+    private final DocmosisBasePdfConfig docmosisBasePdfConfig;
 
     @SuppressWarnings("unchecked")
     public Map<String, Object> map(Map<String, Object> placeholders) {

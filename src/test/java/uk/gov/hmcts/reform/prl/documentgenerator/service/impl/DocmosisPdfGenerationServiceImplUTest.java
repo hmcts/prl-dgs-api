@@ -50,7 +50,7 @@ public class DocmosisPdfGenerationServiceImplUTest {
 
     @InjectMocks
     @Spy
-    private final DocmosisPDFGenerationServiceImpl classUnderTest = new DocmosisPDFGenerationServiceImpl();
+    private DocmosisPDFGenerationServiceImpl classUnderTest;
 
     @Before
     public void before() throws IllegalAccessException {
@@ -88,7 +88,6 @@ public class DocmosisPdfGenerationServiceImplUTest {
     public void givenHttpRequestGoesThrough_whenGenerateFromHtml_thenReturnProperResponse() throws Exception {
         final String template = "1";
         final Map<String, Object> placeholders = Collections.emptyMap();
-        final HttpClientErrorException httpClientErrorException = Mockito.mock(HttpClientErrorException.class);
 
         byte[] test = "Any String you want".getBytes();
 
