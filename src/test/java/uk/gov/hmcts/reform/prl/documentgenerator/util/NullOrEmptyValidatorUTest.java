@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.util;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;

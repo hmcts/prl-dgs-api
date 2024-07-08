@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.mapper;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.prl.documentgenerator.config.DocmosisBasePdfConfig;
 import uk.gov.hmcts.reform.prl.documentgenerator.exception.PDFGenerationException;

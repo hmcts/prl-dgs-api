@@ -1,6 +1,8 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.io.Files;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.junit.Assert;
 import org.junit.Before;
@@ -24,19 +26,20 @@ import uk.gov.hmcts.reform.prl.documentgenerator.exception.PDFGenerationExceptio
 import uk.gov.hmcts.reform.prl.documentgenerator.mapper.TemplateDataMapper;
 import uk.gov.hmcts.reform.prl.documentgenerator.util.NullOrEmptyValidator;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DocmosisPdfGenerationServiceImplUTest {
-
-    private static final String PDF_SERVICE_ENDPOINT = "pdf_service_endpoint";
-    private static final String PDF_SERVICE_KEY = "pdf_service_key";
 
     @Mock
     private RestTemplate restTemplate;
