@@ -517,6 +517,9 @@ spring:
     web:
         resources:
             static-locations:
+    config:
+      import: "optional:configtree:/mnt/secrets/prl/"
+
 
 # GENERAL SPRING BOOT ACTUATOR CONFIG
 # Context path for Spring Boot Actuator endpoints

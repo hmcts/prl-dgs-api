@@ -181,7 +181,6 @@ def versions = [
     pitest: '1.7.3',
     powerMock: '2.0.0',
     puppyCrawl: '8.29',
-    reformPropertiesVolume: '0.0.4',
     reformsJavaLogging: '5.1.1',
     restAssured: '4.5.1',
     serenity: '2.2.13',
@@ -250,7 +249,6 @@ dependencies {
     implementation (group: 'commons-beanutils', name: 'commons-beanutils', version: versions.commonsBeanUtils) {
         force = true
     }
-
     implementation (group:  'org.springframework.security', name: 'spring-security-rsa', version: versions.spring_security_rsa) {
         force = true
         exclude group: 'org.springframework.security', module: 'spring-security-crypto'
@@ -259,7 +257,6 @@ dependencies {
     implementation group: 'org.springframework.security', name: 'spring-security-crypto', version: versions.springSecurityCrypto
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
-    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap', version: versions.springCloud
     implementation group: 'org.bouncycastle', name: 'bcprov-jdk18on', version: versions.bouncycastle
 
     implementation group: 'com.github.hmcts', name:'ccd-case-document-am-client', version: versions.ccdCaseDocumentAmClient
@@ -292,7 +289,6 @@ dependencies {
   implementation group: 'uk.gov.hmcts.reform', name: 'logging-appinsights', version: versions.reformsJavaLogging
     implementation group: 'uk.gov.hmcts.reform', name: 'logging-spring', version: versions.reformsJavaLogging
     implementation group: 'uk.gov.hmcts.reform', name: 'logging-httpcomponents', version: versions.reformsJavaLogging
-    implementation group: 'uk.gov.hmcts.reform', name: 'properties-volume-spring-boot-starter', version: versions.reformPropertiesVolume
     implementation (group: 'uk.gov.hmcts.reform', name:'service-auth-provider-client', version: versions.serviceTokenGenerator) {
         exclude group: 'io.reactivex', module: 'io.reactivex'
         exclude group: 'io.reactivex', module: 'rxnetty'
