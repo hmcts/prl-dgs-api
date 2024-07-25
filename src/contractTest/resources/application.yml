@@ -420,6 +420,12 @@ document:
             -   templateName: PRL-LET-ENG-C100-RE5.docx
                 filename: cover_letter_re5.pdf
                 document-generator: docmosis
+            -   templateName: PRL-LET-ENG-FL401-RE8.docx
+                filename: Cover_letter_re8.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-RE8.docx
+                filename: Cover_letter_welsh_re8.pdf
+                document-generator: docmosis
             -   templateName: PRL-LET-ENG-C100-RE7.docx
                 filename: cover_letter_re7.pdf
                 document-generator: docmosis
@@ -484,6 +490,9 @@ document:
                 filename: C1AResponseWelshDocument.pdf
             -   templateName: PRL-LTR-ENG-C100-FM5.docx
                 filename: Cover_letter_fm5.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-RE7.docx
+                filename: cover_letter_welsh_re7.pdf
                 document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
