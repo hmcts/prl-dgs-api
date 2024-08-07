@@ -231,16 +231,16 @@ document:
             -   templateName: FL-PRL-GOR-ENG-Citizen-Uploaded-Statement.docx
                 filename: Citizen_Uploaded_Statement.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-GOR-ENG-C7R.docx
+            -   templateName: FL-PRL-GOR-ENG-LIP-C7R-DRAFT.docx
                 filename: C7_Draft_Document.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-GOR-WEL-C7R.docx
+            -   templateName: FL-PRL-GOR-WEL-LIP-C7R-DRAFT.docx
                 filename: Draft_C7_response_Welsh.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-GOR-ENG-C7R-Final.docx
+            -   templateName: FL-PRL-GOR-ENG-LIP-C7R-FINAL.docx
                 filename: C7_Document.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-GOR-WEL-C7R-Final.docx
+            -   templateName: FL-PRL-GOR-WEL-LIP-C7R-FINAL.docx
                 filename: Final_C7_response_Welsh.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-SOLICITOR-C7R-DRAFT.docx
