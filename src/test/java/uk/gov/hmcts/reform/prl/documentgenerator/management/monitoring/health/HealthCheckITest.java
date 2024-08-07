@@ -5,11 +5,11 @@ import com.github.tomakehurst.wiremock.junit.WireMockClassRule;
 import com.jayway.jsonpath.JsonPath;
 import com.netflix.loadbalancer.Server;
 import com.netflix.loadbalancer.ServerList;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
+import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.client5.http.impl.classic.MinimalHttpClient;
+import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -67,9 +67,9 @@ public class HealthCheckITest {
     public static WireMockClassRule caseDocService = new WireMockClassRule(buildWireMockConfig(5170));
 
     private String healthUrl;
-    private final HttpClient httpClient = HttpClients.createMinimal();
+    private final MinimalHttpClient httpClient = HttpClients.createMinimal();
 
-    private HttpResponse getHealth() throws Exception {
+    private CloseableHttpResponse getHealth() throws Exception {
         final HttpGet request = new HttpGet(healthUrl);
         request.addHeader("Accept", "application/json;charset=UTF-8");
 
@@ -100,10 +100,10 @@ public class HealthCheckITest {
         stubEndpointAndResponse(docmosisService, true);
         stubEndpointAndResponse(caseDocService, true);
 
-        HttpResponse response = getHealth();
+        CloseableHttpResponse response = getHealth();
         String body = EntityUtils.toString(response.getEntity());
 
-        assertThat(response.getStatusLine().getStatusCode(), equalTo(HttpStatus.OK.value()));
+        assertThat(response.getCode(), equalTo(HttpStatus.OK.value()));
         assertThat(JsonPath.read(body, "$.status").toString(),
             equalTo("UP"));
         assertThat(JsonPath.read(body, "$.components.serviceAuthProviderHealthCheck.status").toString(),
@@ -122,10 +122,10 @@ public class HealthCheckITest {
         stubEndpointAndResponse(docmosisService, false);
         stubEndpointAndResponse(caseDocService, false);
 
-        HttpResponse response = getHealth();
+        CloseableHttpResponse response = getHealth();
         String body = EntityUtils.toString(response.getEntity());
 
-        assertThat(response.getStatusLine().getStatusCode(), equalTo(HttpStatus.SERVICE_UNAVAILABLE.value()));
+        assertThat(response.getCode(), equalTo(HttpStatus.SERVICE_UNAVAILABLE.value()));
         assertThat(JsonPath.read(body, "$.status").toString(),
             equalTo("DOWN"));
         assertThat(JsonPath.read(body, "$.components.serviceAuthProviderHealthCheck.status").toString(),
@@ -144,10 +144,10 @@ public class HealthCheckITest {
         stubEndpointAndResponse(docmosisService, false);
         stubEndpointAndResponse(caseDocService, true);
 
-        HttpResponse response = getHealth();
+        CloseableHttpResponse response = getHealth();
         String body = EntityUtils.toString(response.getEntity());
 
-        assertThat(response.getStatusLine().getStatusCode(), equalTo(HttpStatus.SERVICE_UNAVAILABLE.value()));
+        assertThat(response.getCode(), equalTo(HttpStatus.SERVICE_UNAVAILABLE.value()));
         assertThat(JsonPath.read(body, "$.status").toString(),
             equalTo("DOWN"));
         assertThat(JsonPath.read(body, "$.components.serviceAuthProviderHealthCheck.status").toString(),
@@ -166,10 +166,10 @@ public class HealthCheckITest {
         stubEndpointAndResponse(docmosisService, true);
         stubEndpointAndResponse(caseDocService, false);
 
-        HttpResponse response = getHealth();
+        CloseableHttpResponse response = getHealth();
         String body = EntityUtils.toString(response.getEntity());
 
-        assertThat(response.getStatusLine().getStatusCode(), equalTo(HttpStatus.SERVICE_UNAVAILABLE.value()));
+        assertThat(response.getCode(), equalTo(HttpStatus.SERVICE_UNAVAILABLE.value()));
         assertThat(JsonPath.read(body, "$.status").toString(),
             equalTo("DOWN"));
         assertThat(JsonPath.read(body, "$.components.serviceAuthProviderHealthCheck.status").toString(),
@@ -188,10 +188,10 @@ public class HealthCheckITest {
         stubEndpointAndResponse(docmosisService, true);
         stubEndpointAndResponse(caseDocService, true);
 
-        HttpResponse response = getHealth();
+        CloseableHttpResponse response = getHealth();
         String body = EntityUtils.toString(response.getEntity());
 
-        assertThat(response.getStatusLine().getStatusCode(), equalTo(HttpStatus.SERVICE_UNAVAILABLE.value()));
+        assertThat(response.getCode(), equalTo(HttpStatus.SERVICE_UNAVAILABLE.value()));
         assertThat(JsonPath.read(body, "$.status").toString(),
             equalTo("DOWN"));
         assertThat(JsonPath.read(body, "$.components.serviceAuthProviderHealthCheck.status").toString(),

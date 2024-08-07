@@ -194,7 +194,7 @@ def versions = [
     unirest: '1.4.9',
     wiremockVersion: '3.9.1',
     springSecurityCrypto: '5.7.11',
-    tomcat   : '9.0.83',
+    tomcat   : '10.1.26',
     pact_version: '4.1.11',
     httpComponents: '4.5.13',
     bouncycastle: '1.73',
@@ -211,6 +211,14 @@ ext['spring-framework.version'] = '6.1.11'
 
 
 dependencies {
+
+  configurations {
+    all {
+      exclude group: 'ch.qos.logback', module: 'logback-classic'
+      exclude group: 'org.apache.logging.log4j', module: 'log4j-to-slf4j'
+    }
+  }
+
     //integration test
     integrationTestImplementation group: 'com.mashape.unirest', name: 'unirest-java', version: versions.unirest
     integrationTestImplementation group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: versions.nimbus
@@ -244,7 +252,7 @@ dependencies {
 
 
 
-  testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '3.1.1'
+  testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '4.1.4'
 
     implementation (group: 'commons-beanutils', name: 'commons-beanutils', version: versions.commonsBeanUtils) {
         force = true
@@ -312,6 +320,7 @@ dependencies {
 
     implementation 'org.junit.jupiter:junit-jupiter:5.10.3'
     implementation group: 'org.springframework', name: 'spring-context', version: versions.springFramework
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j2-impl', version: '2.23.1'
 
 
   annotationProcessor("org.projectlombok:lombok:${versions.lombok}")
@@ -359,7 +368,6 @@ dependencies {
     testImplementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
     testImplementation group: 'org.springframework', name: 'spring-test', version: '6.1.11'
     testImplementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j2-impl', version: '2.23.1'
-    testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.4'
 
     modules {
       module("org.codehaus.groovy:groovy") {
