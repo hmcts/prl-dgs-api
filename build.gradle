@@ -303,6 +303,7 @@ dependencies {
         exclude group: 'io.reactivex', module: 'rxnetty-contexts'
         exclude group: 'io.reactivex', module: 'rxnetty-servo'
         exclude group: 'org.bouncycastle'
+        exclude group: 'org.apache.httpcomponents'
     }
 
     implementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: versions.junit
