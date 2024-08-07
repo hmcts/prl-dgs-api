@@ -168,7 +168,7 @@ def versions = [
     commonsIo: '2.7',
     commonsLang3: '3.9',
     commonsBeanUtils: '1.9.4',
-    feignHttpClient: '10.2.0',
+    feignHttpClient: '13.3',
     gradlePitest: '1.4.5',
     guava: '32.1.2-jre',
     jacksonDatabind: '2.16.0',
