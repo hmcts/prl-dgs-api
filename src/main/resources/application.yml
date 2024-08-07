@@ -423,6 +423,9 @@ document:
             -   templateName: PRL-LET-ENG-C100-RE7.docx
                 filename: cover_letter_re7.pdf
                 document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-RE7.docx
+                filename: cover_letter_welsh_re7.pdf
+                document-generator: docmosis
             -   templateName: PRL-LET-ENG-FL401-AP1.docx
                 filename: cover_letter_ap1.pdf
                 document-generator: docmosis
@@ -490,6 +493,12 @@ document:
             -   templateName: PRL-LTR-ENG-C100-FM5.docx
                 filename: Cover_letter_fm5.pdf
                 document-generator: docmosis
+            -   templateName: PRL-LET-ENG-FL401-RE8.docx
+                filename: Cover_letter_re8.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-RE8.docx
+                filename: Cover_letter_welsh_re8.pdf
+                document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"
@@ -513,6 +522,9 @@ spring:
     web:
         resources:
             static-locations:
+    config:
+      import: "optional:configtree:/mnt/secrets/prl/"
+
 
 # GENERAL SPRING BOOT ACTUATOR CONFIG
 # Context path for Spring Boot Actuator endpoints
