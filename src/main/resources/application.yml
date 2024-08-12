@@ -470,6 +470,7 @@ document:
                 document-generator: docmosis
             -   templateName: PRL-WEL-DOCUMENT-SEND-REPLY-MESSAGE.docx
                 filename: WelshPrlMessageDocumentLetter.pdf
+                document-generator: docmosis
             -   templateName: PRL-LEG-REP-REMOVED.docx
                 filename: Cover_letter_with_access_code.pdf
                 document-generator: docmosis
