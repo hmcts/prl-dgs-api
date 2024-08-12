@@ -32,7 +32,7 @@ public class GlobalExceptionHandler {
         log.error(exception.getMessage(), exception);
 
         if (exception.getCause() instanceof HttpClientErrorException) {
-            HttpStatus httpClientErrorException = ((HttpClientErrorException) exception.getCause()).getStatusCode();
+            HttpStatus httpClientErrorException = (HttpStatus) ((HttpClientErrorException) exception.getCause()).getStatusCode();
 
             if (httpClientErrorException == HttpStatus.BAD_REQUEST) {
                 return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(exception.getMessage());

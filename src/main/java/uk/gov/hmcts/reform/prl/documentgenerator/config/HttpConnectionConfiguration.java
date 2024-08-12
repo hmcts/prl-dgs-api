@@ -4,9 +4,10 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.collect.ImmutableList;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.hc.client5.http.config.RequestConfig;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
+import org.apache.hc.core5.util.Timeout;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +22,6 @@ import org.springframework.http.converter.ResourceHttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
-import uk.gov.hmcts.reform.logging.httpcomponents.OutboundRequestIdSettingInterceptor;
 
 import java.nio.charset.Charset;
 
@@ -89,15 +89,14 @@ public class HttpConnectionConfiguration {
             new StringHttpMessageConverter()));
 
         RequestConfig config = RequestConfig.custom()
-            .setConnectTimeout(connectTimeout)
-            .setConnectionRequestTimeout(connectRequestTimeout)
-            .setSocketTimeout(connectRequestTimeout)
+            .setConnectTimeout(Timeout.ofMilliseconds(connectTimeout))
+            .setConnectionRequestTimeout(Timeout.ofMilliseconds(connectRequestTimeout))
+            .setResponseTimeout(Timeout.ofMilliseconds(connectRequestTimeout))
             .build();
 
         CloseableHttpClient client = HttpClientBuilder
             .create()
             .useSystemProperties()
-            .addInterceptorFirst(new OutboundRequestIdSettingInterceptor())
             .setDefaultRequestConfig(config)
             .build();
 
