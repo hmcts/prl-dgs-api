@@ -172,7 +172,7 @@ def versions = [
     gradlePitest: '1.4.5',
     guava: '32.1.2-jre',
     jacksonDatabind: '2.16.0',
-    apacheLogging: '2.23.1',
+    apacheLogging: '2.20.0',
     jsonAssert: '1.2.3',
     junit: '5.10.3',
     lombok: '1.18.26',
@@ -256,7 +256,6 @@ dependencies {
 
     implementation (group: 'commons-beanutils', name: 'commons-beanutils', version: versions.commonsBeanUtils) {
         force = true
-        exclude(module: 'commons-logging')
     }
     implementation (group:  'org.springframework.security', name: 'spring-security-rsa', version: versions.spring_security_rsa) {
         force = true
@@ -274,9 +273,7 @@ dependencies {
     implementation group: 'com.puppycrawl.tools', name: 'checkstyle', version:  versions.puppyCrawl
     implementation group: 'commons-io', name: 'commons-io', version: versions.commonsIo
     implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.9'
-  implementation group: 'jakarta.el', name: 'jakarta.el-api', version: '6.0.1'
-
-  implementation group: 'org.apache.httpcomponents.client5', name: 'httpclient5', version: '5.3.1'
+    implementation group: 'org.apache.httpcomponents.client5', name: 'httpclient5', version: '5.3.1'
 
   implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.5'
 
@@ -311,16 +308,6 @@ dependencies {
     implementation group:'info.solidsoft.gradle.pitest', name: 'gradle-pitest-plugin', version: versions.gradlePitest
     implementation group:'org.codehaus.sonar-plugins', name:'sonar-pitest-plugin', version: versions.sonarPitest
     implementation (group: 'com.launchdarkly', name: 'launchdarkly-java-server-sdk', version: '7.4.0')
-
-    implementation(group: 'ch.qos.logback', name: 'logback-classic', version: '1.4.12'){
-      force = true
-    }
-    implementation(group: 'ch.qos.logback', name: 'logback-core', version: '1.5.6'){
-      force = true
-    }
-
-    implementation 'org.junit.jupiter:junit-jupiter:5.10.3'
-    implementation group: 'org.springframework', name: 'spring-context', version: versions.springFramework
     implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j2-impl', version: '2.23.1'
 
 
@@ -328,7 +315,6 @@ dependencies {
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
     implementation group: 'org.projectlombok', name: 'lombok', version: versions.lombok
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    testImplementation group: 'org.wiremock', name: 'wiremock-standalone', version:  versions.wiremockVersion
     testImplementation group: 'io.rest-assured', name: 'rest-assured', version: versions.restAssured
     testImplementation group: 'io.rest-assured', name: 'json-path', version: versions.restAssured
     testImplementation group: 'io.rest-assured', name: 'xml-path', version: versions.restAssured
@@ -364,11 +350,6 @@ dependencies {
     testImplementation group: 'io.rest-assured', name: 'json-path', version: versions.restAssured
     testImplementation group: 'io.rest-assured', name: 'xml-path', version: versions.restAssured
     testImplementation group: 'org.mockito', name: 'mockito-inline', version: '5.2.0'
-
-    testImplementation 'org.eclipse.jetty:jetty-server:11.0.14'
-    testImplementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
-    testImplementation group: 'org.springframework', name: 'spring-test', version: '6.1.11'
-    testImplementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j2-impl', version: '2.23.1'
 }
 
 task fortifyScan(type: JavaExec)  {
