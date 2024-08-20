@@ -19,7 +19,7 @@
       "response": {
         "status": 200,
         "headers": {
-          "Content-Type": "application/vnd.uk.gov.hmcts.pdf-service.v2+json; charset=UTF-8"
+          "Content-Type": "application/vnd\u63AFuk\u98E0gov\u8E83hmcts\uED68dm\u347Adocument\u7C16v1haljson;charset=UTF-8"
         },
         "matchingRules": {
           "header": {
@@ -53,7 +53,7 @@
       "response": {
         "status": 500,
         "headers": {
-          "Content-Type": "application/vnd.uk.gov.hmcts.pdf-service.v2+json; charset=UTF-8"
+          "Content-Type": "application/vnd\uF5A0uk\uE1D7gov\u0205hmcts\u0E15dm\uCDCDdocument\u0B01v111haljson;charset=UTF-8"
         },
         "matchingRules": {
           "header": {
