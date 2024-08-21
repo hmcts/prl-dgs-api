@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -108,6 +109,19 @@ public class DocumentGeneratorController {
         log.info("convertDocumentToPdf is getting called");
         return documentManagementService.converToPdf(
             templateData.getValues(), authorizationToken, fileName);
+    }
+
+    @PostMapping("/downloadDocument/{documentBinaryUrl}")
+    public ResponseEntity<byte[]> downloadDocument(
+        @PathVariable("documentBinaryUrl") String documentBinaryUrl,
+        @RequestHeader(value = "Authorization", required = false)
+        String authorizationToken) {
+        log.info("convertDocumentToPdf is getting called");
+        try {
+            return documentManagementService.downloadFromDmStore(documentBinaryUrl);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
