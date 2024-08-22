@@ -20,8 +20,8 @@ import uk.gov.hmcts.reform.prl.documentgenerator.domain.request.GenerateDocument
 import uk.gov.hmcts.reform.prl.documentgenerator.domain.response.GeneratedDocumentInfo;
 import uk.gov.hmcts.reform.prl.documentgenerator.service.DocumentManagementService;
 
-import javax.validation.Valid;
 import java.util.UUID;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/version/1")
