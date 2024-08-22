@@ -31,6 +31,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 
 import static java.lang.String.format;
 import static java.util.Collections.emptyMap;
@@ -170,8 +171,8 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     }
 
     @Override
-    public ResponseEntity<byte[]> downloadFromDmStore(@NonNull final String binaryFileUrl) throws Exception {
-
+    public ResponseEntity<byte[]> downloadFromDmStore(@NonNull final UUID documentId) throws Exception {
+        String binaryFileUrl = "http://dm-store-aat.service.core-compute-aat.internal/documents/" + documentId + "/binary";
         log.info("DmStore Download file: {}", binaryFileUrl);
         HttpHeaders headers = new HttpHeaders();
         headers.set(SERVICE_AUTHORIZATION, authTokenGenerator.generate());

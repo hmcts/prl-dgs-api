@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import uk.gov.hmcts.reform.prl.documentgenerator.domain.response.GeneratedDocumentInfo;
 
 import java.util.Map;
+import java.util.UUID;
 
 public interface DocumentManagementService {
     GeneratedDocumentInfo generateAndStoreDocument(String templateName, Map<String, Object> placeholders,
@@ -19,5 +20,5 @@ public interface DocumentManagementService {
 
     GeneratedDocumentInfo converToPdf(Map<String, Object> placeholders, String authorizationToken, String filename);
 
-    ResponseEntity<byte[]> downloadFromDmStore(@NonNull String binaryFileUrl) throws Exception;
+    ResponseEntity<byte[]> downloadFromDmStore(@NonNull UUID documentId) throws Exception;
 }

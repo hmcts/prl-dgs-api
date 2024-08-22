@@ -21,6 +21,7 @@ import uk.gov.hmcts.reform.prl.documentgenerator.domain.response.GeneratedDocume
 import uk.gov.hmcts.reform.prl.documentgenerator.service.DocumentManagementService;
 
 import javax.validation.Valid;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "/version/1")
@@ -111,14 +112,14 @@ public class DocumentGeneratorController {
             templateData.getValues(), authorizationToken, fileName);
     }
 
-    @PostMapping("/downloadDocument/{documentBinaryUrl}")
+    @PostMapping("/downloadDocument/{documentId}")
     public ResponseEntity<byte[]> downloadDocument(
-        @PathVariable("documentBinaryUrl") String documentBinaryUrl,
+        @PathVariable("documentId") UUID documentId,
         @RequestHeader(value = "Authorization", required = false)
         String authorizationToken) {
-        log.info("convertDocumentToPdf is getting called");
+        log.info("downloadDocumentFromDmStore is getting called");
         try {
-            return documentManagementService.downloadFromDmStore(documentBinaryUrl);
+            return documentManagementService.downloadFromDmStore(documentId);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
