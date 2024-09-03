@@ -21,7 +21,6 @@ import org.springframework.http.converter.ResourceHttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
-import uk.gov.hmcts.reform.logging.httpcomponents.OutboundRequestIdSettingInterceptor;
 
 import java.nio.charset.Charset;
 
@@ -97,7 +96,6 @@ public class HttpConnectionConfiguration {
         CloseableHttpClient client = HttpClientBuilder
             .create()
             .useSystemProperties()
-            .addInterceptorFirst(new OutboundRequestIdSettingInterceptor())
             .setDefaultRequestConfig(config)
             .build();
 
