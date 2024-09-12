@@ -465,6 +465,12 @@ document:
             -   templateName: PRL-WEL-DOCUMENT-COVER-SERVE-ORDER-SHEET.docx
                 filename: WelshPrlPostDocumentCoverSheet.pdf
                 document-generator: docmosis
+            -   templateName: PRL-DOCUMENT-ENG-SEND-REPLY-MESSAGE.docx
+                filename: PrlMessageDocumentLetter.pdf
+                document-generator: docmosis
+            -   templateName: PRL-WEL-DOCUMENT-SEND-REPLY-MESSAGE.docx
+                filename: WelshPrlMessageDocumentLetter.pdf
+                document-generator: docmosis
             -   templateName: PRL-LEG-REP-REMOVED.docx
                 filename: Cover_letter_with_access_code.pdf
                 document-generator: docmosis
