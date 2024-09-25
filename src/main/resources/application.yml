@@ -518,6 +518,39 @@ document:
             -   templateName: PRL-LET-WEL-FL401-RE8.docx
                 filename: Cover_letter_welsh_re8.pdf
                 document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-AP1.docx
+                filename: cover_letter_welsh_ap1.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-AP2.docx
+                filename: cover_letter_welsh_ap2.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-AP6.docx
+                filename: cover_letter_welsh_ap6.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-AP7.docx
+                filename: cover_letter_welsh_ap7.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-AP8.docx
+                filename: cover_letter_welsh_ap8.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-RE1.docx
+                filename: cover_letter_welsh_re1.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-RE2.docx
+                filename: cover_letter_welsh_re2.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-RE3.docx
+                filename: cover_letter_welsh_re3.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-RE4.docx
+                filename: cover_letter_welsh_re4.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-RE5.docx
+                filename: cover_letter_welsh_re5.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-RE6.docx
+                filename: cover_letter_welsh_re6.pdf
+                document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"
