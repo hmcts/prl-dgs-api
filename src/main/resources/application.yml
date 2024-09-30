@@ -551,6 +551,9 @@ document:
             -   templateName: PRL-LET-WEL-C100-RE6.docx
                 filename: cover_letter_welsh_re6.pdf
                 document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-RES-C8-FINAL.docx
+                filename: C8Document_Welsh.pdf
+                document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"
