@@ -465,10 +465,10 @@ document:
             -   templateName: PRL-WEL-DOCUMENT-COVER-SERVE-ORDER-SHEET.docx
                 filename: WelshPrlPostDocumentCoverSheet.pdf
                 document-generator: docmosis
-            -   templateName: PRL-DOCUMENT-ENG-SEND-REPLY-MESSAGE.docx
+            -   templateName: FL-PRL-LET-ENG-SEND-REPLY-MESSAGE.docx
                 filename: PrlMessageDocumentLetter.pdf
                 document-generator: docmosis
-            -   templateName: PRL-WEL-DOCUMENT-SEND-REPLY-MESSAGE.docx
+            -   templateName: FL-PRL-LET-WEL-SEND-REPLY-MESSAGE.docx
                 filename: WelshPrlMessageDocumentLetter.pdf
                 document-generator: docmosis
             -   templateName: PRL-LEG-REP-REMOVED.docx
