@@ -21,8 +21,13 @@ import static uk.gov.hmcts.reform.prl.documentgenerator.domain.TemplateConstants
 @Component
 public class TemplateDataMapper {
 
+
+    private final DocmosisBasePdfConfig docmosisBasePdfConfig;
+
     @Autowired
-    private DocmosisBasePdfConfig docmosisBasePdfConfig;
+    public TemplateDataMapper(DocmosisBasePdfConfig docmosisBasePdfConfig) {
+        this.docmosisBasePdfConfig = docmosisBasePdfConfig;
+    }
 
     @SuppressWarnings("unchecked")
     public Map<String, Object> map(Map<String, Object> placeholders) {

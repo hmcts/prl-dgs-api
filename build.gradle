@@ -445,6 +445,10 @@ sourceSets {
   }
 }
 
+test {
+  useJUnitPlatform()
+}
+
 dependencies {
     integrationTestImplementation(sourceSets.test.output)
     integrationTestAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
