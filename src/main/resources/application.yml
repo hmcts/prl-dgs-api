@@ -174,28 +174,28 @@ document:
             -   templateName: FL-PRL-HNO-ENG-FL402-Notice-Of-Proceedings-Final.docx
                 filename: NoticeOfProceedings(FL402).pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-ENG-N117-General-Undertaking-Form-Draft.docx
+            -   templateName: FL-PRL-GOR-ENG-N117-General-Undertaking-Form-Draft.docx
                 filename: N117CreateOrderDraft.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-N117-General-Undertaking-Form-Final.docx
                 filename: N117CreateOrder.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-ENG-FL404-Occupation-Order-Draft.docx
+            -   templateName: FL-PRL-GOR-ENG-FL404-Occupation-Order-Draft.docx
                 filename: occupation_order_FL404_draft.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-FL404-Occupation-Order-Final.docx
                 filename: occupation_order_FL404_final.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-ENG-FL404B-Common-Draft.docx
+            -   templateName: FL-PRL-GOR-ENG-FL404B-Common-Draft.docx
                 filename: fl404b_draft.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-FL404B-Common-Draft.docx
+            -   templateName: FL-PRL-GOR-WEL-FL404B-Common-Draft.docx
                 filename: welsh_fl404b_draft.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-FL404B-Common-Final.docx
                 filename: fl404b_final.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-FL404B-Common-Final.docx
+            -   templateName: FL-PRL-GOR-WEL-FL404B-Common-Final.docx
                 filename: welsh_fl404b_final.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-C45A-Parental-Responsibility-Order-Final.docx
@@ -204,7 +204,7 @@ document:
             -   templateName: FL-PRL-GOR-ENG-C45A-Parental-Responsibility-Order-Draft.docx
                 filename: Parental_Responsibility_Order_C45A_draft.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-ENG-FL404A-Non-Molestation-Order-Draft.docx
+            -   templateName: FL-PRL-GOR-ENG-FL404A-Non-Molestation-Order-Draft.docx
                 filename: non_molestation_order_fl404a_draft.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-FL404A-Non-Molestation-Order-Final.docx
@@ -222,7 +222,7 @@ document:
             -   templateName: PRL-PRIVACY-NOTICE-DOCUMENT.docx
                 filename: PrivacyNoticeDocument.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-ENG-FL406-Power-Of-Arrest-Draft.docx
+            -   templateName: FL-PRL-GOR-ENG-FL406-Power-Of-Arrest-Draft.docx
                 filename: Power_of_arrest.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-FL406-Power-Of-Arrest-Final.docx
@@ -231,16 +231,16 @@ document:
             -   templateName: FL-PRL-GOR-ENG-Citizen-Uploaded-Statement.docx
                 filename: Citizen_Uploaded_Statement.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-GOR-ENG-C7R.docx
+            -   templateName: FL-PRL-GOR-ENG-LIP-C7R-DRAFT.docx
                 filename: C7_Draft_Document.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-GOR-WEL-C7R.docx
+            -   templateName: FL-PRL-GOR-WEL-LIP-C7R-DRAFT.docx
                 filename: Draft_C7_response_Welsh.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-GOR-ENG-C7R-Final.docx
+            -   templateName: FL-PRL-GOR-ENG-LIP-C7R-FINAL.docx
                 filename: C7_Document.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-GOR-WEL-C7R-Final.docx
+            -   templateName: FL-PRL-GOR-WEL-LIP-C7R-FINAL.docx
                 filename: Final_C7_response_Welsh.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-SOLICITOR-C7R-DRAFT.docx
@@ -276,22 +276,22 @@ document:
             -   templateName: PRL-GOR-ENG-FL401-LIST-ON-NOTICE-FL404B.docx
                 filename: fl401-list-on-notice-fl404b.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-FL406-Power-Of-Arrest-Draft.docx
+            -   templateName: FL-PRL-GOR-WEL-FL406-Power-Of-Arrest-Draft.docx
                 filename: Welsh_Power_of_arrest_draft.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-FL406-Power-Of-Arrest-Final.docx
+            -   templateName: FL-PRL-GOR-WEL-FL406-Power-Of-Arrest-Final.docx
                 filename: Welsh_Power_of_arrest.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-FL404-Occupation-Order-Final.docx
+            -   templateName: FL-PRL-GOR-WEL-FL404-Occupation-Order-Final.docx
                 filename: welsh_occupation_order_FL404_final.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-FL404-Occupation-Order-Draft.docx
+            -   templateName: FL-PRL-GOR-WEL-FL404-Occupation-Order-Draft.docx
                 filename: welsh_occupation_order_FL404_draft.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-FL404A-Non-Molestation-Order-Final.docx
+            -   templateName: FL-PRL-GOR-WEL-FL404A-Non-Molestation-Order-Final.docx
                 filename: welsh_non_molestation_order_fl404a_final.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-FL404A-Non-Molestation-Order-Draft.docx
+            -   templateName: FL-PRL-GOR-WEL-FL404A-Non-Molestation-Order-Draft.docx
                 filename: welsh_non_molestation_order_fl404a_draft.pdf
                 document-generator: docmosis
             -   templateName: PRL-HNO-WEL-FL402-Notice-Of-Proceedings-Draft.docx
@@ -300,10 +300,10 @@ document:
             -   templateName: PRL-HNO-WEL-FL402-Notice-Of-Proceedings-Final.docx
                 filename: Welsh_NoticeOfProceedings(FL402).pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-N117-General-Undertaking-Form-Draft.docx
+            -   templateName: FL-PRL-GOR-WEL-N117-General-Undertaking-Form-Draft.docx
                 filename: Welsh_N117CreateOrderDraft.pdf
                 document-generator: docmosis
-            -   templateName: PRL-GOR-WEL-N117-General-Undertaking-Form-Final.docx
+            -   templateName: FL-PRL-GOR-WEL-N117-General-Undertaking-Form-Final.docx
                 filename: Welsh_N117CreateOrder.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-WEL-C43-Child-Arrangements-Final.docx
@@ -423,6 +423,12 @@ document:
             -   templateName: PRL-LET-ENG-C100-RE7.docx
                 filename: cover_letter_re7.pdf
                 document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-RE7.docx
+                filename: cover_letter_welsh_re7.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-ENG-FL401-AP1.docx
+                filename: cover_letter_ap1.pdf
+                document-generator: docmosis
             -   templateName: PRL-LET-ENG-FL401-AP2.docx
                 filename: cover_letter_ap2.pdf
                 document-generator: docmosis
@@ -459,6 +465,15 @@ document:
             -   templateName: PRL-WEL-DOCUMENT-COVER-SERVE-ORDER-SHEET.docx
                 filename: WelshPrlPostDocumentCoverSheet.pdf
                 document-generator: docmosis
+            -   templateName: PRL-DOCUMENT-ENG-SEND-REPLY-MESSAGE.docx
+                filename: PrlMessageDocumentLetter.pdf
+                document-generator: docmosis
+            -   templateName: PRL-WEL-DOCUMENT-SEND-REPLY-MESSAGE.docx
+                filename: WelshPrlMessageDocumentLetter.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LEG-REP-REMOVED.docx
+                filename: Cover_letter_with_access_code.pdf
+                document-generator: docmosis
             -   templateName: FL-PRL-APP-ENG-C100-DRAFT-V3.docx
                 filename: C100DraftDocument.pdf
                 document-generator: docmosis
@@ -470,6 +485,74 @@ document:
                 document-generator: docmosis
             -   templateName: FL-PRL-APP-WEL-C100-Final-V3.docx
                 filename: C100FinalWelshDocument.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-CITIZEN-C1A-RESPONSE-FINAL.docx
+                filename: C1AResponseDocument.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-CITIZEN-C1A-RESPONSE-FINAL.docx
+                filename: C1AResponseWelshDocument.pdf
+            -   templateName: PRL-LTR-ENG-C100-FM5.docx
+                filename: Cover_letter_fm5.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-ENG-C100-AP13.docx
+                filename: Cover_letter_ap13.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-AP13.docx
+                filename: Cover_letter_ap13_welsh.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-ENG-C100-AP14.docx
+                filename: Cover_letter_ap14.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-AP14.docx
+                filename: Cover_letter_ap14_welsh.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-ENG-C100-AP15.docx
+                filename: Cover_letter_ap15.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-AP15.docx
+                filename: Cover_letter_ap15_welsh.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-ENG-FL401-RE8.docx
+                filename: Cover_letter_re8.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-RE8.docx
+                filename: Cover_letter_welsh_re8.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-AP1.docx
+                filename: cover_letter_welsh_ap1.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-AP2.docx
+                filename: cover_letter_welsh_ap2.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-AP6.docx
+                filename: cover_letter_welsh_ap6.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-AP7.docx
+                filename: cover_letter_welsh_ap7.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-AP8.docx
+                filename: cover_letter_welsh_ap8.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-RE1.docx
+                filename: cover_letter_welsh_re1.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-RE2.docx
+                filename: cover_letter_welsh_re2.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-RE3.docx
+                filename: cover_letter_welsh_re3.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-RE4.docx
+                filename: cover_letter_welsh_re4.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-RE5.docx
+                filename: cover_letter_welsh_re5.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-RE6.docx
+                filename: cover_letter_welsh_re6.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-RES-C8-FINAL.docx
+                filename: C8Document_Welsh.pdf
                 document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
@@ -494,6 +577,9 @@ spring:
     web:
         resources:
             static-locations:
+    config:
+      import: "optional:configtree:/mnt/secrets/prl/"
+
 
 # GENERAL SPRING BOOT ACTUATOR CONFIG
 # Context path for Spring Boot Actuator endpoints

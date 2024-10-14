@@ -19,7 +19,7 @@
       "response": {
         "status": 200,
         "headers": {
-          "Content-Type": "application/vnd\u6653uk\u0F27gov\u51AFhmcts\u50CDdm\u0271document\u3A9Bv11haljson;charset=UTF-8"
+          "Content-Type": "application/vnd\u63AFuk\u98E0gov\u8E83hmcts\uED68dm\u347Adocument\u7C16v1haljson;charset=UTF-8"
         },
         "matchingRules": {
           "header": {
@@ -47,13 +47,13 @@
         "method": "GET",
         "path": "/cases/documents/456c0976-3178-46dd-b9ce-5ab5d47c625a",
         "headers": {
-          "ServiceAuthorization": "someServiceAuthToken"
+          "ServiceAuthorization": "invalidServiceAuthToken"
         }
       },
       "response": {
         "status": 500,
         "headers": {
-          "Content-Type": "application/vnd\u3BE8uk\u4362gov\u4113hmcts\uFBB0dm\u4981document\u1517v1haljson;charset=UTF-8"
+          "Content-Type": "application/vnd\uF5A0uk\uE1D7gov\u0205hmcts\u0E15dm\uCDCDdocument\u0B01v111haljson;charset=UTF-8"
         },
         "matchingRules": {
           "header": {
