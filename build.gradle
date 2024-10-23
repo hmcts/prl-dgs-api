@@ -323,9 +323,7 @@ dependencies {
 
     contractTestImplementation group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
     contractTestImplementation group: 'au.com.dius.pact.consumer', name: 'junit5', version: versions.pact_version
-    contractTestImplementation group: 'au.com.dius.pact.consumer', name: 'java8', version: versions.pact_version
     contractTestRuntime group: 'au.com.dius.pact.consumer', name: 'junit5', version: versions.pact_version
-    contractTestRuntime group: 'au.com.dius.pact.consumer', name: 'java8', version: versions.pact_version
 
     contractTestImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test'
     contractTestImplementation("org.junit.jupiter:junit-jupiter-api:5.10.2")
@@ -564,23 +562,9 @@ run {
     }
 }
 
+
 project.ext {
     pactVersion = getCheckedOutGitCommitHash()
-}
-
-task runAndPublishConsumerPactTests(type: Test){
-    logger.lifecycle("Runs pact Tests")
-    testClassesDirs = sourceSets.contractTest.output.classesDirs
-    classpath = sourceSets.contractTest.runtimeClasspath
-
-}
-
-runAndPublishConsumerPactTests.dependsOn contract
-
-runAndPublishConsumerPactTests.finalizedBy pactPublish
-
-def getCheckedOutGitCommitHash() {
-    'git rev-parse --verify --short HEAD'.execute().text.trim()
 }
 
 pact {
@@ -591,3 +575,16 @@ pact {
         version = project.pactVersion
     }
 }
+
+task runAndPublishConsumerPactTests(type: Test){
+    dependsOn(contract)
+    logger.lifecycle("Runs pact Tests")
+    testClassesDirs = sourceSets.contractTest.output.classesDirs
+    classpath = sourceSets.contractTest.runtimeClasspath
+    finalizedBy(pactPublish)
+}
+
+def getCheckedOutGitCommitHash() {
+    'git rev-parse --verify --short HEAD'.execute().text.trim()
+}
+
