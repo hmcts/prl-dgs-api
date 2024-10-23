@@ -10,7 +10,9 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath("net.serenity-bdd:serenity-gradle-plugin:2.4.34")
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.4.34"){
+            exclude group: "org.codehaus.groovy", module: "groovy"
+        }
     }
 }
 
@@ -209,8 +211,6 @@ ext['jackson.version'] = '2.16.0'
 ext['spring-framework.version'] = '5.3.27'
 
 
-
-
 dependencies {
     //integration test
     integrationTestImplementation group: 'com.mashape.unirest', name: 'unirest-java', version: versions.unirest
@@ -391,7 +391,10 @@ dependencyManagement {
       dependencySet(group: 'org.json', version: '20230227') {
         entry 'json'
       }
-      //CVE-2023-2976
+
+      dependency group: 'org.apache.groovy', name: 'groovy', version: '4.0.22'
+
+        //CVE-2023-2976
       dependency group: 'com.google.guava', name: 'guava', version: '32.1.2-jre'
 
       //CVE-2022-1471
