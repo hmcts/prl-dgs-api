@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +20,6 @@ import uk.gov.hmcts.reform.prl.documentgenerator.domain.request.GenerateDocument
 import uk.gov.hmcts.reform.prl.documentgenerator.domain.response.GeneratedDocumentInfo;
 import uk.gov.hmcts.reform.prl.documentgenerator.service.DocumentManagementService;
 
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/version/1")
