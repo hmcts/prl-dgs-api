@@ -231,16 +231,16 @@ document:
             -   templateName: FL-PRL-GOR-ENG-Citizen-Uploaded-Statement.docx
                 filename: Citizen_Uploaded_Statement.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-GOR-ENG-C7R.docx
+            -   templateName: FL-PRL-GOR-ENG-LIP-C7R-DRAFT.docx
                 filename: C7_Draft_Document.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-GOR-WEL-C7R.docx
+            -   templateName: FL-PRL-GOR-WEL-LIP-C7R-DRAFT.docx
                 filename: Draft_C7_response_Welsh.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-GOR-ENG-C7R-Final.docx
+            -   templateName: FL-PRL-GOR-ENG-LIP-C7R-FINAL.docx
                 filename: C7_Document.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-GOR-WEL-C7R-Final.docx
+            -   templateName: FL-PRL-GOR-WEL-LIP-C7R-FINAL.docx
                 filename: Final_C7_response_Welsh.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-ENG-SOLICITOR-C7R-DRAFT.docx
@@ -423,6 +423,9 @@ document:
             -   templateName: PRL-LET-ENG-C100-RE7.docx
                 filename: cover_letter_re7.pdf
                 document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-RE7.docx
+                filename: cover_letter_welsh_re7.pdf
+                document-generator: docmosis
             -   templateName: PRL-LET-ENG-FL401-AP1.docx
                 filename: cover_letter_ap1.pdf
                 document-generator: docmosis
@@ -462,6 +465,12 @@ document:
             -   templateName: PRL-WEL-DOCUMENT-COVER-SERVE-ORDER-SHEET.docx
                 filename: WelshPrlPostDocumentCoverSheet.pdf
                 document-generator: docmosis
+            -   templateName: PRL-DOCUMENT-ENG-SEND-REPLY-MESSAGE.docx
+                filename: PrlMessageDocumentLetter.pdf
+                document-generator: docmosis
+            -   templateName: PRL-WEL-DOCUMENT-SEND-REPLY-MESSAGE.docx
+                filename: WelshPrlMessageDocumentLetter.pdf
+                document-generator: docmosis
             -   templateName: PRL-LEG-REP-REMOVED.docx
                 filename: Cover_letter_with_access_code.pdf
                 document-generator: docmosis
@@ -484,6 +493,66 @@ document:
                 filename: C1AResponseWelshDocument.pdf
             -   templateName: PRL-LTR-ENG-C100-FM5.docx
                 filename: Cover_letter_fm5.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-ENG-C100-AP13.docx
+                filename: Cover_letter_ap13.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-AP13.docx
+                filename: Cover_letter_ap13_welsh.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-ENG-C100-AP14.docx
+                filename: Cover_letter_ap14.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-AP14.docx
+                filename: Cover_letter_ap14_welsh.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-ENG-C100-AP15.docx
+                filename: Cover_letter_ap15.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-AP15.docx
+                filename: Cover_letter_ap15_welsh.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-ENG-FL401-RE8.docx
+                filename: Cover_letter_re8.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-RE8.docx
+                filename: Cover_letter_welsh_re8.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-AP1.docx
+                filename: cover_letter_welsh_ap1.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-AP2.docx
+                filename: cover_letter_welsh_ap2.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-AP6.docx
+                filename: cover_letter_welsh_ap6.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-AP7.docx
+                filename: cover_letter_welsh_ap7.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-AP8.docx
+                filename: cover_letter_welsh_ap8.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-RE1.docx
+                filename: cover_letter_welsh_re1.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-RE2.docx
+                filename: cover_letter_welsh_re2.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-RE3.docx
+                filename: cover_letter_welsh_re3.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-FL401-RE4.docx
+                filename: cover_letter_welsh_re4.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-RE5.docx
+                filename: cover_letter_welsh_re5.pdf
+                document-generator: docmosis
+            -   templateName: PRL-LET-WEL-C100-RE6.docx
+                filename: cover_letter_welsh_re6.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-RES-C8-FINAL.docx
+                filename: C8Document_Welsh.pdf
                 document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
@@ -508,6 +577,9 @@ spring:
     web:
         resources:
             static-locations:
+    config:
+      import: "optional:configtree:/mnt/secrets/prl/"
+
 
 # GENERAL SPRING BOOT ACTUATOR CONFIG
 # Context path for Spring Boot Actuator endpoints
