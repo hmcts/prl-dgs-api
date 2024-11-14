@@ -126,7 +126,7 @@ document:
             -   templateName: FL-PRL-APP-WEL-FL401-Final.docx
                 filename: DA-Welsh-application.pdf
                 document-generator: docmosis
-            -   templateName: FL401-draft-Welsh.docx
+            -   templateName: FL-PRL-APP-WEL-FL401-draft.docx
                 filename: Draft-DA-Welsh-application.pdf
                 document-generator: docmosis
             -   templateName: FL401-c8-welsh.docx
