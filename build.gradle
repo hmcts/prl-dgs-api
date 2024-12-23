@@ -398,7 +398,7 @@ dependencyManagement {
       dependencySet(group: 'org.yaml', version: '2.2') {
         entry 'snakeyaml'
       }
-      dependency group: 'org.springframework.security', name: 'spring-security-crypto', version: '5.7.5'
+      dependency group: 'org.springframework.security', name: 'spring-security-crypto', version: '6.4.2'
 
 
     }
