@@ -102,7 +102,7 @@ document:
             -   templateName: PRL-C1A-WelshLang.docx
                 filename: C1AWelshDocument.pdf
                 document-generator: docmosis
-            -   templateName: FL401-draft.docx
+            -   templateName: FL-PRL-APP-ENG-FL401-draft.docx
                 filename: Draft-DA-application.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-APP-ENG-Fl401-Final.docx
@@ -126,7 +126,7 @@ document:
             -   templateName: FL-PRL-APP-WEL-FL401-Final.docx
                 filename: DA-Welsh-application.pdf
                 document-generator: docmosis
-            -   templateName: FL401-draft-Welsh.docx
+            -   templateName: FL-PRL-APP-WEL-FL401-draft.docx
                 filename: Draft-DA-Welsh-application.pdf
                 document-generator: docmosis
             -   templateName: FL401-c8-welsh.docx
@@ -550,6 +550,9 @@ document:
                 document-generator: docmosis
             -   templateName: PRL-LET-WEL-C100-RE6.docx
                 filename: cover_letter_welsh_re6.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-RES-C8-FINAL.docx
+                filename: C8Document_Welsh.pdf
                 document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
