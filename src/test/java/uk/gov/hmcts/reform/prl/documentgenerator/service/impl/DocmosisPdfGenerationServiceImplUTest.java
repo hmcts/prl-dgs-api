@@ -102,7 +102,6 @@ public class DocmosisPdfGenerationServiceImplUTest {
                 ArgumentMatchers.any(),
                 ArgumentMatchers.<Class<byte[]>>any())).thenReturn(myEntity);
 
-
         byte[] expected = classUnderTest.generate(template, placeholders);
 
         Assert.assertNotNull(expected);
@@ -120,7 +119,6 @@ public class DocmosisPdfGenerationServiceImplUTest {
         Mockito.when(restTemplate.postForObject(ArgumentMatchers.any(String.class),
                                            ArgumentMatchers.any(),
                                            ArgumentMatchers.<Class<byte[]>>any())).thenReturn(test);
-
 
         byte[] expected = classUnderTest.converToPdf(placeholders,"testFile");
 
