@@ -21,7 +21,7 @@ You must pass **dynamic_fileName** key in the **placeholders** map to get a dyna
 
 **Prerequisites**
 
-- [JDK 11](https://openjdk.java.net/)
+- [JDK 17](https://openjdk.java.net/)
 - [Docker](https://www.docker.com)
 
 
