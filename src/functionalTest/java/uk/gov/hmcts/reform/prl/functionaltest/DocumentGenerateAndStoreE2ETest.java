@@ -6,6 +6,9 @@ import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
 import org.junit.ClassRule;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -73,13 +76,6 @@ public class DocumentGenerateAndStoreE2ETest {
         wireMockConfig().port(4502)).build();
 
 
-
-    @Test
-    public void givenTemplateNameIsNull_whenGenerateAndStoreDocument_thenReturnHttp400() throws Exception {
-        final String template = null;
-        perform(template);
-    }
-
     private void perform(String template) throws Exception {
         final Map<String, Object> values = Collections.emptyMap();
 
@@ -92,15 +88,10 @@ public class DocumentGenerateAndStoreE2ETest {
             .andExpect(status().isBadRequest());
     }
 
-    @Test
-    public void givenTemplateNameIsBlank_whenGenerateAndStoreDocument_thenReturnHttp400() throws Exception {
-        final String template = "  ";
-        perform(template);
-    }
-
-    @Test
-    public void givenTemplateNotFound_whenGenerateAndStoreDocument_thenReturnHttp400() throws Exception {
-        final String template = "nonExistingTemplate";
+    @ParameterizedTest
+    @NullSource
+    @ValueSource(strings = {"  ", "nonExistingTemplate"})
+    public void givenTemplateNameIsBlankOrNullOrTemplateNotFound_whenGenerateAndStoreDocument_thenReturnHttp400(String template) throws Exception {
         perform(template);
     }
 
