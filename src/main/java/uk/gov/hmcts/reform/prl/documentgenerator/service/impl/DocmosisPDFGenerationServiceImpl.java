@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.io.Files;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +32,12 @@ import static com.google.common.base.Strings.isNullOrEmpty;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
 
-    @Autowired
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
-    @Autowired
-    private TemplateDataMapper templateDataMapper;
+    private final TemplateDataMapper templateDataMapper;
 
     @Value("${docmosis.service.pdf-service.uri}")
     private String docmosisPdfServiceEndpoint;
@@ -105,7 +105,7 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
                 );
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new PDFGenerationException("Failed to convertToPdf: " + e.getMessage(), e);
         }
 
     }
