@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.prl.functionaltest;
 
-import groovy.util.logging.Slf4j;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.apache.commons.lang3.StringUtils;

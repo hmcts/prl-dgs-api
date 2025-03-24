@@ -5,10 +5,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.prl.documentgenerator.domain.TemplateConstants;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import javax.annotation.PostConstruct;
 
 import static java.util.stream.Collectors.toMap;
 
