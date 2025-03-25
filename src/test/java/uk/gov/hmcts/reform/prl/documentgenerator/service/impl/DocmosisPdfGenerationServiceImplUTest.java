@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,10 +11,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -23,6 +20,8 @@ import uk.gov.hmcts.reform.prl.documentgenerator.exception.PDFGenerationExceptio
 import uk.gov.hmcts.reform.prl.documentgenerator.mapper.TemplateDataMapper;
 import uk.gov.hmcts.reform.prl.documentgenerator.util.NullOrEmptyValidator;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,10 +38,6 @@ public class DocmosisPdfGenerationServiceImplUTest {
     @Mock
     private TemplateDataMapper templateDataMapper;
 
-    @Mock
-    ObjectMapper objectMapper;
-
-
     @InjectMocks
     @Spy
     private DocmosisPDFGenerationServiceImpl classUnderTest;
@@ -56,14 +51,11 @@ public class DocmosisPdfGenerationServiceImplUTest {
     }
 
     @Test
-    public void givenHttpClientErrorExceptionThrown_whenGenerateCalled_thenThrowPdfGenerationException()
-        throws Exception {
+    public void givenHttpClientErrorExceptionThrown_whenGenerateCalled_thenThrowPdfGenerationException() {
         final String template = "1";
         final Map<String, Object> placeholders = Collections.emptyMap();
         final HttpClientErrorException httpClientErrorException = Mockito.mock(HttpClientErrorException.class);
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
         Mockito.doThrow(httpClientErrorException).when(restTemplate).exchange(Mockito.anyString(),
                 ArgumentMatchers.any(HttpMethod.class),
                 ArgumentMatchers.any(),
@@ -80,17 +72,14 @@ public class DocmosisPdfGenerationServiceImplUTest {
 
 
     @Test
-    public void givenHttpRequestGoesThrough_whenGenerateFromHtml_thenReturnProperResponse() throws Exception {
+    public void givenHttpRequestGoesThrough_whenGenerateFromHtml_thenReturnProperResponse() {
         final String template = "1";
         final Map<String, Object> placeholders = Collections.emptyMap();
 
         byte[] test = "Any String you want".getBytes();
 
-        ResponseEntity<byte[]> myEntity = new ResponseEntity<byte[]>(test,HttpStatus.ACCEPTED);
+        ResponseEntity<byte[]> myEntity = new ResponseEntity<>(test, HttpStatus.ACCEPTED);
 
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
         Mockito.when(restTemplate.exchange(ArgumentMatchers.any(String.class),
                 ArgumentMatchers.any(HttpMethod.class),
                 ArgumentMatchers.any(),
@@ -102,21 +91,26 @@ public class DocmosisPdfGenerationServiceImplUTest {
     }
 
     @Test
-    public void givenFileNAme_whenConvertPDf_thenReturnProperResponse() throws Exception {
+    public void givenFileName_whenConvertPdf_thenReturnProperResponse() throws Exception {
         final Map<String, Object> placeholders = new HashMap<>();
 
         byte[] test = "Any String you want".getBytes();
-        placeholders.put("fileName",test);
+        placeholders.put("fileName", test);
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
-        Mockito.when(restTemplate.postForObject(ArgumentMatchers.any(String.class),
-                                           ArgumentMatchers.any(),
-                                           ArgumentMatchers.<Class<byte[]>>any())).thenReturn(test);
+        Mockito.when(restTemplate.postForObject(
+                ArgumentMatchers.any(String.class),
+                ArgumentMatchers.any(),
+                ArgumentMatchers.<Class<byte[]>>any()))
+            .thenReturn(test);
 
-        byte[] expected = classUnderTest.converToPdf(placeholders,"testFile");
+        String outputFile = "testFile.pdf";
 
-        Assert.assertNotNull(expected);
+        try {
+            byte[] expected = classUnderTest.convertToPdf(placeholders, outputFile);
+            Assert.assertNotNull(expected);
+        } finally {
+            Files.deleteIfExists(Path.of(outputFile));
+        }
     }
 
 }
