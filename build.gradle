@@ -435,12 +435,12 @@ task smoke(type: Test, description: 'Runs the smoke tests.', group: 'Verificatio
 }
 
 task bootRunAat(type: BootRun, description: 'Runs the app using AAT config', dependsOn: 'classes', group: 'Application') {
-    main = 'uk.gov.hmcts.reform.prl.documentgenerator.DocumentGeneratorApplication'
-    doFirst() {
-        classpath = sourceSets.main.runtimeClasspath
-        systemProperties = System.properties
-        systemProperty 'spring.profiles.active', 'aat'
-    }
+  mainClass = 'uk.gov.hmcts.reform.prl.documentgenerator.DocumentGeneratorApplication'
+  doFirst() {
+    classpath = sourceSets.main.runtimeClasspath
+    systemProperties = System.properties
+    systemProperty 'spring.profiles.active', 'aat'
+  }
 }
 
 task functional(type: Test, description: 'Runs the functional tests.', group: 'Verification') {
@@ -484,7 +484,7 @@ pitest {
 }
 
 task developAddRelaseSuffix() {
-    version = "${version}-SNAPSHOT"
+  version = "${version}-SNAPSHOT"
 }
 
 jacocoTestReport {
