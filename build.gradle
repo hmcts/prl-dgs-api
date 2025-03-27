@@ -1,34 +1,24 @@
 import org.springframework.boot.gradle.tasks.run.BootRun
 
-buildscript {
-    ext {
-        springBootVersion = '2.7.18'
-    }
-    repositories {
-        mavenLocal()
-        jcenter()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath("net.serenity-bdd:serenity-gradle-plugin:2.4.34")
-    }
-}
-
 plugins {
-    id 'application'
-    id 'checkstyle'
-    id 'com.github.ben-manes.versions' version '0.51.0'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id 'jacoco'
-    id 'org.owasp.dependencycheck' version '9.0.4'
-    id 'org.sonarqube' version '5.0.0.4638'
-    id 'org.springframework.boot' version '2.7.0'
-    id 'info.solidsoft.pitest' version '1.7.4'
-    id 'au.com.dius.pact' version '4.1.7'
+  id 'application'
+  id 'checkstyle'
+  id 'com.github.ben-manes.versions' version '0.51.0'
+  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+  id 'jacoco'
+  id 'org.owasp.dependencycheck' version '9.0.4'
+  id 'org.sonarqube' version '5.0.0.4638'
+  id 'org.springframework.boot' version '2.7.0'
+  id 'info.solidsoft.pitest' version '1.7.4'
+  id 'au.com.dius.pact' version '4.1.7'
+  id 'net.serenity-bdd.serenity-gradle-plugin' version '2.4.34'
 }
 
-apply plugin: 'net.serenity-bdd.aggregator'
-apply plugin: 'com.github.ben-manes.versions'
+repositories {
+  mavenLocal()
+  mavenCentral()
+  maven { url = 'https://jitpack.io' }
+}
 
 group = 'uk.gov.hmcts.reform.prl'
 version = '3.0.0'
@@ -97,24 +87,6 @@ compileJava {
 
 compileTestJava {
     options.compilerArgs << '-Xlint:deprecation'
-}
-
-repositories {
-  mavenLocal()
-  jcenter()
-
-  maven {
-    url "http://repo.maven.apache.org/maven2"
-    allowInsecureProtocol = true
-  }
-  maven {
-    url 'https://repo.spring.io/libs-milestone'
-    allowInsecureProtocol = true
-  }
-  maven {
-    url 'https://jitpack.io'
-    allowInsecureProtocol = true
-  }
 }
 
 distributions {
@@ -452,9 +424,11 @@ dependencies {
     functionalTestAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
 }
 
-task smoke(type: Test, description: 'Runs the smoke tests.', group: 'Verification') {
+tasks.withType(Test) {
   useJUnitPlatform()
+}
 
+task smoke(type: Test, description: 'Runs the smoke tests.', group: 'Verification') {
   setTestClassesDirs(sourceSets.smokeTest.output.classesDirs)
   setClasspath(sourceSets.smokeTest.runtimeClasspath)
 }
@@ -469,7 +443,6 @@ task bootRunAat(type: BootRun, description: 'Runs the app using AAT config', dep
 }
 
 task functional(type: Test, description: 'Runs the functional tests.', group: 'Verification') {
-    useJUnitPlatform()
     setTestClassesDirs(sourceSets.functionalTest.output.classesDirs)
     setClasspath(sourceSets.functionalTest.runtimeClasspath)
 
@@ -486,7 +459,6 @@ task integration(type: Test, description: 'Runs the integration tests.', group: 
 task contract(type: Test) {
     group = 'Delivery pipeline'
     description = 'Runs the consumer Pact tests'
-    useJUnitPlatform()
     testClassesDirs = sourceSets.contractTest.output.classesDirs
     classpath = sourceSets.contractTest.runtimeClasspath
     systemProperty 'pact.rootDir', "pacts"
