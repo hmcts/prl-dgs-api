@@ -72,11 +72,11 @@ configurations {
 }
 
 bootJar {
-    manifest {
-        attributes 'Implementation-Title': project.name,
-            'Implementation-Version': project.version
-    }
-    archiveName 'prl-dgs-api.jar'
+  manifest {
+    attributes 'Implementation-Title': project.name,
+      'Implementation-Version': project.version
+  }
+  archiveFileName = 'prl-dgs-api.jar'
 }
 
 mainClassName = 'uk.gov.hmcts.reform.prl.documentgenerator.DocumentGeneratorApplication'
