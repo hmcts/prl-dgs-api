@@ -103,6 +103,10 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
+dependencyCheck {
+  suppressionFile = 'config/owasp/suppressions.xml'
+}
+
 jacoco {
   toolVersion = "0.8.8"
 }
