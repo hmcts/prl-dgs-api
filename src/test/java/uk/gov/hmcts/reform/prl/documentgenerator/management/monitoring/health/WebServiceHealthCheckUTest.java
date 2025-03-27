@@ -2,8 +2,6 @@ package uk.gov.hmcts.reform.prl.documentgenerator.management.monitoring.health;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentMatchers;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.http.HttpEntity;
@@ -18,7 +16,6 @@ import java.util.HashMap;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -58,7 +55,9 @@ public class WebServiceHealthCheckUTest {
 
         when(httpEntityFactory.createRequestEntityForHealthCheck()).thenReturn(httpEntity);
 
-        HttpServerErrorException exception = new HttpServerErrorException(HttpStatus.SERVICE_UNAVAILABLE,"unknown error");
+        HttpServerErrorException exception = new HttpServerErrorException(
+            HttpStatus.SERVICE_UNAVAILABLE,"unknown error"
+        );
 
         doThrow(exception).when(restTemplate)
                 .exchange(URI, HttpMethod.GET, httpEntity, Object.class, new HashMap<>());

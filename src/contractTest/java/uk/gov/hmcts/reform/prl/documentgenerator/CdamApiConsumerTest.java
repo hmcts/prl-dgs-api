@@ -140,7 +140,7 @@ public class CdamApiConsumerTest {
     @PactTestFor(pactMethod = "uploadDocument")
     public void verifyUploadDocument(MockServer mockServer) throws IOException {
 
-        HttpResponse downloadDocumentResponse = Request.Post(mockServer.getUrl() + "/cases/documents" )
+        HttpResponse downloadDocumentResponse = Request.Post(mockServer.getUrl() + "/cases/documents")
             .addHeader(SERVICE_AUTHORIZATION_HEADER, someServiceAuthToken)
             .addHeader(AUTHORIZATION_HEADER, someAuthToken)
             .execute().returnResponse();

@@ -137,7 +137,7 @@ public class DocumentManagementServiceImplIntegrationTest extends IntegrationTes
         HttpGet request = new HttpGet(url);
 
         request.setHeader(HttpHeaders.AUTHORIZATION, bearerToken);
-        HttpResponse httpResponse = HttpClientBuilder.create().build().execute( request );
+        HttpResponse httpResponse = HttpClientBuilder.create().build().execute(request);
 
         assertEquals(
             httpResponse.getStatusLine().getStatusCode(),
@@ -159,7 +159,7 @@ public class DocumentManagementServiceImplIntegrationTest extends IntegrationTes
 
         HttpGet request = new HttpGet(url);
         request.setHeader(HttpHeaders.AUTHORIZATION, "Bearer ***INVALID***");
-        HttpResponse httpResponse = HttpClientBuilder.create().build().execute( request );
+        HttpResponse httpResponse = HttpClientBuilder.create().build().execute(request);
 
         JSONObject responseJson = new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
         String responseMessage = responseJson.get("message").toString();

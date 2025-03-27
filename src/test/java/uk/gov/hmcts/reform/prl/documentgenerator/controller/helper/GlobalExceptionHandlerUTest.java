@@ -39,7 +39,7 @@ public class GlobalExceptionHandlerUTest {
     }
 
     @Test
-    public void givenHttpClientErrorExceptionWrappedIn_whenHandleDocumentStorageAndPDFGenerationException_thenReturnStatusCodeOfHttpClientErrorException() {
+    public void whenHandleDocStorageAndPdfGenException_thenReturnHttpClientErrorStatus() {
         final HttpStatus httpStatus = HttpStatus.MOVED_PERMANENTLY;
 
         final HttpClientErrorException httpClientErrorException = new HttpClientErrorException(httpStatus);
@@ -56,7 +56,7 @@ public class GlobalExceptionHandlerUTest {
     }
 
     @Test
-    public void givenHttpClientErrorResponseCode200_whenHandleDocumentStorageAndPDFGenerationException_thenReturnStatus503() {
+    public void givenHttpClientError200_whenHandleDocStorageAndPdfGenException_thenReturn503() {
         final HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
 
         final HttpClientErrorException httpClientErrorException = new HttpClientErrorException(httpStatus);
@@ -73,7 +73,7 @@ public class GlobalExceptionHandlerUTest {
     }
 
     @Test
-    public void givenWrappedInExceptionIsNull_whenHandleDocumentStorageAndPDFGenerationException_thenReturnInternalServerError() {
+    public void givenNullWrappedInException_whenHandleDocStorageAndPdfGen_thenReturn500() {
         final String message = "some message";
 
         PDFGenerationException pdfGenerationException = new PDFGenerationException(message, null);
@@ -86,7 +86,7 @@ public class GlobalExceptionHandlerUTest {
     }
 
     @Test
-    public void givenWrappedInIsNotHttpClientErrorException_whenHandleDocumentStorageAndPDFGenerationException_thenReturnInternalServerError() {
+    public void givenNonHttpClientErrorWrappedIn_whenHandleDocStorageAndPdfGenException_thenReturn500() {
         final String message = "some message";
         final Exception exception = new Exception();
 

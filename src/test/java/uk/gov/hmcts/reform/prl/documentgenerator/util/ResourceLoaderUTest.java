@@ -15,7 +15,6 @@ import java.nio.charset.StandardCharsets;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -24,7 +23,7 @@ public class ResourceLoaderUTest {
     private static final String EXISTING_PATH = "ResourceLoadTest.txt";
     private static final String DATA_IN_FILE = "Resource Load Test";
 
-    MockedStatic<NullOrEmptyValidator> nullOrEmptyValidator ;
+    MockedStatic<NullOrEmptyValidator> nullOrEmptyValidator;
 
     @Before
     public void beforeTest() {

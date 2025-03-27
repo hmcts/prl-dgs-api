@@ -141,7 +141,10 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     }
 
     @Override
-    public GeneratedDocumentInfo converToPdf(Map<String, Object> placeholders, String authorizationToken, String fileName) {
+    public GeneratedDocumentInfo converToPdf(
+        Map<String, Object> placeholders,
+        String authorizationToken,
+        String fileName) {
         log.debug(
             "Generate document requested with templateName [{}], placeholders of size[{}]",
             placeholders.size()
