@@ -19,7 +19,7 @@ application {
   version = '0.0.1'
 }
 
-java{
+java {
   toolchain {
     languageVersion = JavaLanguageVersion.of(17)
   }
