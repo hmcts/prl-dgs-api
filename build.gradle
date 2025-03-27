@@ -14,19 +14,22 @@ plugins {
   id 'net.serenity-bdd.serenity-gradle-plugin' version '2.4.34'
 }
 
+application {
+  group = 'uk.gov.hmcts.reform.prl'
+  mainClass = 'uk.gov.hmcts.reform.prl.documentgenerator.DocumentGeneratorApplication'
+  version = '0.0.1'
+}
+
+java{
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(17)
+  }
+}
+
 repositories {
   mavenLocal()
   mavenCentral()
   maven { url = 'https://jitpack.io' }
-}
-
-group = 'uk.gov.hmcts.reform.prl'
-version = '3.0.0'
-
-java {
-  toolchain {
-    languageVersion = JavaLanguageVersion.of(17)
-  }
 }
 
 sourceSets {
@@ -78,8 +81,6 @@ bootJar {
   }
   archiveFileName = 'prl-dgs-api.jar'
 }
-
-mainClassName = 'uk.gov.hmcts.reform.prl.documentgenerator.DocumentGeneratorApplication'
 
 compileJava {
     options.compilerArgs << '-parameters' << '-Xlint:deprecation'
