@@ -23,7 +23,7 @@ public class ResourceLoaderUTest {
     private static final String EXISTING_PATH = "ResourceLoadTest.txt";
     private static final String DATA_IN_FILE = "Resource Load Test";
 
-    MockedStatic<NullOrEmptyValidator> nullOrEmptyValidator ;
+    MockedStatic<NullOrEmptyValidator> nullOrEmptyValidator;
 
     @Before
     public void beforeTest() {

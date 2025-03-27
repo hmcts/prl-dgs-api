@@ -43,7 +43,10 @@ import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_HASH_
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = DocumentGeneratorApplication.class)
+@SpringBootTest(
+    webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+    classes = DocumentGeneratorApplication.class
+)
 @AutoConfigureMockMvc
 @PropertySource(value = "classpath:application.yml")
 public class DocumentGenerateAndStoreE2ETest {
@@ -88,7 +91,8 @@ public class DocumentGenerateAndStoreE2ETest {
     @ParameterizedTest
     @NullSource
     @ValueSource(strings = {"  ", "nonExistingTemplate"})
-    public void givenTemplateNameIsBlankOrNullOrTemplateNotFound_whenGenerateAndStoreDocument_thenReturnHttp400(String template) throws Exception {
+    public void givenTemplateNameIsBlankOrNullOrTemplateNotFound_whenGenerateAndStoreDocument_thenReturnHttp400(
+        String template) throws Exception {
         perform(template);
     }
 
@@ -113,7 +117,8 @@ public class DocumentGenerateAndStoreE2ETest {
     }
 
     @Test
-    public void givenAuthServiceReturnAuthenticationError_whenGenerateAndStoreDocument_thenReturnHttp401() throws Exception {
+    public void givenAuthServiceReturnAuthenticationError_whenGenerateAndStoreDocument_thenReturnHttp401()
+        throws Exception {
         Map<String, Object> caseData = new HashMap<>();
         Map<String, Object> requestData = Collections.singletonMap(
             CASE_DETAILS, Collections.singletonMap(CASE_DATA, caseData)
@@ -137,7 +142,8 @@ public class DocumentGenerateAndStoreE2ETest {
         assertReturnWhenAllGoesWellForGeneratingAndStoringDocuments(TEST_EXAMPLE);
     }
 
-    private void assertReturnWhenAllGoesWellForGeneratingAndStoringDocuments(String templateId) throws Exception {
+    private void assertReturnWhenAllGoesWellForGeneratingAndStoringDocuments(
+        String templateId) throws Exception {
         //Given
         final Map<String, Object> caseData = Collections.emptyMap();
         final Map<String, Object> values = new HashMap<>();
@@ -161,7 +167,10 @@ public class DocumentGenerateAndStoreE2ETest {
 
         //Then
         final GeneratedDocumentInfo generatedDocumentInfo = getGeneratedDocumentInfo();
-        assertEquals(ObjectMapperTestUtil.convertObjectToJsonString(generatedDocumentInfo), result.getResponse().getContentAsString());
+        assertEquals(
+            ObjectMapperTestUtil.convertObjectToJsonString(generatedDocumentInfo),
+            result.getResponse().getContentAsString()
+        );
     }
 
     private GeneratedDocumentInfo getGeneratedDocumentInfo() {
@@ -207,7 +216,7 @@ public class DocumentGenerateAndStoreE2ETest {
         Document.Link link = new Document.Link();
         Document.Link linkBinary = new Document.Link();
         link.href = FILE_URL;
-        linkBinary.href = BINARY_URL ;
+        linkBinary.href = BINARY_URL;
 
         Document.Links links = new Document.Links();
         links.self = link;

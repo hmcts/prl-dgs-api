@@ -40,7 +40,10 @@ import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_HASH_
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = DocumentGeneratorApplication.class)
+@SpringBootTest(
+    webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+    classes = DocumentGeneratorApplication.class
+)
 @AutoConfigureMockMvc
 @PropertySource(value = "classpath:application.yml")
 public class DgsApiSmokeTests {
@@ -132,7 +135,8 @@ public class DgsApiSmokeTests {
     }
 
     @Test
-    public void givenAuthServiceReturnAuthenticationError_whenGenerateAndStoreDocument_thenReturnHttp401() throws Exception {
+    public void givenAuthServiceReturnAuthenticationError_whenGenerateAndStoreDocument_thenReturnHttp401()
+        throws Exception {
         Map<String, Object> caseData = new HashMap<>();
         Map<String, Object> requestData = Collections.singletonMap(
             CASE_DETAILS, Collections.singletonMap(CASE_DATA, caseData)
@@ -156,7 +160,8 @@ public class DgsApiSmokeTests {
         assertReturnWhenAllGoesWellForGeneratingAndStoringDocuments(TEST_EXAMPLE);
     }
 
-    private void assertReturnWhenAllGoesWellForGeneratingAndStoringDocuments(String templateId) throws Exception {
+    private void assertReturnWhenAllGoesWellForGeneratingAndStoringDocuments(String templateId)
+        throws Exception {
         //Given
         final Map<String, Object> caseData = Collections.emptyMap();
         final Map<String, Object> values = new HashMap<>();
@@ -172,7 +177,9 @@ public class DgsApiSmokeTests {
         //When
         final GenerateDocumentRequest generateDocumentRequest = new GenerateDocumentRequest(templateId, values);
         MvcResult result = webClient.perform(post(API_URL)
-                                                 .content(ObjectMapperTestUtil.convertObjectToJsonString(generateDocumentRequest))
+                                                 .content(ObjectMapperTestUtil.convertObjectToJsonString(
+                                                     generateDocumentRequest)
+                                                 )
                                                  .contentType(MediaType.APPLICATION_JSON)
                                                  .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
@@ -180,7 +187,10 @@ public class DgsApiSmokeTests {
 
         //Then
         final GeneratedDocumentInfo generatedDocumentInfo = getGeneratedDocumentInfo();
-        assertEquals(ObjectMapperTestUtil.convertObjectToJsonString(generatedDocumentInfo), result.getResponse().getContentAsString());
+        assertEquals(
+            ObjectMapperTestUtil.convertObjectToJsonString(generatedDocumentInfo),
+            result.getResponse().getContentAsString()
+        );
     }
 
     private GeneratedDocumentInfo getGeneratedDocumentInfo() {
@@ -200,7 +210,11 @@ public class DgsApiSmokeTests {
                                                 .willReturn(aResponse()
                                                                 .withStatus(expectedResponse.value())
                                                                 .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
-                                                                .withBody(ObjectMapperTestUtil.convertObjectToJsonString(body))
+                                                                .withBody(
+                                                                    ObjectMapperTestUtil.convertObjectToJsonString(
+                                                                        body
+                                                                    )
+                                                                )
                                                 ));
     }
 
@@ -218,7 +232,11 @@ public class DgsApiSmokeTests {
                                                    .willReturn(aResponse()
                                                                    .withStatus(expectedResponse.value())
                                                                    .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
-                                                                   .withBody(ObjectMapperTestUtil.convertObjectToJsonString(uploadResponse))
+                                                                   .withBody(
+                                                                       ObjectMapperTestUtil.convertObjectToJsonString(
+                                                                           uploadResponse
+                                                                       )
+                                                                   )
                                                    ));
     }
 
@@ -226,7 +244,7 @@ public class DgsApiSmokeTests {
         Document.Link link = new Document.Link();
         Document.Link linkBinary = new Document.Link();
         link.href = FILE_URL;
-        linkBinary.href = BINARY_URL ;
+        linkBinary.href = BINARY_URL;
 
         Document.Links links = new Document.Links();
         links.self = link;

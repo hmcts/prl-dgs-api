@@ -55,7 +55,9 @@ public class WebServiceHealthCheckUTest {
 
         when(httpEntityFactory.createRequestEntityForHealthCheck()).thenReturn(httpEntity);
 
-        HttpServerErrorException exception = new HttpServerErrorException(HttpStatus.SERVICE_UNAVAILABLE,"unknown error");
+        HttpServerErrorException exception = new HttpServerErrorException(
+            HttpStatus.SERVICE_UNAVAILABLE,"unknown error"
+        );
 
         doThrow(exception).when(restTemplate)
                 .exchange(URI, HttpMethod.GET, httpEntity, Object.class, new HashMap<>());

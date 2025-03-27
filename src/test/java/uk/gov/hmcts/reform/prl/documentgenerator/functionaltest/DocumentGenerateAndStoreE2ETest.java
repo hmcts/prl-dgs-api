@@ -130,7 +130,8 @@ public class DocumentGenerateAndStoreE2ETest {
     }
 
     @Test
-    public void givenAuthServiceReturnAuthenticationError_whenGenerateAndStoreDocument_thenReturnHttp401() throws Exception {
+    public void givenAuthServiceReturnAuthenticationError_whenGenerateAndStoreDocument_thenReturnHttp401()
+        throws Exception {
         Map<String, Object> caseData = new HashMap<>();
         Map<String, Object> requestData = Collections.singletonMap(
             CASE_DETAILS, Collections.singletonMap(CASE_DATA, caseData)
@@ -178,7 +179,10 @@ public class DocumentGenerateAndStoreE2ETest {
 
         //Then
         final GeneratedDocumentInfo generatedDocumentInfo = getGeneratedDocumentInfo();
-        assertEquals(ObjectMapperTestUtil.convertObjectToJsonString(generatedDocumentInfo), result.getResponse().getContentAsString());
+        assertEquals(
+            ObjectMapperTestUtil.convertObjectToJsonString(generatedDocumentInfo),
+            result.getResponse().getContentAsString()
+        );
     }
 
     private GeneratedDocumentInfo getGeneratedDocumentInfo() {
@@ -224,7 +228,7 @@ public class DocumentGenerateAndStoreE2ETest {
         Document.Link link = new Document.Link();
         Document.Link linkBinary = new Document.Link();
         link.href = FILE_URL;
-        linkBinary.href = BINARY_URL ;
+        linkBinary.href = BINARY_URL;
 
         Document.Links links = new Document.Links();
         links.self = link;
