@@ -488,13 +488,13 @@ task developAddRelaseSuffix() {
 }
 
 jacocoTestReport {
-    executionData(test)
+  executionData(test)
 
-    reports {
-        xml.enabled = true
-        html.enabled = true
-        xml.destination file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
-    }
+  reports {
+    xml.getRequired().set(true)
+    html.getRequired().set(true)
+    xml.destination file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
+  }
 }
 
 jacocoTestCoverageVerification {
