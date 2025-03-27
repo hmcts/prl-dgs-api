@@ -123,7 +123,6 @@ def versions = [
     pdfbox: '2.0.24',
     pitest: '1.7.3',
     powerMock: '2.0.0',
-    puppyCrawl: '8.29',
     reformsJavaLogging: '5.1.1',
     restAssured: '4.5.1',
     serenity: '2.2.13',
@@ -203,7 +202,6 @@ dependencies {
   implementation(group: 'org.apache.logging.log4j', name: 'log4j-api', version: versions.apacheLogging)
 
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: versions.springBoot
-  implementation group: 'com.puppycrawl.tools', name: 'checkstyle', version:  versions.puppyCrawl
   implementation group: 'commons-io', name: 'commons-io', version: versions.commonsIo
   implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.9'
 
