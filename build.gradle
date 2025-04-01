@@ -12,21 +12,21 @@ plugins {
 }
 
 application {
-  group = 'uk.gov.hmcts.reform.prl'
-  mainClass = 'uk.gov.hmcts.reform.prl.documentgenerator.DocumentGeneratorApplication'
-  version = '0.0.1'
+    group = 'uk.gov.hmcts.reform.prl'
+    mainClass = 'uk.gov.hmcts.reform.prl.documentgenerator.DocumentGeneratorApplication'
+    version = '0.0.1'
 }
 
 java {
-  toolchain {
-    languageVersion = JavaLanguageVersion.of(17)
-  }
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
 
 repositories {
-  mavenLocal()
-  mavenCentral()
-  maven { url = 'https://jitpack.io' }
+    mavenLocal()
+    mavenCentral()
+    maven { url = 'https://jitpack.io' }
 }
 
 sourceSets {
