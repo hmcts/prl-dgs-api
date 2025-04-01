@@ -17,8 +17,8 @@ import uk.gov.hmcts.reform.prl.documentgenerator.service.PDFGenerationService;
 
 import java.text.SimpleDateFormat;
 import java.time.Clock;
-import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -32,7 +32,6 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
 
     private static final String CURRENT_DATE_KEY = "current_date";
     private static final String DATE_FORMAT = "yyyy-MM-dd'T'hh:mm:ss.SSS";
-
     private static final String DRAFT_PREFIX = "Draft";
     private static final String IS_DRAFT = "isDraft";
     public static final String DYNAMIC_FILE_NAME = "dynamic_fileName";
@@ -53,7 +52,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     @Override
     public GeneratedDocumentInfo generateAndStoreDocument(String templateName, Map<String, Object> placeholders,
                                                           String authorizationToken) {
-        String fileName = "";
+        String fileName;
         if (placeholders.containsKey(DYNAMIC_FILE_NAME)) {
             fileName = String.valueOf(placeholders.get(DYNAMIC_FILE_NAME));
         } else {
@@ -66,7 +65,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     public GeneratedDocumentInfo generateAndStoreDraftDocument(String templateName,
                                                                Map<String, Object> placeholders,
                                                                String authorizationToken) {
-        String fileName = "";
+        String fileName;
         if (placeholders.containsKey(DYNAMIC_FILE_NAME)) {
             fileName = String.valueOf(placeholders.get(DYNAMIC_FILE_NAME));
         } else {
@@ -84,7 +83,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
                                                            String authorizationToken, String fileName) {
         String caseId = getCaseId(placeholders);
         if (caseId == null) {
-            log.warn("caseId is null for template \"" + templateName + "\"");
+            log.warn("caseId is null for template \"{}\"", templateName);
         }
 
         log.info("Generating document for case Id {}", caseId);
@@ -111,7 +110,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
             serviceAuthToken,
             "PRLAPPS",
             "PRIVATELAW",
-            Arrays.asList(new InMemoryMultipartFile("files", fileName, APPLICATION_PDF_VALUE, document
+            List.of(new InMemoryMultipartFile("files", fileName, APPLICATION_PDF_VALUE, document
             ))
         );
 
@@ -129,28 +128,31 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     @Override
     public byte[] generateDocument(String templateName, Map<String, Object> placeholders) {
         log.debug("Generate document requested with templateName [{}], placeholders of size[{}]",
-                  templateName, placeholders.size()
+                  templateName,
+                  placeholders.size()
         );
 
         return generatorService.generate(templateName, placeholders);
     }
 
     private String getCaseId(Map<String, Object> placeholders) {
+        @SuppressWarnings("unchecked")
         Map<String, Object> caseDetails = (Map<String, Object>) placeholders.getOrDefault("caseDetails", emptyMap());
         return (String) caseDetails.get("id");
     }
 
     @Override
-    public GeneratedDocumentInfo converToPdf(
+    public GeneratedDocumentInfo convertToPdf(
         Map<String, Object> placeholders,
         String authorizationToken,
         String fileName) {
         log.debug(
-            "Generate document requested with templateName [{}], placeholders of size[{}]",
+            "Generate pdf document requested with templateName [{}], placeholders of size[{}]",
+            fileName,
             placeholders.size()
         );
 
-        byte[] generatedDocument = generatorService.converToPdf(placeholders, fileName);
+        byte[] generatedDocument = generatorService.convertToPdf(placeholders, fileName);
         return storeDocument(generatedDocument, authorizationToken, FilenameUtils.getBaseName(fileName) + ".pdf");
     }
 }
