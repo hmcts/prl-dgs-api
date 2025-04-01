@@ -2,13 +2,14 @@ package uk.gov.hmcts.reform.prl;
 
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
-import net.serenitybdd.rest.SerenityRest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import uk.gov.hmcts.reform.prl.model.CreateUserRequest;
 import uk.gov.hmcts.reform.prl.model.UserCode;
 
 import java.util.Base64;
+
+import static io.restassured.RestAssured.given;
 
 @Slf4j
 public class IdamUtils {
@@ -57,7 +58,7 @@ public class IdamUtils {
             .roles(new UserCode[]{UserCode.builder().code("citizen").build()})
             .build();
 
-        SerenityRest.given()
+        given()
             .header("Content-Type", "application/json")
             .body(ResourceLoader.objectToJson(userRequest))
             .post(idamCreateUrl());
@@ -72,7 +73,7 @@ public class IdamUtils {
             .roles(new UserCode[]{UserCode.builder().code("caseworker-privatelaw-solicitor").build()})
             .build();
 
-        SerenityRest.given()
+        given()
             .header("Content-Type", "application/json")
             .body(ResourceLoader.objectToJson(userRequest))
             .post(idamCreateUrl());
@@ -81,9 +82,8 @@ public class IdamUtils {
     public String generateUserTokenWithNoRoles(String username, String password) {
         String userLoginDetails = String.join(":", username, password);
         final String authHeader = "Basic " + new String(Base64.getEncoder().encode(userLoginDetails.getBytes()));
-        Response response = null;
 
-        response = SerenityRest.given()
+        Response response = given()
             .header("Authorization", authHeader)
             .header("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE)
             .relaxedHTTPSValidation()
@@ -96,7 +96,7 @@ public class IdamUtils {
                 + " body: " + response.getBody().prettyPrint());
         }
 
-        response = SerenityRest.given()
+        response = given()
             .header("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE)
             .relaxedHTTPSValidation()
             .post(idamTokenUrl(response.getBody().path("code")));
@@ -125,12 +125,6 @@ public class IdamUtils {
     }
 
     private String idamCodeUrl() {
-
-        System.out.println(idamUserBaseUrl + idamAuthorizeContextPath
-            + "?response_type=code"
-            + "&client_id=" + idamAuthClientID
-            + "&redirect_uri=" + idamRedirectUri);
-
         return idamUserBaseUrl + idamAuthorizeContextPath
             + "?response_type=code"
             + "&client_id=" + idamAuthClientID
@@ -138,21 +132,12 @@ public class IdamUtils {
     }
 
     private String idamTokenUrl(String code) {
-
-        System.out.println(idamUserBaseUrl + idamTokenContextPath
-            + "?code=" + code
-            + "&client_id=" + idamAuthClientID
-            + "&client_secret=" + idamSecret
-            + "&redirect_uri=" + idamRedirectUri
-            + "&grant_type=authorization_code");
-
         return idamUserBaseUrl + idamTokenContextPath
             + "?code=" + code
             + "&client_id=" + idamAuthClientID
             + "&client_secret=" + idamSecret
             + "&redirect_uri=" + idamRedirectUri
             + "&grant_type=authorization_code";
-
     }
 
 }

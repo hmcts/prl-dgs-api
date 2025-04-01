@@ -1,23 +1,20 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.controller.helper;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.BlockJUnit4ClassRunner;
+import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import uk.gov.hmcts.reform.prl.documentgenerator.exception.ErrorLoadingTemplateException;
 import uk.gov.hmcts.reform.prl.documentgenerator.exception.PDFGenerationException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(BlockJUnit4ClassRunner.class)
-public class GlobalExceptionHandlerUTest {
+class GlobalExceptionHandlerUTest {
 
     private final GlobalExceptionHandler classUnderTest = new GlobalExceptionHandler();
 
     @Test
-    public void whenHandleBadRequestException_thenReturnBadRequest() {
+    void whenHandleBadRequestExceptionThenReturnBadRequest() {
         final Exception exception = new Exception();
 
         ResponseEntity<Object> response = classUnderTest.handleBadRequestException(exception);
@@ -26,7 +23,7 @@ public class GlobalExceptionHandlerUTest {
     }
 
     @Test
-    public void whenHandleTemplateLoadingException_thenReturnBadRequest() {
+    void whenHandleTemplateLoadingExceptionThenReturnBadRequest() {
         final String message = "some message";
         final Exception exception = new Exception();
         final ErrorLoadingTemplateException errorLoadingTemplateException =
@@ -39,7 +36,7 @@ public class GlobalExceptionHandlerUTest {
     }
 
     @Test
-    public void whenHandleDocStorageAndPdfGenException_thenReturnHttpClientErrorStatus() {
+    void whenHandleDocStorageAndPdfGenExceptionThenReturnHttpClientErrorStatus() {
         final HttpStatus httpStatus = HttpStatus.MOVED_PERMANENTLY;
 
         final HttpClientErrorException httpClientErrorException = new HttpClientErrorException(httpStatus);
@@ -56,7 +53,7 @@ public class GlobalExceptionHandlerUTest {
     }
 
     @Test
-    public void givenHttpClientError200_whenHandleDocStorageAndPdfGenException_thenReturn503() {
+    void givenHttpClientError200WhenHandleDocStorageAndPdfGenExceptionThenReturn503() {
         final HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
 
         final HttpClientErrorException httpClientErrorException = new HttpClientErrorException(httpStatus);
@@ -73,7 +70,7 @@ public class GlobalExceptionHandlerUTest {
     }
 
     @Test
-    public void givenNullWrappedInException_whenHandleDocStorageAndPdfGen_thenReturn500() {
+    void givenNullWrappedInExceptionWhenHandleDocStorageAndPdfGenThenReturn500() {
         final String message = "some message";
 
         PDFGenerationException pdfGenerationException = new PDFGenerationException(message, null);
@@ -86,7 +83,7 @@ public class GlobalExceptionHandlerUTest {
     }
 
     @Test
-    public void givenNonHttpClientErrorWrappedIn_whenHandleDocStorageAndPdfGenException_thenReturn500() {
+    void givenNonHttpClientErrorWrappedInWhenHandleDocStorageAndPdfGenExceptionThenReturn500() {
         final String message = "some message";
         final Exception exception = new Exception();
 

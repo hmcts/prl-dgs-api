@@ -1,12 +1,12 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.ccd.document.am.feign.CaseDocumentClient;
 import uk.gov.hmcts.reform.ccd.document.am.model.UploadResponse;
@@ -15,11 +15,11 @@ import uk.gov.hmcts.reform.prl.documentgenerator.domain.response.GeneratedDocume
 import uk.gov.hmcts.reform.prl.documentgenerator.service.PDFGenerationService;
 
 import java.util.HashMap;
+import java.util.List;
 
-import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
@@ -33,8 +33,8 @@ import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_HASH_
 import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_TEMPLATE;
 import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_TEMPLATE_FILE_NAME;
 
-@RunWith(MockitoJUnitRunner.class)
-public class DocumentManagementServiceImplUTest {
+@ExtendWith(MockitoExtension.class)
+class DocumentManagementServiceImplUTest {
 
     @Mock
     private PDFGenerationService pdfGenerationService;
@@ -53,14 +53,13 @@ public class DocumentManagementServiceImplUTest {
 
     private UploadResponse expectedUploadResponse;
 
-    @Before
-    public void setUp() {
-        expectedUploadResponse = new UploadResponse(asList(mockCaseDocsDocuments()));
+    @BeforeEach
+    void setUp() {
+        expectedUploadResponse = new UploadResponse(List.of(mockCaseDocsDocuments()));
     }
 
-
     @Test
-    public void givenTemplateNameIsAosInvitation_whenGenerateAndStoreDocument_thenProceedAsExpected() {
+    void givenTemplateNameIsAosInvitationWhenGenerateAndStoreDocumentThenProceedAsExpected() {
         when(pdfGenerationService.generate(eq(TEST_TEMPLATE), any())).thenReturn(TEST_GENERATED_DOCUMENT);
         when(templatesConfiguration.getFileNameByTemplateName(TEST_TEMPLATE)).thenReturn(TEST_TEMPLATE_FILE_NAME);
         when(caseDocumentClient.uploadDocuments(
@@ -74,7 +73,7 @@ public class DocumentManagementServiceImplUTest {
     }
 
     @Test
-    public void givenTemplateNameIsAosInvitation_whenGenerateAndStoreDraftDocument_thenProceedAsExpected() {
+    void givenTemplateNameIsAosInvitationWhenGenerateAndStoreDraftDocumentThenProceedAsExpected() {
         when(pdfGenerationService.generate(eq(TEST_TEMPLATE), any())).thenReturn(TEST_GENERATED_DOCUMENT);
         when(templatesConfiguration.getFileNameByTemplateName(TEST_TEMPLATE)).thenReturn(TEST_TEMPLATE_FILE_NAME);
         when(caseDocumentClient.uploadDocuments(
@@ -88,15 +87,16 @@ public class DocumentManagementServiceImplUTest {
     }
 
     @Test
-    public void givenTemplateNameIsInvalid_whenGenerateAndStoreDocument_thenThrowException() {
+    void givenTemplateNameIsInvalidWhenGenerateAndStoreDocumentThenThrowException() {
         String unknownTemplateName = "unknown-template";
         HashMap<String, Object> placeholders = new HashMap<>();
         when(templatesConfiguration.getFileNameByTemplateName(unknownTemplateName))
             .thenThrow(new IllegalArgumentException("Unknown template: " + unknownTemplateName));
 
-        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
-            classUnderTest.generateAndStoreDocument(unknownTemplateName, placeholders, "some-auth-token");
-        });
+        IllegalArgumentException illegalArgumentException = assertThrows(
+            IllegalArgumentException.class,
+            () -> classUnderTest.generateAndStoreDocument(unknownTemplateName, placeholders, "some-auth-token")
+        );
 
         assertThat(illegalArgumentException.getMessage(), equalTo("Unknown template: " + unknownTemplateName));
     }

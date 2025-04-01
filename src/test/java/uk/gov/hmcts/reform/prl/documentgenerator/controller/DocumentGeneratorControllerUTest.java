@@ -1,10 +1,10 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.controller;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.hmcts.reform.prl.documentgenerator.domain.request.GenerateDocumentRequest;
 import uk.gov.hmcts.reform.prl.documentgenerator.domain.response.GeneratedDocumentInfo;
 import uk.gov.hmcts.reform.prl.documentgenerator.service.DocumentManagementService;
@@ -13,14 +13,13 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
-public class DocumentGeneratorControllerUTest {
-
+@ExtendWith(MockitoExtension.class)
+class DocumentGeneratorControllerUTest {
     @Mock
     private DocumentManagementService documentManagementService;
 
@@ -28,7 +27,7 @@ public class DocumentGeneratorControllerUTest {
     private DocumentGeneratorController classUnderTest;
 
     @Test
-    public void whenGeneratePDF_thenReturnGeneratedPDFDocumentInfo() {
+    void whenGeneratePDFThenReturnGeneratedPDFDocumentInfo() {
         final String templateName = "templateName";
         final Map<String, Object> placeholder = Collections.emptyMap();
 
@@ -47,7 +46,7 @@ public class DocumentGeneratorControllerUTest {
     }
 
     @Test
-    public void whenGeneratePDF_thenReturnGeneratedDraftPDFDocumentInfo() {
+    void whenGeneratePDFThenReturnGeneratedDraftPDFDocumentInfo() {
         final String templateName = "templateName";
         final Map<String, Object> placeholder = Collections.emptyMap();
 
@@ -66,13 +65,13 @@ public class DocumentGeneratorControllerUTest {
     }
 
     @Test
-    public void whenConvertPDF_thenReturnConvertedPDFDocumentInfo() {
+    void whenConvertPDFThenReturnConvertedPDFDocumentInfo() {
         final String templateName = "templateName";
         Map<String, Object> placeholder = new HashMap<>();
 
         final GeneratedDocumentInfo expected = GeneratedDocumentInfo.builder().build();
 
-        when(documentManagementService.converToPdf(placeholder, "authToken","fileName"))
+        when(documentManagementService.convertToPdf(placeholder, "authToken","fileName"))
             .thenReturn(expected);
 
         GeneratedDocumentInfo actual = classUnderTest
@@ -81,7 +80,7 @@ public class DocumentGeneratorControllerUTest {
         assertEquals(expected, actual);
 
         verify(documentManagementService, times(1))
-            .converToPdf(placeholder, "authToken","fileName");
+            .convertToPdf(placeholder, "authToken","fileName");
     }
 
 }

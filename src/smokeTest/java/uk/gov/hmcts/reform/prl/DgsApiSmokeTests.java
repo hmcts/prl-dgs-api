@@ -3,15 +3,15 @@ package uk.gov.hmcts.reform.prl;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import uk.gov.hmcts.reform.ccd.document.am.model.Document;
@@ -27,7 +27,7 @@ import java.util.Map;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -38,8 +38,7 @@ import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.MIME_TYPE;
 import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_DEFAULT_NAME_FOR_PDF_FILE;
 import static uk.gov.hmcts.reform.prl.documentgenerator.util.TestData.TEST_HASH_TOKEN;
 
-
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
     classes = DocumentGeneratorApplication.class
@@ -73,7 +72,7 @@ public class DgsApiSmokeTests {
         wireMockConfig().port(4502)).build();
 
     @Test
-    public void givenTemplateNameIsNull_whenGenerateAndStoreDocument_thenReturnHttp400() throws Exception {
+    public void givenTemplateNameIsNullWhenGenerateAndStoreDocumentThenReturnHttp400() throws Exception {
         final String template = null;
         final Map<String, Object> values = Collections.emptyMap();
 
@@ -87,7 +86,7 @@ public class DgsApiSmokeTests {
     }
 
     @Test
-    public void givenTemplateNameIsBlank_whenGenerateAndStoreDocument_thenReturnHttp400() throws Exception {
+    public void givenTemplateNameIsBlankWhenGenerateAndStoreDocumentThenReturnHttp400() throws Exception {
         final String template = "  ";
         final Map<String, Object> values = Collections.emptyMap();
 
@@ -101,7 +100,7 @@ public class DgsApiSmokeTests {
     }
 
     @Test
-    public void givenTemplateNotFound_whenGenerateAndStoreDocument_thenReturnHttp400() throws Exception {
+    public void givenTemplateNotFoundWhenGenerateAndStoreDocumentThenReturnHttp400() throws Exception {
         final String template = "nonExistingTemplate";
         final Map<String, Object> values = Collections.emptyMap();
 
@@ -115,11 +114,10 @@ public class DgsApiSmokeTests {
     }
 
     @Test
-    public void givenCouldNotConnectToAuthService_whenGenerateAndStoreDocument_thenReturnHttp503() throws Exception {
-        Map<String, Object> caseData = new HashMap<>();
+    public void givenCouldNotConnectToAuthServiceWhenGenerateAndStoreDocumentThenReturnHttp503() throws Exception {
 
         Map<String, Object> requestData = Collections.singletonMap(
-            CASE_DETAILS, Collections.singletonMap(CASE_DATA, caseData)
+            CASE_DETAILS, Collections.singletonMap(CASE_DATA, new HashMap<>())
         );
 
         final GenerateDocumentRequest generateDocumentRequest = new GenerateDocumentRequest(TEST_EXAMPLE, requestData);
@@ -135,11 +133,10 @@ public class DgsApiSmokeTests {
     }
 
     @Test
-    public void givenAuthServiceReturnAuthenticationError_whenGenerateAndStoreDocument_thenReturnHttp401()
+    public void givenAuthServiceReturnAuthenticationErrorWhenGenerateAndStoreDocumentThenReturnHttp401()
         throws Exception {
-        Map<String, Object> caseData = new HashMap<>();
         Map<String, Object> requestData = Collections.singletonMap(
-            CASE_DETAILS, Collections.singletonMap(CASE_DATA, caseData)
+            CASE_DETAILS, Collections.singletonMap(CASE_DATA, new HashMap<>())
         );
 
         final GenerateDocumentRequest generateDocumentRequest = new GenerateDocumentRequest(TEST_EXAMPLE, requestData);
@@ -155,7 +152,7 @@ public class DgsApiSmokeTests {
     }
 
     @Test
-    public void givenAllGoesWellForTestExample_whenGenerateAndStoreDocument_thenReturn()
+    public void givenAllGoesWellForTestExampleWhenGenerateAndStoreDocumentThenReturn()
         throws Exception {
         assertReturnWhenAllGoesWellForGeneratingAndStoringDocuments(TEST_EXAMPLE);
     }
@@ -199,23 +196,24 @@ public class DgsApiSmokeTests {
             .hashToken(TEST_HASH_TOKEN)
             .mimeType(MIME_TYPE)
             .binaryUrl(BINARY_URL)
-            .docName("TestTemplate.pdf") //added for filename
+            .docName("TestTemplate.pdf")
             .build();
 
         return generatedDocumentInfo;
     }
 
     private void mockDocmosisPdfService(HttpStatus expectedResponse, byte[] body) {
-        docmosisClientServiceServer.stubFor(WireMock.post(DOCMOSIS_API_URL)
-                                                .willReturn(aResponse()
-                                                                .withStatus(expectedResponse.value())
-                                                                .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
-                                                                .withBody(
-                                                                    ObjectMapperTestUtil.convertObjectToJsonString(
-                                                                        body
-                                                                    )
-                                                                )
-                                                ));
+        docmosisClientServiceServer.stubFor(
+            WireMock.post(DOCMOSIS_API_URL)
+                .willReturn(
+                    aResponse()
+                        .withStatus(expectedResponse.value())
+                        .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
+                        .withBody(
+                            ObjectMapperTestUtil.convertObjectToJsonString(body)
+                        )
+                )
+        );
     }
 
     private void mockServiceAuthServer(HttpStatus expectedResponse, String body) {

@@ -1,43 +1,48 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.util;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-@RunWith(MockitoJUnitRunner.class)
-public class NullOrEmptyValidatorUTest {
+@ExtendWith(MockitoExtension.class)
+class NullOrEmptyValidatorUTest {
 
     private static final String BLANK_STRING = " ";
     private static final String EMPTY_STRING = "";
     private static final String SOME_STRING = "Some String";
 
     @Test
-    public void testConstructorPrivate() throws Exception {
+    void testConstructorPrivate() throws Exception {
         Constructor<NullOrEmptyValidator> constructor = NullOrEmptyValidator.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
         constructor.newInstance();
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void givenArrayIsNull_whenRequireNonEmpty_thenThrowsIllegalArgumentException() {
-        NullOrEmptyValidator.requireNonEmpty(null);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void givenArrayIsEmpty_whenRequireNonEmpty_thenThrowsIllegalArgumentException() {
-        NullOrEmptyValidator.requireNonEmpty(ArrayUtils.EMPTY_BYTE_ARRAY);
+    @Test
+    void givenArrayIsNullWhenRequireNonEmptyThenThrowsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () ->
+            NullOrEmptyValidator.requireNonEmpty(null)
+        );
     }
 
     @Test
-    public void givenArrayIsNotEmptyOrNull_whenRequireNonEmpty_thenDoesNotThrowException() {
+    void givenArrayIsEmptyWhenRequireNonEmptyThenThrowsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () ->
+            NullOrEmptyValidator.requireNonEmpty(ArrayUtils.EMPTY_BYTE_ARRAY)
+        );
+    }
+
+    @Test
+    void givenArrayIsNotEmptyOrNullWhenRequireNonEmptyThenDoesNotThrowException() {
         try {
             NullOrEmptyValidator.requireNonEmpty(new byte[]{1});
         } catch (Exception e) {
@@ -45,23 +50,30 @@ public class NullOrEmptyValidatorUTest {
         }
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void givenTextIsNull_whenRequireNonBlank_thenThrowsIllegalArgumentException() {
-        NullOrEmptyValidator.requireNonBlank(null);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void givenTextIsEmpty_whenRequireNonBlank_thenThrowsIllegalArgumentException() {
-        NullOrEmptyValidator.requireNonBlank(EMPTY_STRING);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void givenTextIsBlank_whenRequireNonBlank_thenThrowsIllegalArgumentException() {
-        NullOrEmptyValidator.requireNonBlank(BLANK_STRING);
+    @Test
+    void givenTextIsNullWhenRequireNonBlankThenThrowsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () ->
+            NullOrEmptyValidator.requireNonBlank(null)
+        );
     }
 
     @Test
-    public void givenTextIsNotBlank_whenRequireNonBlank_thenDoesNotThrowException() {
+    void givenTextIsEmptyWhenRequireNonBlankThenThrowsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () ->
+            NullOrEmptyValidator.requireNonBlank(EMPTY_STRING)
+        );
+    }
+
+    @Test
+    void givenTextIsBlankWhenRequireNonBlankThenThrowsIllegalArgumentException() {
+        assertThrows(
+            IllegalArgumentException.class, () ->
+                NullOrEmptyValidator.requireNonBlank(BLANK_STRING)
+        );
+    }
+
+    @Test
+    void givenTextIsNotBlankWhenRequireNonBlankThenDoesNotThrowException() {
         try {
             NullOrEmptyValidator.requireNonBlank(SOME_STRING);
         } catch (Exception e) {

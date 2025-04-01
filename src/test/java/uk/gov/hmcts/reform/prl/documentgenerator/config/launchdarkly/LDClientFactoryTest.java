@@ -1,21 +1,21 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.config.launchdarkly;
 
 import com.launchdarkly.sdk.server.interfaces.LDClientInterface;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class LDClientFactoryTest {
+class LDClientFactoryTest {
     private LDClientFactory factory;
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         factory = new LDClientFactory();
     }
 
     @Test
-    public void testCreate() {
+    void testCreate() {
         LDClientInterface client = factory.create("test key", true);
         assertNotNull(client);
     }

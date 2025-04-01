@@ -1,13 +1,13 @@
 package uk.gov.hmcts.reform.prl;
 
 import io.restassured.response.Response;
-import net.serenitybdd.rest.SerenityRest;
 import org.apache.http.HttpStatus;
-import org.junit.Assert;
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Value;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import static io.restassured.RestAssured.given;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(classes = DocumentGeneratorControllerIntegrationTest.class)
 @AutoConfigureMockMvc
@@ -15,15 +15,11 @@ public class DocumentGeneratorControllerIntegrationTest extends IntegrationTest 
 
     private static final String VALID_INPUT_JSON = "documentgenerator/documents/jsoninput/DA-granted-letter.json";
 
-    @Value("${prl.document.generator.uri}")
-    private String prlDocumentGeneratorURI;
-
     @Test
-    public void givenTemplateShouldGeneratePdf_VerifyResponse() throws Exception {
-
+    public void givenTemplateShouldGeneratePdfVerifyResponse() throws Exception {
         String requestBody = ResourceLoader.loadJson(VALID_INPUT_JSON);
 
-        Response response = SerenityRest.given()
+        Response response = given()
                                 .contentType("application/json")
                                 .header("Authorization", getAuthorizationToken())
                                 .body(requestBody)
@@ -31,14 +27,14 @@ public class DocumentGeneratorControllerIntegrationTest extends IntegrationTest 
                                 .post(prlDocumentGeneratorURI)
                                 .andReturn();
 
-        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+        assertEquals(HttpStatus.SC_OK, response.getStatusCode());
     }
 
     @Test
-    public void generatePdfWithWrongURI_ShouldThrowNotFound404() throws Exception {
+    public void generatePdfWithWrongURIShouldThrowNotFound404() throws Exception {
         String requestBody = ResourceLoader.loadJson(VALID_INPUT_JSON);
 
-        Response response = SerenityRest.given()
+        Response response = given()
             .contentType("application/json")
             .header("Authorization", getAuthorizationToken())
             .body(requestBody)
@@ -46,6 +42,6 @@ public class DocumentGeneratorControllerIntegrationTest extends IntegrationTest 
             .post(prlDocumentGeneratorURI + "/test")
             .andReturn();
 
-        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_NOT_FOUND);
+        assertEquals(HttpStatus.SC_NOT_FOUND, response.getStatusCode());
     }
 }
