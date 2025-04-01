@@ -11,4 +11,26 @@
     <cve>CVE-2023-20883</cve>
     <cve>CVE-2023-34055</cve>
   </suppress>
+  <suppress>
+    <notes><![CDATA[file name: jackson-databind-2.13.5.jar]]></notes>
+    <packageUrl regex="true">^pkg:maven/com\.fasterxml\.jackson\.core/jackson-databind@.*$</packageUrl>
+    <cve>CVE-2023-35116</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[file name: logback-classic-1.2.12.jar]]></notes>
+    <packageUrl regex="true">^pkg:maven/ch\.qos\.logback/logback-classic@.*$</packageUrl>
+    <cve>CVE-2023-6378</cve>
+    <cve>CVE-2023-6481</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[file name: snakeyaml-1.30.jar]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.yaml/snakeyaml@.*$</packageUrl>
+    <cve>CVE-2022-1471</cve>
+    <cve>CVE-2022-25857</cve>
+    <cve>CVE-2022-38749</cve>
+    <cve>CVE-2022-38751</cve>
+    <cve>CVE-2022-38752</cve>
+    <cve>CVE-2022-41854</cve>
+    <cve>CVE-2022-38750</cve>
+  </suppress>
 </suppressions>
