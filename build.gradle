@@ -91,6 +91,7 @@ def versions = [
     apacheLogging: '2.20.0',
     ccdCaseDocumentAmClient: '1.7.2',
     httpComponents: '4.5.13',
+    junit5: '5.9.0',
     lombok: '1.18.36',
     pact_version: '4.1.11',
     restAssured: '5.5.1',
@@ -132,7 +133,7 @@ dependencies {
     implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version:'7.4'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
 
-    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.9.0'
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: versions.junit5
 
     testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '3.1.1'
     testImplementation group: 'com.github.tomakehurst', name:'wiremock', version: '2.27.2'
@@ -143,21 +144,21 @@ dependencies {
     testImplementation group: 'org.springframework.security', name: 'spring-security-test'
     testImplementation group: 'com.github.hmcts', name: 'fortify-client', version: '1.4.8', classifier: 'all'
     testImplementation group: 'org.mockito', name: 'mockito-inline', version: '5.2.0'
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.0'
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.9.0'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: versions.junit5
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: versions.junit5
 
     smokeTestImplementation sourceSets.main.runtimeClasspath
     smokeTestImplementation sourceSets.test.runtimeClasspath
 
     contractTestRuntime group: 'au.com.dius.pact.consumer', name: 'java8', version: versions.pact_version
     contractTestRuntime group: 'au.com.dius.pact.consumer', name: 'junit5', version: versions.pact_version
-    contractTestRuntime group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.9.0'
+    contractTestRuntime group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: versions.junit5
 
     contractTestImplementation group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
     contractTestImplementation group: 'au.com.dius.pact.consumer', name: 'junit5', version: versions.pact_version
     contractTestImplementation group: 'au.com.dius.pact.consumer', name: 'java8', version: versions.pact_version
     contractTestImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test'
-    contractTestImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.0'
+    contractTestImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: versions.junit5
     contractTestImplementation sourceSets.main.runtimeClasspath
     contractTestImplementation sourceSets.test.runtimeClasspath
 
