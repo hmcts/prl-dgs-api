@@ -29,54 +29,36 @@ repositories {
     maven { url = 'https://jitpack.io' }
 }
 
-sourceSets {
-    integrationTest {
-        java {
-            compileClasspath += main.output + test.output
-            runtimeClasspath += main.output + test.output
-            srcDirs = ['src/integrationTest/java']
+def configureSourceSet(String name) {
+    sourceSets.create(name) { sourceSet ->
+        sourceSet.java {
+            compileClasspath += sourceSets.main.output + sourceSets.test.output
+            runtimeClasspath += sourceSets.main.output + sourceSets.test.output
+            srcDir "src/${name}/java"
         }
-        resources {
-            srcDirs = ['src/integrationTest/resources']
-        }
-    }
-  functionalTest {
-    java {
-      compileClasspath += main.output + test.output
-      runtimeClasspath += main.output + test.output
-      srcDirs = ['src/functionalTest/java']
-    }
-    resources {
-      srcDirs = ['src/functionalTest/resources']
-    }
-  }
-    contractTest {
-        java {
-            compileClasspath += main.output
-            runtimeClasspath += main.output
-            srcDir file('src/contractTest/java')
-        }
-        resources.srcDir file('src/contractTest/resources')
+        sourceSet.resources.srcDir "src/${name}/resources"
     }
 }
 
+['smokeTest', 'integrationTest', 'functionalTest', 'contractTest'].each { configureSourceSet(it) }
+
 configurations {
+    smokeTestImplementation.extendsFrom testImplementation
+    smokeTestRuntime.extendsFrom testRuntime
     integrationTestImplementation.extendsFrom testImplementation
     integrationTestRuntime.extendsFrom testRuntime
     functionalTestImplementation.extendsFrom testImplementation
     functionalTestRuntime.extendsFrom testRuntime
     contractTestImplementation.extendsFrom testImplementation
     contractTestRuntime.extendsFrom testRuntime
-    smokeTestImplementation.extendsFrom testImplementation
-    smokeTestRuntime.extendsFrom testRuntime
 }
 
 bootJar {
-  manifest {
-    attributes 'Implementation-Title': project.name,
-      'Implementation-Version': project.version
-  }
-  archiveFileName = 'prl-dgs-api.jar'
+    manifest {
+        attributes 'Implementation-Title': project.name,
+            'Implementation-Version': project.version
+    }
+    archiveFileName = 'prl-dgs-api.jar'
 }
 
 compileJava {
