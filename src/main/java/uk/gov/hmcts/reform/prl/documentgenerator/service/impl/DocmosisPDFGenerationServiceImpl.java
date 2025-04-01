@@ -87,7 +87,7 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
     }
 
     @Override
-    public byte[] converToPdf(Map<String, Object> placeholders, String fileName) {
+    public byte[] convertToPdf(Map<String, Object> placeholders, String fileName) {
 
         try {
             String filename = FilenameUtils.getBaseName(fileName) + ".pdf";
@@ -106,7 +106,6 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
         } catch (IOException e) {
             throw new PDFGenerationException("Failed to convertToPdf: " + e.getMessage(), e);
         }
-
     }
 
 
