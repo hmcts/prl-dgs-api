@@ -281,7 +281,7 @@ sonarqube {
         property "sonar.projectName", "Family Private Law :: prl-dgs"
         property "sonar.projectKey", "prl-dgs-api"
         property "sonar.exclusions", sonarExclusions.join(", ")
-        property "sonar.coverage.jacoco.xmlReportPaths", "${jacocoTestReport.reports.xml.destination.path}"
+        property "sonar.coverage.jacoco.xmlReportPaths", "${jacocoTestReport.reports.xml.outputLocation.get()}"
     }
 }
 
