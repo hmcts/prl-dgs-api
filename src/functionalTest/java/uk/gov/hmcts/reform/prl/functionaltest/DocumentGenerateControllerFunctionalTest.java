@@ -1,24 +1,23 @@
 package uk.gov.hmcts.reform.prl.functionaltest;
 
-import groovy.util.logging.Slf4j;
-import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.prl.documentgenerator.DocumentGeneratorApplication;
 
-@RunWith(SpringRunner.class)
+import static io.restassured.RestAssured.given;
+
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = DocumentGeneratorApplication.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @PropertySource(value = "classpath:application.yml")
 public class DocumentGenerateControllerFunctionalTest {
-    private final String userToken = "Bearer testToken";
-
+    private static final String USER_TOKEN = "Bearer testToken";
     private static final String VALID_REQUEST_BODY = "documentgenerator/da.json";
 
     private final String targetInstance =
@@ -27,14 +26,12 @@ public class DocumentGenerateControllerFunctionalTest {
             "http://localhost:4007"
         );
 
-    private final RequestSpecification request = RestAssured.given().relaxedHTTPSValidation().baseUri(targetInstance);
-
+    private final RequestSpecification request = given().relaxedHTTPSValidation().baseUri(targetInstance);
 
     @Test
-    public void givenNoRequestBodyReturn400FromGenerateAndUploadPdf() throws Exception {
-        String requestBody = ResourceLoader.loadJson(VALID_REQUEST_BODY);
+    public void givenNoRequestBodyReturn400FromGenerateAndUploadPdf() {
         request
-            .header("Authorization", userToken)
+            .header("Authorization", USER_TOKEN)
             .when()
             .contentType("application/json")
             .post("/version/1/generatePDF")
@@ -43,10 +40,9 @@ public class DocumentGenerateControllerFunctionalTest {
     }
 
     @Test
-    public void givenNoRequestBodyReturn400FromGenerateAndDraftPdf() throws Exception {
-        String requestBody = ResourceLoader.loadJson(VALID_REQUEST_BODY);
+    public void givenNoRequestBodyReturn400FromGenerateAndDraftPdf() {
         request
-            .header("Authorization", userToken)
+            .header("Authorization", USER_TOKEN)
             .when()
             .contentType("application/json")
             .post("/version/1/generateDraftPDF")

@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.management.monitoring.health;
 
+import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
-import com.github.tomakehurst.wiremock.junit.WireMockClassRule;
 import com.jayway.jsonpath.JsonPath;
 import com.netflix.loadbalancer.Server;
 import com.netflix.loadbalancer.ServerList;
@@ -10,15 +10,14 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.ClassRule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.cloud.contract.wiremock.WireMockSpring;
 import org.springframework.cloud.netflix.ribbon.StaticServerList;
 import org.springframework.context.annotation.Bean;
@@ -27,7 +26,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.prl.documentgenerator.DocumentGeneratorApplication;
 import uk.gov.hmcts.reform.prl.documentgenerator.functionaltest.ConnectionCloseExtension;
 
@@ -39,10 +38,10 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ContextConfiguration(
-        classes = {DocumentGeneratorApplication.class, HealthCheckITest.LocalRibbonClientConfiguration.class})
+    classes = {DocumentGeneratorApplication.class, HealthCheckITest.LocalRibbonClientConfiguration.class})
 @PropertySource(value = "classpath:application.properties")
 @TestPropertySource(properties = {
     "management.endpoint.health.cache.time-to-live=0",
@@ -50,7 +49,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
     "eureka.client.enabled=false",
 })
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
-public class HealthCheckITest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+class HealthCheckITest {
 
     private static final String HEALTH_UP_RESPONSE = "{ \"status\": \"UP\"}";
     private static final String HEALTH_DOWN_RESPONSE = "{ \"status\": \"DOWN\"}";
@@ -58,14 +58,9 @@ public class HealthCheckITest {
     @Value("${local.server.port}")
     private int port;
 
-    @ClassRule
-    public static WireMockClassRule serviceAuthServer = new WireMockClassRule(buildWireMockConfig(4502));
-
-    @ClassRule
-    public static WireMockClassRule docmosisService = new WireMockClassRule(buildWireMockConfig(5501));
-
-    @ClassRule
-    public static WireMockClassRule caseDocService = new WireMockClassRule(buildWireMockConfig(5170));
+    private WireMockServer serviceAuthServer;
+    private WireMockServer docmosisService;
+    private WireMockServer caseDocService;
 
     private String healthUrl;
     private final HttpClient httpClient = HttpClients.createMinimal();
@@ -77,14 +72,24 @@ public class HealthCheckITest {
         return httpClient.execute(request);
     }
 
-    @Before
-    public void setUp() {
-        healthUrl = "http://localhost:" + String.valueOf(port) + "/health";
+    @BeforeAll
+    void setUp() {
+        serviceAuthServer = new WireMockServer(buildWireMockConfig(4502));
+        docmosisService = new WireMockServer(buildWireMockConfig(5501));
+        caseDocService = new WireMockServer(buildWireMockConfig(5170));
+
+        serviceAuthServer.start();
+        docmosisService.start();
+        caseDocService.start();
+
+        healthUrl = "http://localhost:" + port + "/health";
     }
 
-    @After
-    public void tearDown() {
-        resetAllMockServices();
+    @AfterAll
+    void tearDown() {
+        serviceAuthServer.stop();
+        docmosisService.stop();
+        caseDocService.stop();
     }
 
     private static WireMockConfiguration buildWireMockConfig(int port) {
@@ -96,7 +101,7 @@ public class HealthCheckITest {
     }
 
     @Test
-    public void givenAllDependenciesAreUp_whenCheckHealth_thenReturnStatusUp() throws Exception {
+    void givenAllDependenciesAreUpWhenCheckHealthThenReturnStatusUp() throws Exception {
         stubEndpointAndResponse(serviceAuthServer, true);
         stubEndpointAndResponse(docmosisService, true);
         stubEndpointAndResponse(caseDocService, true);
@@ -106,19 +111,19 @@ public class HealthCheckITest {
 
         assertThat(response.getStatusLine().getStatusCode(), equalTo(HttpStatus.OK.value()));
         assertThat(JsonPath.read(body, "$.status").toString(),
-            equalTo("UP"));
+                   equalTo("UP"));
         assertThat(JsonPath.read(body, "$.components.serviceAuthProviderHealthCheck.status").toString(),
-            equalTo("UP"));
+                   equalTo("UP"));
         assertThat(JsonPath.read(body, "$.components.docmosisHealthCheck.status").toString(),
-            equalTo("UP"));
+                   equalTo("UP"));
         assertThat(JsonPath.read(body, "$.components.caseDocumentHealthCheck.status").toString(),
-            equalTo("UP"));
+                   equalTo("UP"));
         assertThat(JsonPath.read(body, "$.components.diskSpace.status").toString(),
-            equalTo("UP"));
+                   equalTo("UP"));
     }
 
     @Test
-    public void givenAllDependenciesAreDown_whenCheckHealth_thenReturnStatusDown() throws Exception {
+    void givenAllDependenciesAreDownWhenCheckHealthThenReturnStatusDown() throws Exception {
         stubEndpointAndResponse(serviceAuthServer, false);
         stubEndpointAndResponse(docmosisService, false);
         stubEndpointAndResponse(caseDocService, false);
@@ -128,19 +133,19 @@ public class HealthCheckITest {
 
         assertThat(response.getStatusLine().getStatusCode(), equalTo(HttpStatus.SERVICE_UNAVAILABLE.value()));
         assertThat(JsonPath.read(body, "$.status").toString(),
-            equalTo("DOWN"));
+                   equalTo("DOWN"));
         assertThat(JsonPath.read(body, "$.components.serviceAuthProviderHealthCheck.status").toString(),
-            equalTo("DOWN"));
+                   equalTo("DOWN"));
         assertThat(JsonPath.read(body, "$.components.docmosisHealthCheck.status").toString(),
-            equalTo("DOWN"));
+                   equalTo("DOWN"));
         assertThat(JsonPath.read(body, "$.components.caseDocumentHealthCheck.status").toString(),
-            equalTo("DOWN"));
+                   equalTo("DOWN"));
         assertThat(JsonPath.read(body, "$.components.diskSpace.status").toString(),
-            equalTo("UP"));
+                   equalTo("UP"));
     }
 
     @Test
-    public void givenDocmosisServiceIsDown_whenCheckHealth_thenReturnStatusDown() throws Exception {
+    void givenDocmosisServiceIsDownWhenCheckHealthThenReturnStatusDown() throws Exception {
         stubEndpointAndResponse(serviceAuthServer, true);
         stubEndpointAndResponse(docmosisService, false);
         stubEndpointAndResponse(caseDocService, true);
@@ -150,19 +155,19 @@ public class HealthCheckITest {
 
         assertThat(response.getStatusLine().getStatusCode(), equalTo(HttpStatus.SERVICE_UNAVAILABLE.value()));
         assertThat(JsonPath.read(body, "$.status").toString(),
-            equalTo("DOWN"));
+                   equalTo("DOWN"));
         assertThat(JsonPath.read(body, "$.components.serviceAuthProviderHealthCheck.status").toString(),
-            equalTo("UP"));
+                   equalTo("UP"));
         assertThat(JsonPath.read(body, "$.components.docmosisHealthCheck.status").toString(),
-            equalTo("DOWN"));
+                   equalTo("DOWN"));
         assertThat(JsonPath.read(body, "$.components.caseDocumentHealthCheck.status").toString(),
-            equalTo("UP"));
+                   equalTo("UP"));
         assertThat(JsonPath.read(body, "$.components.diskSpace.status").toString(),
-            equalTo("UP"));
+                   equalTo("UP"));
     }
 
     @Test
-    public void givenCaseDocumentsClientIsDown_whenCheckHealth_thenReturnStatusDown() throws Exception {
+    void givenCaseDocumentsClientIsDownWhenCheckHealthThenReturnStatusDown() throws Exception {
         stubEndpointAndResponse(serviceAuthServer, true);
         stubEndpointAndResponse(docmosisService, true);
         stubEndpointAndResponse(caseDocService, false);
@@ -172,19 +177,19 @@ public class HealthCheckITest {
 
         assertThat(response.getStatusLine().getStatusCode(), equalTo(HttpStatus.SERVICE_UNAVAILABLE.value()));
         assertThat(JsonPath.read(body, "$.status").toString(),
-            equalTo("DOWN"));
+                   equalTo("DOWN"));
         assertThat(JsonPath.read(body, "$.components.serviceAuthProviderHealthCheck.status").toString(),
-            equalTo("UP"));
+                   equalTo("UP"));
         assertThat(JsonPath.read(body, "$.components.docmosisHealthCheck.status").toString(),
-            equalTo("UP"));
+                   equalTo("UP"));
         assertThat(JsonPath.read(body, "$.components.caseDocumentHealthCheck.status").toString(),
-            equalTo("DOWN"));
+                   equalTo("DOWN"));
         assertThat(JsonPath.read(body, "$.components.diskSpace.status").toString(),
-            equalTo("UP"));
+                   equalTo("UP"));
     }
 
     @Test
-    public void givenAuthServiceIsDown_whenCheckHealth_thenReturnStatusDown() throws Exception {
+    void givenAuthServiceIsDownWhenCheckHealthThenReturnStatusDown() throws Exception {
         stubEndpointAndResponse(serviceAuthServer, false);
         stubEndpointAndResponse(docmosisService, true);
         stubEndpointAndResponse(caseDocService, true);
@@ -194,35 +199,32 @@ public class HealthCheckITest {
 
         assertThat(response.getStatusLine().getStatusCode(), equalTo(HttpStatus.SERVICE_UNAVAILABLE.value()));
         assertThat(JsonPath.read(body, "$.status").toString(),
-            equalTo("DOWN"));
+                   equalTo("DOWN"));
         assertThat(JsonPath.read(body, "$.components.serviceAuthProviderHealthCheck.status").toString(),
-            equalTo("DOWN"));
+                   equalTo("DOWN"));
         assertThat(JsonPath.read(body, "$.components.docmosisHealthCheck.status").toString(),
-            equalTo("UP"));
+                   equalTo("UP"));
         assertThat(JsonPath.read(body, "$.components.caseDocumentHealthCheck.status").toString(),
-            equalTo("UP"));
+                   equalTo("UP"));
         assertThat(JsonPath.read(body, "$.components.diskSpace.status").toString(),
-            equalTo("UP"));
+                   equalTo("UP"));
     }
 
-    private void stubEndpointAndResponse(WireMockClassRule mockServer, boolean serviceUp) {
-        mockServer.stubFor(get(urlEqualTo("/health"))
-            .willReturn(aResponse()
-                .withStatus(serviceUp ? HttpStatus.OK.value() : HttpStatus.SERVICE_UNAVAILABLE.value())
-                .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
-                .withBody(serviceUp ? HEALTH_UP_RESPONSE : HEALTH_DOWN_RESPONSE)));
-    }
-
-    protected final void resetAllMockServices() {
-        serviceAuthServer.resetAll();
-        docmosisService.resetAll();
+    private void stubEndpointAndResponse(WireMockServer mockServer, boolean serviceUp) {
+        mockServer.stubFor(
+            get(urlEqualTo("/health"))
+                .willReturn(aResponse()
+                                .withStatus(serviceUp ? HttpStatus.OK.value() : HttpStatus.SERVICE_UNAVAILABLE.value())
+                                .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
+                                .withBody(serviceUp ? HEALTH_UP_RESPONSE : HEALTH_DOWN_RESPONSE)));
     }
 
     @TestConfiguration
-    public static class LocalRibbonClientConfiguration {
+    static class LocalRibbonClientConfiguration {
         @Bean
-        public ServerList<Server> ribbonServerList(@Value("${auth.provider.service.client.port}") int serverPort) {
+        ServerList<Server> ribbonServerList(@Value("${auth.provider.service.client.port}") int serverPort) {
             return new StaticServerList<>(new Server("localhost", serverPort));
         }
     }
+
 }

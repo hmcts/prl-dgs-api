@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.prl;
 
 import io.restassured.response.Response;
-import net.serenitybdd.rest.SerenityRest;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -9,19 +8,20 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.prl.documentgenerator.domain.response.GeneratedDocumentInfo;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static io.restassured.RestAssured.given;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 public class DocumentManagementServiceImplIntegrationTest extends IntegrationTest {
@@ -29,7 +29,6 @@ public class DocumentManagementServiceImplIntegrationTest extends IntegrationTes
     private static final String INVALID_TEMPLATE_DATA_JSON = "requests/invalid-template-data.json"
         + "-data.json";
     private static final String VALID_INPUT_JSON = "requests/C100-case-data.json";
-
     private static final String IDAMAPI = "IDAM";
     private static final String DOCMOSISAPI = "DOCMOSIS";
     private static final String CCDDOCUMENTAPI = "CCDDOCUMENT";
@@ -41,60 +40,57 @@ public class DocumentManagementServiceImplIntegrationTest extends IntegrationTes
     private String ccdGatewayUrl;
 
     @Test
-    public void givenTemplateAndJsonInput_ReturnStatus200() throws Exception {
-
+    public void givenTemplateAndJsonInputReturnStatus200() throws Exception {
         String requestBody = ResourceLoader.loadJson(VALID_INPUT_JSON);
 
         Response response = callPrlDocumentGenerator(requestBody);
 
-        assertEquals(200, response.getStatusCode());
+        assertEquals(HttpStatus.SC_OK, response.getStatusCode());
     }
 
     @Test
-    public void givenRequestBodyAndInvalidAuthToken_ReturnStatus401() throws Exception {
-
+    public void givenRequestBodyAndInvalidAuthTokenReturnStatus401() throws Exception {
         String requestBody = ResourceLoader.loadJson(VALID_INPUT_JSON);
 
         Response response = callInvalidPrlDocumentGenerator(requestBody);
 
-        assertEquals(401, response.getStatusCode());
+        assertEquals(HttpStatus.SC_UNAUTHORIZED, response.getStatusCode());
     }
 
     @Test
-    public void checkStatusOfIdamApiIsUp_thenReturn200Status() throws Exception {
-
-        Response response = SerenityRest.given()
+    public void checkStatusOfIdamApiIsUpThenReturn200Status() {
+        Response response = given()
             .when()
             .get(constructHealthUrl(IDAMAPI))
             .andReturn();
 
-        assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+        assertEquals(HttpStatus.SC_OK, response.getStatusCode());
     }
 
     @Test
-    public void checkStatusOfDocmosisApiIsUp_thenReturn200Status() throws Exception {
+    public void checkStatusOfDocmosisApiIsUpThenReturn200Status() {
 
-        Response response = SerenityRest.given()
+        Response response = given()
             .when()
             .get(constructHealthUrl(DOCMOSISAPI))
             .andReturn();
 
-        assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+        assertEquals(HttpStatus.SC_OK, response.getStatusCode());
     }
 
     @Test
-    public void checkStatusOfCCDCaseDocumentApiIsUp_thenReturn200Status() throws Exception {
+    public void checkStatusOfCCDCaseDocumentApiIsUpThenReturn200Status() {
 
-        Response response = SerenityRest.given()
+        Response response = given()
             .when()
             .get(constructHealthUrl(CCDDOCUMENTAPI))
             .andReturn();
 
-        assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+        assertEquals(HttpStatus.SC_OK, response.getStatusCode());
     }
 
     @Test
-    public void givenInvalidTemplate_whenRequestMade_thenReturn400Response() throws Exception {
+    public void givenInvalidTemplateWhenRequestMadeThenReturn400Response() throws Exception {
 
         String requestBody = ResourceLoader.loadJson(INVALID_TEMPLATE_DATA_JSON);
 
@@ -107,7 +103,7 @@ public class DocumentManagementServiceImplIntegrationTest extends IntegrationTes
     }
 
     @Test
-    public void givenTemplateAndJson_whenDocumentGenerated_thenCorrectFormat() throws Exception {
+    public void givenTemplateAndJsonWhenDocumentGeneratedThenCorrectFormat() throws Exception {
 
         String requestBody = ResourceLoader.loadJson(VALID_INPUT_JSON);
         Response response = callPrlDocumentGenerator(requestBody);
@@ -116,11 +112,11 @@ public class DocumentManagementServiceImplIntegrationTest extends IntegrationTes
         String mimeType = generatedDocumentInfo.getMimeType();
         String expectedMimeType = "application/pdf";
 
-        assertEquals(mimeType, expectedMimeType);
+        assertEquals(expectedMimeType, mimeType);
     }
 
     @Test
-    public void givenValidAccessToken_whenAccessingDocumentPath_thenAccessProvided() throws Exception {
+    public void givenValidAccessTokenWhenAccessingDocumentPathThenAccessProvided() throws Exception {
 
         String requestBody = ResourceLoader.loadJson(VALID_INPUT_JSON);
         Response response = callPrlDocumentGenerator(requestBody);
@@ -137,15 +133,13 @@ public class DocumentManagementServiceImplIntegrationTest extends IntegrationTes
         HttpGet request = new HttpGet(url);
 
         request.setHeader(HttpHeaders.AUTHORIZATION, bearerToken);
-        HttpResponse httpResponse = HttpClientBuilder.create().build().execute( request );
+        HttpResponse httpResponse = HttpClientBuilder.create().build().execute(request);
 
-        assertEquals(
-            httpResponse.getStatusLine().getStatusCode(),
-            HttpStatus.SC_OK);
+        assertEquals(HttpStatus.SC_OK, httpResponse.getStatusLine().getStatusCode());
     }
 
     @Test
-    public void givenInvalidAccessToken_whenAccessingDocumentPath_thenNoAccessProvided() throws Exception {
+    public void givenInvalidAccessTokenWhenAccessingDocumentPathThenNoAccessProvided() throws Exception {
 
         String requestBody = ResourceLoader.loadJson(VALID_INPUT_JSON);
         Response response = callPrlDocumentGenerator(requestBody);
@@ -159,7 +153,7 @@ public class DocumentManagementServiceImplIntegrationTest extends IntegrationTes
 
         HttpGet request = new HttpGet(url);
         request.setHeader(HttpHeaders.AUTHORIZATION, "Bearer ***INVALID***");
-        HttpResponse httpResponse = HttpClientBuilder.create().build().execute( request );
+        HttpResponse httpResponse = HttpClientBuilder.create().build().execute(request);
 
         JSONObject responseJson = new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
         String responseMessage = responseJson.get("message").toString();
@@ -170,7 +164,7 @@ public class DocumentManagementServiceImplIntegrationTest extends IntegrationTes
     }
 
     @Test
-    public void givenValidTemplateAndJson_whenDocumentGenerated_thenResponseContainsHashToken() throws Exception {
+    public void givenValidTemplateAndJsonWhenDocumentGeneratedThenResponseContainsHashToken() throws Exception {
 
         String requestBody = ResourceLoader.loadJson(VALID_INPUT_JSON);
         Response response = callPrlDocumentGenerator(requestBody);
@@ -180,7 +174,5 @@ public class DocumentManagementServiceImplIntegrationTest extends IntegrationTes
 
         assertNotNull(hashToken);
     }
-
-
 
 }

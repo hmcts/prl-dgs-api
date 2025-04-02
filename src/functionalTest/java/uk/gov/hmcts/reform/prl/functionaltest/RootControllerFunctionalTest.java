@@ -1,14 +1,14 @@
 package uk.gov.hmcts.reform.prl.functionaltest;
 
-import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
+import static io.restassured.RestAssured.given;
+
 public class RootControllerFunctionalTest {
 
-    private final String userToken = "Bearer testToken";
-
+    private static final String USER_TOKEN = "Bearer testToken";
 
     private final String targetInstance =
         StringUtils.defaultIfBlank(
@@ -16,14 +16,13 @@ public class RootControllerFunctionalTest {
             "http://localhost:4007"
         );
 
-    private final RequestSpecification request = RestAssured.given().relaxedHTTPSValidation().baseUri(targetInstance);
-
+    private final RequestSpecification request = given().relaxedHTTPSValidation().baseUri(targetInstance);
 
     @Test
-    public void checkDgsRootFor200Response() throws Exception {
+    public void checkDgsRootFor200Response() {
 
         request
-            .header("Authorization", userToken)
+            .header("Authorization", USER_TOKEN)
             .when()
             .contentType("application/json")
             .get("/")

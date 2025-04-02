@@ -15,5 +15,5 @@ public interface DocumentManagementService {
 
     byte[] generateDocument(String templateName, Map<String, Object> placeholders);
 
-    GeneratedDocumentInfo converToPdf(Map<String, Object> placeholders, String authorizationToken, String filename);
+    GeneratedDocumentInfo convertToPdf(Map<String, Object> placeholders, String authorizationToken, String filename);
 }

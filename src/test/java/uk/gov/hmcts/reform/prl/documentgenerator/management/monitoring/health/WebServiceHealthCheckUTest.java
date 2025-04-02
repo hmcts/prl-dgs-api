@@ -1,10 +1,8 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.management.monitoring.health;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.ArgumentMatchers;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -18,15 +16,14 @@ import java.util.HashMap;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
-public class WebServiceHealthCheckUTest {
-    private static final String URI = "http://example.com";
+@ExtendWith(MockitoExtension.class)
+class WebServiceHealthCheckUTest {
+    private static final String URI = "https://example.com";
     private final RestTemplate restTemplate = mock(RestTemplate.class);
     private final HttpEntityFactory httpEntityFactory = mock(HttpEntityFactory.class);
 
@@ -34,7 +31,7 @@ public class WebServiceHealthCheckUTest {
             URI);
 
     @Test
-    public void givenServiceReturnsOk_whenHealth_thenReturnUp() {
+    void givenServiceReturnsOkWhenHealthThenReturnUp() {
         final HttpEntity<Object> httpEntity = new HttpEntity<>(null);
         final ResponseEntity<Object> responseEntity = new ResponseEntity<>(HttpStatus.OK);
 
@@ -53,12 +50,14 @@ public class WebServiceHealthCheckUTest {
     }
 
     @Test
-    public void givenServiceReturnsServiceUnavailable_whenHealth_thenReturnDown() {
+    void givenServiceReturnsServiceUnavailableWhenHealthThenReturnDown() {
         final HttpEntity<Object> httpEntity = new HttpEntity<>(null);
 
         when(httpEntityFactory.createRequestEntityForHealthCheck()).thenReturn(httpEntity);
 
-        HttpServerErrorException exception = new HttpServerErrorException(HttpStatus.SERVICE_UNAVAILABLE,"unknown error");
+        HttpServerErrorException exception = new HttpServerErrorException(
+            HttpStatus.SERVICE_UNAVAILABLE,"unknown error"
+        );
 
         doThrow(exception).when(restTemplate)
                 .exchange(URI, HttpMethod.GET, httpEntity, Object.class, new HashMap<>());
@@ -73,7 +72,7 @@ public class WebServiceHealthCheckUTest {
     }
 
     @Test
-    public void whenResourceAccessExceptionIsThrown_whenHealth_thenReturnDown() {
+    void whenResourceAccessExceptionIsThrownWhenHealthThenReturnDown() {
         final HttpEntity<Object> httpEntity = new HttpEntity<>(null);
 
         when(httpEntityFactory.createRequestEntityForHealthCheck()).thenReturn(httpEntity);
@@ -93,7 +92,7 @@ public class WebServiceHealthCheckUTest {
     }
 
     @Test
-    public void givenExceptionIsThrown_whenHealth_thenReturnUnknown() {
+    void givenExceptionIsThrownWhenHealthThenReturnUnknown() {
         final HttpEntity<Object> httpEntity = new HttpEntity<>(null);
 
         when(httpEntityFactory.createRequestEntityForHealthCheck()).thenReturn(httpEntity);
@@ -113,7 +112,7 @@ public class WebServiceHealthCheckUTest {
     }
 
     @Test
-    public void givenUpstreamStatusIsNot200or503_whenHealth_thenReturnUnknownStatus() {
+    void givenUpstreamStatusIsNot200or503WhenHealthThenReturnUnknownStatus() {
         final HttpEntity<Object> httpEntity = new HttpEntity<>(null);
         ResponseEntity<Object> responseEntity = new ResponseEntity<>(HttpStatus.MOVED_PERMANENTLY);
 

@@ -6,6 +6,6 @@ public interface PDFGenerationService {
 
     byte[] generate(String templateName, Map<String, Object> placeholders);
 
-    byte[] converToPdf(Map<String, Object> placeholders, String fileName);
+    byte[] convertToPdf(Map<String, Object> placeholders, String fileName);
 
 }

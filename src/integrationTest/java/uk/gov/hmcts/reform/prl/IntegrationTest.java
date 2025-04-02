@@ -2,14 +2,12 @@ package uk.gov.hmcts.reform.prl;
 
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
-import net.serenitybdd.junit.spring.integration.SpringIntegrationMethodRule;
 import org.assertj.core.util.Strings;
-import org.junit.Rule;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 
 import java.io.IOException;
@@ -20,7 +18,7 @@ import java.util.UUID;
 import javax.annotation.PostConstruct;
 
 @Slf4j
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {ServiceContextConfiguration.class})
 public abstract class IntegrationTest {
 
@@ -45,15 +43,8 @@ public abstract class IntegrationTest {
     @Autowired
     private IdamUtils idamTestSupportUtil;
 
-    @Rule
-    public SpringIntegrationMethodRule springMethodIntegration;
-
     private static String userToken = null;
     private String username;
-
-    public IntegrationTest() {
-        this.springMethodIntegration = new SpringIntegrationMethodRule();
-    }
 
     @PostConstruct
     public void init() {
@@ -75,11 +66,8 @@ public abstract class IntegrationTest {
     }
 
     private String getToken() {
-        String authHeaderToken = null;
         String userLoginDetails = String.join(":", username, aatPassword);
-        authHeaderToken = "Bearer " + new String(Base64.getEncoder().encode((userLoginDetails).getBytes()));
-
-        return authHeaderToken;
+        return "Bearer " + new String(Base64.getEncoder().encode((userLoginDetails).getBytes()));
     }
 
     private synchronized String getUserToken() {
@@ -95,8 +83,7 @@ public abstract class IntegrationTest {
     }
 
     public String getAuthorizationToken() {
-        String authToken = getUserToken();
-        return authToken;
+        return getUserToken();
     }
 
     public String getStoredUserToken() {
@@ -104,9 +91,7 @@ public abstract class IntegrationTest {
     }
 
     public String constructHealthUrl(String apiName) {
-        String url = null;
-        url = idamTestSupportUtil.generateUrlForValidMicroservice(apiName);
-        return url;
+        return idamTestSupportUtil.generateUrlForValidMicroservice(apiName);
     }
 
     private void configProxyHost() {
