@@ -184,22 +184,22 @@ dependencies {
     integrationTestImplementation sourceSets.test.output
 }
 
+tasks.register('bootRunAat', BootRun) {
+    dependsOn 'classes'
+    description = 'Runs the app using AAT config.'
+    group = 'Application'
+    mainClass = 'uk.gov.hmcts.reform.prl.documentgenerator.DocumentGeneratorApplication'
+    doFirst() {
+        classpath = sourceSets.main.runtimeClasspath
+        systemProperties = System.properties as Map<String, ?>
+        systemProperty 'spring.profiles.active', 'aat'
+    }
+}
+
 tasks.register('fortifyScan', JavaExec) {
     mainClass = "uk.gov.hmcts.fortifyclient.FortifyClientMainApp"
     classpath += sourceSets.test.runtimeClasspath
     jvmArgs = ['--add-opens=java.base/java.lang.reflect=ALL-UNNAMED']
-}
-
-processContractTestResources {
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE
-}
-
-processFunctionalTestResources {
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE
-}
-
-processIntegrationTestResources {
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
 tasks.withType(Test).configureEach {
@@ -211,15 +211,6 @@ tasks.register('smoke', Test) {
     group = 'Verification'
     setTestClassesDirs(sourceSets.smokeTest.output.classesDirs)
     setClasspath(sourceSets.smokeTest.runtimeClasspath)
-}
-
-task bootRunAat(type: BootRun, description: 'Runs the app using AAT config', dependsOn: 'classes', group: 'Application') {
-    mainClass = 'uk.gov.hmcts.reform.prl.documentgenerator.DocumentGeneratorApplication'
-    doFirst() {
-        classpath = sourceSets.main.runtimeClasspath
-        systemProperties = System.properties
-        systemProperty 'spring.profiles.active', 'aat'
-    }
 }
 
 tasks.register('functional', Test) {
@@ -238,10 +229,31 @@ tasks.register('integration', Test) {
 
 tasks.register('contract', Test) {
     description = 'Runs the contract tests.'
-    group = 'Delivery pipeline'
+    group = 'Verification'
     testClassesDirs = sourceSets.contractTest.output.classesDirs
     classpath = sourceSets.contractTest.runtimeClasspath
-    systemProperty 'pact.rootDir', "pacts"
+    systemProperty 'pact.rootDir', "src/contractTest/resources/pacts"
+}
+
+tasks.register('runAndPublishConsumerPactTests', Test) {
+  description = 'Runs the contract tests and publishes pacts to the broker.'
+  logger.lifecycle("Runs the pact Tests")
+  dependsOn 'contract'
+  finalizedBy 'pactPublish'
+  testClassesDirs = sourceSets.contractTest.output.classesDirs
+  classpath = sourceSets.contractTest.runtimeClasspath
+}
+
+processIntegrationTestResources {
+  duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
+processFunctionalTestResources {
+  duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
+processContractTestResources {
+  duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
 jacoco {
@@ -268,14 +280,14 @@ jacocoTestCoverageVerification {
     }
 }
 
-project.tasks['sonarqube'].dependsOn jacocoTestReport
-
 def sonarExclusions = [
     '**uk/gov/hmcts/reform/prl/documentgenerator/domain/**/*',
     '**uk/gov/hmcts/reform/prl/documentgenerator/exception/*',
     '**uk/gov/hmcts/reform/prl/documentgenerator/**/config/**/*',
     '**uk/gov/hmcts/reform/prl/documentgenerator/DocumentGeneratorApplication.java'
 ]
+
+tasks.sonarqube.dependsOn(jacocoTestReport)
 
 sonarqube {
     properties {
@@ -286,35 +298,19 @@ sonarqube {
     }
 }
 
-def debug = System.getProperty("debug")
-run {
-    if (debug == 'true') {
-        jvmArgs = ['-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5010']
-    }
-}
-
-project.ext {
-    pactVersion = getCheckedOutGitCommitHash()
-}
-
-tasks.register('runAndPublishConsumerPactTests', Test) {
-    logger.lifecycle("Runs pact Tests")
-    testClassesDirs = sourceSets.contractTest.output.classesDirs
-    classpath = sourceSets.contractTest.runtimeClasspath
-}
-
 static def getCheckedOutGitCommitHash() {
     'git rev-parse --verify --short HEAD'.execute().text.trim()
 }
 
+project.ext {
+  pactVersion = getCheckedOutGitCommitHash()
+}
+
 pact {
     publish {
-        pactDirectory = 'pacts'
+        pactDirectory = 'src/contractTest/resources/pacts'
         pactBrokerUrl = System.getenv("PACT_BROKER_FULL_URL") ?: 'http://localhost:80'
         tags = [System.getenv("PACT_BRANCH_NAME") ?:'Dev']
         version = project.pactVersion
     }
 }
-
-runAndPublishConsumerPactTests.dependsOn contract
-runAndPublishConsumerPactTests.finalizedBy pactPublish
