@@ -1,4 +1,4 @@
-# Private Law Document Generator
+# Private Law Document Generator Service
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Documentation](https://img.shields.io/static/v1?label=Documentation&message=DGS&color=informational&logo=confluence)](https://tools.hmcts.net/confluence/display/PL/PDF+document+generator)
