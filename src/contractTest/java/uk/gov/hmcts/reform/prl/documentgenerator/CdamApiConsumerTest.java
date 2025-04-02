@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(SpringExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @PactTestFor(providerName = "CCD_CASE_DOCS_AM_API", port = "5170")
-@PactFolder("pacts")
+@PactFolder("src/contractTest/resources/pacts")
 @SpringBootTest("CCD_CASE_DOCS_AM_API = http://localhost:5170")
 public class CdamApiConsumerTest {
 

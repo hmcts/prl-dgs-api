@@ -36,7 +36,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(SpringExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @PactTestFor(providerName = "rpePdfService_PDFGenerationEndpointV2", port = "8891")
-@PactFolder("pacts")
+@PactFolder("src/contractTest/resources/pacts")
 @SpringBootTest("service.pdf-service.uri = http://localhost:8891/pdfs")
 public class PdfGenerationServiceConsumerTest {
 

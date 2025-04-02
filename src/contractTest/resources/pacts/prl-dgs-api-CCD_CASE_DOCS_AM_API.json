@@ -19,7 +19,7 @@
       "response": {
         "status": 200,
         "headers": {
-          "Content-Type": "application/vnd\u46AFuk\u1870gov\u6994hmcts\u26F2dm\uE7E0document\u30E7v1haljson;charset=UTF-8"
+          "Content-Type": "application/vnd\u5EE3uk\u2537gov\u7C40hmcts\uB54Edm\u051Ddocument\uC5E9v1haljson;charset=UTF-8"
         },
         "matchingRules": {
           "header": {
@@ -53,7 +53,7 @@
       "response": {
         "status": 500,
         "headers": {
-          "Content-Type": "application/vnd\u5C61uk\uE209gov\uA235hmcts\uC39Bdm\u1943document\u8E03v1haljson;charset=UTF-8"
+          "Content-Type": "application/vnd\u3211uk\uD708gov\uA009hmcts\u7D48dm\u6DFDdocument\u8E10v11haljson;charset=UTF-8"
         },
         "matchingRules": {
           "header": {
