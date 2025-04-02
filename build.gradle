@@ -26,7 +26,7 @@ java {
 repositories {
     mavenLocal()
     mavenCentral()
-    maven { url = 'https://jitpack.io' }
+    jitpack { url = 'https://jitpack.io' }
 }
 
 def configureSourceSet(String name) {
