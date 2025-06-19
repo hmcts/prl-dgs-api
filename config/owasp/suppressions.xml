@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
   <suppress>
-    <cve>CVE-2024-22259</cve> <!-- spring-5.3.27.jar -->
-    <cve>CVE-2024-38820</cve> <!-- spring-5.3.27.jar -->
-    <cve>CVE-2025-48734</cve> <!-- commons-beanutils-1.9.4.jar -->
   </suppress>
 </suppressions>
