@@ -133,7 +133,8 @@ tasks.withType(JavaCompile) {
 
 checkstyle {
     toolVersion = '9.2.1'
-    configFile = project(':').file('config/checkstyle/checkstyle.xml')
+    configFile = project(':').file('checkstyle.xml')
+    configProperties = ["suppressionFile": project(':').file('suppressions.xml')]
 }
 
 // make build fail on Checkstyle issues (https://github.com/gradle/gradle/issues/881)
