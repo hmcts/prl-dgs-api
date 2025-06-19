@@ -247,10 +247,11 @@ dependencies {
 
   testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '3.1.1'
 
-    implementation (group: 'commons-beanutils', name: 'commons-beanutils', version: versions.commonsBeanUtils) {
-        force = true
-    }
-    implementation (group:  'org.springframework.security', name: 'spring-security-rsa', version: versions.spring_security_rsa) {
+  implementation (group: 'commons-beanutils', name: 'commons-beanutils', version: versions.commonsBeanUtils) {
+    force = true
+  }
+
+  implementation (group:  'org.springframework.security', name: 'spring-security-rsa', version: versions.spring_security_rsa) {
         force = true
         exclude group: 'org.springframework.security', module: 'spring-security-crypto'
     }
@@ -362,7 +363,6 @@ processIntegrationTestResources {
   duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
-
 dependencyManagement {
     dependencies {
         dependency group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.4'
@@ -399,8 +399,6 @@ dependencyManagement {
         entry 'snakeyaml'
       }
       dependency group: 'org.springframework.security', name: 'spring-security-crypto', version: '5.7.5'
-
-
     }
 }
 
