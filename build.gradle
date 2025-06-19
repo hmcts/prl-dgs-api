@@ -263,7 +263,6 @@ dependencies {
     implementation(group: 'org.apache.logging.log4j', name: 'log4j-api', version: versions.apacheLogging)
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: versions.springBoot
-    implementation group: 'com.puppycrawl.tools', name: 'checkstyle', version:  versions.puppyCrawl
     implementation group: 'commons-io', name: 'commons-io', version: versions.commonsIo
     implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.9'
 
