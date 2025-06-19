@@ -168,7 +168,6 @@ jacoco {
 def versions = [
     commonsIo: '2.7',
     commonsLang3: '3.9',
-    commonsBeanUtils: '1.9.4',
     feignHttpClient: '10.2.0',
     gradlePitest: '1.4.5',
     guava: '32.1.2-jre',
@@ -357,11 +356,8 @@ processIntegrationTestResources {
   duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
-
 dependencyManagement {
     dependencies {
-        dependency group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.4'
-
         dependencySet(
             group: 'com.fasterxml.jackson.core',
             version: versions.jacksonDatabind
@@ -394,8 +390,6 @@ dependencyManagement {
         entry 'snakeyaml'
       }
       dependency group: 'org.springframework.security', name: 'spring-security-crypto', version: '5.7.5'
-
-
     }
 }
 
