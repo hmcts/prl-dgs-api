@@ -361,7 +361,9 @@ processIntegrationTestResources {
 
 dependencyManagement {
     dependencies {
-          dependencySet(
+        dependency group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.4'
+
+        dependencySet(
             group: 'com.fasterxml.jackson.core',
             version: versions.jacksonDatabind
         ) {
