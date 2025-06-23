@@ -44,6 +44,8 @@ First you need to create distribution by executing following command:
 ./gradlew installDist
 ```
 
+
+
 To begin download the azure client cli:
 
 ```bash
