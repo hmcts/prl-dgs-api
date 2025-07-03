@@ -5,6 +5,9 @@
     <cve>CVE-2024-38820</cve> <!-- spring-5.3.27.jar -->
     <cve>CVE-2024-38808</cve> <!-- spring-5.3.27.jar -->
     <cve>CVE-2025-48734</cve> <!-- commons-beanutils-1.9.4.jar -->
+    <cve>CVE-2025-49124</cve>
+    <cve>CVE-2025-49125</cve>
+    <cve>CVE-2025-48976</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[file name: tomcat-embed-core-9.0.104.jar]]></notes>
@@ -18,4 +21,5 @@
     <cve>CVE-2025-48988</cve>
     <cve>CVE-2025-46701</cve>
   </suppress>
+
 </suppressions>

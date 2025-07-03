@@ -93,4 +93,5 @@ withPipeline(type, product, component) {
       env.ENV = 'preview'
       enablePactAs([AppPipelineDsl.PactRoles.CONSUMER])
     }
+
 }
