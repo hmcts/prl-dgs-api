@@ -17,5 +17,8 @@
     <packageUrl regex="true">^pkg:maven/org\.apache\.tomcat\.embed/tomcat\-embed\-websocket@.*$</packageUrl>
     <cve>CVE-2025-48988</cve>
     <cve>CVE-2025-46701</cve>
+    <cve>CVE-2025-49124</cve>
+    <cve>CVE-2025-49125</cve>
+    <cve>CVE-2025-48976</cve>
   </suppress>
 </suppressions>
