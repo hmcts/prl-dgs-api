@@ -8,6 +8,8 @@
     <cve>CVE-2025-49124</cve>
     <cve>CVE-2025-49125</cve>
     <cve>CVE-2025-48976</cve>
+    <cve>CVE-2024-47554</cve>
+    <cve>CVE-2023-3635</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[file name: tomcat-embed-core-9.0.104.jar]]></notes>
