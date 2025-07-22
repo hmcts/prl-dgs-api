@@ -21,5 +21,12 @@
     <cve>CVE-2025-48988</cve>
     <cve>CVE-2025-46701</cve>
   </suppress>
+  <suppress>
+   <notes><![CDATA[
+   file name: commons-configuration-1.8.jar
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/commons\-configuration/commons\-configuration@.*$</packageUrl>
+   <cpe>cpe:/a:apache:commons_configuration</cpe>
+</suppress>
 
 </suppressions>
