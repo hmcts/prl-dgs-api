@@ -32,7 +32,7 @@
     <notes><![CDATA[
    file name: commons-lang3-3.9.jar
    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.apache\.commons/commons-lang@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:maven/org\.apache\.commons/commons-lang3@.*$</packageUrl>
     <cpe>cpe:/a:apache:commons_lang</cpe>
     <cve>CVE-2025-48924</cve>
   </suppress>
