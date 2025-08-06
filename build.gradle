@@ -165,7 +165,7 @@ def versions = [
     jacksonDatabind: '2.16.0',
     apacheLogging: '2.20.0',
     jsonAssert: '1.2.3',
-    junit: '4.13.1',
+    junit: '4.13.2',
     lombok: '1.18.26',
     nimbus: '5.1',
     pdfbox: '2.0.24',
