@@ -122,7 +122,7 @@ tasks.withType(JavaCompile) {
 }
 
 checkstyle {
-    toolVersion = '9.2.1'
+    toolVersion = '9.3'
     configFile = project(':').file('checkstyle.xml')
     configProperties = ["suppressionFile": project(':').file('suppressions.xml')]
 }
