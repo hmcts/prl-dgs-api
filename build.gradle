@@ -167,7 +167,7 @@ def versions = [
     jsonAssert: '1.2.3',
     junit: '4.13.2',
     lombok: '1.18.38',
-    nimbus: '5.1',
+    nimbus: '5.14',
     pdfbox: '2.0.34',
     pitest: '1.7.3',
     powerMock: '2.0.0',
