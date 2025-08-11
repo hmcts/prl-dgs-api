@@ -171,7 +171,7 @@ def versions = [
     pdfbox: '2.0.34',
     pitest: '1.7.3',
     powerMock: '2.0.0',
-    puppyCrawl: '8.29',
+    puppyCrawl: '8.45.1',
     reformsJavaLogging: '5.1.1',
     restAssured: '4.5.1',
     serenity: '2.2.13',
