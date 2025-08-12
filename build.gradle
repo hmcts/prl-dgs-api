@@ -158,7 +158,7 @@ jacoco {
 def versions = [
     commonsIo: '2.19.0',
     commonsLang3: '3.9',
-    commonsBeanUtils: '1.9.4',
+    commonsBeanUtils: '1.11.0',
     feignHttpClient: '10.2.0',
     gradlePitest: '1.4.5',
     guava: '32.1.2-jre',
