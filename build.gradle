@@ -188,7 +188,7 @@ def versions = [
     tomcat   : '9.0.108',
     pact_version: '4.1.11',
     httpComponents: '4.5.14',
-    bouncycastle: '1.73',
+    bouncycastle: '1.81',
     ccdCaseDocumentAmClient: '1.7.2',
     springFramework    : '5.3.39'
 ]
