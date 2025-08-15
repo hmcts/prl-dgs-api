@@ -189,7 +189,7 @@ def versions = [
     pact_version: '4.1.11',
     httpComponents: '4.5.14',
     bouncycastle: '1.81',
-    ccdCaseDocumentAmClient: '1.7.2',
+    ccdCaseDocumentAmClient: '1.59.2',
     springFramework    : '5.3.39'
 ]
 
