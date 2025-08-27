@@ -3,6 +3,11 @@
 !gradle/wrapper/gradle-wrapper.jar
 *.class
 bin/main/application.yaml
+bin/contractTest/
+bin/functionalTest/
+bin/integrationTest/
+bin/main/
+bin/test/
 
 ### STS ###
 .apt_generated
