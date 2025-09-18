@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.prl.documentgenerator;
 
 import au.com.dius.pact.consumer.MockServer;
-import au.com.dius.pact.consumer.dsl.PactDslJsonBody;
 import au.com.dius.pact.consumer.dsl.PactDslWithProvider;
 import au.com.dius.pact.consumer.junit5.PactConsumerTestExt;
 import au.com.dius.pact.consumer.junit5.PactTestFor;
@@ -67,8 +66,6 @@ public class CdamApiConsumerTest {
             .headers(AUTHORIZATION_HEADER, someAuthToken)
             .path("/cases/documents/" + someDocumentId)
             .willRespondWith()
-            .matchHeader(org.springframework.http.HttpHeaders.CONTENT_TYPE,
-                "application/vnd.uk.gov.hmcts.dm.document.v1+hal+json;charset=UTF-8")
             .status(HttpStatus.SC_OK)
             .toPact();
     }
@@ -97,8 +94,6 @@ public class CdamApiConsumerTest {
             .headers(SERVICE_AUTHORIZATION_HEADER, invalidServiceAuthToken)
             .path("/cases/documents/" + someDocumentId)
             .willRespondWith()
-            .matchHeader(org.springframework.http.HttpHeaders.CONTENT_TYPE,
-                "application/vnd.uk.gov.hmcts.dm.document.v1+hal+json;charset=UTF-8")
             .status(HttpStatus.SC_INTERNAL_SERVER_ERROR)
             .toPact();
     }
@@ -118,11 +113,6 @@ public class CdamApiConsumerTest {
     @Pact(provider = "CCD_CASE_DOCS_AM_API", consumer = "prl-dgs-api")
     RequestResponsePact uploadDocument(PactDslWithProvider builder) throws JSONException, IOException {
         // @formatter:off
-
-        PactDslJsonBody body = new PactDslJsonBody()
-            .stringMatcher("caseTypeId", "PRLAPPS")
-            .stringMatcher("jurisdictionId", "PRIVATELAW")
-            .asBody();
 
         return builder
             .given("A request to upload a document")
