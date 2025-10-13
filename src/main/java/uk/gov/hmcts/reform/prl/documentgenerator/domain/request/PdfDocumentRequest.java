@@ -19,5 +19,7 @@ public class PdfDocumentRequest {
 
     private String devMode;
 
+    private boolean pdfTagged;
+
     private Map<String,Object> data;
 }
