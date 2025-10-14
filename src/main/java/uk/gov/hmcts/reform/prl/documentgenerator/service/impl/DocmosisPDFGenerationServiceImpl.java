@@ -83,8 +83,8 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
             .templateName(templateName)
             .outputName("result.pdf")
             .devMode(docmosisDevMode)
-            .pdfTagged(true)
-            .pdfTitle("PDF Title testing")
+            //.pdfTagged(true)
+            //.pdfTitle("PDF Title testing")
             .data(templateDataMapper.map(placeholders))
             .build();
     }
