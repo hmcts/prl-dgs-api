@@ -1,5 +1,10 @@
 package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
+import org.apache.pdfbox.Loader;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDDocumentInformation;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
@@ -15,6 +20,8 @@ import uk.gov.hmcts.reform.prl.documentgenerator.domain.response.GeneratedDocume
 import uk.gov.hmcts.reform.prl.documentgenerator.service.DocumentManagementService;
 import uk.gov.hmcts.reform.prl.documentgenerator.service.PDFGenerationService;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Clock;
 import java.util.Arrays;
@@ -23,6 +30,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import static java.util.Collections.emptyMap;
+import static org.apache.pdfbox.Loader.loadPDF;
 import static org.springframework.http.MediaType.APPLICATION_PDF_VALUE;
 
 @Service
@@ -105,7 +113,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     public GeneratedDocumentInfo storeDocument(byte[] document, String authorizationToken, String fileName) {
         log.debug("Store document requested with document of size [{}]", document.length);
         String serviceAuthToken = authTokenGenerator.generate();
-
+        document = addMetaData(document);
         UploadResponse uploadResponse = caseDocumentClient.uploadDocuments(
             authorizationToken,
             serviceAuthToken,
@@ -124,6 +132,20 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
             .binaryUrl(uploadedDocument.links.binary.href)
             .docName(fileName)
             .build();
+    }
+
+    private byte[] addMetaData(byte[] document) {
+        try (PDDocument pdDocument = loadPDF(document);
+             ByteArrayOutputStream out = new ByteArrayOutputStream()
+        ) {
+            PDDocumentInformation info = pdDocument.getDocumentInformation();
+            info.setTitle("Case 100");
+            pdDocument.save(out);
+            return out.toByteArray();
+        } catch (IOException ioe) {
+            log.error("Failed to add metadata to PDF: {}", ioe.getMessage(), ioe);
+            return document;
+        }
     }
 
     @Override
