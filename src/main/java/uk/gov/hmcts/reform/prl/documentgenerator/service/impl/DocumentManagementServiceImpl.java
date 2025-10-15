@@ -110,7 +110,6 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     public GeneratedDocumentInfo storeDocument(byte[] document, String authorizationToken, String fileName) {
         log.debug("Store document requested with document of size [{}]", document.length);
         String serviceAuthToken = authTokenGenerator.generate();
-        document = addMetaData(document);
         UploadResponse uploadResponse = caseDocumentClient.uploadDocuments(
             authorizationToken,
             serviceAuthToken,
@@ -129,20 +128,6 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
             .binaryUrl(uploadedDocument.links.binary.href)
             .docName(fileName)
             .build();
-    }
-
-    private byte[] addMetaData(byte[] document) {
-        try (PDDocument pdDocument = loadPDF(document);
-             ByteArrayOutputStream out = new ByteArrayOutputStream()
-        ) {
-            PDDocumentInformation info = pdDocument.getDocumentInformation();
-            info.setTitle("Case 100");
-            pdDocument.save(out);
-            return out.toByteArray();
-        } catch (IOException ioe) {
-            log.error("Failed to add metadata to PDF: {}", ioe.getMessage(), ioe);
-            return document;
-        }
     }
 
     @Override
