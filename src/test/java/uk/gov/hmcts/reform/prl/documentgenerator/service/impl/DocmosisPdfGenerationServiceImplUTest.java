@@ -2,16 +2,20 @@ package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.reflect.FieldUtils;
+import org.checkerframework.checker.units.qual.C;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.ArgumentMatchers;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -19,6 +23,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+import uk.gov.hmcts.reform.prl.documentgenerator.domain.request.PdfDocumentRequest;
 import uk.gov.hmcts.reform.prl.documentgenerator.exception.PDFGenerationException;
 import uk.gov.hmcts.reform.prl.documentgenerator.mapper.TemplateDataMapper;
 import uk.gov.hmcts.reform.prl.documentgenerator.util.NullOrEmptyValidator;
@@ -41,6 +46,9 @@ public class DocmosisPdfGenerationServiceImplUTest {
 
     @Mock
     ObjectMapper objectMapper;
+
+    @Captor
+    private ArgumentCaptor<HttpEntity<PdfDocumentRequest>> httpEntityArgumentCaptor;
 
 
     @InjectMocks
@@ -97,8 +105,13 @@ public class DocmosisPdfGenerationServiceImplUTest {
                 ArgumentMatchers.<Class<byte[]>>any())).thenReturn(myEntity);
 
         byte[] expected = classUnderTest.generate(template, placeholders);
-
         Assert.assertNotNull(expected);
+        Mockito.verify(restTemplate).exchange(ArgumentMatchers.any(String.class),
+                                              ArgumentMatchers.any(HttpMethod.class),
+                                              httpEntityArgumentCaptor.capture(),
+                                              ArgumentMatchers.<Class<byte[]>>any());
+        HttpEntity<PdfDocumentRequest> value = httpEntityArgumentCaptor.getValue();
+        Assert.assertTrue("PDF tagged", value.getBody().isPdfTagged());
     }
 
     @Test
@@ -115,7 +128,6 @@ public class DocmosisPdfGenerationServiceImplUTest {
                                            ArgumentMatchers.<Class<byte[]>>any())).thenReturn(test);
 
         byte[] expected = classUnderTest.converToPdf(placeholders,"testFile");
-
         Assert.assertNotNull(expected);
     }
 

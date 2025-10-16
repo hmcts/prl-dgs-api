@@ -3,8 +3,6 @@ package uk.gov.hmcts.reform.prl.documentgenerator.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDDocumentInformation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
@@ -17,8 +15,6 @@ import uk.gov.hmcts.reform.prl.documentgenerator.domain.response.GeneratedDocume
 import uk.gov.hmcts.reform.prl.documentgenerator.service.DocumentManagementService;
 import uk.gov.hmcts.reform.prl.documentgenerator.service.PDFGenerationService;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Clock;
 import java.util.Arrays;
@@ -27,7 +23,6 @@ import java.util.Locale;
 import java.util.Map;
 
 import static java.util.Collections.emptyMap;
-import static org.apache.pdfbox.Loader.loadPDF;
 import static org.springframework.http.MediaType.APPLICATION_PDF_VALUE;
 
 @Service
@@ -110,6 +105,7 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
     public GeneratedDocumentInfo storeDocument(byte[] document, String authorizationToken, String fileName) {
         log.debug("Store document requested with document of size [{}]", document.length);
         String serviceAuthToken = authTokenGenerator.generate();
+
         UploadResponse uploadResponse = caseDocumentClient.uploadDocuments(
             authorizationToken,
             serviceAuthToken,
