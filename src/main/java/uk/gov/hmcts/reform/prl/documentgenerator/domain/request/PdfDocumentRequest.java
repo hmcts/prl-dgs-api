@@ -21,5 +21,7 @@ public class PdfDocumentRequest {
 
     private boolean pdfTagged;
 
+    private boolean pdfUniversalAccessibility;
+
     private Map<String,Object> data;
 }

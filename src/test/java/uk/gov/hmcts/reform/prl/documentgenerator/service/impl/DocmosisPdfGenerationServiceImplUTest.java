@@ -112,6 +112,7 @@ public class DocmosisPdfGenerationServiceImplUTest {
                                               ArgumentMatchers.<Class<byte[]>>any());
         HttpEntity<PdfDocumentRequest> value = httpEntityArgumentCaptor.getValue();
         Assert.assertTrue("PDF tagged", value.getBody().isPdfTagged());
+        Assert.assertTrue("PDF pdfUniversalAccessibility", value.getBody().isPdfUniversalAccessibility());
     }
 
     @Test
