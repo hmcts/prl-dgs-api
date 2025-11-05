@@ -59,8 +59,6 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
         log.info("Making request to pdf service to generate pdf document with template [{}]"
             + " and placeholders of size [{}]", templateName, placeholders.size());
 
-        log.info("REMOVE THIS PLACE HOLDER logging {}", placeholders);
-
         try {
             // Remove this log when tested
             log.info("Making Docmosis Request From {}", docmosisPdfServiceEndpoint);
