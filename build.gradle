@@ -294,7 +294,6 @@ dependencies {
     implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
     implementation (group: 'com.launchdarkly', name: 'launchdarkly-java-server-sdk', version: '7.10.2')
     implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version:'7.4'
-  implementation group: 'org.apache.commons', name: 'commons-configuration2', version: '2.12.0'
 
   annotationProcessor("org.projectlombok:lombok:${versions.lombok}")
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
