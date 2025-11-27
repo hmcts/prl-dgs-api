@@ -157,7 +157,7 @@ jacoco {
 
 def versions = [
     commonsIo: '2.20.0',
-    commonsLang3: '3.18.0',
+    commonsLang3: '3.20.0',
     commonsBeanUtils: '1.11.0',
     feignHttpClient: '10.12',
     gradlePitest: '1.15.0',
@@ -185,7 +185,7 @@ def versions = [
     unirest: '1.4.9',
     wiremockVersion: '2.27.2',
     springSecurityCrypto: '5.7.11',
-    tomcat   : '9.0.110',
+    tomcat   : '9.0.112',
     pact_version: '4.1.11',
     httpComponents: '4.5.14',
     bouncycastle: '1.81',
@@ -196,7 +196,7 @@ def versions = [
 ext["logback.version"] = '1.2.13'
 ext['snakeyaml.version'] = '2.2'
 ext['jackson.version'] = '2.16.0'
-ext['spring-framework.version'] = '5.3.27'
+ext['spring-framework.version'] = '5.3.37'
 
 
 
@@ -294,7 +294,6 @@ dependencies {
     implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
     implementation (group: 'com.launchdarkly', name: 'launchdarkly-java-server-sdk', version: '7.10.2')
     implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version:'7.4'
-
 
   annotationProcessor("org.projectlombok:lombok:${versions.lombok}")
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
