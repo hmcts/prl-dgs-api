@@ -19,5 +19,9 @@ public class PdfDocumentRequest {
 
     private String devMode;
 
+    private boolean pdfTagged;
+
+    private boolean pdfUniversalAccessibility;
+
     private Map<String,Object> data;
 }
