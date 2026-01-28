@@ -168,7 +168,7 @@ def versions = [
     junit: '4.13.2',
     lombok: '1.18.42',
     nimbus: '5.14',
-    pdfbox: '2.0.34',
+    pdfbox: '2.0.35',
     pitest: '1.20.3',
     powerMock: '2.0.0',
     puppyCrawl: '8.45.1',
