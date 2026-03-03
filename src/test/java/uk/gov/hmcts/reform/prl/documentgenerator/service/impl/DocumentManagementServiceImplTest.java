@@ -21,6 +21,7 @@ import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.same;
@@ -56,22 +57,22 @@ public class DocumentManagementServiceImplTest {
     ArgumentCaptor<Map<String, Object>> placeHolderCaptor;
 
     static final Map<String, Object> placeholderMap = new HashMap<>();
-    static final String authToken = "userAuthToken";
-    static final String s2sToken = "s2sAuthToken";
+    static final String AUTH_TOKEN = "userAuthToken";
+    static final String S2S_TOKEN = "s2sAuthToken";
     static final byte[] data = {126};
     static final UploadResponse uploadResponse = new UploadResponse(List.of(mockCaseDocsDocuments()));
 
     @Test
     public void testGenerateAndStoreDraftDocumentMock() {
-        Mockito.when(authTokenGenerator.generate()).thenReturn(s2sToken);
+        Mockito.when(authTokenGenerator.generate()).thenReturn(S2S_TOKEN);
         Mockito.when(pdfGenerationService.generate(D8_PETITION_WELSH_TEMPLATE, placeholderMap)).thenReturn(data);
         Mockito.when(templatesConfiguration.getFileNameByTemplateName(D8_PETITION_WELSH_TEMPLATE))
                 .thenReturn(MINI_PETITION_NAME_FOR_WELSH_PDF_FILE);
-        Mockito.when(caseDocumentClient.uploadDocuments(eq(authToken),
-                        eq(s2sToken), eq("PRLAPPS"), eq("PRIVATELAW"), any()))
+        Mockito.when(caseDocumentClient.uploadDocuments(eq(AUTH_TOKEN),
+                        eq(S2S_TOKEN), eq("PRLAPPS"), eq("PRIVATELAW"), any()))
             .thenReturn(uploadResponse);
 
-        classUnderTest.generateAndStoreDraftDocument(D8_PETITION_WELSH_TEMPLATE, placeholderMap, authToken);
+        classUnderTest.generateAndStoreDraftDocument(D8_PETITION_WELSH_TEMPLATE, placeholderMap, AUTH_TOKEN);
 
         verify(pdfGenerationService).generate(same(D8_PETITION_WELSH_TEMPLATE), placeHolderCaptor.capture());
         Map<String, Object> value = placeHolderCaptor.getValue();
@@ -81,13 +82,13 @@ public class DocumentManagementServiceImplTest {
     @Test
     public void testGenerateAndStoreDraftDocumentMockWithDynamicName() {
         placeholderMap.put("dynamic_fileName","test-file.pdf");
-        Mockito.when(authTokenGenerator.generate()).thenReturn(s2sToken);
+        Mockito.when(authTokenGenerator.generate()).thenReturn(S2S_TOKEN);
         Mockito.when(pdfGenerationService.generate(D8_PETITION_WELSH_TEMPLATE, placeholderMap)).thenReturn(data);
-        Mockito.when(caseDocumentClient.uploadDocuments(eq(authToken),
-                                                        eq(s2sToken), eq("PRLAPPS"), eq("PRIVATELAW"), any()))
+        Mockito.when(caseDocumentClient.uploadDocuments(eq(AUTH_TOKEN),
+                                                        eq(S2S_TOKEN), eq("PRLAPPS"), eq("PRIVATELAW"), any()))
             .thenReturn(uploadResponse);
 
-        classUnderTest.generateAndStoreDraftDocument(D8_PETITION_WELSH_TEMPLATE, placeholderMap, authToken);
+        classUnderTest.generateAndStoreDraftDocument(D8_PETITION_WELSH_TEMPLATE, placeholderMap, AUTH_TOKEN);
 
         verify(pdfGenerationService).generate(same(D8_PETITION_WELSH_TEMPLATE), placeHolderCaptor.capture());
         Map<String, Object> value = placeHolderCaptor.getValue();
@@ -96,13 +97,13 @@ public class DocumentManagementServiceImplTest {
 
     @Test
     public void testGenerateAndStoreDraftDocument_WithDraftPrefixMock() {
-        Mockito.when(authTokenGenerator.generate()).thenReturn(s2sToken);
+        Mockito.when(authTokenGenerator.generate()).thenReturn(S2S_TOKEN);
         Mockito.when(pdfGenerationService.generate(DRAFT_MINI_PETITION_TEMPLATE_ID, placeholderMap)).thenReturn(data);
-        Mockito.when(caseDocumentClient.uploadDocuments(eq(authToken),
-                        eq(s2sToken), eq("PRLAPPS"), eq("PRIVATELAW"), any()))
+        Mockito.when(caseDocumentClient.uploadDocuments(eq(AUTH_TOKEN),
+                        eq(S2S_TOKEN), eq("PRLAPPS"), eq("PRIVATELAW"), any()))
             .thenReturn(uploadResponse);
 
-        classUnderTest.generateAndStoreDraftDocument(DRAFT_MINI_PETITION_TEMPLATE_ID, placeholderMap, authToken);
+        classUnderTest.generateAndStoreDraftDocument(DRAFT_MINI_PETITION_TEMPLATE_ID, placeholderMap, AUTH_TOKEN);
 
         verify(pdfGenerationService).generate(same(DRAFT_MINI_PETITION_TEMPLATE_ID), placeHolderCaptor.capture());
         Map<String, Object> value = placeHolderCaptor.getValue();
@@ -115,14 +116,14 @@ public class DocumentManagementServiceImplTest {
 
         byte[] test = "Any String you want".getBytes();
         placeholders.put("fileName",test);
-        Mockito.when(authTokenGenerator.generate()).thenReturn(s2sToken);
+        Mockito.when(authTokenGenerator.generate()).thenReturn(S2S_TOKEN);
         Mockito.when(pdfGenerationService.converToPdf(placeholders,"fileName")).thenReturn(test);
 
-        Mockito.when(caseDocumentClient.uploadDocuments(eq(authToken),
-                                                        eq(s2sToken), eq("PRLAPPS"), eq("PRIVATELAW"), any()))
+        Mockito.when(caseDocumentClient.uploadDocuments(eq(AUTH_TOKEN),
+                                                        eq(S2S_TOKEN), eq("PRLAPPS"), eq("PRIVATELAW"), any()))
             .thenReturn(uploadResponse);
 
-        classUnderTest.converToPdf(placeholders, authToken,"fileName");
+        classUnderTest.converToPdf(placeholders, AUTH_TOKEN,"fileName");
 
         verify(pdfGenerationService).converToPdf(placeholders,"fileName");
     }
@@ -131,13 +132,13 @@ public class DocumentManagementServiceImplTest {
     @Test
     public void testGenerateAndStoreFinalDocument_WithDynamicFileName() {
         placeholderMap.put("dynamic_fileName","test-file.pdf");
-        Mockito.when(authTokenGenerator.generate()).thenReturn(s2sToken);
+        Mockito.when(authTokenGenerator.generate()).thenReturn(S2S_TOKEN);
         Mockito.when(pdfGenerationService.generate(FINAL_MINI_PETITION_TEMPLATE_ID, placeholderMap)).thenReturn(data);
-        Mockito.when(caseDocumentClient.uploadDocuments(eq(authToken),
-                                                        eq(s2sToken), eq("PRLAPPS"), eq("PRIVATELAW"), any()))
+        Mockito.when(caseDocumentClient.uploadDocuments(eq(AUTH_TOKEN),
+                                                        eq(S2S_TOKEN), eq("PRLAPPS"), eq("PRIVATELAW"), any()))
             .thenReturn(uploadResponse);
 
-        classUnderTest.generateAndStoreDocument(FINAL_MINI_PETITION_TEMPLATE_ID, placeholderMap, authToken);
+        classUnderTest.generateAndStoreDocument(FINAL_MINI_PETITION_TEMPLATE_ID, placeholderMap, AUTH_TOKEN);
 
         verify(pdfGenerationService).generate(same(FINAL_MINI_PETITION_TEMPLATE_ID), placeHolderCaptor.capture());
         Map<String, Object> value = placeHolderCaptor.getValue();
@@ -147,18 +148,25 @@ public class DocumentManagementServiceImplTest {
     @Test
     public void testGenerateAndStoreFinalDocument_WithOutDynamicFileName() {
         placeholderMap.remove("dynamic_fileName");
-        Mockito.when(authTokenGenerator.generate()).thenReturn(s2sToken);
+        Mockito.when(authTokenGenerator.generate()).thenReturn(S2S_TOKEN);
         Mockito.when(pdfGenerationService.generate(FINAL_MINI_PETITION_TEMPLATE_ID, placeholderMap)).thenReturn(data);
         Mockito.when(templatesConfiguration.getFileNameByTemplateName(FINAL_MINI_PETITION_TEMPLATE_ID))
             .thenReturn(DRAFT_MINI_PETITION_NAME_FOR_PDF_FILE);
-        Mockito.when(caseDocumentClient.uploadDocuments(eq(authToken),
-                                                        eq(s2sToken), eq("PRLAPPS"), eq("PRIVATELAW"), any()))
+        Mockito.when(caseDocumentClient.uploadDocuments(eq(AUTH_TOKEN),
+                                                        eq(S2S_TOKEN), eq("PRLAPPS"), eq("PRIVATELAW"), any()))
             .thenReturn(uploadResponse);
 
-        classUnderTest.generateAndStoreDocument(FINAL_MINI_PETITION_TEMPLATE_ID, placeholderMap, authToken);
+        classUnderTest.generateAndStoreDocument(FINAL_MINI_PETITION_TEMPLATE_ID, placeholderMap, AUTH_TOKEN);
 
         verify(pdfGenerationService).generate(same(FINAL_MINI_PETITION_TEMPLATE_ID), placeHolderCaptor.capture());
         Map<String, Object> value = placeHolderCaptor.getValue();
         Assert.assertNotNull(value);
+    }
+
+    @Test
+     public void shouldThrowIllegalArgumentExceptionWhenDocumentIsNull() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            classUnderTest.storeDocument(null, AUTH_TOKEN ,"File Name");
+        });
     }
 }
