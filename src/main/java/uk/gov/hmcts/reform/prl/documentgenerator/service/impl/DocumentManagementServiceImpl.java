@@ -29,6 +29,7 @@ import static org.springframework.http.MediaType.APPLICATION_PDF_VALUE;
 @Slf4j
 @RequiredArgsConstructor
 public class DocumentManagementServiceImpl implements DocumentManagementService {
+
     private static final String CURRENT_DATE_KEY = "current_date";
     private static final String DATE_FORMAT = "yyyy-MM-dd'T'hh:mm:ss.SSS";
 
@@ -102,10 +103,6 @@ public class DocumentManagementServiceImpl implements DocumentManagementService 
 
     @Override
     public GeneratedDocumentInfo storeDocument(byte[] document, String authorizationToken, String fileName) {
-        if (document == null) {
-            log.error("Cannot Store the document [{}] because it's null", fileName);
-            throw new IllegalArgumentException("Document is missing for " + fileName);
-        }
         log.debug("Store document requested with document of size [{}]", document.length);
         String serviceAuthToken = authTokenGenerator.generate();
 
