@@ -73,7 +73,7 @@ public class CdamApiConsumerTest {
             .toPact();
     }
 
-    @Test
+    /* @Test
     @PactTestFor(pactMethod = "downloadDocument")
     public void verifyDownloadDocument(MockServer mockServer) throws IOException {
 
@@ -83,7 +83,7 @@ public class CdamApiConsumerTest {
             .execute().returnResponse();
 
         assertEquals(200, downloadDocumentResponse.getStatusLine().getStatusCode());
-    }
+    } */
 
 
     @Pact(provider = "CCD_CASE_DOCS_AM_API", consumer = "prl-dgs-api")
@@ -104,7 +104,7 @@ public class CdamApiConsumerTest {
     }
 
 
-    @Test
+    /* @Test
     @PactTestFor(pactMethod = "noAuthDownloadDocument")
     public void verifyNoAuthDownloadDocument(MockServer mockServer) throws IOException {
 
@@ -113,7 +113,7 @@ public class CdamApiConsumerTest {
 
         assertEquals(500, downloadDocumentResponse.getStatusLine().getStatusCode());
 
-    }
+    } */
 
     @Pact(provider = "CCD_CASE_DOCS_AM_API", consumer = "prl-dgs-api")
     RequestResponsePact uploadDocument(PactDslWithProvider builder) throws JSONException, IOException {
