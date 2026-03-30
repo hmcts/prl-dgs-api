@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,10 +26,10 @@ import javax.validation.Valid;
 @RequestMapping(path = "/version/1")
 @Tag(name = "Document Generation", description = "Document Generation")
 @Slf4j
+@RequiredArgsConstructor
 public class DocumentGeneratorController {
 
-    @Autowired
-    private DocumentManagementService documentManagementService;
+    private final DocumentManagementService documentManagementService;
 
     @Operation(description = "Generate PDF document based on the supplied template name and placeholder "
             + "texts and saves it in the evidence management.", tags = {"Document Generation"})

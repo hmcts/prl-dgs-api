@@ -22,7 +22,7 @@ plugins {
     id 'jacoco'
     id 'org.owasp.dependencycheck' version '12.0.1'
     id 'org.sonarqube' version '5.0.0.4638'
-    id 'org.springframework.boot' version '2.7.0'
+    id 'org.springframework.boot' version '2.7.18'
     id 'info.solidsoft.pitest' version '1.7.4'
     id 'au.com.dius.pact' version '4.1.7'
 }
@@ -101,19 +101,9 @@ compileTestJava {
 
 repositories {
   mavenLocal()
-  jcenter()
-
+  mavenCentral()
   maven {
-    url "http://repo.maven.apache.org/maven2"
-    allowInsecureProtocol = true
-  }
-  maven {
-    url 'https://repo.spring.io/libs-milestone'
-    allowInsecureProtocol = true
-  }
-  maven {
-    url 'https://jitpack.io'
-    allowInsecureProtocol = true
+    url = uri('https://pkgs.dev.azure.com/hmcts/Artifacts/_packaging/hmcts-lib/maven/v1')
   }
 }
 
@@ -132,7 +122,7 @@ tasks.withType(JavaCompile) {
 }
 
 checkstyle {
-    toolVersion = '9.2.1'
+    toolVersion = '9.3'
     configFile = project(':').file('checkstyle.xml')
     configProperties = ["suppressionFile": project(':').file('suppressions.xml')]
 }
@@ -162,51 +152,51 @@ dependencyCheck {
 }
 
 jacoco {
-  toolVersion = "0.8.8"
+  toolVersion = "0.8.14"
 }
 
 def versions = [
-    commonsIo: '2.7',
-    commonsLang3: '3.9',
-    commonsBeanUtils: '1.9.4',
-    feignHttpClient: '10.2.0',
-    gradlePitest: '1.4.5',
+    commonsIo: '2.20.0',
+    commonsLang3: '3.20.0',
+    commonsBeanUtils: '1.11.0',
+    feignHttpClient: '10.12',
+    gradlePitest: '1.15.0',
     guava: '32.1.2-jre',
     jacksonDatabind: '2.16.0',
-    apacheLogging: '2.20.0',
-    jsonAssert: '1.2.3',
-    junit: '4.13.1',
-    lombok: '1.18.26',
-    nimbus: '5.1',
-    pdfbox: '2.0.24',
-    pitest: '1.7.3',
+    apacheLogging: '2.25.3',
+    jsonAssert: '1.5.3',
+    junit: '4.13.2',
+    lombok: '1.18.44',
+    nimbus: '5.14',
+    pdfbox: '2.0.34',
+    pitest: '1.20.3',
     powerMock: '2.0.0',
-    puppyCrawl: '8.29',
+    puppyCrawl: '8.45.1',
     reformsJavaLogging: '5.1.1',
     restAssured: '4.5.1',
     serenity: '2.2.13',
     serenityCucumber: '1.9.51',
-    serviceTokenGenerator: '3.0.0',
+    serviceTokenGenerator: '3.1.4',
     sonarPitest: '0.5',
     spring_security_rsa: '1.0.12.RELEASE',
     springBoot: '2.7.18',
-    springCloud: '3.1.6',
-    springHateoas: '1.5.5',
+    springCloud: '3.1.9',
+    springHateoas: '1.5.6',
     unirest: '1.4.9',
     wiremockVersion: '2.27.2',
     springSecurityCrypto: '5.7.11',
-    tomcat   : '9.0.83',
+    tomcat   : '9.0.115',
     pact_version: '4.1.11',
-    httpComponents: '4.5.13',
-    bouncycastle: '1.73',
+    httpComponents: '4.5.14',
+    bouncycastle: '1.83',
     ccdCaseDocumentAmClient: '1.7.2',
-    springFramework    : '5.3.27'
+    springFramework    : '5.3.39'
 ]
 
 ext["logback.version"] = '1.2.13'
 ext['snakeyaml.version'] = '2.2'
 ext['jackson.version'] = '2.16.0'
-ext['spring-framework.version'] = '5.3.27'
+ext['spring-framework.version'] = '5.3.37'
 
 
 
@@ -245,12 +235,13 @@ dependencies {
 
 
 
-  testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '3.1.1'
+  testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '3.1.10'
 
-    implementation (group: 'commons-beanutils', name: 'commons-beanutils', version: versions.commonsBeanUtils) {
-        force = true
-    }
-    implementation (group:  'org.springframework.security', name: 'spring-security-rsa', version: versions.spring_security_rsa) {
+  implementation (group: 'commons-beanutils', name: 'commons-beanutils', version: versions.commonsBeanUtils) {
+    force = true
+  }
+
+  implementation (group:  'org.springframework.security', name: 'spring-security-rsa', version: versions.spring_security_rsa) {
         force = true
         exclude group: 'org.springframework.security', module: 'spring-security-crypto'
     }
@@ -268,9 +259,9 @@ dependencies {
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: versions.springBoot
     implementation group: 'com.puppycrawl.tools', name: 'checkstyle', version:  versions.puppyCrawl
     implementation group: 'commons-io', name: 'commons-io', version: versions.commonsIo
-    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.9'
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.8.0'
 
-  implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.5'
+  implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.6.0'
 
   implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-ribbon', version: '2.2.10.RELEASE'
     implementation (group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign',  version: versions.springCloud) {
@@ -285,8 +276,8 @@ dependencies {
     implementation group: 'org.springframework.hateoas', name: 'spring-hateoas', version: versions.springHateoas
     implementation group: 'org.apache.commons', name: 'commons-lang3', version : versions.commonsLang3
 
-    implementation 'com.github.hmcts.java-logging:logging:6.1.6'
-    implementation 'com.github.hmcts.java-logging:logging-appinsights:6.1.6'
+    implementation 'com.github.hmcts.java-logging:logging:6.1.9'
+    implementation 'com.github.hmcts.java-logging:logging-appinsights:6.1.9'
     implementation group: 'org.springframework', name: 'spring-context-support', version: versions.springFramework
     implementation ( group: 'com.github.hmcts', name: 'service-auth-provider-java-client', version: versions.serviceTokenGenerator) {
         exclude group: 'io.reactivex', module: 'io.reactivex'
@@ -301,9 +292,8 @@ dependencies {
     implementation group:'info.solidsoft.gradle.pitest', name: 'gradle-pitest-plugin', version: versions.gradlePitest
     implementation group:'org.codehaus.sonar-plugins', name:'sonar-pitest-plugin', version: versions.sonarPitest
     implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
-    implementation (group: 'com.launchdarkly', name: 'launchdarkly-java-server-sdk', version: '7.4.0')
+    implementation (group: 'com.launchdarkly', name: 'launchdarkly-java-server-sdk', version: '7.10.2')
     implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version:'7.4'
-
 
   annotationProcessor("org.projectlombok:lombok:${versions.lombok}")
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
@@ -328,9 +318,9 @@ dependencies {
     contractTestRuntime group: 'au.com.dius.pact.consumer', name: 'java8', version: versions.pact_version
 
     contractTestImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test'
-    contractTestImplementation("org.junit.jupiter:junit-jupiter-api:5.10.2")
-    contractTestRuntime("org.junit.jupiter:junit-jupiter-engine:5.9.2")
-    contractTestImplementation('org.junit.jupiter:junit-jupiter-api:5.10.2')
+    contractTestImplementation("org.junit.jupiter:junit-jupiter-api:5.13.4")
+    contractTestRuntime("org.junit.jupiter:junit-jupiter-engine:5.13.4")
+    contractTestImplementation('org.junit.jupiter:junit-jupiter-api:5.13.4')
 
     contractTestImplementation sourceSets.main.runtimeClasspath
     contractTestImplementation sourceSets.test.runtimeClasspath
@@ -340,7 +330,7 @@ dependencies {
     smokeTestImplementation sourceSets.main.runtimeClasspath
     smokeTestImplementation sourceSets.test.runtimeClasspath
 
-    testImplementation 'com.github.hmcts:fortify-client:1.2.2:all'
+    testImplementation 'com.github.hmcts:fortify-client:1.4.10:all'
     testImplementation group: 'io.rest-assured', name: 'rest-assured', version: versions.restAssured
     testImplementation group: 'io.rest-assured', name: 'json-path', version: versions.restAssured
     testImplementation group: 'io.rest-assured', name: 'xml-path', version: versions.restAssured
@@ -362,10 +352,9 @@ processIntegrationTestResources {
   duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
-
 dependencyManagement {
     dependencies {
-        dependency group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.4'
+        dependency group: 'commons-beanutils', name: 'commons-beanutils', version: '1.11.0'
 
         dependencySet(
             group: 'com.fasterxml.jackson.core',
@@ -392,15 +381,13 @@ dependencyManagement {
         entry 'json'
       }
       //CVE-2023-2976
-      dependency group: 'com.google.guava', name: 'guava', version: '32.1.2-jre'
+      dependency group: 'com.google.guava', name: 'guava', version: '32.1.3-jre'
 
       //CVE-2022-1471
-      dependencySet(group: 'org.yaml', version: '2.2') {
+      dependencySet(group: 'org.yaml', version: '2.5') {
         entry 'snakeyaml'
       }
       dependency group: 'org.springframework.security', name: 'spring-security-crypto', version: '5.7.5'
-
-
     }
 }
 
