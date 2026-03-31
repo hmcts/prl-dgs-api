@@ -35,7 +35,7 @@ version = '3.0.0'
 
 java {
   toolchain {
-    languageVersion = JavaLanguageVersion.of(17)
+    languageVersion = JavaLanguageVersion.of(21)
   }
 }
 
@@ -86,7 +86,7 @@ bootJar {
         attributes 'Implementation-Title': project.name,
             'Implementation-Version': project.version
     }
-    archiveName 'prl-dgs-api.jar'
+    archiveFileName = 'prl-dgs-api.jar'
 }
 
 mainClassName = 'uk.gov.hmcts.reform.prl.documentgenerator.DocumentGeneratorApplication'
@@ -131,12 +131,23 @@ checkstyle {
 tasks.withType(Checkstyle).each { checkstyleTask ->
     checkstyleTask.doLast {
         reports.all { report ->
-            def outputFile = report.destination
+            def outputFile = report.outputLocation.get().asFile
             if (outputFile.exists() && outputFile.text.contains("<error ")) {
                 throw new GradleException("There were checkstyle warnings! For more info check $outputFile")
             }
         }
     }
+}
+
+tasks.withType(Checkstyle) {
+  reports {
+    html.outputLocation = file("${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.html")
+    xml.outputLocation = file("${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml")
+  }
+}
+
+tasks.withType(Test) {
+  jvmArgs '-Dnet.bytebuddy.experimental=true'
 }
 
 // https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/configuration.html
@@ -198,7 +209,12 @@ ext['snakeyaml.version'] = '2.2'
 ext['jackson.version'] = '2.16.0'
 ext['spring-framework.version'] = '5.3.37'
 
-
+configurations.all {
+  resolutionStrategy {
+    force 'commons-beanutils:commons-beanutils:1.11.0'
+    force 'org.springframework.security:spring-security-rsa:1.0.12.RELEASE'
+  }
+}
 
 
 dependencies {
@@ -238,11 +254,10 @@ dependencies {
   testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '3.1.10'
 
   implementation (group: 'commons-beanutils', name: 'commons-beanutils', version: versions.commonsBeanUtils) {
-    force = true
+
   }
 
   implementation (group:  'org.springframework.security', name: 'spring-security-rsa', version: versions.spring_security_rsa) {
-        force = true
         exclude group: 'org.springframework.security', module: 'spring-security-crypto'
     }
 
@@ -505,9 +520,9 @@ jacocoTestReport {
     executionData(test)
 
     reports {
-        xml.enabled = true
-        html.enabled = true
-        xml.destination file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
+        xml.required = true
+        html.required = true
+        //xml.outputLocation = file("${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml")
     }
 }
 
