@@ -73,8 +73,8 @@ public class CdamApiConsumerTest {
             .toPact();
     }
 
-//    @Test
-//    @PactTestFor(pactMethod = "downloadDocument")
+    //    @Test
+    //    @PactTestFor(pactMethod = "downloadDocument")
     public void verifyDownloadDocument(MockServer mockServer) throws IOException {
 
         HttpResponse downloadDocumentResponse = Request.Get(mockServer.getUrl() + "/cases/documents/" + someDocumentId)
@@ -104,8 +104,8 @@ public class CdamApiConsumerTest {
     }
 
 
-//    @Test
-//    @PactTestFor(pactMethod = "noAuthDownloadDocument")
+    //    @Test
+    //    @PactTestFor(pactMethod = "noAuthDownloadDocument")
     public void verifyNoAuthDownloadDocument(MockServer mockServer) throws IOException {
 
         HttpResponse downloadDocumentResponse = Request.Get(mockServer.getUrl() + "/cases/documents/" + someDocumentId)
@@ -136,8 +136,8 @@ public class CdamApiConsumerTest {
             .toPact();
     }
 
-//    @Test
-//    @PactTestFor(pactMethod = "uploadDocument")
+    //    @Test
+    //    @PactTestFor(pactMethod = "uploadDocument")
     public void verifyUploadDocument(MockServer mockServer) throws IOException {
 
         HttpResponse downloadDocumentResponse = Request.Post(mockServer.getUrl() + "/cases/documents" )
