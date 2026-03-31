@@ -57,7 +57,6 @@ public class CdamApiConsumerTest {
         Executor.closeIdleConnections();
     }
 
-    @Disabled
     @Pact(provider = "CCD_CASE_DOCS_AM_API", consumer = "prl-dgs-api")
     RequestResponsePact downloadDocument(PactDslWithProvider builder) throws JSONException, IOException {
         // @formatter:off
@@ -68,8 +67,7 @@ public class CdamApiConsumerTest {
             .method("GET")
             .headers(Map.of(
                 SERVICE_AUTHORIZATION_HEADER, someServiceAuthToken,
-                AUTHORIZATION_HEADER, someAuthToken,
-                "Accept", "application/vnd.uk.gov.hmcts.dm.document.v1+hal+json"
+                AUTHORIZATION_HEADER, someAuthToken
             ))
             .path("/cases/documents/" + someDocumentId)
             .willRespondWith()
@@ -80,7 +78,6 @@ public class CdamApiConsumerTest {
             .toPact();
     }
 
-    @Disabled
     @Test
     @PactTestFor(pactMethod = "downloadDocument")
     public void verifyDownloadDocument(MockServer mockServer) throws IOException {
@@ -88,7 +85,6 @@ public class CdamApiConsumerTest {
         HttpResponse downloadDocumentResponse = Request.Get(mockServer.getUrl() + "/cases/documents/" + someDocumentId)
             .addHeader(SERVICE_AUTHORIZATION_HEADER, someServiceAuthToken)
             .addHeader(AUTHORIZATION_HEADER, someAuthToken)
-            .addHeader("Accept", "application/vnd.uk.gov.hmcts.dm.document.v1+hal+json")
             .execute().returnResponse();
 
         assertEquals(200, downloadDocumentResponse.getStatusLine().getStatusCode());
