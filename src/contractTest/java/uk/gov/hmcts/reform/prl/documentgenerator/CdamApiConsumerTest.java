@@ -69,12 +69,10 @@ public class CdamApiConsumerTest {
                 AUTHORIZATION_HEADER, someAuthToken,
                 "Accept", "application/vnd.uk.gov.hmcts.dm.document.v1+hal+json"
             ))
-            .headers(SERVICE_AUTHORIZATION_HEADER, someServiceAuthToken)
-            .headers(AUTHORIZATION_HEADER, someAuthToken)
             .path("/cases/documents/" + someDocumentId)
             .willRespondWith()
-            .headers(Map.of(
-                "Content-Type","application/vnd.uk.gov.hmcts.dm.document.v1+hal+json;charset=UTF-8"))
+            .matchHeader(org.springframework.http.HttpHeaders.CONTENT_TYPE,
+                         "application/vnd.uk.gov.hmcts.dm.document.v1+hal+json;charset=UTF-8")
             .body("{}")
             .status(HttpStatus.SC_OK)
             .toPact();
@@ -102,11 +100,12 @@ public class CdamApiConsumerTest {
             .given("A request to download a document")
             .uponReceiving("a request to download a valid document with invalid authorisation")
             .method("GET")
-            .headers(SERVICE_AUTHORIZATION_HEADER, invalidServiceAuthToken)
+            .headers(Map.of(SERVICE_AUTHORIZATION_HEADER, invalidServiceAuthToken))
             .path("/cases/documents/" + someDocumentId)
             .willRespondWith()
             .matchHeader(org.springframework.http.HttpHeaders.CONTENT_TYPE,
                 "application/vnd.uk.gov.hmcts.dm.document.v1+hal+json;charset=UTF-8")
+            .body("{}")
             .status(HttpStatus.SC_INTERNAL_SERVER_ERROR)
             .toPact();
     }
