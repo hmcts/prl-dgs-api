@@ -20,7 +20,7 @@ plugins {
     id 'com.github.ben-manes.versions' version '0.51.0'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'jacoco'
-    id 'org.owasp.dependencycheck' version '9.0.4'
+    id 'org.owasp.dependencycheck' version '11.1.1'
     id 'org.sonarqube' version '5.0.0.4638'
     id 'org.springframework.boot' version '2.7.18'
     id 'info.solidsoft.pitest' version '1.7.4'
@@ -152,7 +152,7 @@ dependencyCheck {
 }
 
 jacoco {
-  toolVersion = "0.8.13"
+  toolVersion = "0.8.14"
 }
 
 def versions = [
@@ -166,9 +166,9 @@ def versions = [
     apacheLogging: '2.25.3',
     jsonAssert: '1.5.3',
     junit: '4.13.2',
-    lombok: '1.18.42',
+    lombok: '1.18.44',
     nimbus: '5.14',
-    pdfbox: '2.0.34',
+    pdfbox: '2.0.36',
     pitest: '1.20.3',
     powerMock: '2.0.0',
     puppyCrawl: '8.45.1',
@@ -185,10 +185,10 @@ def versions = [
     unirest: '1.4.9',
     wiremockVersion: '2.27.2',
     springSecurityCrypto: '5.7.11',
-    tomcat   : '9.0.112',
+    tomcat   : '9.0.115',
     pact_version: '4.1.11',
     httpComponents: '4.5.14',
-    bouncycastle: '1.81',
+    bouncycastle: '1.83',
     ccdCaseDocumentAmClient: '1.7.2',
     springFramework    : '5.3.39'
 ]
@@ -292,7 +292,7 @@ dependencies {
     implementation group:'info.solidsoft.gradle.pitest', name: 'gradle-pitest-plugin', version: versions.gradlePitest
     implementation group:'org.codehaus.sonar-plugins', name:'sonar-pitest-plugin', version: versions.sonarPitest
     implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
-    implementation (group: 'com.launchdarkly', name: 'launchdarkly-java-server-sdk', version: '7.10.2')
+    implementation (group: 'com.launchdarkly', name: 'launchdarkly-java-server-sdk', version: '7.13.1')
     implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version:'7.4'
 
   annotationProcessor("org.projectlombok:lombok:${versions.lombok}")
