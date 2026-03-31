@@ -22,6 +22,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.IOException;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -63,12 +64,17 @@ public class CdamApiConsumerTest {
             .given("A request to download a document")
             .uponReceiving("a request to download a valid document")
             .method("GET")
+            .headers(Map.of(
+                SERVICE_AUTHORIZATION_HEADER, someServiceAuthToken,
+                AUTHORIZATION_HEADER, someAuthToken,
+                "Accept", "application/vnd.uk.gov.hmcts.dm.document.v1+hal+json"
+            ))
             .headers(SERVICE_AUTHORIZATION_HEADER, someServiceAuthToken)
             .headers(AUTHORIZATION_HEADER, someAuthToken)
             .path("/cases/documents/" + someDocumentId)
             .willRespondWith()
-            .matchHeader(org.springframework.http.HttpHeaders.CONTENT_TYPE,
-                "application/vnd.uk.gov.hmcts.dm.document.v1+hal+json;charset=UTF-8")
+            .headers(Map.of(
+                "Content-Type","application/vnd.uk.gov.hmcts.dm.document.v1+hal+json;charset=UTF-8"))
             .body("{}")
             .status(HttpStatus.SC_OK)
             .toPact();
@@ -81,6 +87,7 @@ public class CdamApiConsumerTest {
         HttpResponse downloadDocumentResponse = Request.Get(mockServer.getUrl() + "/cases/documents/" + someDocumentId)
             .addHeader(SERVICE_AUTHORIZATION_HEADER, someServiceAuthToken)
             .addHeader(AUTHORIZATION_HEADER, someAuthToken)
+            .addHeader("Accept", "application/vnd.uk.gov.hmcts.dm.document.v1+hal+json")
             .execute().returnResponse();
 
         assertEquals(200, downloadDocumentResponse.getStatusLine().getStatusCode());
