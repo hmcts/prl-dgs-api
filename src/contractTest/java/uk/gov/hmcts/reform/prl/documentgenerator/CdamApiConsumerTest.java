@@ -39,15 +39,14 @@ public class CdamApiConsumerTest {
 
 
     private static final String SERVICE_AUTHORIZATION_HEADER = "ServiceAuthorization";
-    private static final String someServiceAuthToken = "someServiceAuthToken";
-    private static final String invalidServiceAuthToken = "invalidServiceAuthToken";
+    private static final String SERVICE_AUTH_TOKEN = "someServiceAuthToken";
+    private static final String INVALID_AUTH_TOKEN = "invalidServiceAuthToken";
     private static final String AUTHORIZATION_HEADER = "Authorization";
-    private static final String someAuthToken = "someAuthToken";
-    private static final String someDocumentId = "456c0976-3178-46dd-b9ce-5ab5d47c625a";
-
+    private static final String AUTH_TOKEN = "someAuthToken";
+    private static final String DOCUMENT_ID = "456c0976-3178-46dd-b9ce-5ab5d47c625a";
 
     @BeforeEach
-    public void setUpEachTest() throws InterruptedException, IOException {
+    public void setUpEachTest() throws InterruptedException {
         Thread.sleep(2000);
     }
 
@@ -57,7 +56,7 @@ public class CdamApiConsumerTest {
     }
 
     @Pact(provider = "CCD_CASE_DOCS_AM_API", consumer = "prl-dgs-api")
-    RequestResponsePact downloadDocument(PactDslWithProvider builder) throws JSONException, IOException {
+    RequestResponsePact downloadDocument(PactDslWithProvider builder) throws JSONException {
         // @formatter:off
 
         return builder
@@ -65,9 +64,9 @@ public class CdamApiConsumerTest {
             .uponReceiving("a request to download a valid document")
             .method("GET")
             .headers(Map.of(
-                SERVICE_AUTHORIZATION_HEADER, someServiceAuthToken,
-                AUTHORIZATION_HEADER, someAuthToken))
-            .path("/cases/documents/" + someDocumentId)
+                SERVICE_AUTHORIZATION_HEADER, SERVICE_AUTH_TOKEN,
+                AUTHORIZATION_HEADER, AUTH_TOKEN))
+            .path("/cases/documents"  + DOCUMENT_ID)
             .willRespondWith()
             .headers(Map.of(org.springframework.http.HttpHeaders.CONTENT_TYPE,
                 "application/vnd.uk.gov.hmcts.dm.document.v1+hal+json;charset=UTF-8"))
@@ -80,9 +79,9 @@ public class CdamApiConsumerTest {
     @PactTestFor(pactMethod = "downloadDocument")
     public void verifyDownloadDocument(MockServer mockServer) throws IOException {
 
-        HttpResponse downloadDocumentResponse = Request.Get(mockServer.getUrl() + "/cases/documents/" + someDocumentId)
-            .addHeader(SERVICE_AUTHORIZATION_HEADER, someServiceAuthToken)
-            .addHeader(AUTHORIZATION_HEADER, someAuthToken)
+        HttpResponse downloadDocumentResponse = Request.Get(mockServer.getUrl() + "/cases/documents" + DOCUMENT_ID)
+            .addHeader(SERVICE_AUTHORIZATION_HEADER, SERVICE_AUTH_TOKEN)
+            .addHeader(AUTHORIZATION_HEADER, AUTH_TOKEN)
             .execute().returnResponse();
 
         assertEquals(200, downloadDocumentResponse.getStatusLine().getStatusCode());
@@ -90,15 +89,15 @@ public class CdamApiConsumerTest {
 
 
     @Pact(provider = "CCD_CASE_DOCS_AM_API", consumer = "prl-dgs-api")
-    RequestResponsePact noAuthDownloadDocument(PactDslWithProvider builder) throws JSONException, IOException {
+    RequestResponsePact noAuthDownloadDocument(PactDslWithProvider builder) throws JSONException {
         // @formatter:off
 
         return builder
             .given("A request to download a document")
             .uponReceiving("a request to download a valid document with invalid authorisation")
             .method("GET")
-            .headers(Map.of(SERVICE_AUTHORIZATION_HEADER, invalidServiceAuthToken))
-            .path("/cases/documents/" + someDocumentId)
+            .headers(Map.of(SERVICE_AUTHORIZATION_HEADER, INVALID_AUTH_TOKEN))
+            .path("/cases/documents" + DOCUMENT_ID)
             .willRespondWith()
             .matchHeader(org.springframework.http.HttpHeaders.CONTENT_TYPE,
                 "application/vnd.uk.gov.hmcts.dm.document.v1+hal+json;charset=UTF-8")
@@ -112,15 +111,15 @@ public class CdamApiConsumerTest {
     @PactTestFor(pactMethod = "noAuthDownloadDocument")
     public void verifyNoAuthDownloadDocument(MockServer mockServer) throws IOException {
 
-        HttpResponse downloadDocumentResponse = Request.Get(mockServer.getUrl() + "/cases/documents/" + someDocumentId)
-            .addHeader(SERVICE_AUTHORIZATION_HEADER, invalidServiceAuthToken).execute().returnResponse();
+        HttpResponse downloadDocumentResponse = Request.Get(mockServer.getUrl() + "/cases/documents" + DOCUMENT_ID)
+            .addHeader(SERVICE_AUTHORIZATION_HEADER, INVALID_AUTH_TOKEN).execute().returnResponse();
 
         assertEquals(500, downloadDocumentResponse.getStatusLine().getStatusCode());
 
     }
 
     @Pact(provider = "CCD_CASE_DOCS_AM_API", consumer = "prl-dgs-api")
-    RequestResponsePact uploadDocument(PactDslWithProvider builder) throws JSONException, IOException {
+    RequestResponsePact uploadDocument(PactDslWithProvider builder) throws JSONException {
         // @formatter:off
 
 
@@ -129,8 +128,8 @@ public class CdamApiConsumerTest {
             .uponReceiving("a request to upload a document with valid authorization")
             .method("POST")
             .headers(Map.of(
-                SERVICE_AUTHORIZATION_HEADER, someServiceAuthToken,
-                AUTHORIZATION_HEADER, someAuthToken))
+                SERVICE_AUTHORIZATION_HEADER, SERVICE_AUTH_TOKEN,
+                AUTHORIZATION_HEADER, AUTH_TOKEN))
             .path("/cases/documents")
             .willRespondWith()
             .status(HttpStatus.SC_OK)
@@ -143,8 +142,8 @@ public class CdamApiConsumerTest {
     public void verifyUploadDocument(MockServer mockServer) throws IOException {
 
         HttpResponse downloadDocumentResponse = Request.Post(mockServer.getUrl() + "/cases/documents" )
-            .addHeader(SERVICE_AUTHORIZATION_HEADER, someServiceAuthToken)
-            .addHeader(AUTHORIZATION_HEADER, someAuthToken)
+            .addHeader(SERVICE_AUTHORIZATION_HEADER, SERVICE_AUTH_TOKEN)
+            .addHeader(AUTHORIZATION_HEADER, AUTH_TOKEN)
             .execute().returnResponse();
 
         assertEquals(200, downloadDocumentResponse.getStatusLine().getStatusCode());
