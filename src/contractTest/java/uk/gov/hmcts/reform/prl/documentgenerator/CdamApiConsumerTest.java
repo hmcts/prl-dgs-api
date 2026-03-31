@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.IOException;
@@ -34,6 +35,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest({
     "CCD_CASE_DOCS_AM_API:http://localhost:5170"
 })
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class CdamApiConsumerTest {
 
 
@@ -73,8 +75,8 @@ public class CdamApiConsumerTest {
             .toPact();
     }
 
-    //    @Test
-    //    @PactTestFor(pactMethod = "downloadDocument")
+    @Test
+    @PactTestFor(pactMethod = "downloadDocument")
     public void verifyDownloadDocument(MockServer mockServer) throws IOException {
 
         HttpResponse downloadDocumentResponse = Request.Get(mockServer.getUrl() + "/cases/documents/" + someDocumentId)
@@ -104,8 +106,8 @@ public class CdamApiConsumerTest {
     }
 
 
-    //    @Test
-    //    @PactTestFor(pactMethod = "noAuthDownloadDocument")
+    @Test
+    @PactTestFor(pactMethod = "noAuthDownloadDocument")
     public void verifyNoAuthDownloadDocument(MockServer mockServer) throws IOException {
 
         HttpResponse downloadDocumentResponse = Request.Get(mockServer.getUrl() + "/cases/documents/" + someDocumentId)
@@ -136,8 +138,8 @@ public class CdamApiConsumerTest {
             .toPact();
     }
 
-    //    @Test
-    //    @PactTestFor(pactMethod = "uploadDocument")
+    @Test
+    @PactTestFor(pactMethod = "uploadDocument")
     public void verifyUploadDocument(MockServer mockServer) throws IOException {
 
         HttpResponse downloadDocumentResponse = Request.Post(mockServer.getUrl() + "/cases/documents" )
