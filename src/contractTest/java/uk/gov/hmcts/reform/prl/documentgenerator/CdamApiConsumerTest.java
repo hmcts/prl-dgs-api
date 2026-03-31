@@ -13,7 +13,7 @@ import org.apache.http.HttpStatus;
 import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
 import org.json.JSONException;
-import org.junit.After;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -22,6 +22,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.IOException;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -50,8 +51,8 @@ public class CdamApiConsumerTest {
         Thread.sleep(2000);
     }
 
-    @After
-    void teardown() {
+    @AfterEach
+    public void teardown() {
         Executor.closeIdleConnections();
     }
 
@@ -63,13 +64,15 @@ public class CdamApiConsumerTest {
             .given("A request to download a document")
             .uponReceiving("a request to download a valid document")
             .method("GET")
-            .headers(SERVICE_AUTHORIZATION_HEADER, someServiceAuthToken)
-            .headers(AUTHORIZATION_HEADER, someAuthToken)
+            .headers(Map.of(
+                SERVICE_AUTHORIZATION_HEADER, someServiceAuthToken,
+                AUTHORIZATION_HEADER, someAuthToken))
             .path("/cases/documents/" + someDocumentId)
             .willRespondWith()
             .matchHeader(org.springframework.http.HttpHeaders.CONTENT_TYPE,
                 "application/vnd.uk.gov.hmcts.dm.document.v1+hal+json;charset=UTF-8")
             .status(HttpStatus.SC_OK)
+            .body(buildPactDslJsonBody())
             .toPact();
     }
 
@@ -94,12 +97,13 @@ public class CdamApiConsumerTest {
             .given("A request to download a document")
             .uponReceiving("a request to download a valid document with invalid authorisation")
             .method("GET")
-            .headers(SERVICE_AUTHORIZATION_HEADER, invalidServiceAuthToken)
+            .headers(Map.of(SERVICE_AUTHORIZATION_HEADER, invalidServiceAuthToken))
             .path("/cases/documents/" + someDocumentId)
             .willRespondWith()
             .matchHeader(org.springframework.http.HttpHeaders.CONTENT_TYPE,
                 "application/vnd.uk.gov.hmcts.dm.document.v1+hal+json;charset=UTF-8")
             .status(HttpStatus.SC_INTERNAL_SERVER_ERROR)
+            .body(buildPactDslJsonBody())
             .toPact();
     }
 
@@ -119,20 +123,18 @@ public class CdamApiConsumerTest {
     RequestResponsePact uploadDocument(PactDslWithProvider builder) throws JSONException, IOException {
         // @formatter:off
 
-        PactDslJsonBody body = new PactDslJsonBody()
-            .stringMatcher("caseTypeId", "PRLAPPS")
-            .stringMatcher("jurisdictionId", "PRIVATELAW")
-            .asBody();
 
         return builder
             .given("A request to upload a document")
             .uponReceiving("a request to upload a document with valid authorization")
             .method("POST")
-            .headers(SERVICE_AUTHORIZATION_HEADER, someServiceAuthToken)
-            .headers(AUTHORIZATION_HEADER, someAuthToken)
+            .headers(Map.of(
+                SERVICE_AUTHORIZATION_HEADER, someServiceAuthToken,
+                AUTHORIZATION_HEADER, someAuthToken))
             .path("/cases/documents")
             .willRespondWith()
             .status(HttpStatus.SC_OK)
+            .body(buildPactDslJsonBody())
             .toPact();
     }
 
@@ -148,4 +150,10 @@ public class CdamApiConsumerTest {
         assertEquals(200, downloadDocumentResponse.getStatusLine().getStatusCode());
     }
 
+    private PactDslJsonBody buildPactDslJsonBody() {
+        return new PactDslJsonBody()
+            .stringMatcher("caseTypeId", "PRLAPPS")
+            .stringMatcher("jurisdictionId", "PRIVATELAW")
+            .asBody();
+    }
 }
