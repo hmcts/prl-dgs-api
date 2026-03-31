@@ -15,6 +15,7 @@ import org.apache.http.client.fluent.Request;
 import org.json.JSONException;
 import org.junit.After;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -56,6 +57,7 @@ public class CdamApiConsumerTest {
         Executor.closeIdleConnections();
     }
 
+    @Disabled
     @Pact(provider = "CCD_CASE_DOCS_AM_API", consumer = "prl-dgs-api")
     RequestResponsePact downloadDocument(PactDslWithProvider builder) throws JSONException, IOException {
         // @formatter:off
@@ -78,7 +80,8 @@ public class CdamApiConsumerTest {
             .toPact();
     }
 
-    /* @Test
+    @Disabled
+    @Test
     @PactTestFor(pactMethod = "downloadDocument")
     public void verifyDownloadDocument(MockServer mockServer) throws IOException {
 
@@ -89,7 +92,7 @@ public class CdamApiConsumerTest {
             .execute().returnResponse();
 
         assertEquals(200, downloadDocumentResponse.getStatusLine().getStatusCode());
-    } */
+    }
 
 
     @Pact(provider = "CCD_CASE_DOCS_AM_API", consumer = "prl-dgs-api")
