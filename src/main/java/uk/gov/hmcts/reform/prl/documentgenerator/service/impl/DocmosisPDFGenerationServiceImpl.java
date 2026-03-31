@@ -78,12 +78,14 @@ public class DocmosisPDFGenerationServiceImpl implements PDFGenerationService {
     }
 
     private PdfDocumentRequest request(String templateName, Map<String, Object> placeholders) {
+        Map<String, Object> data = templateDataMapper.map(placeholders);
+        log.info("Sending following data to Docmosis ==> {}", data);
         return PdfDocumentRequest.builder()
             .accessKey(docmosisPdfServiceAccessKey)
             .templateName(templateName)
             .outputName("result.pdf")
             .devMode(docmosisDevMode)
-            .data(templateDataMapper.map(placeholders))
+            .data(data)
             .build();
     }
 
