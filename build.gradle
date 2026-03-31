@@ -522,7 +522,6 @@ jacocoTestReport {
     reports {
         xml.required = true
         html.required = true
-        //xml.outputLocation = file("${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml")
     }
 }
 
