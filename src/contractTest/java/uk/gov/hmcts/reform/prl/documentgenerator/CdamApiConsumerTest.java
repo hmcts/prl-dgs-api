@@ -71,8 +71,8 @@ public class CdamApiConsumerTest {
             ))
             .path("/cases/documents/" + someDocumentId)
             .willRespondWith()
-            .matchHeader(org.springframework.http.HttpHeaders.CONTENT_TYPE,
-                         "application/vnd.uk.gov.hmcts.dm.document.v1+hal+json;charset=UTF-8")
+            .headers(Map.of(org.springframework.http.HttpHeaders.CONTENT_TYPE,
+                         "application/vnd.uk.gov.hmcts.dm.document.v1+hal+json;charset=UTF-8"))
             .body("{}")
             .status(HttpStatus.SC_OK)
             .toPact();
