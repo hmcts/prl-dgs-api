@@ -66,7 +66,7 @@ public class CdamApiConsumerTest {
             .headers(Map.of(
                 SERVICE_AUTHORIZATION_HEADER, SERVICE_AUTH_TOKEN,
                 AUTHORIZATION_HEADER, AUTH_TOKEN))
-            .path("/cases/documents"  + DOCUMENT_ID)
+            .path("/cases/documents/"  + DOCUMENT_ID)
             .willRespondWith()
             .headers(Map.of(org.springframework.http.HttpHeaders.CONTENT_TYPE,
                 "application/vnd.uk.gov.hmcts.dm.document.v1+hal+json;charset=UTF-8"))
@@ -79,7 +79,7 @@ public class CdamApiConsumerTest {
     @PactTestFor(pactMethod = "downloadDocument")
     public void verifyDownloadDocument(MockServer mockServer) throws IOException {
 
-        HttpResponse downloadDocumentResponse = Request.Get(mockServer.getUrl() + "/cases/documents" + DOCUMENT_ID)
+        HttpResponse downloadDocumentResponse = Request.Get(mockServer.getUrl() + "/cases/documents/" + DOCUMENT_ID)
             .addHeader(SERVICE_AUTHORIZATION_HEADER, SERVICE_AUTH_TOKEN)
             .addHeader(AUTHORIZATION_HEADER, AUTH_TOKEN)
             .execute().returnResponse();
@@ -97,7 +97,7 @@ public class CdamApiConsumerTest {
             .uponReceiving("a request to download a valid document with invalid authorisation")
             .method("GET")
             .headers(Map.of(SERVICE_AUTHORIZATION_HEADER, INVALID_AUTH_TOKEN))
-            .path("/cases/documents" + DOCUMENT_ID)
+            .path("/cases/documents/" + DOCUMENT_ID)
             .willRespondWith()
             .matchHeader(org.springframework.http.HttpHeaders.CONTENT_TYPE,
                 "application/vnd.uk.gov.hmcts.dm.document.v1+hal+json;charset=UTF-8")
@@ -111,7 +111,7 @@ public class CdamApiConsumerTest {
     @PactTestFor(pactMethod = "noAuthDownloadDocument")
     public void verifyNoAuthDownloadDocument(MockServer mockServer) throws IOException {
 
-        HttpResponse downloadDocumentResponse = Request.Get(mockServer.getUrl() + "/cases/documents" + DOCUMENT_ID)
+        HttpResponse downloadDocumentResponse = Request.Get(mockServer.getUrl() + "/cases/documents/" + DOCUMENT_ID)
             .addHeader(SERVICE_AUTHORIZATION_HEADER, INVALID_AUTH_TOKEN).execute().returnResponse();
 
         assertEquals(500, downloadDocumentResponse.getStatusLine().getStatusCode());
