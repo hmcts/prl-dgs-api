@@ -19,7 +19,11 @@
       "response": {
         "status": 200,
         "headers": {
-          "Content-Type": "application/vnd\u63AFuk\u98E0gov\u8E83hmcts\uED68dm\u347Adocument\u7C16v1haljson;charset=UTF-8"
+          "Content-Type": "application/vnd\u9375uk\u3390gov\u96D3hmcts\uB3CEdm\u8C41document\uAD7Cv11111haljson;charset=UTF-8"
+        },
+        "body": {
+          "caseTypeId": "PRLAPPS",
+          "jurisdictionId": "PRIVATELAW"
         },
         "matchingRules": {
           "header": {
@@ -31,6 +35,38 @@
                 }
               ],
               "combine": "AND"
+            }
+          },
+          "body": {
+            "$.caseTypeId": {
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "PRLAPPS"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.jurisdictionId": {
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "PRIVATELAW"
+                }
+              ],
+              "combine": "AND"
+            }
+          }
+        },
+        "generators": {
+          "body": {
+            "$.caseTypeId": {
+              "type": "Regex",
+              "regex": "PRLAPPS"
+            },
+            "$.jurisdictionId": {
+              "type": "Regex",
+              "regex": "PRIVATELAW"
             }
           }
         }
@@ -53,7 +89,11 @@
       "response": {
         "status": 500,
         "headers": {
-          "Content-Type": "application/vnd\uF5A0uk\uE1D7gov\u0205hmcts\u0E15dm\uCDCDdocument\u0B01v111haljson;charset=UTF-8"
+          "Content-Type": "application/vnd\u1F6Euk\u57B0gov\u340Ehmcts\uDD83dm\uA463document\u8F2Cv11haljson;charset=UTF-8"
+        },
+        "body": {
+          "caseTypeId": "PRLAPPS",
+          "jurisdictionId": "PRIVATELAW"
         },
         "matchingRules": {
           "header": {
@@ -65,6 +105,38 @@
                 }
               ],
               "combine": "AND"
+            }
+          },
+          "body": {
+            "$.caseTypeId": {
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "PRLAPPS"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.jurisdictionId": {
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "PRIVATELAW"
+                }
+              ],
+              "combine": "AND"
+            }
+          }
+        },
+        "generators": {
+          "body": {
+            "$.caseTypeId": {
+              "type": "Regex",
+              "regex": "PRLAPPS"
+            },
+            "$.jurisdictionId": {
+              "type": "Regex",
+              "regex": "PRIVATELAW"
             }
           }
         }
@@ -86,7 +158,59 @@
         }
       },
       "response": {
-        "status": 200
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "body": {
+          "caseTypeId": "PRLAPPS",
+          "jurisdictionId": "PRIVATELAW"
+        },
+        "matchingRules": {
+          "body": {
+            "$.caseTypeId": {
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "PRLAPPS"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.jurisdictionId": {
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "PRIVATELAW"
+                }
+              ],
+              "combine": "AND"
+            }
+          },
+          "header": {
+            "Content-Type": {
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "application/json(;\\s?charset=[\\w\\-]+)?"
+                }
+              ],
+              "combine": "AND"
+            }
+          }
+        },
+        "generators": {
+          "body": {
+            "$.caseTypeId": {
+              "type": "Regex",
+              "regex": "PRLAPPS"
+            },
+            "$.jurisdictionId": {
+              "type": "Regex",
+              "regex": "PRIVATELAW"
+            }
+          }
+        }
       },
       "providerStates": [
         {
