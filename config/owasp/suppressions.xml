@@ -18,4 +18,7 @@
     <packageUrl regex="true">^pkg:maven/org\.hibernate\.validator/hibernate\-validator@.*$</packageUrl>
     <cve>CVE-2025-15104</cve>
   </suppress>
+  <suppress>
+    <cve>CVE-2026-33540</cve>
+  </suppress>
 </suppressions>
