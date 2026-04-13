@@ -265,12 +265,15 @@ dependencies {
 
   implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-ribbon', version: '2.2.10.RELEASE'
     implementation (group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign',  version: versions.springCloud) {
+        exclude group: 'com.netflix.netflix-commons', module: 'netflix-statistics'
         exclude group: 'io.reactivex', module: 'io.reactivex'
         exclude group: 'io.reactivex', module: 'rxnetty'
         exclude group: 'io.reactivex', module: 'rxnetty-contexts'
         exclude group: 'io.reactivex', module: 'rxnetty-servo'
         exclude group: 'org.bouncycastle'
     }
+
+  implementation group: 'com.netflix.netflix-commons', name: 'netflix-statistics', version: '0.3.0'
 
     implementation group: 'io.github.openfeign', name: 'feign-httpclient', version: versions.feignHttpClient
     implementation group: 'org.springframework.hateoas', name: 'spring-hateoas', version: versions.springHateoas
