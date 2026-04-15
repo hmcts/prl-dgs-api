@@ -158,7 +158,8 @@ jacoco {
 def versions = [
     commonsIo: '2.20.0',
     commonsLang3: '3.20.0',
-    commonsBeanUtils: '1.11.0',
+    commonsBeanUtils: '1.12.0',
+    commonsFileupload: '1.6.1',
     feignHttpClient: '10.12',
     gradlePitest: '1.15.0',
     guava: '32.1.2-jre',
@@ -167,8 +168,8 @@ def versions = [
     jsonAssert: '1.5.3',
     junit: '4.13.2',
     lombok: '1.18.44',
-    nimbus: '5.14',
-    pdfbox: '2.0.36',
+    nimbus: '9.37.0',
+    pdfbox: '2.0.32',
     pitest: '1.20.3',
     powerMock: '2.0.0',
     puppyCrawl: '8.45.1',
@@ -178,25 +179,25 @@ def versions = [
     serenityCucumber: '1.9.51',
     serviceTokenGenerator: '3.1.4',
     sonarPitest: '0.5',
-    spring_security_rsa: '1.0.12.RELEASE',
+    spring_security_rsa: '1.0.12.RELEASE',  // Deprecated, but kept for Spring 2.7.x compat
     springBoot: '2.7.18',
     springCloud: '3.1.9',
     springHateoas: '1.5.6',
     unirest: '1.4.9',
     wiremockVersion: '2.27.2',
-    springSecurityCrypto: '5.7.11',
-    tomcat   : '9.0.115',
+    springSecurityCrypto: '6.4.5',
+    tomcat   : '11.0.21',
     pact_version: '4.1.11',
-    httpComponents: '4.5.14',
+    httpComponents: '5.2.3',
     bouncycastle: '1.83',
     ccdCaseDocumentAmClient: '1.7.2',
     springFramework    : '5.3.39'
 ]
 
-ext["logback.version"] = '1.2.13'
+ext["logback.version"] = '1.4.14'
 ext['snakeyaml.version'] = '2.2'
 ext['jackson.version'] = '2.16.0'
-ext['spring-framework.version'] = '5.3.37'
+ext['spring-framework.version'] = '5.3.39'
 
 
 
@@ -261,7 +262,7 @@ dependencies {
     implementation group: 'commons-io', name: 'commons-io', version: versions.commonsIo
     implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.8.0'
 
-  implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.6.0'
+  implementation group: 'commons-fileupload', name: 'commons-fileupload', version: versions.commonsFileupload
 
   implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-ribbon', version: '2.2.10.RELEASE'
     implementation (group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign',  version: versions.springCloud) {
