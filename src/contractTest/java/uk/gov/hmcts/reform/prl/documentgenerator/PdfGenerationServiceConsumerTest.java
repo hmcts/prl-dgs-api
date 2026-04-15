@@ -122,7 +122,10 @@ public class PdfGenerationServiceConsumerTest {
         String responseContentType = generateDocumentResponse.getEntity().getContentType().toString();
 
         assertEquals(200, generateDocumentResponse.getStatusLine().getStatusCode());
-        assertEquals("Content-Type: application/pdf", responseContentType);
+        assertEquals(
+            "application/pdf",
+            generateDocumentResponse.getEntity().getContentType().getValue()
+        );
 
     }
 
