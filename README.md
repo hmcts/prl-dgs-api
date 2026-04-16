@@ -21,7 +21,7 @@ You must pass **dynamic_fileName** key in the **placeholders** map to get a dyna
 
 **Prerequisites**
 
-- [JDK 11](https://openjdk.java.net/)
+- [JDK 17](https://openjdk.java.net/)
 - [Docker](https://www.docker.com)
 
 
@@ -146,3 +146,4 @@ We follow [RESTful API standards](https://hmcts.github.io/restful-api-standards/
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+

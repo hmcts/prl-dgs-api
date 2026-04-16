@@ -12,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -30,13 +29,9 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DocmosisPdfGenerationServiceImplUTest {
-
-    private static final String PDF_SERVICE_ENDPOINT = "pdf_service_endpoint";
-    private static final String PDF_SERVICE_KEY = "pdf_service_key";
 
     @Mock
     private RestTemplate restTemplate;
@@ -50,7 +45,7 @@ public class DocmosisPdfGenerationServiceImplUTest {
 
     @InjectMocks
     @Spy
-    private final DocmosisPDFGenerationServiceImpl classUnderTest = new DocmosisPDFGenerationServiceImpl();
+    private DocmosisPDFGenerationServiceImpl classUnderTest;
 
     @Before
     public void before() throws IllegalAccessException {
@@ -88,7 +83,6 @@ public class DocmosisPdfGenerationServiceImplUTest {
     public void givenHttpRequestGoesThrough_whenGenerateFromHtml_thenReturnProperResponse() throws Exception {
         final String template = "1";
         final Map<String, Object> placeholders = Collections.emptyMap();
-        final HttpClientErrorException httpClientErrorException = Mockito.mock(HttpClientErrorException.class);
 
         byte[] test = "Any String you want".getBytes();
 
@@ -101,7 +95,6 @@ public class DocmosisPdfGenerationServiceImplUTest {
                 ArgumentMatchers.any(HttpMethod.class),
                 ArgumentMatchers.any(),
                 ArgumentMatchers.<Class<byte[]>>any())).thenReturn(myEntity);
-
 
         byte[] expected = classUnderTest.generate(template, placeholders);
 
@@ -120,7 +113,6 @@ public class DocmosisPdfGenerationServiceImplUTest {
         Mockito.when(restTemplate.postForObject(ArgumentMatchers.any(String.class),
                                            ArgumentMatchers.any(),
                                            ArgumentMatchers.<Class<byte[]>>any())).thenReturn(test);
-
 
         byte[] expected = classUnderTest.converToPdf(placeholders,"testFile");
 

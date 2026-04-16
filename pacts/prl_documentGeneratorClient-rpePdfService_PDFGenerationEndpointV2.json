@@ -28,17 +28,6 @@
           "Content-Type": "application/pdf"
         },
         "matchingRules": {
-          "body": {
-            "$": {
-              "matchers": [
-                {
-                  "match": "contentType",
-                  "value": "application/octet-stream"
-                }
-              ],
-              "combine": "AND"
-            }
-          },
           "header": {
             "Content-Type": {
               "matchers": [

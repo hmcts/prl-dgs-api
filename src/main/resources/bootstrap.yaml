@@ -1,18 +1,1 @@
-spring:
-  cloud:
-    propertiesvolume:
-      enabled: true
-      prefixed: true
-      paths: /mnt/secrets/prl
-      aliases:
-        prl.microservicekey-prl-dgs-api: AUTH_PROVIDER_SERVICE_CLIENT_KEY
-        prl.docmosis-api-key: DOCMOSIS_SERVICE_ACCESS_KEY
-        prl.launchDarkly-sdk-key: LAUNCH_DARKLY_SDK_KEY
-        prl.AppInsightsInstrumentationKey: APP_INSIGHTS_INSTRUMENTATION_KEY
-        prl.prl-cos-idam-client-secret: IDAM_CLIENT_SECRET
-        prl.test-genericpassword: PRL_GENERIC_PASSWORD
-        prl.idam-solicitor-username: IDAM_SOLICITOR_USERNAME
-        prl.idam-solicitor-password: IDAM_SOLICITOR_PASSWORD
-        prl.system-update-user-password: PRL_SYSTEM_UPDATE_PASSWORD
-        prl.system-update-user-username: SYSTEM_UPDATE_USER_USERNAME
 
