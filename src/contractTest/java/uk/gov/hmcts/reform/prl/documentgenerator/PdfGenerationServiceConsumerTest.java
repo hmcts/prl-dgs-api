@@ -119,11 +119,10 @@ public class PdfGenerationServiceConsumerTest {
 
         HttpResponse generateDocumentResponse = httpClient.execute(request);
 
-        String responseContentType = generateDocumentResponse.getEntity().getContentType().toString();
+        String responseContentType = generateDocumentResponse.getEntity().getContentType().getValue();
 
         assertEquals(200, generateDocumentResponse.getStatusLine().getStatusCode());
-        assertEquals("Content-Type: application/pdf", responseContentType);
-
+        assertEquals("application/pdf", responseContentType);
     }
 
     private File getFile(String fileName) throws FileNotFoundException {
