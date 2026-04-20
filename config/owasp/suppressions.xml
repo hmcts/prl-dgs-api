@@ -3,6 +3,7 @@
   <suppress>
     <cve>CVE-2024-38820</cve> <!-- spring-5.3.27.jar -->
     <cve>CVE-2024-38808</cve> <!-- spring-5.3.27.jar -->
+    <cve>CVE-2026-33540</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
@@ -17,5 +18,19 @@
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/org\.hibernate\.validator/hibernate\-validator@.*$</packageUrl>
     <cve>CVE-2025-15104</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: netflix-statistics-0.1.1.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/com\.netflix\.netflix-commons/netflix-statistics@.*$</packageUrl>
+    <cve>CVE-2026-33540</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: spring-security-crypto-5.7.11.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring-security-crypto@.*$</packageUrl>
+    <cve>CVE-2026-22732</cve>
   </suppress>
 </suppressions>
