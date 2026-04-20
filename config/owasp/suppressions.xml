@@ -18,4 +18,11 @@
     <packageUrl regex="true">^pkg:maven/org\.hibernate\.validator/hibernate\-validator@.*$</packageUrl>
     <cve>CVE-2025-15104</cve>
   </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: netflix-statistics-0.1.1.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/com\.netflix\.netflix-commons/netflix-statistics@.*$</packageUrl>
+    <cve>CVE-2026-33540</cve>
+  </suppress>
 </suppressions>
