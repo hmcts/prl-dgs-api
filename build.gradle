@@ -169,7 +169,7 @@ def versions = [
     lombok: '1.18.46',
     nimbus: '5.14',
     pdfbox: '2.0.36',
-    pitest: '1.23.0',
+    pitest: '1.23.1',
     powerMock: '2.0.0',
     puppyCrawl: '8.45.1',
     reformsJavaLogging: '5.1.1',
