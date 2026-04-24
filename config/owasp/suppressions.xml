@@ -33,4 +33,21 @@
     <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring-security-crypto@.*$</packageUrl>
     <cve>CVE-2026-22732</cve>
   </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: netflix-statistics-0.1.1.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/com\.netflix\.netflix-commons/netflix-statistics@.*$</packageUrl>
+    <cve>CVE-2026-22737</cve>
+  </suppress>
+
+  <suppress>
+    <packageUrl regex="true">^pkg:maven/com\.netflix\.netflix-commons/netflix-statistics@.*$</packageUrl>
+    <cve>CVE-2026-22735</cve>
+  </suppress>
+
+  <suppress>
+    <packageUrl regex="true">^pkg:maven/com\.netflix\.netflix-commons/netflix-statistics@.*$</packageUrl>
+    <cve>CVE-2026-22733</cve>
+  </suppress>
 </suppressions>
