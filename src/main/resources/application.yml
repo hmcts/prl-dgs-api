@@ -348,10 +348,10 @@ document:
             -   templateName: FL-PRL-GOR-ENG-Standard-Directions-Order-Final.docx
                 filename: Standard_Directions_Order_Final.pdf
                 document-generator: docmosis
-            -   templateName: PRL-DOCUMENT-COVER-SHEET.docx
+            -   templateName: FL-PRL-APP-ENG-DOCUMENT-COVER-SHEET.docx
                 filename: PrlPostDocumentCoverSheet.pdf
                 document-generator: docmosis
-            -   templateName: PRL-WEL-DOCUMENT-COVER-SHEET.docx
+            -   templateName: FL-PRL-APP-WEL-DOCUMENT-COVER-SHEET.docx
                 filename: WelshPrlPostDocumentCoverSheet.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-WEL-Standard-Directions-Order-Draft.docx
