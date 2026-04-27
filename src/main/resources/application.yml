@@ -459,10 +459,10 @@ document:
             -   templateName: PRL-LET-ENG-LIST-WITHOUT-NOTICE.docx
                 filename: List_without_notice_letter.pdf
                 document-generator: docmosis
-            -   templateName: PRL-DOCUMENT-COVER-SERVE-ORDER-SHEET.docx
+            -   templateName: FL-PRL-APP-ENG-DOCUMENT-COVER-SERVE-ORDER-SHEET.docx
                 filename: PrlPostDocumentCoverSheet.pdf
                 document-generator: docmosis
-            -   templateName: PRL-WEL-DOCUMENT-COVER-SERVE-ORDER-SHEET.docx
+            -   templateName: FL-PRL-APP-WEL-DOCUMENT-COVER-SERVE-ORDER-SHEET.docx
                 filename: WelshPrlPostDocumentCoverSheet.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-LET-ENG-SEND-REPLY-MESSAGE.docx
