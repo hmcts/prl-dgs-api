@@ -1,6 +1,5 @@
 # Document Generator
 
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/hmcts/prl-dgs-api.svg?branch=master)](https://travis-ci.org/hmcts/prl-dgs-api)
 [![codecov](https://codecov.io/gh/hmcts/prl-dgs-api/branch/master/graph/badge.svg)](https://app.codecov.io/gh/hmcts/prl-dgs-api)
