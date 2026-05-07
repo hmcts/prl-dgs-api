@@ -15,6 +15,13 @@
     <cve>CVE-2026-22746</cve>
     <cve>CVE-2026-22733</cve>
     <cve>CVE-2026-35172</cve>
+    <cve>CVE-2026-40975</cve>
+    <cve>CVE-2026-40972</cve>
+    <cve>CVE-2026-40973</cve>
+    <cve>CVE-2026-22745</cve>
+    <cve>CVE-2026-40977</cve>
+    <cve>CVE-2026-22741</cve>
+    <cve>CVE-2026-22740</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[
