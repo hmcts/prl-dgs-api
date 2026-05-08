@@ -21,6 +21,7 @@ import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.same;
@@ -161,4 +162,12 @@ public class DocumentManagementServiceImplTest {
         Map<String, Object> value = placeHolderCaptor.getValue();
         Assert.assertNotNull(value);
     }
+
+    @Test
+    public void shouldThrowIllegalArgumentExceptionWhenDocumentIsNull() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            classUnderTest.storeDocument(null, authToken ,"File Name");
+        });
+    }
+
 }
