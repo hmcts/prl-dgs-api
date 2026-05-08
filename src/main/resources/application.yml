@@ -554,6 +554,12 @@ document:
             -   templateName: FL-PRL-GOR-WEL-RES-C8-FINAL.docx
                 filename: C8Document_Welsh.pdf
                 document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-OTHER-C8.docx
+                filename: C8Document.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-OTHER-C8.docx
+                filename: C8Document_Welsh.pdf
+                document-generator: docmosis
     pdf:
         familyCourtImgKey: "familycourt"
         familyCourtImgVal: "[userImage:familycourt.png]"
