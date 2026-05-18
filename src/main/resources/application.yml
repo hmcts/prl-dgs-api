@@ -384,6 +384,15 @@ document:
             -   templateName: FL-PRL-GOR-ENG-RES-C8-FINAL.docx
                 filename: C8Document.pdf
                 document-generator: docmosis
+            -   templateName: FL-PRL-GOR-ENG-RES-C8-FL401-DRAFT.docx
+                filename: C8Document_Draft.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-RES-C8-FL401-DRAFT.docx
+                filename: C8Document_Welsh_Draft.pdf
+                document-generator: docmosis
+            -   templateName: FL-PRL-GOR-WEL-RES-C8-DRAFT.docx
+                filename: C8Document_Welsh_Draft.pdf
+                document-generator: docmosis
             -   templateName: PRL-ENG-ANNEX-Y.docx
                 filename: Anexure-y.pdf
                 document-generator: docmosis
