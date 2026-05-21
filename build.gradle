@@ -185,7 +185,7 @@ def versions = [
     puppyCrawl: '8.45.1',
     reformsJavaLogging: '5.1.1',
     restAssured: '4.5.1',
-    serenity: '2.2.13',
+    serenity: '2.6.0',
     serenityCucumber: '1.9.51',
     serviceTokenGenerator: '3.1.4',
     sonarPitest: '0.5',
