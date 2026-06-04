@@ -18,12 +18,12 @@ plugins {
     id 'application'
     id 'checkstyle'
     id 'com.github.ben-manes.versions' version '0.54.0'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'io.spring.dependency-management' version '1.1.7'
     id 'jacoco'
     id 'org.owasp.dependencycheck' version '11.1.1'
-    id 'org.sonarqube' version '5.0.0.4638'
+    id 'org.sonarqube' version '5.1.0.4882'
     id 'org.springframework.boot' version '2.7.18'
-    id 'info.solidsoft.pitest' version '1.7.4'
+    id 'info.solidsoft.pitest' version '1.19.0'
     id 'au.com.dius.pact' version '4.1.7'
 }
 
@@ -35,7 +35,7 @@ version = '3.0.0'
 
 java {
   toolchain {
-    languageVersion = JavaLanguageVersion.of(17)
+    languageVersion = JavaLanguageVersion.of(21)
   }
 }
 
@@ -86,7 +86,7 @@ bootJar {
         attributes 'Implementation-Title': project.name,
             'Implementation-Version': project.version
     }
-    archiveName 'prl-dgs-api.jar'
+    archiveFileName = 'prl-dgs-api.jar'
 }
 
 mainClassName = 'uk.gov.hmcts.reform.prl.documentgenerator.DocumentGeneratorApplication'
@@ -131,12 +131,23 @@ checkstyle {
 tasks.withType(Checkstyle).each { checkstyleTask ->
     checkstyleTask.doLast {
         reports.all { report ->
-            def outputFile = report.destination
+            def outputFile = report.outputLocation.get().asFile
             if (outputFile.exists() && outputFile.text.contains("<error ")) {
                 throw new GradleException("There were checkstyle warnings! For more info check $outputFile")
             }
         }
     }
+}
+
+tasks.withType(Checkstyle) {
+  reports {
+    html.outputLocation = file("${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.html")
+    xml.outputLocation = file("${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml")
+  }
+}
+
+tasks.withType(Test) {
+  jvmArgs '-Dnet.bytebuddy.experimental=true'
 }
 
 // https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/configuration.html
@@ -163,29 +174,29 @@ def versions = [
     gradlePitest: '1.15.0',
     guava: '32.1.2-jre',
     jacksonDatabind: '2.16.0',
-    apacheLogging: '2.25.4',
+    apacheLogging: '2.26.0',
     jsonAssert: '1.5.3',
     junit: '4.13.2',
     lombok: '1.18.46',
     nimbus: '5.14',
     pdfbox: '2.0.36',
-    pitest: '1.23.1',
+    pitest: '1.24.1',
     powerMock: '2.0.0',
     puppyCrawl: '8.45.1',
     reformsJavaLogging: '5.1.1',
     restAssured: '4.5.1',
-    serenity: '2.2.13',
+    serenity: '2.6.0',
     serenityCucumber: '1.9.51',
     serviceTokenGenerator: '3.1.4',
     sonarPitest: '0.5',
-    spring_security_rsa: '1.0.12.RELEASE',
+    spring_security_rsa: '1.1.5',
     springBoot: '2.7.18',
     springCloud: '3.1.9',
     springHateoas: '1.5.6',
     unirest: '1.4.9',
     wiremockVersion: '2.27.2',
-    springSecurityCrypto: '5.7.11',
-    tomcat   : '9.0.117',
+    springSecurityCrypto: '5.8.16',
+    tomcat   : '9.0.118',
     pact_version: '4.1.11',
     httpComponents: '4.5.14',
     bouncycastle: '1.84',
@@ -198,7 +209,12 @@ ext['snakeyaml.version'] = '2.2'
 ext['jackson.version'] = '2.16.0'
 ext['spring-framework.version'] = '5.3.37'
 
-
+configurations.all {
+  resolutionStrategy {
+    force 'commons-beanutils:commons-beanutils:1.11.0'
+    force 'org.springframework.security:spring-security-rsa:1.1.5'
+  }
+}
 
 
 dependencies {
@@ -238,11 +254,10 @@ dependencies {
   testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '3.1.10'
 
   implementation (group: 'commons-beanutils', name: 'commons-beanutils', version: versions.commonsBeanUtils) {
-    force = true
+
   }
 
   implementation (group:  'org.springframework.security', name: 'spring-security-rsa', version: versions.spring_security_rsa) {
-        force = true
         exclude group: 'org.springframework.security', module: 'spring-security-crypto'
     }
 
@@ -276,8 +291,7 @@ dependencies {
     implementation group: 'org.springframework.hateoas', name: 'spring-hateoas', version: versions.springHateoas
     implementation group: 'org.apache.commons', name: 'commons-lang3', version : versions.commonsLang3
 
-    implementation 'com.github.hmcts.java-logging:logging:6.1.9'
-    implementation 'com.github.hmcts.java-logging:logging-appinsights:6.1.9'
+    implementation 'com.github.hmcts.java-logging:logging:8.0.0'
     implementation group: 'org.springframework', name: 'spring-context-support', version: versions.springFramework
     implementation ( group: 'com.github.hmcts', name: 'service-auth-provider-java-client', version: versions.serviceTokenGenerator) {
         exclude group: 'io.reactivex', module: 'io.reactivex'
@@ -318,9 +332,9 @@ dependencies {
     contractTestRuntime group: 'au.com.dius.pact.consumer', name: 'java8', version: versions.pact_version
 
     contractTestImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test'
-    contractTestImplementation("org.junit.jupiter:junit-jupiter-api:5.14.3")
-    contractTestRuntime("org.junit.jupiter:junit-jupiter-engine:5.14.3")
-    contractTestImplementation('org.junit.jupiter:junit-jupiter-api:5.14.3')
+    contractTestImplementation("org.junit.jupiter:junit-jupiter-api:5.14.4")
+    contractTestRuntime("org.junit.jupiter:junit-jupiter-engine:5.14.4")
+    contractTestImplementation('org.junit.jupiter:junit-jupiter-api:5.14.4')
 
     contractTestImplementation sourceSets.main.runtimeClasspath
     contractTestImplementation sourceSets.test.runtimeClasspath
@@ -387,7 +401,7 @@ dependencyManagement {
       dependencySet(group: 'org.yaml', version: '2.6') {
         entry 'snakeyaml'
       }
-      dependency group: 'org.springframework.security', name: 'spring-security-crypto', version: '5.7.5'
+      dependency group: 'org.springframework.security', name: 'spring-security-crypto', version: '5.8.16'
     }
 }
 
@@ -505,9 +519,8 @@ jacocoTestReport {
     executionData(test)
 
     reports {
-        xml.enabled = true
-        html.enabled = true
-        xml.destination file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
+        xml.required = true
+        html.required = true
     }
 }
 
@@ -535,7 +548,7 @@ sonarqube {
         property "sonar.projectName", "Family Private Law :: prl-dgs"
         property "sonar.projectKey", "prl-dgs-api"
         property "sonar.exclusions", sonarExclusions.join(", ")
-        property "sonar.coverage.jacoco.xmlReportPaths", "${jacocoTestReport.reports.xml.destination.path}"
+        property "sonar.coverage.jacoco.xmlReportPaths", "${jacocoTestReport.reports.xml.outputLocation}"
         property "sonar.pitest.mode", "reuseReport"
         property "sonar.pitest.reportsDirectory", "build/reports/pitest"
     }
