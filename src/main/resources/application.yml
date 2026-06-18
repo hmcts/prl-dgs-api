@@ -486,7 +486,7 @@ document:
             -   templateName: FL-PRL-LET-WEL-SEND-REPLY-MESSAGE.docx
                 filename: WelshPrlMessageDocumentLetter.pdf
                 document-generator: docmosis
-            -   templateName: FL-PRL-LEG-REP-REMOVED.docx
+            -   templateName: FL-PRL-LET-ENG-REP-REMOVED.docx
                 filename: Cover_letter_with_access_code.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-APP-ENG-C100-DRAFT-V3.docx
@@ -506,7 +506,7 @@ document:
                 document-generator: docmosis
             -   templateName: FL-PRL-GOR-WEL-CITIZEN-C1A-RESPONSE-FINAL.docx
                 filename: C1AResponseWelshDocument.pdf
-            -   templateName: FL-PRL-LTR-ENG-C100-FM5.docx
+            -   templateName: FL-PRL-LET-ENG-C100-FM5.docx
                 filename: Cover_letter_fm5.pdf
                 document-generator: docmosis
             -   templateName: FL-PRL-LET-ENG-C100-AP13.docx
